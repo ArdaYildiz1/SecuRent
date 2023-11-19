@@ -1,2 +1,2 @@
 # SecuRent
-Compleletion project for Bilkent CS491/492
+Completion project for Bilkent CS491/492
