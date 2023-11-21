@@ -1,10 +1,10 @@
-import Home from "./components/Home";
+import HomePage from "./HomePage";
 
 const AppRoutes = [
     {
         index: true,
         path: '/home',
-        element: <Home/>
+        element: <HomePage/>
     },
     // {
     //     path: '/fetch-data',
