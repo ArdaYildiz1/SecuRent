@@ -1,16 +1,23 @@
-import './App.css';
-import Button from 'react-bootstrap/esm/Button';
-import ProfilePage from './pages/ProfilePage';
+import './custom.css';
+import React, {Component} from 'react';
+import {Route, Routes} from 'react-router-dom';
+import AppRoutes from './AppRoutes';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Login from './pages/Login';
 
+export default class App extends Component {
+  static displayName = App.name;
 
-function App() {
-  return (
-    <div className="icon-grid">
-      <Login/>
-   </div>
-  );
+  render() {
+      return (
+          <div className='icon-grid'>
+              <Routes>
+                  {AppRoutes.map((route, index) => {
+                      const {element, ...rest} = route;
+                      return <Route key={index} {...rest} element={element}/>;
+                  })}
+              </Routes>
+          </div>
+
+      );
+  }
 }
-
-export default App;

@@ -1,9 +1,10 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
-import {useNavigate} from "react-router-dom";
-import {useState} from 'react';
-import axios from 'axios';
+import '../custom.css';
+// import {useNavigate} from "react-router-dom";
+// import {useState} from 'react';
+// import axios from 'axios';
 
 export default function Login() {
 
@@ -48,7 +49,7 @@ export default function Login() {
                                                           placeholder="Password"/>
                                         </Form.Group>
                                         <br/>
-                                        <Button className="btn-velvet"  type="submit">
+                                        <Button className="btn-velvet" type="submit">
                                             Login
                                         </Button>
                                         <br/><br/>
