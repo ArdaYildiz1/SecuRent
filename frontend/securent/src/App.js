@@ -1,12 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
 
-
-import HomePage from './HomePage.js';
+import ProfilePage from './pages/ProfilePage';
 function App() {
   return (
     <div className="App">
-      <HomePage/>
+      <ProfilePage/>
     </div>
   );
 }
