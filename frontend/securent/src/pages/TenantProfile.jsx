@@ -46,30 +46,30 @@ function TenantProfile() {
                 <Form style={{ width: '70%', alignItems: 'center' }}>
                     <Form.Group controlId="formName">
                         <Form.Label>Name:</Form.Label>
-                        <FormControl type="text" value="Ali Eren" readOnly />
+                        <FormControl type="text" value="Ali Eren" readOnly disabled />
                     </Form.Group>
                     <br />
                     <Form.Group controlId="formSurname">
                         <Form.Label>Surname:</Form.Label>
-                        <FormControl type="text" value="Taş" readOnly />
+                        <FormControl type="text" value="Taş" readOnly disabled/>
                     </Form.Group>
                     <br />
 
                     <Form.Group controlId="formTCNumber">
                         <Form.Label>TC Number:</Form.Label>
-                        <FormControl type="text" value="123456789" readOnly />
+                        <FormControl type="text" value="123456789" readOnly disabled/>
                     </Form.Group>
                     <br />
 
                     <Form.Group controlId="formEmailAddress">
                         <Form.Label>E-mail Address:</Form.Label>
-                        <FormControl type="email" value="alitas@example.com" readOnly />
+                        <FormControl type="email" value="alitas@example.com" readOnly disabled/>
                     </Form.Group>
                     <br />
 
                     <Form.Group controlId="formPassword">
                         <Form.Label>Password:</Form.Label>
-                        <FormControl type="password" placeholder="**********" readOnly />
+                        <FormControl type="password" placeholder="**********" readOnly disabled />
                     </Form.Group>
                 </Form>
             </div>
