@@ -4,10 +4,12 @@ import ProfilePage from './pages/ProfilePage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './pages/Login';
 import SelectAgent from './pages/SelectAgent';
+import TenantProfile from './pages/TenantProfile';
+
 function App() {
   return (
     <div className="">
-      <SelectAgent/>
+      <TenantProfile/>
    </div>
   );
 }
