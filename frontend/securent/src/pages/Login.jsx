@@ -1,7 +1,6 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
-import '../custom.css';
 // import {useNavigate} from "react-router-dom";
 // import {useState} from 'react';
 // import axios from 'axios';
@@ -24,7 +23,7 @@ export default function Login() {
                             alt="app logo"
                         />
                         <br/><br/>
-                        <h1 style={{color: "#FEF2F4"}}> Welcome to ChickenBrothers</h1>
+                        <h1 style={{color: "#FEF2F4"}}> Welcome to SecuRent</h1>
                         <br/>
                         <h2 style={{color: "#FEF2F4"}}>Please Log In</h2>
                         <div class="row">
