@@ -16,7 +16,7 @@ export default function Login() {
                     <div class="col-md-8 text-center">
                         <br/>
                         <img
-                            src="/cb_logo.png"
+                            src="/sr_logo.png"
                             width="180rem"
                             height="180rem"
                             className="d-inline-block align-top"
