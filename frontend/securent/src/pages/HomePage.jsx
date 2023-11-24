@@ -23,7 +23,7 @@ export default function HomePage() {
                                     <Link to={`/addfood`} style={{ textDecoration: 'none' }}>
                                         <Card
                                             className="clickable-card"
-                                            style={{ backgroundColor: '#FEF2F4', borderRadius: '2rem' }}
+                                            style={{ backgroundColor: '#f1f2ed', borderRadius: '2rem' }}
                                         >
                                             <br />
                                             <Card.Img
