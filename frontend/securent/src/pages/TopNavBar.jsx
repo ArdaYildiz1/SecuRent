@@ -41,7 +41,7 @@ function TopNavBar() {
                             style={{ height: '30px' }}
                         />
                         <Button
-                            className="btn-velvet d-flex align-items-center"
+                            className="btn-teal d-flex align-items-center"
                             style={{ height: '30px' }}
 
                         >
