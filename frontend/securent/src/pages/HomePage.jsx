@@ -20,7 +20,7 @@ export default function HomePage() {
                         <>
                             {Array.from({ length: 7 }).map((_, idx) => (
                                 <Col key={idx}>
-                                    <Link to={`/addfood`} style={{ textDecoration: 'none' }}>
+                                    <Link to={`/houseDetails`} style={{ textDecoration: 'none' }}>
                                         <Card
                                             className="clickable-card"
                                             style={{ backgroundColor: '#f1f2ed', borderRadius: '2rem' }}
