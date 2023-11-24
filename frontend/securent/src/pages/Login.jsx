@@ -30,7 +30,7 @@ export default function Login() {
                             <div class="col-md-3">
                             </div>
                             <div class="col-md-6">
-                                <Card style={{backgroundColor: "#FEF2F4", borderRadius: "1rem",}}>
+                                <Card style={{backgroundColor: "#f1f2ed", borderRadius: "1rem",}}>
                                     <Form className='text-center'>
                                         <Form.Group className="ms-5 me-5 mb-3" controlId="loginEmail">
                                             <br/>
@@ -48,7 +48,7 @@ export default function Login() {
                                                           placeholder="Password"/>
                                         </Form.Group>
                                         <br/>
-                                        <Button className="btn-velvet" type="submit">
+                                        <Button className="btn-teal" type="submit">
                                             Login
                                         </Button>
                                         <br/><br/>
