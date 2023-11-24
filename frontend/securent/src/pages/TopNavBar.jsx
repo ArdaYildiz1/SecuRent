@@ -57,7 +57,7 @@ function TopNavBar() {
 
                         <>
                             <NavDropdown.Item className="btn-navbar">
-                                Coupons
+                                Contact Info
                             </NavDropdown.Item>
                             <NavDropdown.Item className="btn-navbar">
                                 Preferences
@@ -66,7 +66,7 @@ function TopNavBar() {
                                 Profile
                             </NavDropdown.Item>
                             <NavDropdown.Item className="btn-navbar">
-                                Order History
+                                History
                             </NavDropdown.Item>
                             <NavDropdown.Divider />
                             <NavDropdown.Item className="btn-navbar">

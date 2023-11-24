@@ -1,11 +1,17 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
-// import {useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 // import {useState} from 'react';
 // import axios from 'axios';
 
 export default function Login() {
+
+    let navigate = useNavigate();
+
+    function handleClickLogin() {
+        navigate("/home");
+    }
 
     return (
         <div>
@@ -48,7 +54,7 @@ export default function Login() {
                                                           placeholder="Password"/>
                                         </Form.Group>
                                         <br/>
-                                        <Button className="btn-teal" type="submit">
+                                        <Button className="btn-teal" onClick={handleClickLogin} type="submit">
                                             Login
                                         </Button>
                                         <br/><br/>
