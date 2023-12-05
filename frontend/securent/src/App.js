@@ -3,8 +3,11 @@ import {Route, Routes} from 'react-router-dom';
 import AppRoutes from './AppRoutes';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './custom.css';
 
+import './custom.css';
+import Login from './pages/Login';
+import SelectAgent from './pages/SelectAgent';
+import TenantProfile from './pages/TenantProfile';
 export default class App extends Component {
   static displayName = App.name;
 
