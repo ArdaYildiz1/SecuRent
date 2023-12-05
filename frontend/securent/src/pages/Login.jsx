@@ -2,10 +2,16 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 import {useNavigate} from "react-router-dom";
-import {useState} from 'react';
-import axios from 'axios';
+// import {useState} from 'react';
+// import axios from 'axios';
 
 export default function Login() {
+
+    let navigate = useNavigate();
+
+    function handleClickLogin() {
+        navigate("/home");
+    }
 
     return (
         <div>
@@ -16,21 +22,21 @@ export default function Login() {
                     <div class="col-md-8 text-center">
                         <br/>
                         <img
-                            src="/cb_logo.png"
+                            src="/sr_logo.png"
                             width="180rem"
                             height="180rem"
                             className="d-inline-block align-top"
                             alt="app logo"
                         />
                         <br/><br/>
-                        <h1 style={{color: "#FEF2F4"}}> Welcome to ChickenBrothers</h1>
+                        <h1 style={{color: "#FEF2F4"}}> Welcome to SecuRent</h1>
                         <br/>
                         <h2 style={{color: "#FEF2F4"}}>Please Log In</h2>
                         <div class="row">
                             <div class="col-md-3">
                             </div>
                             <div class="col-md-6">
-                                <Card style={{backgroundColor: "#FEF2F4", borderRadius: "1rem",}}>
+                                <Card style={{backgroundColor: "#f1f2ed", borderRadius: "1rem",}}>
                                     <Form className='text-center'>
                                         <Form.Group className="ms-5 me-5 mb-3" controlId="loginEmail">
                                             <br/>
@@ -48,7 +54,7 @@ export default function Login() {
                                                           placeholder="Password"/>
                                         </Form.Group>
                                         <br/>
-                                        <Button className="btn-velvet"  type="submit">
+                                        <Button className="btn-teal" onClick={handleClickLogin} type="submit">
                                             Login
                                         </Button>
                                         <br/><br/>
