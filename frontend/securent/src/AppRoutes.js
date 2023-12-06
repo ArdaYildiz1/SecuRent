@@ -5,6 +5,7 @@ import TenantProfile from "./pages/TenantProfile";
 import SelectAgent from "./pages/SelectAgent";
 import Signup from "./pages/Signup";
 import ForgotPassword from "./pages/ForgotPassword";
+import PublishAd from "./pages/PublishAd";
 
 
 const AppRoutes = [
@@ -36,6 +37,10 @@ const AppRoutes = [
     {
         path: '/forgotPassword',
         element: <ForgotPassword/>
+    },    
+    {
+        path: '/publishAd',
+        element: <PublishAd/>
     },    
 
 
