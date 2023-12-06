@@ -3,6 +3,8 @@ import HouseDetails from "./pages/HouseDetails";
 import Login from "./pages/Login";
 import TenantProfile from "./pages/TenantProfile";
 import SelectAgent from "./pages/SelectAgent";
+import Signup from "./pages/Signup";
+import ForgotPassword from "./pages/ForgotPassword";
 
 
 const AppRoutes = [
@@ -26,6 +28,14 @@ const AppRoutes = [
     {
         path: '/tenantProfile',
         element: <TenantProfile/>
+    },    
+    {
+        path: '/signup',
+        element: <Signup/>
+    },    
+    {
+        path: '/forgotPassword',
+        element: <ForgotPassword/>
     },    
 
 

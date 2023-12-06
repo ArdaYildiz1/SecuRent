@@ -11,7 +11,7 @@ export default function HomePage() {
 
     return (
         <>
-        <TopNavBar></TopNavBar>
+            <TopNavBar></TopNavBar>
             <br />
             <div className="row">
                 <div className="col-md-2"></div>
@@ -26,18 +26,112 @@ export default function HomePage() {
                                             style={{ backgroundColor: '#f1f2ed', borderRadius: '2rem' }}
                                         >
                                             <br />
-                                            <Card.Img
-                                                className="ps-3 pe-3"
-                                                style={{ borderRadius: '1rem' }}
-                                                variant="top"
-                                                src="https://placehold.co/600x400"
-                                            />
                                             <Card.Body>
-                                                <Card.Title style={{ color: "black" }}>Lorem Ipsum</Card.Title>
-                                                <Card.Title style={{ color: "black" }}>Dolor sit amet</Card.Title>
-                                                <Card.Text style={{ color: "black" }}>
-                                                    Price
-                                                </Card.Text>
+                                                {idx === 0 && (
+                                                    <>
+                                                        <Card.Img
+                                                            className="ps-3 pe-3"
+                                                            style={{ borderRadius: '1rem', height: '280px' }}
+                                                            variant="top"
+                                                            src="/h1.jpg"
+                                                        />
+                                                        <Card.Title style={{ color: "black" }}> <br /> İncek 4+1 Daire</Card.Title>
+                                                        <Card.Title style={{ color: "black" }}>Ankara / Gölbaşı</Card.Title>
+                                                        <Card.Text style={{ color: "black" }}>
+                                                            21.000 TL
+                                                        </Card.Text>
+                                                    </>
+                                                )}
+                                                {idx === 1 && (
+                                                    <>
+                                                        <Card.Img
+                                                            className="ps-3 pe-3"
+                                                            style={{ borderRadius: '1rem', height: '280px' }}
+                                                            variant="top"
+                                                            src="/h2.jpg"
+                                                        />
+                                                        <Card.Title style={{ color: "black" }}> <br /> Lösante Hastanesine Yakın 2+1</Card.Title>
+                                                        <Card.Title style={{ color: "black" }}>Beytepe</Card.Title>
+                                                        <Card.Text style={{ color: "black" }}>
+                                                            2,400,000 TL
+                                                        </Card.Text>
+                                                    </>
+                                                )}
+                                                {idx === 2 && (
+                                                    <>
+                                                        <Card.Img
+                                                            className="ps-3 pe-3"
+                                                            style={{ borderRadius: '1rem', height: '280px' }}
+                                                            variant="top"
+                                                            src="/h3.jpg"
+                                                        />
+                                                        <Card.Title style={{ color: "black" }}> <br /> ACIBADEM CAD. 210 m2 NET</Card.Title>
+                                                        <Card.Title style={{ color: "black" }}>Üsküdar/İstanbul</Card.Title>
+                                                        <Card.Text style={{ color: "black" }}>
+                                                            27,000,000 TL
+                                                        </Card.Text>
+                                                    </>
+                                                )}
+                                                {idx === 3 && (
+                                                    <>
+                                                        <Card.Img
+                                                            className="ps-3 pe-3"
+                                                            style={{ borderRadius: '1rem', height: '280px' }}
+                                                            variant="top"
+                                                            src="/h4.jpg"
+                                                        />
+                                                        <Card.Title style={{ color: "black" }}><br /> Ümitköy Metro Durağı 3dk 3+1</Card.Title>
+                                                        <Card.Title style={{ color: "black" }}>Ümitköy</Card.Title>
+                                                        <Card.Text style={{ color: "black" }}>
+                                                            6,590,000 TL
+                                                        </Card.Text>
+                                                    </>
+                                                )}
+                                                {idx === 4 && (
+                                                    <>
+                                                        <Card.Img
+                                                            className="ps-3 pe-3"
+                                                            style={{ borderRadius: '1rem', height: '280px' }}
+                                                            variant="top"
+                                                            src="/h5.jpg"
+                                                        />
+                                                        <Card.Title style={{ color: "black" }}> <br /> Çayyolu Satılık Müstakil Ev</Card.Title>
+                                                        <Card.Title style={{ color: "black" }}>Çayyolu/Ümitköy</Card.Title>
+                                                        <Card.Text style={{ color: "black" }}>
+                                                            17,850,000 TL
+                                                        </Card.Text>
+                                                    </>
+                                                )}
+                                                {idx === 5 && (
+                                                    <>
+                                                        <Card.Img
+                                                            className="ps-3 pe-3"
+                                                            style={{ borderRadius: '1rem', height: '280px' }}
+                                                            variant="top"
+                                                            src="/h6.jpg"
+                                                        />
+                                                        <Card.Title style={{ color: "black" }}> <br /> ATATÜRK MAHALLESİNDE 3+1</Card.Title>
+                                                        <Card.Title style={{ color: "black" }}>Akyurt</Card.Title>
+                                                        <Card.Text style={{ color: "black" }}>
+                                                            2,180,000 TL
+                                                        </Card.Text>
+                                                    </>
+                                                )}
+                                                {idx === 6 && (
+                                                    <>
+                                                        <Card.Img
+                                                            className="ps-3 pe-3"
+                                                            style={{ borderRadius: '1rem', height: '280px' }}
+                                                            variant="top"
+                                                            src="/h7.jpg"
+                                                        />
+                                                        <Card.Title style={{ color: "black" }}> <br /> TÜRKKONUT DUHAKENT SİTESİ SATILIK VİLLA</Card.Title>
+                                                        <Card.Title style={{ color: "black" }}>Çankaya</Card.Title>
+                                                        <Card.Text style={{ color: "black" }}>
+                                                            6,990,000 TL
+                                                        </Card.Text>
+                                                    </>
+                                                )}
                                                 <Button style={{ width: '150px', height: '50px' }} className="btn-teal"
                                                     type="submit">
                                                     Details
