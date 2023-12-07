@@ -72,6 +72,22 @@ code {
     border-color: #00b318;
 }
 
+.btn-decline {
+    background-color: #F82323;
+    border-color: #F82323;
+    color: white;
+    text-align: center;
+    font-size: 14px;
+    margin: 16px 20px;
+    transition: 0.3s;
+    border-radius: 2rem;
+}
+.btn-decline:hover {
+    background-color: #d14d7200;
+    color: #F82323;
+    border-color: #F82323;
+}
+
 .clickable-card {
     cursor: pointer;
     transition: transform 0.3s ease;

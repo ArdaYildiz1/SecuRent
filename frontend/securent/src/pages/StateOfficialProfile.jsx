@@ -7,7 +7,7 @@ import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 
 
-function TenantProfile() {
+function StateOfficialProfile() {
     const [selectedFile, setSelectedFile] = useState(null);
     const fileInputRef = useRef(null);
 
@@ -27,7 +27,7 @@ function TenantProfile() {
             
             <div style={{ width: '100%', height: '100vh', overflowY: 'auto', flexDirection: 'row', display: 'flex' }}>
                 <Card style={{ width: '20%',  backgroundColor: '#f1f2ed', borderRadius: "1rem", height: '80vh', margin: '40px', alignItems: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                    <p style={{ fontSize: 24 }}>Ali Eren Taş</p>
+                    <p style={{ fontSize: 24 }}>Burcu Çelik</p>
                     <img src={selectedFile ? URL.createObjectURL(selectedFile) : pp} style={{ width: '100px', height: '100px', borderRadius: '50%' }} />
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                         <Button style={{ backgroundColor: '#2D9596', borderColor: '#2D9596', marginTop: 20 }} onClick={handleButtonClick}>
@@ -54,35 +54,36 @@ function TenantProfile() {
                     <Form style={{ width: '70%', alignItems: 'center' }}>
                         <Form.Group controlId="formName">
                             <Form.Label>Name:</Form.Label>
-                            <FormControl type="text" value="Ali Eren" readOnly disabled />
+                            <FormControl type="text" value="Burcu" readOnly disabled />
                         </Form.Group>
                         <br />
                         <Form.Group controlId="formSurname">
                             <Form.Label>Surname:</Form.Label>
-                            <FormControl type="text" value="Taş" readOnly disabled />
+                            <FormControl type="text" value="Çelik" readOnly disabled />
                         </Form.Group>
                         <br />
 
                         <Form.Group controlId="formTCNumber">
                             <Form.Label>TC Number:</Form.Label>
-                            <FormControl type="text" value="123456789" readOnly disabled />
-                        </Form.Group>
-                        <br />
-                        <Form.Group controlId="formPhoneNumber">
-                            <Form.Label>Phone Number:</Form.Label>
-                            <FormControl type="text" value="+90123456789" readOnly disabled />
+                            <FormControl type="text" value="1111111111" readOnly disabled />
                         </Form.Group>
                         <br />
 
                         <Form.Group controlId="formEmailAddress">
                             <Form.Label>E-mail Address:</Form.Label>
-                            <FormControl type="email" value="alitas@example.com" readOnly disabled />
+                            <FormControl type="email" value="burcucelik@example.com" readOnly disabled />
                         </Form.Group>
                         <br />
 
                         <Form.Group controlId="formPassword">
                             <Form.Label>Password:</Form.Label>
                             <FormControl type="password" placeholder="**********" readOnly disabled />
+                        </Form.Group>
+                        <br />
+
+                        <Form.Group controlId="formPassword">
+                            <Form.Label>Location:</Form.Label>
+                            <FormControl type="text" placeholder="Çankaya" readOnly disabled />
                         </Form.Group>
                     </Form>
                 </Card>
@@ -92,4 +93,4 @@ function TenantProfile() {
     );
 }
 
-export default TenantProfile;
+export default StateOfficialProfile;
