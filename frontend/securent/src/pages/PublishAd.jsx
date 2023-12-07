@@ -4,9 +4,24 @@ import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Accordion from 'react-bootstrap/Accordion';
+import { useState } from 'react';
 
 
 export default function PublishAd() {
+    const accordionItems = [
+        { eventKey: "0", header: "Flat", choice: "House / Rent /" },
+        { eventKey: "1", header: "Residence", choice: "House / Rent /" },
+        { eventKey: "2", header: "Detached House", choice: "House / Rent /" },
+        { eventKey: "3", header: "Villa", choice: "House / Rent /" },
+        { eventKey: "4", header: "Farmhouse", choice: "House / Rent /" },
+        { eventKey: "5", header: "Mansion", choice: "House / Rent /" },
+        { eventKey: "6", header: "Waterside", choice: "House / Rent /" },
+        { eventKey: "7", header: "Waterside Apartment", choice: "House / Rent /" },
+        { eventKey: "8", header: "Summerhouse", choice: "House / Rent /" },
+        // Add more items as needed
+    ];
+
+    const [accordionItem, setAccordionItem] = useState({ eventKey: "", header: "", choice: "" });
 
     return (
         <>
@@ -38,8 +53,20 @@ export default function PublishAd() {
                                                     <Accordion.Item eventKey="0">
                                                         <Accordion.Header>For Rent</Accordion.Header>
                                                         <Accordion.Body>
+                                                            <Accordion>
+                                                                {accordionItems.map(item => (
+                                                                    <Accordion.Item eventKey={item.eventKey} key={item.eventKey}>
+                                                                        <Accordion.Header>{item.header}</Accordion.Header>
+                                                                        <Accordion.Body>
+                                                                            Category selection completed.
+                                                                            <br />
+                                                                            <br />
+                                                                            <Button className="btn-teal" onClick={() => setAccordionItem(item)}>Continue</Button>
+                                                                        </Accordion.Body>
+                                                                    </Accordion.Item>
+                                                                ))}
+                                                            </Accordion>
                                                             {/* Add your content here */}
-                                                            <Button className="btn-teal">Completed</Button>
                                                         </Accordion.Body>
                                                     </Accordion.Item>
                                                     {/* <Accordion.Item eventKey="1">
@@ -54,14 +81,10 @@ export default function PublishAd() {
                                         </Accordion.Item>
                                         {/* Add more levels as needed */}
                                     </Accordion>
-                                    <Form.Group className="ms-5 me-5 mb-3" controlId="loginPassword">
+                                    <Form.Group className="ms-4 me-4 mb-3" controlId="loginPassword">
                                         <br />
                                         <Form.Group className="d-flex align-items-center">
-                                            <h2>Restaurant Name</h2>
-                                        </Form.Group>
-
-                                        <Form.Group className="d-flex align-items-center">
-                                            <Form.Label className="d-flex justify-content-center">Rating: </Form.Label>
+                                            <Form.Label className="d-flex justify-content-center">{accordionItem.choice} {accordionItem.header} </Form.Label>
                                         </Form.Group>
 
                                         <Form.Group className="d-flex align-items-center">
