@@ -3,6 +3,7 @@ import {Route, Routes} from 'react-router-dom';
 import AppRoutes from './AppRoutes';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-datepicker/dist/react-datepicker.css';
 
 import './custom.css';
 import Login from './pages/Login';

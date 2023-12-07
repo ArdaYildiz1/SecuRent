@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import TopNavBar from './TopNavBar';
+import FilterComponent from './FilterComponent';
 
 export default function HomePage() {
 
@@ -16,6 +17,8 @@ export default function HomePage() {
             <div className="row">
                 <div className="col-md-2"></div>
                 <div className="col-md-8">
+                    <FilterComponent/>
+                    <br /><br />
                     <Row xs={1} md={3} className="g-4">
                         <>
                             {Array.from({ length: 7 }).map((_, idx) => (
@@ -53,7 +56,7 @@ export default function HomePage() {
                                                         <Card.Title style={{ color: "black" }}> <br /> Lösante Hastanesine Yakın 2+1</Card.Title>
                                                         <Card.Title style={{ color: "black" }}>Beytepe</Card.Title>
                                                         <Card.Text style={{ color: "black" }}>
-                                                            2,400,000 TL
+                                                            24.000 TL
                                                         </Card.Text>
                                                     </>
                                                 )}
@@ -68,7 +71,7 @@ export default function HomePage() {
                                                         <Card.Title style={{ color: "black" }}> <br /> ACIBADEM CAD. 210 m2 NET</Card.Title>
                                                         <Card.Title style={{ color: "black" }}>Üsküdar/İstanbul</Card.Title>
                                                         <Card.Text style={{ color: "black" }}>
-                                                            27,000,000 TL
+                                                            35.000 TL
                                                         </Card.Text>
                                                     </>
                                                 )}
@@ -83,7 +86,7 @@ export default function HomePage() {
                                                         <Card.Title style={{ color: "black" }}><br /> Ümitköy Metro Durağı 3dk 3+1</Card.Title>
                                                         <Card.Title style={{ color: "black" }}>Ümitköy</Card.Title>
                                                         <Card.Text style={{ color: "black" }}>
-                                                            6,590,000 TL
+                                                            32.000 TL
                                                         </Card.Text>
                                                     </>
                                                 )}
@@ -98,7 +101,7 @@ export default function HomePage() {
                                                         <Card.Title style={{ color: "black" }}> <br /> Çayyolu Satılık Müstakil Ev</Card.Title>
                                                         <Card.Title style={{ color: "black" }}>Çayyolu/Ümitköy</Card.Title>
                                                         <Card.Text style={{ color: "black" }}>
-                                                            17,850,000 TL
+                                                            17.000 TL
                                                         </Card.Text>
                                                     </>
                                                 )}
@@ -113,7 +116,7 @@ export default function HomePage() {
                                                         <Card.Title style={{ color: "black" }}> <br /> ATATÜRK MAHALLESİNDE 3+1</Card.Title>
                                                         <Card.Title style={{ color: "black" }}>Akyurt</Card.Title>
                                                         <Card.Text style={{ color: "black" }}>
-                                                            2,180,000 TL
+                                                            22.000 TL
                                                         </Card.Text>
                                                     </>
                                                 )}
@@ -125,10 +128,10 @@ export default function HomePage() {
                                                             variant="top"
                                                             src="/h7.jpg"
                                                         />
-                                                        <Card.Title style={{ color: "black" }}> <br /> TÜRKKONUT DUHAKENT SİTESİ SATILIK VİLLA</Card.Title>
+                                                        <Card.Title style={{ color: "black" }}> <br /> TÜRKKONUT DUHAKENT SİTESİ VİLLA</Card.Title>
                                                         <Card.Title style={{ color: "black" }}>Çankaya</Card.Title>
                                                         <Card.Text style={{ color: "black" }}>
-                                                            6,990,000 TL
+                                                            18.000 TL
                                                         </Card.Text>
                                                     </>
                                                 )}

@@ -77,7 +77,7 @@ export default function HouseDetails() {
 
                                     <br />
                                     <Form.Label>
-                                        2,180,000 TL
+                                        22.000 TL
                                     </Form.Label>
                                     <br />
                                     <Button className="btn-teal" onClick={handleShow}>
@@ -144,43 +144,37 @@ export default function HouseDetails() {
                                     <hr className='me-5' />
                                     <p style={{ fontSize: 13 }}>
                                         <br />
-                                        İlan No: 1121591458
+                                        Address: Çınar Cd. 19-17, Atatürk, 06750 Akyurt/Ankara
                                         <br />
-                                        İlan Tarihi: 06 Kasım 2023
+                                        Ad ID: 1121591458
                                         <br />
-                                        Emlak Tipi: Satılık Müstakil Ev
+                                        Ad Date: 06 November 2023
                                         <br />
-                                        m² (Brüt): 372
+                                        m² (Gross): 372
                                         <br />
                                         m² (Net): 130
                                         <br />
-                                        Açık Alan m²: Belirtilmemiş
+                                        Open Area Space m²: Unspecified
                                         <br />
-                                        Oda Sayısı: 3+1
+                                        Number of Rooms: 3+1
                                         <br />
-                                        Bina Yaşı: 5-10 arası
+                                        Building Age: 5-10 years
                                         <br />
-                                        Kat Sayısı: 1
+                                        Flat Number (Door Number): 1
                                         <br />
-                                        Isıtma: Kombi (Doğalgaz)
+                                        Heating: Kombi (Doğalgaz)
                                         <br />
-                                        Banyo Sayısı: 1
+                                        Number of Bathroomsı: 1
                                         <br />
-                                        Balkon: Var
+                                        Have a Balcony (?): Yes
                                         <br />
-                                        Eşyalı: Hayır
+                                        Have a Furniture (?): No
                                         <br />
-                                        Site İçerisinde: Hayır
+                                        In a Site (?): No
                                         <br />
-                                        Site Adı: Belirtilmemiş
+                                        Site Name: Unspecified
                                         <br />
-                                        Aidat (TL): Belirtilmemiş
-                                        <br />
-                                        Krediye Uygun: Hayır
-                                        <br />
-                                        Tapu Durumu: Arsa Tapulu
-                                        <br />
-                                        Kimden: Sahibinden
+                                        Rent Amount (TL): Unspecified
                                         <br />
                                     </p>
                                 </div>
