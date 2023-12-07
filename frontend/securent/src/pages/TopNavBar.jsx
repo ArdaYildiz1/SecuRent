@@ -4,7 +4,6 @@ import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import rentIcon from './rentHouseIcon.jpg';
 
 function TopNavBar() {
 
@@ -12,7 +11,7 @@ function TopNavBar() {
     return (
         <Navbar bg="light" expand="lg">
             <Navbar.Brand>
-                <img className='ms-4' src={rentIcon} width="50" height="50" />
+                <img className='ms-4' src="/sr_logo.png" width="50" height="50" />
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">

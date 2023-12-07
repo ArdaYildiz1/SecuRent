@@ -126,6 +126,7 @@ const AppRoutes = [
         path: '/seeTenantAndRealEstateAgent',
         element: <SeeTenantAndRealEstateAgent/>
     },
+    {
         path: '/signup',
         element: <Signup/>
     },    
