@@ -182,8 +182,6 @@ export default function HouseDetails() {
                                         <br />
                                         Kimden: Sahibinden
                                         <br />
-                                        Takas: Evet
-                                        <br />
                                     </p>
                                 </div>
                                 <div className="col-md-6 justify-content-center flex-container">
