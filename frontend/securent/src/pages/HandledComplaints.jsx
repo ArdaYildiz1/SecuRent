@@ -5,6 +5,7 @@ import TopNavBar from './TopNavBar';
 import { Card, Col, Form, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import StateOfficialNavBar from './StateOfficialNavBar';
 
 function HandledComplaints() {
     const navigate = useNavigate();
@@ -28,7 +29,7 @@ function HandledComplaints() {
                                                 onClick={() => navigate('/houseDetails')}
 
                                                 className="clickable-card"
-                                                style={{ backgroundColor: '#74dbed', borderRadius: '2rem' }}
+                                                style={{ borderRadius: '2rem' }}
                                             >
                                                 <br />
                                                 <Card.Img
@@ -70,7 +71,7 @@ function HandledComplaints() {
 
     return (
         <>
-            <TopNavBar />
+            <StateOfficialNavBar />
 
             <div style={{ width: '100%', height: '100vh', overflowY: 'auto' }}>
 

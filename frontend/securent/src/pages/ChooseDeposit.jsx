@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import StateOfficialNavBar from './StateOfficialNavBar';
 
-function Contracts() {
+function ChoosedDeposit() {
     const navigate = useNavigate();
 
 
@@ -41,25 +41,40 @@ function Contracts() {
                                             <Card.Body>
                                                 <Card.Title style={{ color: "black" }}>{dynamicData[idx]}</Card.Title>
                                                 <Card.Text style={{ color: "black" }}>
-                                                    {dynamicData[idx]} has been uploaded a contract.
+                                                    {dynamicData[idx]}'s house's condition file.
                                                 </Card.Text>
-                                                <div style={{display:'flex', justifyContent:'center'}}>
-                                                    <Button style={{ width: '200px', height: '50px' }} className="btn-teal"
+                                                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                                                    <Button style={{ width: '200px', height: '70px' }} className="btn-teal"
                                                         type="submit">
-                                                        Download  Contract
-                                                    </Button>
-                                                </div>
-                                                <div style={{ display: 'flex', flexDirection: 'row' }}>
-                                                    <Button style={{ width: '150px', height: '50px' }} className="btn-decline"
-                                                        type="submit">
-                                                        Decline
-                                                    </Button>
-                                                    <Button style={{ width: '150px', height: '50px' }} className="btn-fav"
-                                                        type="submit">
-                                                        Accept
+                                                        Download  Condition File
                                                     </Button>
                                                 </div>
 
+                                                {['radio'].map((type) => (
+                                                    <div key={`reverse-${type}`} className="mb-3" style={{ marginTop: 10, display: 'flex', flexDirection: 'row' }}>
+                                                        <Form.Check
+                                                            label="Tenant"
+                                                            name="group1"
+                                                            type={type}
+                                                            id={`reverse-${type}-1`}
+                                                            style={{ marginRight: 50, marginLeft: 30 }}
+                                                        />
+                                                        <Form.Check
+                                                            label="Landlord"
+                                                            name="group1"
+                                                            type={type}
+                                                            id={`reverse-${type}-2`}
+                                                        />
+
+                                                    </div>
+                                                ))}
+
+                                                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                                                    <Button style={{ width: '200px', height: '70px' }} className="btn-teal"
+                                                        type="submit">
+                                                        Submit the Deposit Side
+                                                    </Button>
+                                                </div>
 
                                                 <br />
                                             </Card.Body>
@@ -84,7 +99,7 @@ function Contracts() {
 
                 <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '2%', paddingBottom: '2%' }}>
                     <h1 style={{ color: "white" }}>
-                        Contracts
+                        Choose Who Will Keep The Deposit
                     </h1>
                 </div>
 
@@ -97,4 +112,4 @@ function Contracts() {
     );
 }
 
-export default Contracts;
+export default ChoosedDeposit;

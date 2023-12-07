@@ -4,6 +4,7 @@ import pp from './defaultPP.jpg';
 import TopNavBar from './TopNavBar';
 import { Card, Col, Form, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import LandlordNavBar from './LandlordNavBar';
 
 function LandlordPastRequest() {
 
@@ -83,7 +84,7 @@ function LandlordPastRequest() {
 
     return (
         <>
-            <TopNavBar />
+            <LandlordNavBar />
 
             <div style={{ width: '100%', height: '100vh', overflowY: 'auto' }}>
 

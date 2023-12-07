@@ -5,6 +5,7 @@ import TopNavBar from './TopNavBar';
 import { Card, Col, Form, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import StateOfficialNavBar from './StateOfficialNavBar';
 
 function PendingComplaints() {
     const navigate = useNavigate();
@@ -24,37 +25,42 @@ function PendingComplaints() {
                                 {Array.from({ length: 5 }).map((_, idx) => (
                                     <Col key={idx}>
                                         {/* this will direct to the house complaint occured */}
-                                            <Card
-                                                onClick={() => navigate('/houseDetails')}
+                                        <Card
+                                            onClick={() => navigate('/houseDetails')}
 
-                                                className="clickable-card"
-                                                style={{ borderRadius: '2rem' }}
-                                            >
+                                            className="clickable-card"
+                                            style={{ borderRadius: '2rem' }}
+                                        >
+                                            <br />
+                                            <Card.Img
+                                                className="ps-3 pe-3"
+                                                style={{ borderRadius: '1rem' }}
+                                                variant="top"
+                                                src={pp}
+                                            />
+                                            <Card.Body>
+                                                <Card.Title style={{ color: "black" }}>{dynamicData[idx]}</Card.Title>
+                                                <Card.Text style={{ color: "black" }}>
+                                                    {dynamicData[idx]}'s complaint is being handled.
+                                                </Card.Text>
+
+                                                <div style={{ display: 'flex', justifyContent: 'center' }}>
+
+                                                    <Button
+                                                        style={{ width: '150px', height: '50px', backgroundColor: '#627b80', borderColor: '#627b80', color: 'white   ' }} className="btn-fav"
+                                                    >
+                                                        See the House
+                                                    </Button>
+                                                    <Button
+                                                        style={{ width: '150px', height: '50px',  }} className="btn-fav"
+                                                    >
+                                                        Mark as handled                               
+                                                                                 </Button>
+                                                </div>
+
                                                 <br />
-                                                <Card.Img
-                                                    className="ps-3 pe-3"
-                                                    style={{ borderRadius: '1rem' }}
-                                                    variant="top"
-                                                    src={pp}
-                                                />
-                                                <Card.Body>
-                                                    <Card.Title style={{ color: "black" }}>{dynamicData[idx]}</Card.Title>
-                                                    <Card.Text style={{ color: "black" }}>
-                                                        {dynamicData[idx]}'s complaint is being handled.
-                                                    </Card.Text>
-
-                                                    <div style={{ display: 'flex', justifyContent: 'center' }}>
-                                                        
-                                                        <Button
-                                                            style={{ width: '150px', height: '50px',backgroundColor:'#627b80', borderColor:'#627b80',color:'white   ' }} className="btn-fav"
-                                                            >
-                                                            See the House
-                                                        </Button>
-                                                    </div>
-
-                                                    <br />
-                                                </Card.Body>
-                                            </Card>
+                                            </Card.Body>
+                                        </Card>
                                     </Col>
                                 ))}
                             </>
@@ -69,7 +75,7 @@ function PendingComplaints() {
 
     return (
         <>
-            <TopNavBar />
+            <StateOfficialNavBar />
 
             <div style={{ width: '100%', height: '100vh', overflowY: 'auto' }}>
 

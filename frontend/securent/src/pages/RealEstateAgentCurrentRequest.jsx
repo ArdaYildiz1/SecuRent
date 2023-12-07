@@ -4,12 +4,13 @@ import pp from './defaultPP.jpg';
 import TopNavBar from './TopNavBar';
 import { Card, Col, Form, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import RealEstateAgentNavBar from './RealEstateAgentNavBar';
 
 function RealEstateAgentCurrentRequest() {
 
 
     const dynamicData = ['Ahmet Kalem', 'Fatih Kor', 'Ali Tarık', 'Kasım Kale', 'Fatih Kor', 'Ali Tarık', 'Ahmet Kalem', 'Fatih Kor', 'Ali Tarık', 'Mehmet Ersoy', 'Fatih Kor', 'Ali Tarık', 'Mehmet Ersoy', 'Fatih Kor', 'Ali Tarık', 'Mehmet Ersoy'];
-    const landlord = ['Ali Kemal Yazıcı', 'Fatih Terim', 'Aslı Kavun' ,'Melike Bodur'];
+    const landlord = ['Ali Kemal Yazıcı', 'Fatih Terim', 'Aslı Kavun', 'Melike Bodur'];
 
     const DynamicList = ({ data, landlord }) => {
         return (
@@ -59,9 +60,13 @@ function RealEstateAgentCurrentRequest() {
 
                                                     <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
 
-                                                        <Button style={{ width: '150px', height: '50px' }} className="btn-teal"
+                                                        <Button style={{ width: '150px', height: '70px' }} className="btn-teal"
                                                             type="submit">
                                                             See the Profiles
+                                                        </Button>
+                                                        <Button style={{ width: '150px', height: '70px' }} className="btn-teal"
+                                                            type="submit">
+                                                            Finish the process
                                                         </Button>
                                                     </div>
 
@@ -83,7 +88,7 @@ function RealEstateAgentCurrentRequest() {
 
     return (
         <>
-            <TopNavBar />
+            <RealEstateAgentNavBar />
 
             <div style={{ width: '100%', height: '100vh', overflowY: 'auto' }}>
 

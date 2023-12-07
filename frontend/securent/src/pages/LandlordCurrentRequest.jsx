@@ -4,6 +4,7 @@ import pp from './defaultPP.jpg';
 import TopNavBar from './TopNavBar';
 import { Card, Col, Form, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import LandlordNavBar from './LandlordNavBar';
 
 function LandlordCurrentRequest() {
 
@@ -58,9 +59,19 @@ function LandlordCurrentRequest() {
 
                                                     <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
 
-                                                        <Button style={{ width: '150px', height: '50px' }} className="btn-teal"
+                                                        <Button style={{ width: '150px', height: '60px' }} className="btn-teal"
                                                             type="submit">
-                                                            See the Profiles
+                                                            See Profiles
+                                                        </Button>
+
+                                                        <Button style={{ width: '150px', height: '60px' }} className="btn-teal"
+                                                            type="submit">
+                                                            End Operation
+                                                        </Button>
+                                                        <Button style={{ width: '150px', height: '60px' }} className="btn-teal"
+                                                            type="submit">
+                                                            Upload Contract
+
                                                         </Button>
                                                     </div>
 
@@ -82,7 +93,7 @@ function LandlordCurrentRequest() {
 
     return (
         <>
-            <TopNavBar />
+            <LandlordNavBar />
 
             <div style={{ width: '100%', height: '100vh', overflowY: 'auto' }}>
 

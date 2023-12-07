@@ -6,12 +6,13 @@ import TopNavBar from './TopNavBar';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import SeeLandlordProfile from './SeeLandlordProfile';
+import RealEstateAgentNavBar from './RealEstateAgentNavBar';
 
 function SeeTenantAndLandlord() {
 
     return (
         <>
-            <TopNavBar />
+            <RealEstateAgentNavBar />
             <div style={{display:'flex', flexDirection:'row' ,height:'120vh'}}>
 
                 <div style={{ width: '100%', height: '100vh',  flexDirection: 'column', display: 'flex' ,alignItems:'center'}}>

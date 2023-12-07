@@ -68,15 +68,7 @@ export default function Signup() {
                                                     value="Real Estate"
 
                                                 />
-                                                <Form.Check
-                                                    inline
-                                                    label="State Official"
-                                                    name="group1"
-                                                    type={type}
-                                                    id={`inline-${type}-4`}
-                                                    value="State Official"
-
-                                                />
+                                                
                                             </div>
                                         ))}
                                         <Form.Group className="ms-5 me-5 mb-3" controlId="loginEmail">

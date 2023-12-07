@@ -5,6 +5,7 @@ import TopNavBar from './TopNavBar';
 import { Card, Col, Form, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import StateOfficialNavBar from './StateOfficialNavBar';
 
 function ApprovedContracts() {
     const navigate = useNavigate();
@@ -68,7 +69,7 @@ function ApprovedContracts() {
 
     return (
         <>
-            <TopNavBar />
+            <StateOfficialNavBar />
 
             <div style={{ width: '100%', height: '100vh', overflowY: 'auto' }}>
 
