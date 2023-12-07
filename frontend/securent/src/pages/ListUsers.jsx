@@ -6,7 +6,7 @@ import { Card, Col, Form, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import RealEstateAgentNavBar from './RealEstateAgentNavBar';
 
-function RealEstateAgentNotification() {
+function ListUsers() {
 
 
     const dynamicData = ['Ahmet Kalem', 'Fatih Kor', 'Ali Tarık', 'Kasım Kale', 'Fatih Kor', 'Ali Tarık', 'Ahmet Kalem', 'Fatih Kor', 'Ali Tarık', 'Mehmet Ersoy', 'Fatih Kor', 'Ali Tarık', 'Mehmet Ersoy', 'Fatih Kor', 'Ali Tarık', 'Mehmet Ersoy'];
@@ -37,20 +37,17 @@ function RealEstateAgentNotification() {
                                                 />
                                                 <Card.Body>
                                                     <Card.Title style={{ color: "black" }}>{dynamicData[idx]}</Card.Title>
-                                                    <Card.Text style={{ color: "black" }}>
-                                                        {dynamicData[idx]} wants to see the house. Click to see the house to be escorted.
 
-                                                    </Card.Text>
 
 
                                                     <div style={{ display: 'flex', flexDirection: 'row' }}>
-                                                        <Button style={{ width: '150px', height: '50px' }} className="btn-decline"
+                                                        <Button style={{ width: '150px', height: '50px' }} className="btn-teal"
                                                             type="submit">
-                                                            Decline
+                                                            See the Profile
                                                         </Button>
-                                                        <Button style={{ width: '150px', height: '50px' }} className="btn-fav"
+                                                        <Button style={{ width: '150px', height: '50px' }} className="btn-teal"
                                                             type="submit">
-                                                            Accept
+                                                            Update Profile
                                                         </Button>
                                                     </div>
 
@@ -74,13 +71,58 @@ function RealEstateAgentNotification() {
         <>
             <RealEstateAgentNavBar />
 
-            <div style={{ width: '100%', height: '100vh', overflowY: 'auto' }}>
+            <div style={{ width: '100%', height: '100vh', overflowY: 'auto', }}>
 
                 <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '2%', paddingBottom: '2%' }}>
                     <h1 style={{ color: "white" }}>
-                        Rental Notifications
+                        Tenants
                     </h1>
                 </div>
+                <div style={{ width: '100%', height: '10vh', display: 'flex', justifyContent: 'center', alignItems: 'center' , color: "white"}}>
+                    {['radio'].map((type) => (
+                        <div key={`inline-${type}`} className="mb-3">
+                            <Form.Check
+                                inline
+                                label="Tenant"
+                                name="group1"
+                                type={type}
+                                id={`inline-${type}-1`}
+                                value="Tenant"
+
+                            />
+                            <Form.Check
+                                inline
+                                label="Landlord"
+                                name="group1"
+                                type={type}
+                                id={`inline-${type}-2`}
+                                value="Landlord"
+
+                            />
+                            <Form.Check
+                                inline
+                                label="Real Estate"
+                                name="group1"
+                                type={type}
+                                id={`inline-${type}-3`}
+                                value="Real Estate"
+
+                            />
+                            <Form.Check
+                                inline
+                                label="State Official"
+                                name="group1"
+                                type={type}
+                                id={`inline-${type}-4`}
+                                value="State Official"
+
+                            />
+                            <Button className="btn-teal" > List Users</Button>
+                        </div>
+                    ))}
+                </div>
+
+
 
                 <div style={{ width: '100%', height: '100vh', }}>
                     <DynamicList data={dynamicData} />
@@ -91,4 +133,4 @@ function RealEstateAgentNotification() {
     );
 }
 
-export default RealEstateAgentNotification;
+export default ListUsers;

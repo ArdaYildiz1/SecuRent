@@ -2,6 +2,7 @@ import Button from 'react-bootstrap/esm/Button';
 import React from 'react';
 import pp from './defaultPP.jpg';
 import TopNavBar from './TopNavBar';
+import TenantNavBar from './TenantNavBar';
 
 function SelectAgent() {
     const dynamicData = ['Ahmet Kalem', 'Fatih Kor', 'Ali Tarık', 'Ahmet Kalem', 'Fatih Kor', 'Ali Tarık', 'Ahmet Kalem', 'Fatih Kor', 'Ali Tarık', 'Mehmet Ersoy', 'Fatih Kor', 'Ali Tarık', 'Mehmet Ersoy', 'Fatih Kor', 'Ali Tarık', 'Mehmet Ersoy'];
@@ -24,7 +25,11 @@ function SelectAgent() {
                                     <span> {item}</span>
                                 </div>
 
-                                <Button style={{ backgroundColor: '#2D9596', borderColor: '#2D9596' }}>Select Agent</Button>
+                                <div>
+
+                                    <Button style={{ backgroundColor: '#2D9596', borderColor: '#2D9596' }}>See Profile</Button>
+                                    <Button style={{ backgroundColor: '#2D9596', borderColor: '#2D9596',marginLeft:10 }}>Select Agent</Button>
+                                </div>
 
                             </div>
                         ))}
@@ -36,20 +41,20 @@ function SelectAgent() {
 
     return (
         <>
-                        <TopNavBar />
+            <TenantNavBar />
 
-        <div style={{ width: '100%', height: '100vh', backgroundColor: '#9AD0C2', overflowY: 'auto' }}>
-            
-            <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '2%' }}>
-                <h1>
-                    Real Estate Agents
-                </h1>
-            </div>
+            <div style={{ width: '100%', height: '100vh', backgroundColor: '#9AD0C2', overflowY: 'auto' }}>
 
-            <div style={{ width: '100%', height: '100vh', backgroundColor: '#9AD0C2' }}>
-                <DynamicList data={dynamicData} numbers={numbersArray} />
+                <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '2%' }}>
+                    <h1>
+                        Real Estate Agents
+                    </h1>
+                </div>
+
+                <div style={{ width: '100%', height: '100vh', backgroundColor: '#9AD0C2' }}>
+                    <DynamicList data={dynamicData} numbers={numbersArray} />
+                </div>
             </div>
-        </div>
         </>
 
     );
