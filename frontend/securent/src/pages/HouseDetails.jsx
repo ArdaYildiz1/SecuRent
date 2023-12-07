@@ -170,8 +170,6 @@ export default function HouseDetails() {
                                         <br />
                                         Eşyalı: Hayır
                                         <br />
-                                        Kullanm Durumu: Mülk Sahibi
-                                        <br />
                                         Site İçerisinde: Hayır
                                         <br />
                                         Site Adı: Belirtilmemiş
