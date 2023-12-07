@@ -25,6 +25,8 @@ import SeeTenantAndRealEstateAgent from "./pages/SeeTenantAndRealEstateAgent";
 import Signup from "./pages/Signup";
 import ForgotPassword from "./pages/ForgotPassword";
 import PublishAd from "./pages/PublishAd";
+import RealEstateAgentHomePage from "./pages/RealEstateAgentHomePage";
+import StateOfficialHomePage from "./pages/StateOfficialHomePage";
 
 
 
@@ -137,6 +139,14 @@ const AppRoutes = [
     {
         path: '/publishAd',
         element: <PublishAd/>
+    },    
+    {
+        path: '/realestateagenthome',
+        element: <RealEstateAgentHomePage/>
+    },    
+    {
+        path: '/stateofficialhome',
+        element: <StateOfficialHomePage/>
     },    
 ];
 

@@ -5,23 +5,26 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Accordion from 'react-bootstrap/Accordion';
 import { useState } from 'react';
+import InputGroup from 'react-bootstrap/InputGroup';
+import DatePicker from 'react-datepicker';
 
 
 export default function PublishAd() {
     const accordionItems = [
-        { eventKey: "0", header: "Flat", choice: "House / Rent /" },
-        { eventKey: "1", header: "Residence", choice: "House / Rent /" },
-        { eventKey: "2", header: "Detached House", choice: "House / Rent /" },
-        { eventKey: "3", header: "Villa", choice: "House / Rent /" },
-        { eventKey: "4", header: "Farmhouse", choice: "House / Rent /" },
-        { eventKey: "5", header: "Mansion", choice: "House / Rent /" },
-        { eventKey: "6", header: "Waterside", choice: "House / Rent /" },
-        { eventKey: "7", header: "Waterside Apartment", choice: "House / Rent /" },
-        { eventKey: "8", header: "Summerhouse", choice: "House / Rent /" },
+        { eventKey: "0", header: "Flat", choice: "House > Rent >" },
+        { eventKey: "1", header: "Residence", choice: "House > Rent >" },
+        { eventKey: "2", header: "Detached House", choice: "House > Rent >" },
+        { eventKey: "3", header: "Villa", choice: "House > Rent >" },
+        { eventKey: "4", header: "Farmhouse", choice: "House > Rent >" },
+        { eventKey: "5", header: "Mansion", choice: "House > Rent >" },
+        { eventKey: "6", header: "Waterside", choice: "House > Rent >" },
+        { eventKey: "7", header: "Waterside Apartment", choice: "House > Rent >" },
+        { eventKey: "8", header: "Summerhouse", choice: "House > Rent >" },
         // Add more items as needed
     ];
 
     const [accordionItem, setAccordionItem] = useState({ eventKey: "", header: "", choice: "" });
+    const [startDate, setStartDate] = useState(new Date());
 
     return (
         <>
@@ -86,36 +89,83 @@ export default function PublishAd() {
                                         <Form.Group className="d-flex align-items-center">
                                             <Form.Label className="d-flex justify-content-center">{accordionItem.choice} {accordionItem.header} </Form.Label>
                                         </Form.Group>
+                                    </Form.Group>
+                                </Form>
+                                <br /><br />
+                            </div>
+                        </Card>
+                        <br />
+                        <h2 className="text-center" style={{ color: '#FEF2F4' }}>
+                            Ad Details
+                        </h2>
+                        <br />
 
-                                        <Form.Group className="d-flex align-items-center">
-                                            <Form.Label className="d-flex justify-content-center">496
-                                                Evaluations</Form.Label>
-                                        </Form.Group>
-
-                                        <Form.Group className="d-flex align-items-center">
-                                            <Form.Label className="d-flex justify-content-center">100
-                                                Comments </Form.Label>
-                                        </Form.Group>
-
+                        <Card className="mb-3" style={{ backgroundColor: '#f1f2ed', borderRadius: '1rem' }}>
+                            <div className="row">
+                                <br />
+                                <Form>
+                                    <Form.Group className="ms-4 me-4 mb-3" controlId="loginPassword">
+                                        <br />
+                                        <div className='mb-2'>Ad title:</div>
+                                        <Form.Control />
+                                        <br />
+                                        <div className='mb-2'>Description:</div>
+                                        <Form.Control as="textarea" rows={3} />
+                                        <br />
+                                        <div className='mb-2'>Price:</div>
+                                        <InputGroup style={{ width: '10vw' }} className="mb-3">
+                                            <Form.Control min={0} type="number" />
+                                            <InputGroup.Text>TL</InputGroup.Text>
+                                        </InputGroup>
                                         <hr />
-
-                                        <Form.Group className="d-flex align-items-center">
-                                            <Form.Label className="d-flex justify-content-center">Rate your order out of
-                                                5</Form.Label>
-                                        </Form.Group>
-                                        <Form.Control style={{ width: '100px' }} type="number" min="1" max="5" />
-
-                                        <hr />
-
-                                        <div className='mb-2'>Your Comment</div>
-                                        <Form.Control placeholder='You can add your comment about your order here'
-                                            as="textarea" rows={3} />
+                                        <br /><div className='mb-2'>Address</div>
+                                        <Form.Control defaultValue={"Unspecified"} />
+                                        <br /><div className='mb-2'>Ad ID</div>
+                                        <Form.Control style={{ width: '10vw' }} min={0} type="number" />
+                                        <br /><div className='mb-2'>Ad Date</div>
+                                        <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+                                        <br />
+                                        <br /><div className='mb-2'>m² (Gross)</div>
+                                        <Form.Control style={{ width: '10vw' }} min={0} type="number" />
+                                        <br /><div className='mb-2'>m² (Net)</div>
+                                        <Form.Control style={{ width: '10vw' }} min={0} type="number" />
+                                        <br /><div className='mb-2'>Open Area Space m²</div>
+                                        <Form.Control style={{ width: '10vw' }} min={0} defaultValue="Unspecified" type="number" />
+                                        <br /><div className='mb-2'>Number of Rooms</div>
+                                        <Form.Control style={{ width: '10vw' }} min={0} type="number" />
+                                        <br /><div className='mb-2'>Building Age</div>
+                                        <InputGroup style={{ width: '10vw' }} className="mb-3">
+                                            <Form.Control min={0} type="number" />
+                                            <InputGroup.Text>years</InputGroup.Text>
+                                        </InputGroup>
+                                        <br /><div className='mb-2'>Flat Number (Door Number)</div>
+                                        <Form.Control style={{ width: '10vw' }} min={0} type="number" />
+                                        <br /><div className='mb-2'>Heating</div>
+                                        <Form.Control style={{ width: '10vw' }} defaultValue={"Unspecified"} />
+                                        <br /><div className='mb-2'>Number of Bathrooms</div>
+                                        <Form.Control style={{ width: '10vw' }} min={0} type="number" />
+                                        <br /><div className='mb-2'>Have a Balcony (?)</div>
+                                        <Form.Check type="checkbox" />
+                                        <br /><div className='mb-2'>Have a Furniture (?)</div>
+                                        <Form.Check type="checkbox" />
+                                        <br /><div className='mb-2'>In a Site (?)</div>
+                                        <Form.Check type="checkbox" />
+                                        <br /><div className='mb-2'>Site Name</div>
+                                        <Form.Control defaultValue={"Unspecified"} />
+                                        <br /><div className='mb-2'>Rent Amount (TL)</div>
+                                        <Form.Control style={{ width: '10vw' }} min={0} defaultValue={"Unspecified"} type="number" />
+                                        <br /><div className='mb-2'>Upload Photo</div>
+                                        <label htmlFor="image-file" className="custom-file-upload">
+                                            Choose File
+                                        </label>
+                                        <input
+                                            style={{ display: 'none' }}
+                                            type="file"
+                                            id="image-file"
+                                        />
                                         <br /><br />
-                                        <div className='d-flex justify-content-end'>
-
-                                            <Button className="btn-teal">
-                                                Send
-                                            </Button>
+                                        <div className='d-flex justify-content-center'>
+                                            <Button className="btn-teal">Publish Ad</Button>
                                         </div>
                                     </Form.Group>
                                 </Form>
