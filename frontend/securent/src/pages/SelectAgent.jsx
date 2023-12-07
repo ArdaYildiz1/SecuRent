@@ -36,20 +36,20 @@ function SelectAgent() {
 
     return (
         <>
-            <TopNavBar />
+                        <TopNavBar />
 
-            <div style={{ width: '100%', height: '100vh', backgroundColor: '#9AD0C2', overflowY: 'auto' }}>
-
-                <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '2%' }}>
-                    <h1>
-                        Real Estate Agents
-                    </h1>
-                </div>
-
-                <div style={{ width: '100%', height: '100vh', backgroundColor: '#9AD0C2' }}>
-                    <DynamicList data={dynamicData} numbers={numbersArray} />
-                </div>
+        <div style={{ width: '100%', height: '100vh', backgroundColor: '#9AD0C2', overflowY: 'auto' }}>
+            
+            <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '2%' }}>
+                <h1>
+                    Real Estate Agents
+                </h1>
             </div>
+
+            <div style={{ width: '100%', height: '100vh', backgroundColor: '#9AD0C2' }}>
+                <DynamicList data={dynamicData} numbers={numbersArray} />
+            </div>
+        </div>
         </>
 
     );
