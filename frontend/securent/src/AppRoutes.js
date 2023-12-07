@@ -38,6 +38,9 @@ import RentedHouse from "./pages/RentedHouse";
 import RealEstateAgentHouseCondition from "./pages/RealEstateAgentHouseCondition";
 import RealEstateAgentHouseConditionList from "./pages/RealEstateAgentHouseConditionList";
 import ChoosedDeposit from "./pages/ChooseDeposit";
+import RealEstateAgentHomePage from "./pages/RealEstateAgentHomePage";
+import StateOfficialHomePage from "./pages/StateOfficialHomePage";
+
 
 
 
@@ -202,7 +205,16 @@ const AppRoutes = [
     {
         path: '/choosedDeposit',
         element: <ChoosedDeposit/>
-    }, 
+    },   
+    {
+        path: '/realestateagenthome',
+        element: <RealEstateAgentHomePage/>
+    },    
+    {
+        path: '/stateofficialhome',
+        element: <StateOfficialHomePage/>
+    },    
+
 ];
 
 export default AppRoutes;
