@@ -22,9 +22,9 @@ function TopNavBar() {
                         <Nav.Link className="btn-navbar">
                             Home
                         </Nav.Link>
-                        <Nav.Link className="btn-navbar">
+                        {/* <Nav.Link className="btn-navbar">
                             Contacts
-                        </Nav.Link>
+                        </Nav.Link> */}
                         <Nav.Link className="btn-navbar">
                             Contracts
                         </Nav.Link>
@@ -33,7 +33,7 @@ function TopNavBar() {
 
                 </Nav>
                 <Nav style={{ marginLeft: 'auto' }}>
-                    <Form className="d-flex align-items-center">
+                    {/* <Form className="d-flex align-items-center">
                         <Form.Control
                             type="search"
                             placeholder="Search"
@@ -48,7 +48,7 @@ function TopNavBar() {
                         >
                             Search
                         </Button>
-                    </Form>
+                    </Form> */}
                     <NavDropdown
                         drop="start"
                         className="btn-navbar pe-5"

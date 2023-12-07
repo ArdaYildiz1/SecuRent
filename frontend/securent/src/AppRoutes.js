@@ -22,6 +22,11 @@ import SeeLandlordProfile from "./pages/SeeLandlordProfile";
 import SeeRealEstateAgentProfile from "./pages/SeeRealEstateAgentProfile";
 import SeeTenantAndLandlord from "./pages/SeeTenantAndLandlord";
 import SeeTenantAndRealEstateAgent from "./pages/SeeTenantAndRealEstateAgent";
+import Signup from "./pages/Signup";
+import ForgotPassword from "./pages/ForgotPassword";
+import PublishAd from "./pages/PublishAd";
+
+
 
 const AppRoutes = [
     {
@@ -121,6 +126,17 @@ const AppRoutes = [
         path: '/seeTenantAndRealEstateAgent',
         element: <SeeTenantAndRealEstateAgent/>
     },
+        path: '/signup',
+        element: <Signup/>
+    },    
+    {
+        path: '/forgotPassword',
+        element: <ForgotPassword/>
+    },    
+    {
+        path: '/publishAd',
+        element: <PublishAd/>
+    },    
 ];
 
 export default AppRoutes;
