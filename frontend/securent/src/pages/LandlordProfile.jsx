@@ -5,6 +5,7 @@ import {  FormControl } from 'react-bootstrap';
 import TopNavBar from './TopNavBar';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
+import LandlordNavBar from './LandlordNavBar';
 
 
 function LandlordProfile() {
@@ -23,7 +24,7 @@ function LandlordProfile() {
 
     return (
         <>
-            <TopNavBar />
+            <LandlordNavBar />
             
             <div style={{ width: '100%', height: '100vh', overflowY: 'auto', flexDirection: 'row', display: 'flex' }}>
                 <Card style={{ width: '20%',  backgroundColor: '#f1f2ed', borderRadius: "1rem", height: '80vh', margin: '40px', alignItems: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
@@ -75,7 +76,11 @@ function LandlordProfile() {
                             <FormControl type="email" value="hikmetkara@example.com" readOnly disabled />
                         </Form.Group>
                         <br />
-
+                        <Form.Group controlId="formEmailAddress">
+                            <Form.Label>Phone Number:</Form.Label>
+                            <FormControl type="text" value="05333333333" readOnly disabled />
+                        </Form.Group>
+                        <br />
                         <Form.Group controlId="formPassword">
                             <Form.Label>Password:</Form.Label>
                             <FormControl type="password" placeholder="************" readOnly disabled />

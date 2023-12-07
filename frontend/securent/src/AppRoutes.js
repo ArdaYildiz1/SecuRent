@@ -25,6 +25,19 @@ import SeeTenantAndRealEstateAgent from "./pages/SeeTenantAndRealEstateAgent";
 import Signup from "./pages/Signup";
 import ForgotPassword from "./pages/ForgotPassword";
 import PublishAd from "./pages/PublishAd";
+import StateOfficialNavBar from "./pages/StateOfficialNavBar";
+import RealEstateAgentNavBar from "./pages/RealEstateAgentNavBar";
+import TenantNavBar from "./pages/TenantNavBar";
+import LandlordNavBar from "./pages/LandlordNavBar";
+import RateRealEstateAgentForTenant from "./pages/RateRealEstateAgentForTenant";
+import RateRealEstateAgentForLandlord from "./pages/RateRealEstateAgentForLandlord";
+import AdminCreateStateOfficial from "./pages/AdminCreateStateOfficial";
+import ListUsers from "./pages/ListUsers";
+import AdminUpdateProfile from "./pages/AdminUpdateProfile";
+import RentedHouse from "./pages/RentedHouse";
+import RealEstateAgentHouseCondition from "./pages/RealEstateAgentHouseCondition";
+import RealEstateAgentHouseConditionList from "./pages/RealEstateAgentHouseConditionList";
+import ChoosedDeposit from "./pages/ChooseDeposit";
 
 
 
@@ -137,7 +150,59 @@ const AppRoutes = [
     {
         path: '/publishAd',
         element: <PublishAd/>
-    },    
+    }, 
+    {
+        path: '/stateOfficialNavBar',
+        element: <StateOfficialNavBar/>
+    }, 
+    {
+        path: '/realEstateAgentNavBar',
+        element: <RealEstateAgentNavBar/>
+    }, 
+    {
+        path: '/tenantNavBar',
+        element: <TenantNavBar/>
+    }, 
+    {
+        path: '/landlordNavBar',
+        element: <LandlordNavBar/>
+    },   
+    {
+        path: '/rateRealEstateAgentForTenant',
+        element: <RateRealEstateAgentForTenant/>
+    }, 
+    {
+        path: '/rateRealEstateAgentForLandlord',
+        element: <RateRealEstateAgentForLandlord/>
+    },  
+    {
+        path: '/AdminCreateStateOfficial',
+        element: <AdminCreateStateOfficial/>
+    },     
+    {
+        path: '/listUsers',
+        element: <ListUsers/>
+    },  
+    {
+        path: '/adminUpdateProfile',
+        element: <AdminUpdateProfile/>
+    },   
+    {
+        path: '/rentedHouse',
+        element: <RentedHouse/>
+    }, 
+    {
+        path: '/realEstateAgentHouseCondition',
+        element: <RealEstateAgentHouseCondition/>
+    }, 
+    {
+        path: '/realEstateAgentHouseConditionList',
+        element: <RealEstateAgentHouseConditionList/>
+    }, 
+    {
+        path: '/choosedDeposit',
+        element: <ChoosedDeposit/>
+    }, 
 ];
 
 export default AppRoutes;

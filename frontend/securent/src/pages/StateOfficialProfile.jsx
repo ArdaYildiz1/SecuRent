@@ -5,6 +5,7 @@ import {  FormControl } from 'react-bootstrap';
 import TopNavBar from './TopNavBar';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
+import StateOfficialNavBar from './StateOfficialNavBar';
 
 
 function StateOfficialProfile() {
@@ -23,7 +24,7 @@ function StateOfficialProfile() {
 
     return (
         <>
-            <TopNavBar />
+            <StateOfficialNavBar />
             
             <div style={{ width: '100%', height: '100vh', overflowY: 'auto', flexDirection: 'row', display: 'flex' }}>
                 <Card style={{ width: '20%',  backgroundColor: '#f1f2ed', borderRadius: "1rem", height: '80vh', margin: '40px', alignItems: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
@@ -74,17 +75,23 @@ function StateOfficialProfile() {
                             <FormControl type="email" value="burcucelik@example.com" readOnly disabled />
                         </Form.Group>
                         <br />
-
+                        <Form.Group controlId="formPhoneNumber">
+                            <Form.Label>Phone Number:</Form.Label>
+                            <FormControl type="text" value="+90123456789" readOnly disabled />
+                        </Form.Group>
+                        <br />
+                        <Form.Group controlId="formPhoneNumber">
+                            <Form.Label>Location:</Form.Label>
+                            <FormControl type="text" value="Istanbul" readOnly disabled />
+                        </Form.Group>
+                        <br />
                         <Form.Group controlId="formPassword">
                             <Form.Label>Password:</Form.Label>
                             <FormControl type="password" placeholder="**********" readOnly disabled />
                         </Form.Group>
                         <br />
 
-                        <Form.Group controlId="formPassword">
-                            <Form.Label>Location:</Form.Label>
-                            <FormControl type="text" placeholder="Çankaya" readOnly disabled />
-                        </Form.Group>
+                        
                     </Form>
                 </Card>
             </div>

@@ -5,6 +5,7 @@ import {  FormControl } from 'react-bootstrap';
 import TopNavBar from './TopNavBar';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
+import TenantNavBar from './TenantNavBar';
 
 
 function TenantProfile() {
@@ -23,7 +24,7 @@ function TenantProfile() {
 
     return (
         <>
-            <TopNavBar />
+            <TenantNavBar />
             
             <div style={{ width: '100%', height: '100vh', overflowY: 'auto', flexDirection: 'row', display: 'flex' }}>
                 <Card style={{ width: '20%',  backgroundColor: '#f1f2ed', borderRadius: "1rem", height: '80vh', margin: '40px', alignItems: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
