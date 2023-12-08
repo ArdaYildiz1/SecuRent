@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Carousel from 'react-bootstrap/Carousel';
 import Modal from 'react-bootstrap/Modal';
 import { useState } from 'react';
+import TenantNavBar from './TenantNavBar';
 
 
 
@@ -20,7 +21,7 @@ export default function HouseDetails() {
 
     return (
         <>
-            <TopNavBar />
+            <TenantNavBar></TenantNavBar>
             <br />
             <div class="container-fluid">
                 <div class="row">

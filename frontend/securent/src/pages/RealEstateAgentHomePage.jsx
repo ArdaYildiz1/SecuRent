@@ -6,13 +6,14 @@ import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import TopNavBar from './TopNavBar';
 import FilterComponent from './FilterComponent';
+import RealEstateAgentNavBar from './RealEstateAgentNavBar';
 
 export default function RealEstateAgentHomePage() {
 
 
     return (
         <>
-            <TopNavBar></TopNavBar>
+            <RealEstateAgentNavBar/>
             <br />
             <div className="row">
                 <div className="col-md-2"></div>
