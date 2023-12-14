@@ -19,7 +19,7 @@ function SeeTenantAndLandlord() {
                    
                    <h1 style={{color:'white'}}>Tenant</h1>
                     <Card style={{ width: '40%', backgroundColor: '#f1f2ed', borderRadius: "1rem", height: '80vh', margin: '40px', alignItems: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                        <p style={{ fontSize: 24 }}>Ali Eren Taş</p>
+                        <p style={{ fontSize: 24 }}>Kazım Aslan</p>
                         <img src={pp} style={{ width: '150px', height: '150px', borderRadius: '50%' }} />
 
 

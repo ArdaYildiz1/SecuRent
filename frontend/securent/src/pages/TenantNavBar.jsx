@@ -4,9 +4,23 @@ import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { useNavigate } from 'react-router-dom';
 
 function TenantNavBar() {
+    function handleGoHome() {
+        navigate("/home");
+    }
+    function handleRentedHome() {
+        navigate("/rentedHouse");
+    }
+    function handleGoProfile() {
+        navigate("/tenantProfile");
+    }
+    function handleLogOut() {
+        navigate("/");
+    }
 
+    let navigate = useNavigate();
 
     return (
         <Navbar bg="light" expand="lg">
@@ -18,10 +32,10 @@ function TenantNavBar() {
                 <Nav className="me-5">
 
                     <>
-                        <Nav.Link className="btn-navbar">
+                        <Nav.Link className="btn-navbar" onClick={handleGoHome}>
                             Home
                         </Nav.Link>
-                        <Nav.Link className="btn-navbar">
+                        <Nav.Link className="btn-navbar" onClick={handleRentedHome}>
                             Rented House
                         </Nav.Link>
                     </>
@@ -54,11 +68,11 @@ function TenantNavBar() {
 
                         <>
                             
-                            <NavDropdown.Item className="btn-navbar">
+                            <NavDropdown.Item className="btn-navbar" onClick={handleGoProfile}>
                                 Profile
                             </NavDropdown.Item>
                             
-                            <NavDropdown.Item className="btn-navbar">
+                            <NavDropdown.Item className="btn-navbar"  onClick={handleLogOut}>
                                 Log out
                             </NavDropdown.Item>
                         </>
