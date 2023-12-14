@@ -7,6 +7,7 @@ import Accordion from 'react-bootstrap/Accordion';
 import { useState } from 'react';
 import InputGroup from 'react-bootstrap/InputGroup';
 import DatePicker from 'react-datepicker';
+import LandlordNavBar from './LandlordNavBar';
 
 
 export default function PublishAd() {
@@ -28,7 +29,7 @@ export default function PublishAd() {
 
     return (
         <>
-            <TopNavBar />
+            <LandlordNavBar/>
             <br />
             <div className="container-fluid">
                 <div className="row">
