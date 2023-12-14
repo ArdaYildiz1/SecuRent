@@ -3,7 +3,7 @@ import React from 'react';
 import pp from './defaultPP.jpg';
 import TopNavBar from './TopNavBar';
 import { Card, Col, Form, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import LandlordNavBar from './LandlordNavBar';
 
 function LandlordCurrentRequest() {
@@ -16,6 +16,11 @@ function LandlordCurrentRequest() {
         const file = event.target.files[0];
         // handle the file here
     };
+    function handleSeeProfiles() {
+        navigate("/seeTenantAndRealEstateAgent");
+    }
+
+    let navigate = useNavigate();
 
     const DynamicList = ({ data, realEstateAgent }) => {
         return (
@@ -65,7 +70,8 @@ function LandlordCurrentRequest() {
                                                     <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
 
                                                         <Button style={{ width: '150px', height: '60px' }} className="btn-teal"
-                                                            type="submit">
+                                                            type="submit"
+                                                            onClick={handleSeeProfiles}>
                                                             See Profiles
                                                         </Button>
 
