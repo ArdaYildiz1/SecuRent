@@ -27,14 +27,12 @@ public class Tenant extends PropertyParticipant {
         // TODO
     }
 
-    public void sendRentingRequestToLandlord() {
+    public void sendRentingRequestToLandlord(RentRequest rentRequest) {
         // TODO
-        // rentRequest property not added to avoid error
     }
 
-    public void cancelRentingRequestToLandlord() {
+    public void cancelRentingRequestToLandlord(RentRequest rentRequest) {
         // TODO
-        // rentRequest property not added to avoid error
     }
 
     public void requestRentalService() {
