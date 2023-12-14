@@ -9,8 +9,12 @@ import StateOfficialNavBar from './StateOfficialNavBar';
 
 function PendingComplaints() {
     const navigate = useNavigate();
+    function handleSeeTheHouse() {
+        navigate("/stateOfficialHouseDetails");
+    }
 
 
+    
     const dynamicData = ['Ahmet Kalem', 'Fatih Koray', 'Ali Tarık Çam', 'Kasım Kale', 'Fatih Çakıl', 'Ali Tarık', 'Ahmet Kalem', 'Fatih Kor', 'Ali Tarık', 'Mehmet Ersoy', 'Fatih Kor', 'Ali Tarık', 'Mehmet Ersoy', 'Fatih Kor', 'Ali Tarık', 'Mehmet Ersoy'];
 
     const DynamicList = ({ data }) => {
@@ -26,7 +30,6 @@ function PendingComplaints() {
                                     <Col key={idx}>
                                         {/* this will direct to the house complaint occured */}
                                         <Card
-                                            onClick={() => navigate('/houseDetails')}
 
                                             className="clickable-card"
                                             style={{ borderRadius: '2rem' }}
@@ -48,14 +51,15 @@ function PendingComplaints() {
 
                                                     <Button
                                                         style={{ width: '150px', height: '50px', backgroundColor: '#627b80', borderColor: '#627b80', color: 'white   ' }} className="btn-fav"
-                                                    >
+                                                    
+                                                    onClick={handleSeeTheHouse}>
                                                         See the House
                                                     </Button>
                                                     <Button
                                                         style={{ width: '150px', height: '50px',  }} className="btn-fav"
                                                     >
                                                         Mark as handled                               
-                                                                                 </Button>
+                                                    </Button>
                                                 </div>
 
                                                 <br />
