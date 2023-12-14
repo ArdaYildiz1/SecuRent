@@ -26,7 +26,6 @@ function StateOfficialNotifications() {
                                     <Col key={idx}>
                                         {/* this will direct to the house complaint occured */}
                                             <Card
-                                                onClick={() => navigate('/houseDetails')}
 
                                                 className="clickable-card"
                                                 style={{ backgroundColor: '#f1f2ed', borderRadius: '2rem' }}

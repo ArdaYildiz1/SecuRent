@@ -26,7 +26,6 @@ function ApprovedContracts() {
                                     <Col key={idx}>
                                         {/* this will direct to the house complaint occured */}
                                         <Card
-                                            onClick={() => navigate('/houseDetails')}
 
                                             className="clickable-card"
                                             style={{ borderRadius: '2rem' }}
