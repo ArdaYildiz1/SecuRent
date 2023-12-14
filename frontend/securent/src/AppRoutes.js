@@ -42,6 +42,7 @@ import RealEstateAgentHomePage from "./pages/RealEstateAgentHomePage";
 import StateOfficialHomePage from "./pages/StateOfficialHomePage";
 import RealEstateAgentHouseDetails from "./pages/RealEstateAgentHouseDetails";
 import SeeTenantProfileFromAdmin from "./pages/SeeTenantProfileFromAdmin";
+import StateOfficialHouseDetails from "./pages/StateOfficialHouseDetails";
 
 
 
@@ -223,6 +224,10 @@ const AppRoutes = [
     {
         path: '/seeTenantProfileFromAdmin',
         element: <SeeTenantProfileFromAdmin/>
+    }, 
+    {
+        path: '/stateOfficialHouseDetails',
+        element: <StateOfficialHouseDetails/>
     }, 
 ];
 

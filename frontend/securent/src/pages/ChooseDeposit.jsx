@@ -24,9 +24,7 @@ function ChoosedDeposit() {
                             <>
                                 {Array.from({ length: 5 }).map((_, idx) => (
                                     <Col key={idx}>
-                                        {/* this will direct to the house complaint occured */}
                                         <Card
-                                            onClick={() => navigate('/houseDetails')}
 
                                             className="clickable-card"
                                             style={{ borderRadius: '2rem' }}
@@ -72,7 +70,7 @@ function ChoosedDeposit() {
                                                 <div style={{ display: 'flex', justifyContent: 'center' }}>
                                                     <Button style={{ width: '200px', height: '70px' }} className="btn-teal"
                                                         type="submit">
-                                                        Submit the Deposit Side
+                                                        Submit Who Will Keep The Deposit
                                                     </Button>
                                                 </div>
 

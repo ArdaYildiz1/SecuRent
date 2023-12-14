@@ -33,7 +33,7 @@ export default function StateOfficialHomePage() {
                         <>
                             {Array.from({ length: 6 }).map((_, idx) => (
                                 <Col key={idx}>
-                                    <Link to={`/houseDetails`} style={{ textDecoration: 'none' }}>
+                                    <Link to={`/stateOfficialHouseDetails`} style={{ textDecoration: 'none' }}>
                                         <Card
                                             className="clickable-card"
                                             style={{ backgroundColor: '#f1f2ed', borderRadius: '2rem' }}
