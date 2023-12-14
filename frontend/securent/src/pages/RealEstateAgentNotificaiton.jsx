@@ -22,7 +22,7 @@ function RealEstateAgentNotification() {
                             <>
                                 {Array.from({ length: 4 }).map((_, idx) => (
                                     <Col key={idx}>
-                                        <Link to={`/houseDetails`} style={{ textDecoration: 'none' }}>
+                                        <Link to={`/realEstateAgentHouseDetails`} style={{ textDecoration: 'none' }}>
                                             <Card
                                                 className="clickable-card"
                                                 style={{ backgroundColor: '#f1f2ed', borderRadius: '2rem' }}

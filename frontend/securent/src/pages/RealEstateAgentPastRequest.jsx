@@ -3,7 +3,7 @@ import React from 'react';
 import pp from './defaultPP.jpg';
 import TopNavBar from './TopNavBar';
 import { Card, Col, Form, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import RealEstateAgentNavBar from './RealEstateAgentNavBar';
 
 function RealEstateAgentPastRequest() {
@@ -13,6 +13,13 @@ function RealEstateAgentPastRequest() {
     const landlord = ['Ali Kemal Yazıcı', 'Fatih Terim', 'Aslı Kavun' ,'Melike Bodur'];
 
     const DynamicList = ({ data, landlord }) => {
+
+        function handleSeeProfiles() {
+            navigate("/seeTenantAndLandlord");
+        }
+    
+        let navigate = useNavigate();
+
         return (
             <>
 
@@ -24,7 +31,7 @@ function RealEstateAgentPastRequest() {
                                 {Array.from({ length: 4 }).map((_, idx) => (
                                     <Col key={idx}>
                                         {/* burayı belki bir profile yönlendiririz   to={`/houseDetails`}*/}
-                                        <Link style={{ textDecoration: 'none' }}>
+                                        <div style={{ textDecoration: 'none' }}>
                                             <Card
                                                 className="clickable-card"
                                                 style={{ backgroundColor: '#f1f2ed', borderRadius: '2rem' }}
@@ -61,7 +68,8 @@ function RealEstateAgentPastRequest() {
                                                     <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
 
                                                         <Button style={{ width: '150px', height: '50px' }} className="btn-teal"
-                                                            type="submit">
+                                                            type="submit"
+                                                            onClick={handleSeeProfiles}>
                                                             See the Profiles
                                                         </Button>
                                                     </div>
@@ -69,7 +77,7 @@ function RealEstateAgentPastRequest() {
                                                     <br />
                                                 </Card.Body>
                                             </Card>
-                                        </Link>
+                                        </div>
                                     </Col>
                                 ))}
                             </>

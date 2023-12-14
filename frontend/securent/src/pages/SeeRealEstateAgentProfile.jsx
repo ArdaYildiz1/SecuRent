@@ -6,6 +6,7 @@ import TopNavBar from './TopNavBar';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import LandlordNavBar from './LandlordNavBar';
+import TenantNavBar from './TenantNavBar';
 
 
 function SeeRealEstateAgentProfile() {
@@ -24,8 +25,7 @@ function SeeRealEstateAgentProfile() {
 
     return (
         <>
-            <LandlordNavBar />
-            
+            <TenantNavBar />            
             <div style={{ width: '100%', height: '100vh', overflowY: 'auto', flexDirection: 'row', display: 'flex' }}>
                 <Card style={{ width: '20%',  backgroundColor: '#f1f2ed', borderRadius: "1rem", height: '80vh', margin: '40px', alignItems: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                     <p style={{ fontSize: 24 }}>Ali Eren Taş</p>

@@ -8,10 +8,11 @@ import Modal from 'react-bootstrap/Modal';
 import { useState } from 'react';
 import TenantNavBar from './TenantNavBar';
 import { useNavigate } from 'react-router-dom';
+import RealEstateAgentNavBar from './RealEstateAgentNavBar';
 
 
 
-export default function HouseDetails() {
+export default function RealEstateAgentHouseDetails() {
     const [show, setShow] = useState(false);
     const [explanation, setExplanation] = useState("");
 
@@ -26,7 +27,7 @@ export default function HouseDetails() {
 
     return (
         <>
-            <TenantNavBar></TenantNavBar>
+            <RealEstateAgentNavBar></RealEstateAgentNavBar>
             <br />
             <div class="container-fluid">
                 <div class="row">
@@ -220,18 +221,7 @@ export default function HouseDetails() {
                                         DETAYLI BİLGİ İÇİN OFİSİMİZE BEKLERİZ
                                     </p>
                                 </div>
-                                <div className="row">
-                                    <Form>
-                                        <Form.Group className="ms-5 me-5 mb-3" controlId="loginPassword">
-                                            <div className="d-flex justify-content-end me-5">
-                                                <Button className="btn-teal" onClick={handlePreview}>
-                                                    Preview
-                                                </Button>
-                                            </div>
-                                        </Form.Group>
-                                    </Form>
-                                    <br /><br />
-                                </div>
+                                
                             </div>
                         </Card>
 

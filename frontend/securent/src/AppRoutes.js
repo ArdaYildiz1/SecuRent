@@ -40,6 +40,7 @@ import RealEstateAgentHouseConditionList from "./pages/RealEstateAgentHouseCondi
 import ChoosedDeposit from "./pages/ChooseDeposit";
 import RealEstateAgentHomePage from "./pages/RealEstateAgentHomePage";
 import StateOfficialHomePage from "./pages/StateOfficialHomePage";
+import RealEstateAgentHouseDetails from "./pages/RealEstateAgentHouseDetails";
 
 
 
@@ -213,6 +214,10 @@ const AppRoutes = [
     {
         path: '/stateofficialhome',
         element: <StateOfficialHomePage/>
+    },    
+    {
+        path: '/realEstateAgentHouseDetails',
+        element: <RealEstateAgentHouseDetails/>
     },    
 
 ];

@@ -3,11 +3,16 @@ import React from 'react';
 import pp from './defaultPP.jpg';
 import TopNavBar from './TopNavBar';
 import TenantNavBar from './TenantNavBar';
+import { useNavigate } from 'react-router-dom';
 
 function SelectAgent() {
     const dynamicData = ['Ahmet Kalem', 'Fatih Kor', 'Ali Tarık', 'Ahmet Kalem', 'Fatih Kor', 'Ali Tarık', 'Ahmet Kalem', 'Fatih Kor', 'Ali Tarık', 'Mehmet Ersoy', 'Fatih Kor', 'Ali Tarık', 'Mehmet Ersoy', 'Fatih Kor', 'Ali Tarık', 'Mehmet Ersoy'];
     const numbersArray = [4.2, 2.2, 3, 4, 5, 5, 4, 3, 4, 3, 2, 3, 4, 4, 3, 5];
+    function handleSeeProfile() {
+        navigate("/seeRealEstateAgentProfile");
+    }
 
+    let navigate = useNavigate();
     const DynamicList = ({ data, numbers }) => {
         return (
             <>
@@ -26,8 +31,7 @@ function SelectAgent() {
                                 </div>
 
                                 <div>
-
-                                    <Button style={{ backgroundColor: '#2D9596', borderColor: '#2D9596' }}>See Profile</Button>
+                                    <Button style={{ backgroundColor: '#2D9596', borderColor: '#2D9596' }} onClick={handleSeeProfile}>See Profile</Button>
                                     <Button style={{ backgroundColor: '#2D9596', borderColor: '#2D9596',marginLeft:10 }}>Select Agent</Button>
                                 </div>
 
