@@ -24,7 +24,7 @@ function LandlordCurrentRequest() {
                                 {Array.from({ length: 4 }).map((_, idx) => (
                                     <Col key={idx}>
                                         {/* burayı belki bir profile yönlendiririz   to={`/houseDetails`}*/}
-                                        <Link style={{ textDecoration: 'none' }}>
+                                        <div>
                                             <Card
                                                 className="clickable-card"
                                                 style={{ backgroundColor: '#f1f2ed', borderRadius: '2rem' }}
@@ -78,7 +78,7 @@ function LandlordCurrentRequest() {
                                                     <br />
                                                 </Card.Body>
                                             </Card>
-                                        </Link>
+                                        </div>
                                     </Col>
                                 ))}
                             </>
