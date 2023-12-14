@@ -2,11 +2,30 @@ import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import {useNavigate} from "react-router-dom";
 
 function LandlordNavBar() {
+    let navigate = useNavigate();
 
+    function handleProfile() {
+        navigate("/landlordProfile");
+    }
+
+    function handleLogout() {
+        navigate("/");
+    }
+
+    function handleCurrentRequests() {
+        navigate("/landlordCurrentRequest");
+    }
+
+    function handlePastRequests() {
+        navigate("/landlordPastRequest");
+    }
+
+    function handleNotifications() {
+        navigate("/landlordNotification");
+    }
 
     return (
         <Navbar bg="light" expand="lg">
@@ -18,18 +37,14 @@ function LandlordNavBar() {
                 <Nav className="me-5">
 
                     <>
-                        <Nav.Link className="btn-navbar">
-                            Home
-                        </Nav.Link>
-
-                        <Nav.Link className="btn-navbar">
+                        <Nav.Link onClick={handleCurrentRequests} className="btn-navbar">
                             Current Requests
                         </Nav.Link>
-                        <Nav.Link className="btn-navbar">
+                        <Nav.Link onClick={handlePastRequests} className="btn-navbar">
                             Past Requests
                         </Nav.Link>
 
-                        <Nav.Link className="btn-navbar">
+                        <Nav.Link onClick={handleNotifications} className="btn-navbar">
                             Notifications
                         </Nav.Link>
                     </>
@@ -46,11 +61,11 @@ function LandlordNavBar() {
                     >
 
                         <>
-                            <NavDropdown.Item className="btn-navbar">
+                            <NavDropdown.Item onClick={handleProfile} className="btn-navbar">
                                 Profile
                             </NavDropdown.Item>
 
-                            <NavDropdown.Item className="btn-navbar">
+                            <NavDropdown.Item onClick={handleLogout} className="btn-navbar">
                                 Log out
                             </NavDropdown.Item>
                         </>
