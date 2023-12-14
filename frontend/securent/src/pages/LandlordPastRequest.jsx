@@ -3,7 +3,7 @@ import React from 'react';
 import pp from './defaultPP.jpg';
 import TopNavBar from './TopNavBar';
 import { Card, Col, Form, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import LandlordNavBar from './LandlordNavBar';
 
 function LandlordPastRequest() {
@@ -11,6 +11,11 @@ function LandlordPastRequest() {
 
     const dynamicData = ['Ahmet Kalem', 'Fatih Kor', 'Ali Tarık', 'Kasım Kale', 'Fatih Kor', 'Ali Tarık', 'Ahmet Kalem', 'Fatih Kor', 'Ali Tarık', 'Mehmet Ersoy', 'Fatih Kor', 'Ali Tarık', 'Mehmet Ersoy', 'Fatih Kor', 'Ali Tarık', 'Mehmet Ersoy'];
     const realEstateAgent = ['Real Estate Agent'];
+    function handleSeeProfiles() {
+        navigate("/seeTenantAndRealEstateAgent");
+    }
+
+    let navigate = useNavigate();
 
     const DynamicList = ({ data, realEstateAgent }) => {
         return (
@@ -61,7 +66,8 @@ function LandlordPastRequest() {
                                                     <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
 
                                                         <Button style={{ width: '150px', height: '50px' }} className="btn-teal"
-                                                            type="submit">
+                                                            type="submit"
+                                                            onClick={handleSeeProfiles}>
                                                             See the Profiles
                                                         </Button>
                                                     </div>

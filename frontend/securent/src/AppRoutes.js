@@ -41,6 +41,7 @@ import ChoosedDeposit from "./pages/ChooseDeposit";
 import RealEstateAgentHomePage from "./pages/RealEstateAgentHomePage";
 import StateOfficialHomePage from "./pages/StateOfficialHomePage";
 import RealEstateAgentHouseDetails from "./pages/RealEstateAgentHouseDetails";
+import SeeTenantProfileFromAdmin from "./pages/SeeTenantProfileFromAdmin";
 
 
 
@@ -219,7 +220,10 @@ const AppRoutes = [
         path: '/realEstateAgentHouseDetails',
         element: <RealEstateAgentHouseDetails/>
     },    
-
+    {
+        path: '/seeTenantProfileFromAdmin',
+        element: <SeeTenantProfileFromAdmin/>
+    }, 
 ];
 
 export default AppRoutes;
