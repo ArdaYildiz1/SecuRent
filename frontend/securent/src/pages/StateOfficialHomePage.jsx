@@ -6,13 +6,14 @@ import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import TopNavBar from './TopNavBar';
 import FilterComponent from './FilterComponent';
+import StateOfficialNavBar from './StateOfficialNavBar';
 
 export default function StateOfficialHomePage() {
 
 
     return (
         <>
-            <TopNavBar></TopNavBar>
+            <StateOfficialNavBar></StateOfficialNavBar>
             <br />
             <div className="row">
                 <div className="col-md-2"></div>

@@ -82,7 +82,7 @@ export default function Signup() {
                                             <Form.Control className='mt-3' type="text" placeholder="Surname" />
                                             <Form.Control className='mt-3' type="text" placeholder="Phone Number" />
                                             <Form.Control className='mt-3' type="text"
-                                                placeholder="Birth Date (mm/dd/yyyy)" />
+                                                placeholder="TCK No." />
                                         </Form.Group>
                                         <br />
                                         <Form.Group className="ms-5 me-5 mb-3" controlId="loginPassword">
