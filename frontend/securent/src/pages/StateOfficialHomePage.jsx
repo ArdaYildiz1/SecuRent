@@ -4,12 +4,21 @@ import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
-import TopNavBar from './TopNavBar';
+import {useNavigate} from "react-router-dom";
 import FilterComponent from './FilterComponent';
 import StateOfficialNavBar from './StateOfficialNavBar';
 
 export default function StateOfficialHomePage() {
 
+    let navigate = useNavigate();
+
+    function handleStateOfficialHome() {
+        navigate("/stateofficialhome");
+    }
+    
+    function handleStateOfficialHome() {
+        navigate("/stateofficialhome");
+    }
 
     return (
         <>
