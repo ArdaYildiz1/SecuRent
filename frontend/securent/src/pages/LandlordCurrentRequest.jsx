@@ -12,6 +12,11 @@ function LandlordCurrentRequest() {
     const dynamicData = ['Ahmet Kalem', 'Fatih Kor', 'Ali Tarık', 'Kasım Kale', 'Fatih Kor', 'Ali Tarık', 'Ahmet Kalem', 'Fatih Kor', 'Ali Tarık', 'Mehmet Ersoy', 'Fatih Kor', 'Ali Tarık', 'Mehmet Ersoy', 'Fatih Kor', 'Ali Tarık', 'Mehmet Ersoy'];
     const realEstateAgent = ['Real Estate Agent'];
 
+    const handleFileChange = (event) => {
+        const file = event.target.files[0];
+        // handle the file here
+    };
+
     const DynamicList = ({ data, realEstateAgent }) => {
         return (
             <>
@@ -68,10 +73,17 @@ function LandlordCurrentRequest() {
                                                             type="submit">
                                                             End Operation
                                                         </Button>
-                                                        <Button style={{ width: '150px', height: '60px' }} className="btn-teal"
-                                                            type="submit">
-                                                            Upload Contract
+                                                        <input
+                                                            type="file"
+                                                            id="fileInput"
+                                                            style={{ display: 'none' }}
+                                                            onChange={handleFileChange}
+                                                        />
 
+                                                        <Button style={{ width: '150px', height: '60px' }} className="btn-teal"
+                                                            onClick={() => document.getElementById('fileInput').click()}
+                                                            type="button">
+                                                            Upload Contract
                                                         </Button>
                                                     </div>
 
