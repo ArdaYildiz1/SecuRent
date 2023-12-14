@@ -7,6 +7,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import Modal from 'react-bootstrap/Modal';
 import { useState } from 'react';
 import TenantNavBar from './TenantNavBar';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -17,7 +18,11 @@ function RentedHouse() {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    function handleSelectAgent() {
+        navigate("/selectAgent");
+    }
 
+    let navigate = useNavigate();
 
     return (
         <>
@@ -45,7 +50,7 @@ function RentedHouse() {
                                             <br />
                                             <div className="" style={{ display: 'flex', flexdirection: 'column', alignItems: 'center' }}>
                                                 <h5 style={{ marginRight: 10 }}>Select agent to request house condition check:</h5>
-                                                <Button className="btn-teal">
+                                                <Button className="btn-teal" onClick={handleSelectAgent}>
                                                     Select Agent
                                                 </Button>
                                             </div>

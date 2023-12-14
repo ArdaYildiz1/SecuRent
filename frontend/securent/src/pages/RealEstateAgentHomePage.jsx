@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -10,7 +10,11 @@ import RealEstateAgentNavBar from './RealEstateAgentNavBar';
 
 export default function RealEstateAgentHomePage() {
 
+    function handleHouseDetails() {
+        navigate("/realEstateAgentHouseDetails");
+    }
 
+    let navigate = useNavigate();
     return (
         <>
             <RealEstateAgentNavBar/>
@@ -24,7 +28,7 @@ export default function RealEstateAgentHomePage() {
                         <>
                             {Array.from({ length: 6 }).map((_, idx) => (
                                 <Col key={idx}>
-                                    <Link to={`/houseDetails`} style={{ textDecoration: 'none' }}>
+                                    <Link to={`/realEstateAgentHouseDetails`} style={{ textDecoration: 'none' }}>
                                         <Card
                                             className="clickable-card"
                                             style={{ backgroundColor: '#f1f2ed', borderRadius: '2rem' }}
