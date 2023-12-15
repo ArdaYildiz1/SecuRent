@@ -45,7 +45,7 @@ Please follow the steps below to setup the project and have a running applicatio
 * Mustafa Kaan KOÇ: https://docs.google.com/document/d/11J_PcfWRUlxcmNHNzZ7YW6VHv1mWynNtbgEhgXM8Xcw/edit
 * Yusuf ŞENYÜZ:
 * Cengizhan TERZİOĞLU: https://docs.google.com/document/d/1-2rHcBvovujAJ8S7DnBeZqIczzPMWqDI1B3tczMX18U/edit?usp=sharing
-* Yunus Eren TÜRKERİ:
+* Yunus Eren TÜRKERİ: https://docs.google.com/document/d/1V9wmsR8FfojrUZ4gsjEHHQpp656wCAUSxaEiTpek-bA/edit
 
 # Contact
 Please reach out to Arda YILDIZ for questions and business inquiries.
