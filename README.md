@@ -41,7 +41,7 @@ Please follow the steps below to setup the project and have a running applicatio
 * Yunus Eren TÜRKERİ
 
 # Logbooks
-* Arda YILDIZ: 
+* Arda YILDIZ: https://docs.google.com/document/d/1JD2DC3SZcpdVFzoJXnEynOGqjN9cDGvMddlsphlMjNQ/edit?usp=sharing
 * Mustafa Kaan KOÇ:
 * Yusuf ŞENYÜZ:
 * Cengizhan TERZİOĞLU:
