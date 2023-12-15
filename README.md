@@ -41,6 +41,13 @@ Please follow the steps below to setup the project and have a running applicatio
 * Cengizhan TERZİOĞLU
 * Yunus Eren TÜRKERİ
 
+# Logbooks
+* Arda YILDIZ: 
+* Mustafa Kaan KOÇ:
+* Yusuf ŞENYÜZ:
+* Cengizhan TERZİOĞLU:
+* Yunus Eren TÜRKERİ:
+
 # Contact
 Please reach out to Arda YILDIZ for questions and business inquiries.
 * Phone: +90 538 932 04 44
