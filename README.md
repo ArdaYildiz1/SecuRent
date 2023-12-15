@@ -46,7 +46,7 @@ Please follow the steps below to setup the project and have a running applicatio
 * Yusuf ŞENYÜZ:
 https://docs.google.com/document/d/1GlnVQByT7O4Wbj9pwznJdGIZARnO51tXKMkgk7DZmUM/edit?usp=drivesdk
 * Cengizhan TERZİOĞLU: https://docs.google.com/document/d/1-2rHcBvovujAJ8S7DnBeZqIczzPMWqDI1B3tczMX18U/edit?usp=sharing
-* Yunus Eren TÜRKERİ: https://docs.google.com/document/d/1V9wmsR8FfojrUZ4gsjEHHQpp656wCAUSxaEiTpek-bA/edit
+* Yunus Eren TÜRKERİ: https://docs.google.com/document/d/1V9wmsR8FfojrUZ4gsjEHHQpp656wCAUSxaEiTpek-bA/edit?usp=sharing
 
 # Contact
 Please reach out to Arda YILDIZ for questions and business inquiries.
