@@ -1,7 +1,6 @@
 # SecuRent
-
-# Overview
 The SecuRent is an application which enhances the house rental process as well as addressing the issues that are related with the house rental process. SecuRent application emerges as a pioneering solution designed to transform the dynamics between tenants and landlords. With SecuRent, tenants can request officials (who are assigned by the government) to determine the rental price of  a house, if they are not in favor of the price set by the landlord. Thus, ballooned prices set by the landlords can be regulated by the officials to prevent tenants paying more than what is worth for a particular house. Furthermore, if a house is rented, the status of the house will be updated in the application and a contract uploaded by the landlord will enable the government to monitor the contract. Moreover, with SecuRent, the deposit money for houses will be collected at the government treasury. 
+* Access the web page of the SecuRent: https://yusufsenyuz.github.io/Project-Web-Page/#summary
 
 # Technologies Used
 * Frontend: React.js, Bootstrap
