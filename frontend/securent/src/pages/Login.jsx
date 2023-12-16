@@ -63,7 +63,7 @@ export default function Login() {
                                         </Form.Group>
                                         <br/>
                                         <Button className="btn-teal" onClick={handleClickLogin} type="submit">
-                                            Loginadasd
+                                            Login
                                         </Button>
                                         <br/><br/>
                                         <href onClick={handleForgotPassword} class="link-primary">Forgot Your
