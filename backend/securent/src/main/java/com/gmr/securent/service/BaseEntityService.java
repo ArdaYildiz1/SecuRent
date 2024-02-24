@@ -15,19 +15,20 @@ public class BaseEntityService implements BaseEntityInterface {
         this.baseEntityRepository = baseEntityRepository;
     }
 
-    @Override
-    public void register() {
-    }
+//    @Override
+//    public void register() {
+//    }
 
-    @Override
-    public void login() {
-    }
-
-    @Override
-    public void logout() {
-    }
-
-    @Override
-    public void deleteAccount() {
-    }
+    // TODO: The functionality will be covered in the controller with redirection
+//    @Override
+//    public void login() {
+//    }
+//
+//    @Override
+//    public void logout() {
+//    }
+//
+//    @Override
+//    public void deleteAccount() {
+//    }
 }

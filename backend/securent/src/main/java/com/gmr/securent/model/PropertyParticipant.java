@@ -17,9 +17,4 @@ public abstract class PropertyParticipant extends BaseEntity {
                                Image profilePhoto) {
         super(firstName, lastName, password, emailAddress, phoneNo, TCK, profilePhoto);
     }
-
-    public void searchHouse()  {
-        // TODO
-        // houseProperties parameter not added to avoid error
-    }
 }
