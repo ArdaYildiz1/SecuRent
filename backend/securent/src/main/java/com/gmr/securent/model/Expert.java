@@ -1,4 +1,4 @@
-package com.gmr.securent.models;
+package com.gmr.securent.model;
 
 import java.util.List;
 

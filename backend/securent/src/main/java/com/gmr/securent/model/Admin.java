@@ -1,4 +1,4 @@
-package com.gmr.securent.models;
+package com.gmr.securent.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,6 +15,9 @@ public class Admin extends User {
         super(firstName, lastName, password, emailAddress, phoneNo, TCK);
     }
 
+    public void redsa() {
+        this.ad
+    }
     public void openGovernmentAccount() {
         // TODO
     }
