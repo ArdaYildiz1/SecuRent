@@ -2,7 +2,6 @@ package com.gmr.securent.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 
@@ -38,5 +37,18 @@ public class BaseEntity {
         this.phoneNo = phoneNo;
         this.TCK = TCK;
         this.profilePhoto = profilePhoto;
+    }
+    public BaseEntity(String firstName,
+                      String lastName,
+                      String password,
+                      String emailAddress,
+                      String phoneNo,
+                      int TCK) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.emailAddress = emailAddress;
+        this.phoneNo = phoneNo;
+        this.TCK = TCK;
     }
 }

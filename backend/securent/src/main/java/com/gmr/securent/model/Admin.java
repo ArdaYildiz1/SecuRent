@@ -6,7 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Admin extends User {
+public class Admin extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int adminId;
@@ -15,9 +15,6 @@ public class Admin extends User {
         super(firstName, lastName, password, emailAddress, phoneNo, TCK);
     }
 
-    public void redsa() {
-        this.ad
-    }
     public void openGovernmentAccount() {
         // TODO
     }
