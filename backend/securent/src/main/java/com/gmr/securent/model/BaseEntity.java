@@ -1,16 +1,16 @@
-package com.gmr.securent.models;
-
-import java.awt.Image; // Added just to remove error, might be handled differently
+package com.gmr.securent.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import lombok.Data;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 
-@Data
-@AllArgsConstructor
+import java.awt.*;
+
 @Entity
-public abstract class User {
+@NoArgsConstructor
+public class BaseEntity {
     @Id
     private int entityID;
     private String firstName;
@@ -24,19 +24,19 @@ public abstract class User {
     private int TCK;
     private Image profilePhoto;
 
-    public void register() {
-        // TODO
-    }
-
-    public void login() {
-        // TODO
-    }
-
-    public void logout() {
-        // TODO
-    }
-
-    public void deleteAccount() {
-        // TODO
+    public BaseEntity(String firstName,
+                      String lastName,
+                      String password,
+                      String emailAddress,
+                      String phoneNo,
+                      int TCK,
+                      Image profilePhoto) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.emailAddress = emailAddress;
+        this.phoneNo = phoneNo;
+        this.TCK = TCK;
+        this.profilePhoto = profilePhoto;
     }
 }
