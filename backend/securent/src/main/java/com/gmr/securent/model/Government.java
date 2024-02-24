@@ -1,17 +1,17 @@
 package com.gmr.securent.model;
 
-import java.util.List;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
-import lombok.Getter;
+
+import java.util.List;
+import java.util.Map;
 
 @Entity
-@Getter
-public class Government extends User {
+@Data
+public class Government extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int governmentID;
@@ -43,9 +43,10 @@ public class Government extends User {
         // params not added to avoid error
     }
 
-    abstract double determinePrice() {
+    public double determinePrice() {
         // TODO
         // params not added to avoid error
+        return 0;
     }
     public void resolveConflict() {
         // TODO
