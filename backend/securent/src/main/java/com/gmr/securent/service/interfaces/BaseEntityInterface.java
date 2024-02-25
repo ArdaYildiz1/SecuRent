@@ -9,3 +9,4 @@ public interface BaseEntityInterface {
 //    void logout();
 //    void deleteAccount();
 }
+ 

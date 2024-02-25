@@ -1,7 +1,7 @@
 package com.gmr.securent.service.interfaces;
 
 import com.gmr.securent.model.RentRequest;
-
+ 
 
 public interface TenantInterface {
     
