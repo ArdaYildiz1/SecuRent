@@ -21,43 +21,4 @@ public class Tenant extends PropertyParticipant {
         super(firstName, lastName, password, emailAddress, phoneNo, TCK);
         housesRented = null;
     }
-
-    public List<House> getHousesRented() {
-        return housesRented;
-    }
-
-    public void payDeposit(int amount) {
-        // TODO
-    }
-
-    public void sendRentingRequestToLandlord(RentRequest rentRequest) {
-        // TODO
-    }
-
-    public void cancelRentingRequestToLandlord(RentRequest rentRequest) {
-        // TODO
-    }
-
-    public void requestRentalService() {
-        // TODO
-        // houseService property not added to avoid error
-    }
-
-    public void requestRentPriceToBeRecalculated() {
-        // TODO
-        // houseService property not added to avoid error
-    }
-
-    public void acceptExtension(boolean renewContract) {
-        // TODO
-    }
-
-    public void reportAd() {
-        // TODO
-        // rentalAd parameter not added to avoid error
-    }
-
-    public void rateRealEstateAgent(int agentId) {
-        // TODO
-    }
 }
