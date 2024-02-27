@@ -49,6 +49,5 @@ Please follow the steps below to setup the project and have a running applicatio
 
 # Contact
 Please reach out to Arda YILDIZ for questions and business inquiries.
-* Phone: +90 538 932 04 44
 * E-Mail: ardayildiz1074@gmail.com
 
