@@ -1,6 +1,19 @@
 package com.gmr.securent.model;
 
-// Opened this class just to remove an error, maybe update this later
-public class House implements HouseInterface {
+enum RentalStatus {
+    placeholder,
+    placeholder2,
+    placeholder3;
+}
+
+@Entity
+// house properties should be imported
+public class House extends BaseEntity{
+
     
+    // Variables
+    public int houseID;
+    public HouseProperties houseProperties;
+    public RentalStatus rentalStatus = RentalStatus.placeholder;
+
 }
