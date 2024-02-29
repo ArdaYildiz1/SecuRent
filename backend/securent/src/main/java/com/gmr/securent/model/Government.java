@@ -11,7 +11,7 @@ import java.util.Map;
 
 @Entity
 @Data
-public class Government extends BaseEntity {
+public class Government extends BaseEntity implements GovernmentInterface {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int governmentID;
@@ -31,6 +31,10 @@ public class Government extends BaseEntity {
     public void monitorContracts() {
         // TODO
         // params not added to avoid error
+    }
+
+    public void manageDeposits(){
+
     }
 
     public void redistributeDeposits(){

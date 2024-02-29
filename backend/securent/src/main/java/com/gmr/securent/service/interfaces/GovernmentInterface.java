@@ -10,8 +10,10 @@ public interface GovernmentInterface {
     public void monitorContracts();
 
     public void manageDeposits();
+    public void redistributeDeposits(); // params not added
 
-    public void confirmContracts( RentalContract contract);
+
+    public void confirmContract( RentalContract contract);
 
     public String disputeResolution(House house);
     abstract double determinePrice (House house );
