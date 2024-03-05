@@ -1,6 +1,5 @@
 package com.gmr.securent.model;
 
-import com.gmr.securent.model.enums.ServiceType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -10,12 +9,14 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class RentRequest {
+public class RentalAd {
     @Id
     @Column
-    private int serviceID;
+    private int rentalAdID;
     @Column
-    private ServiceType serviceType;
+    private double rentPrice;
     @Column
-    private int houseID;
+    private House houseInTheRentalAd;
+    @Column
+    private String description;
 }
