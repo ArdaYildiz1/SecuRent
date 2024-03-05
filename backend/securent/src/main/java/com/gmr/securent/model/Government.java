@@ -1,5 +1,6 @@
 package com.gmr.securent.model;
 
+import com.gmr.securent.service.interfaces.GovernmentInterface;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,6 +29,11 @@ public class Government extends BaseEntity implements GovernmentInterface {
         // params not added to avoid error
     }
 
+    @Override
+    public void assignExpert(House house) {
+
+    }
+
     public void monitorContracts() {
         // TODO
         // params not added to avoid error
@@ -42,18 +48,18 @@ public class Government extends BaseEntity implements GovernmentInterface {
         // params not added to avoid error
     }
 
-    public void confirmContract() {
-        // TODO
-        // params not added to avoid error
+    @Override
+    public String disputeResolution(House house) {
+        return null;
     }
 
-    public double determinePrice() {
-        // TODO
-        // params not added to avoid error
+    @Override
+    public double determinePrice(House house) {
         return 0;
     }
-    public void resolveConflict() {
-        // TODO
-        // params not added to avoid error
+
+    @Override
+    public void confirmContract(RentalContract contract) {
+
     }
 }

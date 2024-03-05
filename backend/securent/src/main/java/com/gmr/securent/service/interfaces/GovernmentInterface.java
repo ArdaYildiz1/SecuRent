@@ -1,6 +1,7 @@
 package com.gmr.securent.service.interfaces;
 
 import com.gmr.securent.model.House;
+import com.gmr.securent.model.RentalContract;
 
 // house and RentalContract should be imported
 public interface GovernmentInterface {
@@ -12,9 +13,8 @@ public interface GovernmentInterface {
     public void manageDeposits();
     public void redistributeDeposits(); // params not added
 
-
-    public void confirmContract( RentalContract contract);
-
     public String disputeResolution(House house);
     abstract double determinePrice (House house );
+
+    void confirmContract(RentalContract contract);
 }
