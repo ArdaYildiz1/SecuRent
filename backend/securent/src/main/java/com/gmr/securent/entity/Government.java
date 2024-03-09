@@ -14,12 +14,10 @@ import java.util.Map;
 @DiscriminatorValue("GOVERNMENT")
 @Data
 public class Government extends BaseEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer governmentId;
 
-    @OneToMany(mappedBy = "government")
-    private List<Expert> assignedExperts = new ArrayList<>();
+//    @OneToMany(mappedBy = "government")
+//    private List<Expert> assignedExperts = new ArrayList<>();
 
     @ElementCollection
     @CollectionTable(name = "deposits_collected", joinColumns = @JoinColumn(name = "government_id"))
@@ -29,6 +27,7 @@ public class Government extends BaseEntity {
 
     public Government(String firstName, String lastName, String password, String emailAddress, String phoneNo, int tck) {
         super(firstName, lastName, password, emailAddress, phoneNo, tck);
+        this.governmentId = super.getEntityID();
     }
 
 //    public void assignExpert() {

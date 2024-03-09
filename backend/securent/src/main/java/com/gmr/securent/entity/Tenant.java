@@ -1,6 +1,9 @@
 package com.gmr.securent.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -10,13 +13,11 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
-public class Tenant extends PropertyParticipant {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer userId = super.getParticipantID();
+public class Tenant extends BaseEntity {
+    private Integer tenantId;
 
-    @OneToMany(mappedBy = "tenant", cascade = CascadeType.ALL)
-    private List<RentalContract> rentalContracts = new ArrayList<>();
+//    @OneToMany(mappedBy = "tenant", cascade = CascadeType.ALL)
+//    private List<RentalContract> rentalContracts = new ArrayList<>();
 
     @Column(name = "isDepositPaid")
     private boolean isDepositPaid;
@@ -26,6 +27,7 @@ public class Tenant extends PropertyParticipant {
 
     public Tenant(String firstName, String lastName, String password, String emailAddress, String phoneNo, Integer TCK) {
         super(firstName, lastName, password, emailAddress, phoneNo, TCK);
+        this.tenantId = super.getEntityID();
     }
 
 //    + payDeposit(amount: Integer): void

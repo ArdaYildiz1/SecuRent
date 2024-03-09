@@ -17,7 +17,6 @@ public class TenantService {
         // Update the tenant's deposit payment status
         tenant.setDepositPaid(true);
         tenant.setDepositAmount(amount);
-        tenant.setRentalContracts(null);
 
         // Save the updated tenant back to the repository
         tenantRepository.save(tenant);

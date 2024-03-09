@@ -1,6 +1,8 @@
 package com.gmr.securent.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -10,16 +12,15 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
-public class Landlord extends PropertyParticipant {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer userId;
+public class Landlord extends BaseEntity {
+    private Integer landlordId;
 
-    @OneToMany(mappedBy = "landlord", cascade = CascadeType.ALL)
-    private List<House> houses = new ArrayList<>();
+//    @OneToMany(mappedBy = "landlord", cascade = CascadeType.ALL)
+//    private List<House> houses = new ArrayList<>();
 
     public Landlord(String firstName, String lastName, String password, String emailAddress, String phoneNo, Integer TCK) {
         super(firstName, lastName, password, emailAddress, phoneNo, TCK);
+        this.landlordId = super.getEntityID();
     }
 
 
