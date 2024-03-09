@@ -13,7 +13,7 @@ import java.util.List;
 public class Tenant extends PropertyParticipant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer userId;
+    private Integer userId = super.getParticipantID();
 
     @OneToMany(mappedBy = "tenant", cascade = CascadeType.ALL)
     private List<RentalContract> rentalContracts = new ArrayList<>();
