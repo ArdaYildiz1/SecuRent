@@ -1,6 +1,6 @@
 package com.gmr.securent.service.interfaces;
 
-import com.gmr.securent.model.RentRequest;
+import com.gmr.securent.entity.RentRequest;
  
 
 public interface TenantInterface {

@@ -1,10 +1,9 @@
 package com.gmr.securent.repository;
 
-import com.gmr.securent.model.BaseEntity;
-import org.springframework.data.repository.CrudRepository;
+import com.gmr.securent.entity.BaseEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface BaseEntityRepository extends CrudRepository<BaseEntity, Integer> {
-    public BaseEntity findByTCK(int TCK);
+public interface BaseEntityRepository extends JpaRepository<BaseEntity, Integer> {
 }

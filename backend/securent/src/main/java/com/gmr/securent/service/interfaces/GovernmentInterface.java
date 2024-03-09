@@ -1,7 +1,7 @@
 package com.gmr.securent.service.interfaces;
 
-import com.gmr.securent.model.House;
-import com.gmr.securent.model.RentalContract;
+import com.gmr.securent.entity.House;
+import com.gmr.securent.entity.RentalContract;
 
 // house and RentalContract should be imported
 public interface GovernmentInterface {

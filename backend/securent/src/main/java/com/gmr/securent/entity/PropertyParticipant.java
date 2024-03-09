@@ -1,23 +1,28 @@
-package com.gmr.securent.model;
+package com.gmr.securent.entity;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import java.awt.*;
-
+@EqualsAndHashCode(callSuper = true)
 @Entity
-@NoArgsConstructor
 @Data
+@NoArgsConstructor
+@DiscriminatorValue("PROPERTY_PARTICIPANT")
 public abstract class PropertyParticipant extends BaseEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer participantID;
+
     public PropertyParticipant(String firstName,
                                String lastName,
                                String password,
                                String emailAddress,
                                String phoneNo,
-                               int TCK,
-                               Image profilePhoto) {
-        super(firstName, lastName, password, emailAddress, phoneNo, TCK, profilePhoto);
+                               int tck,
+                               int profilePhoto) {
+        super(firstName, lastName, password, emailAddress, phoneNo, tck, profilePhoto);
     }
 
     public PropertyParticipant(String firstName,
@@ -25,7 +30,7 @@ public abstract class PropertyParticipant extends BaseEntity {
                                String password,
                                String emailAddress,
                                String phoneNo,
-                               int TCK) {
-        super(firstName, lastName, password, emailAddress, phoneNo, TCK);
+                               int tck) {
+        super(firstName, lastName, password, emailAddress, phoneNo, tck);
     }
 }

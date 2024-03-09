@@ -1,6 +1,5 @@
 package com.gmr.securent.controller;
 
-import com.gmr.securent.model.RentRequest;
 import com.gmr.securent.service.TenantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

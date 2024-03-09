@@ -1,12 +1,12 @@
 package com.gmr.securent.service;
 
-import com.gmr.securent.model.Tenant;
+import com.gmr.securent.entity.Tenant;
 import com.gmr.securent.repository.TenantRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class TenantService {
-    private TenantRepository tenantRepository;
+    TenantRepository tenantRepository;
 
     public void payDeposit(int tenantId, double amount) {
         // Find the tenant by ID
@@ -15,8 +15,9 @@ public class TenantService {
                 .orElseThrow(() -> new RuntimeException("Tenant not found"));
 
         // Update the tenant's deposit payment status
-        tenant.setIsDepositPaid(true);
+        tenant.setDepositPaid(true);
         tenant.setDepositAmount(amount);
+        tenant.setRentalContracts(null);
 
         // Save the updated tenant back to the repository
         tenantRepository.save(tenant);
