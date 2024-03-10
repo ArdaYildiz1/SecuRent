@@ -1,17 +1,19 @@
-package com.gmr.securent.model;
+package com.gmr.securent.entity;
 
-import com.gmr.securent.model.enums.Heating;
+import com.gmr.securent.entity.enums.Heating;
+import jakarta.persistence.*;
+import lombok.Data;
 
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
 
+@Entity
+@Data
 public class HouseProperties {
-    List<Image> housePhotos = new ArrayList<>();
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer housePropertiesId;
     private String address;
-    private int adID;
-    private Date adDate;
+    private LocalDate adDate;
     private double areaGross;
     private double areaNet;
     private double areaOpenSpace;
@@ -26,3 +28,4 @@ public class HouseProperties {
     private String siteName;
     private double currentAmount;
 }
+

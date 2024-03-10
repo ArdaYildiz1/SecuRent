@@ -1,4 +1,4 @@
-package com.gmr.securent.model.enums;
+package com.gmr.securent.entity.enums;
 
 public enum ServiceType {
     RENT_REQUEST,

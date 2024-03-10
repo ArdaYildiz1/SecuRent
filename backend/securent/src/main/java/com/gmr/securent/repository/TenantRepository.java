@@ -1,7 +1,7 @@
 package com.gmr.securent.repository;
 
-import com.gmr.securent.model.Tenant;
-import org.springframework.data.repository.CrudRepository;
+import com.gmr.securent.entity.Tenant;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface TenantRepository extends CrudRepository<Tenant, Integer> {
+public interface TenantRepository extends JpaRepository<Tenant, Integer> {
 }

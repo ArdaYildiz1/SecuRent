@@ -1,24 +1,53 @@
 package com.gmr.securent.service;
 
-import com.gmr.securent.model.Tenant;
+import com.gmr.securent.entity.Tenant;
 import com.gmr.securent.repository.TenantRepository;
+import com.gmr.securent.service.interfaces.TenantInterface;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
-public class TenantService {
-    private TenantRepository tenantRepository;
+public class TenantService implements TenantInterface {
+    TenantRepository tenantRepository;
+    public TenantService(TenantRepository tenantRepository) {
+        this.tenantRepository = tenantRepository;
+    }
 
-    public void payDeposit(int tenantId, double amount) {
-        // Find the tenant by ID
-        Tenant tenant = tenantRepository
-                .findById(tenantId)
-                .orElseThrow(() -> new RuntimeException("Tenant not found"));
-
-        // Update the tenant's deposit payment status
-        tenant.setIsDepositPaid(true);
-        tenant.setDepositAmount(amount);
-
-        // Save the updated tenant back to the repository
-        tenantRepository.save(tenant);
+    @Override
+    public List<Tenant> getAllTenants() {
+        return tenantRepository.findAll();
+    }
+    @Override
+    public Tenant saveOneTenant(Tenant newTenant) {
+        return tenantRepository.save(newTenant);
+    }
+    @Override
+    public Tenant getOneTenantById(Integer userId) {
+        return tenantRepository.findById(userId).orElse(null);
+    }
+    @Override
+    public Tenant updateOneTenant(Integer userId, Tenant newTenant) {
+        Optional<Tenant> baseEntity = tenantRepository.findById(userId);
+        if(baseEntity.isPresent()) {
+            Tenant foundTenant = baseEntity.get();
+            foundTenant.setFirstName(newTenant.getFirstName());
+            foundTenant.setLastName(newTenant.getLastName());
+            foundTenant.setPassword(newTenant.getPassword());
+            tenantRepository.save(foundTenant);
+            return foundTenant;
+        } else {
+            return null;
+        }
+    }
+    @Override
+    public void deleteById(Integer userId) {
+        try {
+            tenantRepository.deleteById(userId);
+        } catch(EmptyResultDataAccessException e) { //user zaten yok, db'den empty result gelmiş
+            System.out.println("Tenant "+userId+" doesn't exist"); //istersek loglayabiliriz
+        }
     }
 }
