@@ -9,27 +9,27 @@ import java.time.LocalDate;
 
 @Entity
 @Data
-@Table(name = "rentalContract")
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "rental_contract")
 public class RentalContract {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer contractID;
 
-    @Column(name = "landlordTCK")
+    @Column(name = "landlord_tck")
     private Integer landlordTCK;
 
-    @Column(name = "tenantTCK")
+    @Column(name = "tenant_tck")
     private Integer tenantTCK;
 
-    @Column(name = "rentAmount")
+    @Column(name = "rent_amount")
     private double rentAmount;
 
     // Add start and end date fields if applicable
-    @Column(name = "startDate")
+    @Column(name = "start_date")
     private LocalDate startDate;
 
-    @Column(name = "endDate")
+    @Column(name = "end_date")
     private LocalDate endDate;
 }

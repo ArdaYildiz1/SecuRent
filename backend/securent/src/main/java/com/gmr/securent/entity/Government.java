@@ -1,20 +1,43 @@
 package com.gmr.securent.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@EqualsAndHashCode(callSuper = true)
 @Entity
-@DiscriminatorValue("GOVERNMENT")
 @Data
-public class Government extends BaseEntity {
-    private Integer governmentId;
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "government")
+public class Government {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer entityID;
+
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "email_address")
+    private String emailAddress;
+
+    @Column(name = "phone_no")
+    private String phoneNo;
+
+    @Column(name = "tck")
+    private int tck;
 
 //    @OneToMany(mappedBy = "government")
 //    private List<Expert> assignedExperts = new ArrayList<>();
@@ -24,11 +47,6 @@ public class Government extends BaseEntity {
     @MapKeyColumn(name = "deposit_key")
     @Column(name = "deposit_value")
     private Map<String, Double> depositsCollected = new HashMap<>();
-
-    public Government(String firstName, String lastName, String password, String emailAddress, String phoneNo, int tck) {
-        super(firstName, lastName, password, emailAddress, phoneNo, tck);
-        this.governmentId = super.getEntityID();
-    }
 
 //    public void assignExpert() {
 //        // TODO

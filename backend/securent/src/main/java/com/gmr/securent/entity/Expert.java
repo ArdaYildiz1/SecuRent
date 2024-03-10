@@ -1,25 +1,42 @@
 package com.gmr.securent.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
-@EqualsAndHashCode(callSuper = true)
 @Entity
-@DiscriminatorValue("EXPERT")
 @Data
-public class Expert extends BaseEntity {
-    private Integer agentId;
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "expert")
+public class Expert {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer entityID;
+
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "email_address")
+    private String emailAddress;
+
+    @Column(name = "phone_no")
+    private String phoneNo;
+
+    @Column(name = "tck")
+    private int tck;
 
     @Column(name = "assignedToAHouseCurrently")
     private boolean assignedToAHouseCurrently;
 
-    public Expert(String firstName, String lastName, String password, String emailAddress, String phoneNo, int tck) {
-        super(firstName, lastName, password, emailAddress, phoneNo, tck);
-        this.agentId = super.getEntityID();
-    }
 
 //    @Override
 //    public double determinePrice() {

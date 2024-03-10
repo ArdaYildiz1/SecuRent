@@ -1,28 +1,41 @@
 package com.gmr.securent.entity;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
-public class Landlord extends BaseEntity {
-    private Integer landlordId;
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "landlord")
+public class Landlord {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer entityID;
 
-//    @OneToMany(mappedBy = "landlord", cascade = CascadeType.ALL)
-//    private List<House> houses = new ArrayList<>();
+    @Column(name = "first_name")
+    private String firstName;
 
-    public Landlord(String firstName, String lastName, String password, String emailAddress, String phoneNo, Integer TCK) {
-        super(firstName, lastName, password, emailAddress, phoneNo, TCK);
-        this.landlordId = super.getEntityID();
-    }
+    @Column(name = "last_name")
+    private String lastName;
 
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "email_address")
+    private String emailAddress;
+
+    @Column(name = "phone_no")
+    private String phoneNo;
+
+    @Column(name = "tck")
+    private int tck;
 
 //    public int getUserId() {
 //        return userId;

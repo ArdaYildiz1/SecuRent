@@ -1,34 +1,43 @@
 package com.gmr.securent.entity;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
-
-@EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
-public class Tenant extends BaseEntity {
-    private Integer tenantId;
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "tenant")
+public class Tenant {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer entityid;
 
-//    @OneToMany(mappedBy = "tenant", cascade = CascadeType.ALL)
-//    private List<RentalContract> rentalContracts = new ArrayList<>();
+    @Column(name = "first_name")
+    private String firstName;
 
-    @Column(name = "isDepositPaid")
+    @Column(name = "last_name")
+    private String lastName;
+
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "email_address")
+    private String emailAddress;
+
+    @Column(name = "phone_no")
+    private String phoneNo;
+
+    @Column(name = "tck")
+    private int tck;
+
+    @Column(name = "is_deposit_paid")
     private boolean isDepositPaid;
 
-    @Column(name = "depositAmount")
+    @Column(name = "deposit_amount")
     private Double depositAmount;
-
-    public Tenant(String firstName, String lastName, String password, String emailAddress, String phoneNo, Integer TCK) {
-        super(firstName, lastName, password, emailAddress, phoneNo, TCK);
-        this.tenantId = super.getEntityID();
-    }
 
 //    + payDeposit(amount: Integer): void
 //+ sendRentingRequestToLandlord(rentRequest: RentRequest): void

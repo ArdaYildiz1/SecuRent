@@ -8,9 +8,9 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@Table(name = "rentRequests")
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "rent_request")
 public class RentRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

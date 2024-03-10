@@ -7,14 +7,11 @@ import lombok.Data;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "housePropertiesEntity")
 @Data
 public class HouseProperties {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer adId;
-
-    //    List<Image> housePhotos = new ArrayList<>();
+    private Integer housePropertiesId;
     private String address;
     private LocalDate adDate;
     private double areaGross;
@@ -31,3 +28,4 @@ public class HouseProperties {
     private String siteName;
     private double currentAmount;
 }
+

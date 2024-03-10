@@ -1,21 +1,39 @@
 package com.gmr.securent.entity;
 
-import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
-@EqualsAndHashCode(callSuper = true)
 @Entity
-@DiscriminatorValue("ADMIN")
 @Data
-public class Admin extends BaseEntity {
-    private Integer adminId;
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "admin")
+public class Admin {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer entityID;
 
-    public Admin(String firstName, String lastName, String password, String emailAddress, String phoneNo, int tck) {
-        super(firstName, lastName, password, emailAddress, phoneNo, tck);
-        this.adminId = super.getEntityID();
-    }
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "email_address")
+    private String emailAddress;
+
+    @Column(name = "phone_no")
+    private String phoneNo;
+
+    @Column(name = "tck")
+    private int tck;
+
 
 //    public void openGovernmentAccount() {
 //        // TODO

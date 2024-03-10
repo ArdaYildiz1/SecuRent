@@ -1,34 +1,49 @@
 package com.gmr.securent.entity;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
-public class RealEstateAgent extends BaseEntity {
-    private Integer realEstateAgentId;
-    @Column(name = "areaOfOperations")
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "real_estate_agent")
+public class RealEstateAgent {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer entityID;
+
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "email_address")
+    private String emailAddress;
+
+    @Column(name = "phone_no")
+    private String phoneNo;
+
+    @Column(name = "tck")
+    private int tck;
+
+    @Column(name = "area_of_operations")
     private String areaOfOperations;
-//    @OneToMany(mappedBy = "realEstateAgent", cascade = CascadeType.ALL)
-//    private List<RentRequest> requests = new ArrayList<>();
     @Column(name = "rating")
     private Double rating;
 
-    public RealEstateAgent(String firstName, String lastName, String password, String emailAddress, String phoneNo, Integer TCK, String areaOfOperations) {
-        super(firstName, lastName, password, emailAddress, phoneNo, TCK);
-        this.areaOfOperations = areaOfOperations;
-        this.realEstateAgentId = super.getEntityID();
-    }
-
-
+//    @OneToMany(mappedBy = "realEstateAgent", cascade = CascadeType.ALL)
+//    private List<RentRequest> requests = new ArrayList<>();
 //    public boolean returnDepositToTenant(int houseId) {
 //        // TODO
 //        return true;

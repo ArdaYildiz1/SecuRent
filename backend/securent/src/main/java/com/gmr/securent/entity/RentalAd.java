@@ -6,16 +6,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "rentalAds")
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "rental_ad")
 public class RentalAd {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer rentalAdID;
 
-    @Column(name = "rentPrice")
+    @Column(name = "rent_price")
     private double rentPrice;
 
     @ManyToOne
