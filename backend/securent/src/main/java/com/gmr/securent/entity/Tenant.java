@@ -13,7 +13,8 @@ import lombok.NoArgsConstructor;
 public class Tenant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer entityid;
+    @Column(name = "entity_id")
+    private Integer entityId;
 
     @Column(name = "first_name")
     private String firstName;
@@ -37,7 +38,7 @@ public class Tenant {
     private boolean isDepositPaid;
 
     @Column(name = "deposit_amount")
-    private Double depositAmount;
+    private double depositAmount;
 
 //    + payDeposit(amount: Integer): void
 //+ sendRentingRequestToLandlord(rentRequest: RentRequest): void

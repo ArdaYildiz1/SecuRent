@@ -22,6 +22,9 @@ public class TenantService implements TenantInterface {
     }
     @Override
     public Tenant saveOneTenant(Tenant newTenant) {
+        System.out.println("TENANT INFO STARTS HERE");
+        System.out.println(newTenant.toString());
+        System.out.println(newTenant.getEntityId());
         return tenantRepository.save(newTenant);
     }
     @Override

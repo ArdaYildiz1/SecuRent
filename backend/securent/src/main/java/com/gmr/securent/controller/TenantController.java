@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping("/tenants")
 public class TenantController {
 
-    private TenantService tenantService;
+    private final TenantService tenantService;
 
     public TenantController(TenantService tenantService) {
         this.tenantService = tenantService;
@@ -26,13 +26,6 @@ public class TenantController {
     @PostMapping
     public Tenant createTenant(@RequestBody Tenant newTenant) {
         return tenantService.saveOneTenant(newTenant);
-//        Tenant user = tenantService.saveOneTenant(newTenant);
-//        if(user != null) {
-//            return new ResponseEntity<>(HttpStatus.CREATED);
-//        }
-//        else {
-//            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
     }
 
     @GetMapping("/{userId}")
