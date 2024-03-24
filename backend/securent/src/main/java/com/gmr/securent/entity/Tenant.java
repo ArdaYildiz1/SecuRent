@@ -32,21 +32,11 @@ public class Tenant {
     private String phoneNo;
 
     @Column(name = "tck")
-    private int tck;
+    private long tck;
 
-    @Column(name = "is_deposit_paid")
-    private boolean isDepositPaid;
+    @Column(name = "deposit_payment_status")
+    private boolean depositPaymentStatus;
 
     @Column(name = "deposit_amount")
-    private double depositAmount;
-
-//    + payDeposit(amount: Integer): void
-//+ sendRentingRequestToLandlord(rentRequest: RentRequest): void
-//+ cancelRentingRequest(rentRequest: RentRequest): void
-//+ requestRentalService(rentRequest: RentRequest): void
-//+ requestEvaluationOfHouseConditions(rentRequest: RentRequest): void
-//+ requestRentPriceToBeRecalculated(rentRequest: RentRequest): void
-//+ acceptExtention(renewContract: Boolean): void
-//+ reportAd(rentalAd: RentalAd): void
-//+ rateRealEstateAgent(agentId: Integer): void
+    private Double depositAmount;
 }

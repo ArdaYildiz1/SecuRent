@@ -1,6 +1,8 @@
 package com.gmr.securent.service.interfaces;
 
+import com.gmr.securent.entity.RentRequest;
 import com.gmr.securent.entity.Tenant;
+import com.gmr.securent.entity.enums.ServiceType;
 
 import java.util.List;
 
@@ -11,10 +13,11 @@ public interface TenantInterface {
     Tenant getOneTenantById(Integer userId);
     Tenant updateOneTenant(Integer userId, Tenant newTenant);
     void deleteById(Integer userId);
-    
-//    public void payDeposit(int amount);
-//
-//    public void sendRentingRequestToLandlord(RentRequest rentRequest);
+    void payDeposit(Integer userId, Double amount);
+    void sendRentingRequestToLandlord(Integer tenantId,
+                                      Integer landlordId,
+                                      Integer houseId,
+                                      ServiceType serviceType);
 //
 //    public void cancelRentingRequestToLandlord(RentRequest rentRequest);
 //

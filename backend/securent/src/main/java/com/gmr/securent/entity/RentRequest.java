@@ -22,5 +22,10 @@ public class RentRequest {
 
     @Column(name = "houseID")
     private Integer houseID;
-}
 
+    @Column(name = "tenantID")
+    private Integer tenantID;
+
+    @Column(name = "landlordID")
+    private Integer landlordID;
+}
