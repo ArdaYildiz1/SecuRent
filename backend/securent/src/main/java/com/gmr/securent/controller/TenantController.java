@@ -1,6 +1,7 @@
 package com.gmr.securent.controller;
 
 import com.gmr.securent.entity.RentRequest;
+import com.gmr.securent.entity.RentalService;
 import com.gmr.securent.entity.Tenant;
 import com.gmr.securent.exceptions.UserNotFoundException;
 import com.gmr.securent.responses.TenantResponse;
@@ -73,6 +74,24 @@ public class TenantController {
     @DeleteMapping("/{tenantId}/cancel-renting-request/{rentRequestId}")
     public ResponseEntity<Void> cancelRentingRequestToLandlord(@PathVariable Integer rentRequestId) {
         tenantService.cancelRentingRequestToLandlord(rentRequestId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @GetMapping("/{tenantId}/rental-service-requests")
+    public ResponseEntity<List<RentalService>> getAllRentalServiceRequestsForTenant(@PathVariable Integer tenantId) {
+        List<RentalService> rentalServices = tenantService.getAllRentalServiceRequestsForTenant(tenantId);
+        return new ResponseEntity<>(rentalServices, HttpStatus.OK);
+    }
+    @PostMapping("/{tenantId}/send-rental-service-request")
+    public ResponseEntity<Void> sendRentalServiceRequest(@PathVariable Integer tenantId,
+                                                                          @RequestBody RentalService rentalService) {
+        tenantService.sendRentalServiceRequestToRealEstateAgent(tenantId,
+                rentalService.getRealEstateAgentID(),
+                rentalService.getHouseID());
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @DeleteMapping("/{tenantId}/cancel-rental-service-request/{rentalServiceId}")
+    public ResponseEntity<Void> cancelRentalServiceRequest(@PathVariable Integer rentalServiceId) {
+        tenantService.cancelRentalServiceRequestToRealEstateAgent(rentalServiceId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
     @ExceptionHandler(UserNotFoundException.class)

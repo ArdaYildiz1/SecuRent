@@ -1,6 +1,7 @@
 package com.gmr.securent.service.interfaces;
 
 import com.gmr.securent.entity.RentRequest;
+import com.gmr.securent.entity.RentalService;
 import com.gmr.securent.entity.Tenant;
 import com.gmr.securent.entity.enums.ServiceType;
 
@@ -17,7 +18,16 @@ public interface TenantInterface {
     List<RentRequest> getAllRentingRequestsForTenant(Integer tenantId);
     void sendRentingRequestToLandlord(Integer tenantId, Integer landlordId, Integer houseId);
     void cancelRentingRequestToLandlord(Integer serviceID);
-    void requestRentalService();
+    List<RentalService> getAllRentalServiceRequestsForTenant(Integer tenantId);
+    void sendRentalServiceRequestToRealEstateAgent(Integer tenantId, Integer realEstateAgentId, Integer houseId);
+    void cancelRentalServiceRequestToRealEstateAgent(Integer serviceID);
+
+
+
+
+
+
+
 //
 //    public void requestRentPriceToBeRecalculated();
 //

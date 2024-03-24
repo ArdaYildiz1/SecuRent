@@ -34,8 +34,8 @@ public class Expert {
     @Column(name = "tck")
     private int tck;
 
-    @Column(name = "assignedToAHouseCurrently")
-    private boolean assignedToAHouseCurrently;
+    @Column(name = "assigned_to_a_house")
+    private boolean assignedToAHouse;
 
 
 //    @Override

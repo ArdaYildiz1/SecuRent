@@ -16,6 +16,6 @@ public class House {
     private Integer houseId;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "housePropertiesId")
+    @JoinColumn(name = "house_properties_id")
     private HouseProperties houseProperties;
 }

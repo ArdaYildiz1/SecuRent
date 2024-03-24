@@ -16,16 +16,16 @@ public class RentRequest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer serviceID;
 
-    @Column(name = "serviceType")
+    @Column(name = "service_type")
     @Enumerated(EnumType.STRING)
-    private ServiceType serviceType;
+    private ServiceType serviceType = ServiceType.RENT_REQUEST;
 
-    @Column(name = "houseID")
+    @Column(name = "house_ID")
     private Integer houseID;
 
-    @Column(name = "tenantID")
+    @Column(name = "tenant_ID")
     private Integer tenantID;
 
-    @Column(name = "landlordID")
+    @Column(name = "landlord_ID")
     private Integer landlordID;
 }

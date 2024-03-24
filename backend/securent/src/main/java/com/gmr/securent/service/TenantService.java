@@ -1,9 +1,11 @@
 package com.gmr.securent.service;
 
 import com.gmr.securent.entity.RentRequest;
+import com.gmr.securent.entity.RentalService;
 import com.gmr.securent.entity.Tenant;
 import com.gmr.securent.entity.enums.ServiceType;
 import com.gmr.securent.repository.RentRequestRepository;
+import com.gmr.securent.repository.RentalServiceRepository;
 import com.gmr.securent.repository.TenantRepository;
 import com.gmr.securent.service.interfaces.TenantInterface;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -18,10 +20,14 @@ public class TenantService implements TenantInterface {
     // Inject necessary dependencies
     TenantRepository tenantRepository;
     RentRequestRepository rentRequestRepository;
+    RentalServiceRepository rentalServiceRepository;
+
     public TenantService(TenantRepository tenantRepository,
-                         RentRequestRepository rentRequestRepository) {
+                         RentRequestRepository rentRequestRepository,
+                         RentalServiceRepository rentalServiceRepository) {
         this.tenantRepository = tenantRepository;
         this.rentRequestRepository = rentRequestRepository;
+        this.rentalServiceRepository = rentalServiceRepository;
     }
 
     @Override
@@ -85,12 +91,8 @@ public class TenantService implements TenantInterface {
                 .findById(tenantId)
                 .orElseThrow(() -> new RuntimeException("Tenant not found with ID: " + tenantId));
 
-        // Send RENT_REQUEST
-        ServiceType rentServiceType = ServiceType.RENT_REQUEST;
-
         // Create a new RentRequest object
         RentRequest rentRequest = new RentRequest();
-        rentRequest.setServiceType(rentServiceType);
         rentRequest.setTenantID(tenantId);
         rentRequest.setLandlordID(landlordId);
         rentRequest.setHouseID(houseId);
@@ -101,5 +103,29 @@ public class TenantService implements TenantInterface {
     @Override
     public void cancelRentingRequestToLandlord(Integer rentRequestId) {
         rentRequestRepository.deleteById(rentRequestId);
+    }
+    @Override
+    public List<RentalService> getAllRentalServiceRequestsForTenant(Integer tenantId) {
+        return rentalServiceRepository.findAllByTenantID(tenantId);
+    }
+    @Override
+    public void sendRentalServiceRequestToRealEstateAgent(Integer tenantId, Integer realEstateAgentId, Integer houseId) {
+        // Find the tenant
+        Tenant tenant = tenantRepository
+                .findById(tenantId)
+                .orElseThrow(() -> new RuntimeException("Tenant not found with ID: " + tenantId));
+
+        // Create a new RentalService object
+        RentalService rentalService = new RentalService();
+        rentalService.setTenantID(tenantId);
+        rentalService.setRealEstateAgentID(realEstateAgentId);
+        rentalService.setHouseID(houseId);
+
+        // Save the RentalService object
+        rentalServiceRepository.save(rentalService);
+    }
+    @Override
+    public void cancelRentalServiceRequestToRealEstateAgent(Integer rentalServiceId) {
+        rentalServiceRepository.deleteById(rentalServiceId);
     }
 }
