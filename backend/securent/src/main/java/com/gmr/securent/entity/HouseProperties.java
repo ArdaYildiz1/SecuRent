@@ -27,5 +27,6 @@ public class HouseProperties {
     private boolean insideASite;
     private String siteName;
     private double currentAmount;
+    private Expert expert;
 }
 

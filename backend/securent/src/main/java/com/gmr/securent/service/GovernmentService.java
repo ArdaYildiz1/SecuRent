@@ -1,55 +1,79 @@
 package com.gmr.securent.government;
 
+import com.gmr.securent.entity.House;
+import com.gmr.securent.repository.HouseRepository;
+import com.gmr.securent.repository.ExpertRepository;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class GovernmentService implements GovernmentInterface {
 
     // Inject necessary dependencies
     GovernmentRepository governmentRepository;
+    HouseRepository houseRepository;
+    ExpertRepository expertRepository;
 
 
-    public GovernmentService(GovernmentRepository governmentRepository) {
+    public GovernmentService(GovernmentRepository governmentRepository,  
+                            HouseRepository houseRepository, 
+                            ExpertRepository expertRepository) {
+
         this.governmentRepository = governmentRepository;
+        this.houseRepository = houseRepository;
+        this.expertRepository = expertRepository;
     }
 
     @Override
     public Government getGovernment() {
-        return governmentRepository.findAll();
+        return governmentRepository.findById(userId).orElse(null);
     }
     @Override
-    public Tenant saveOneTenant(Tenant newTenant) {
-        return tenantRepository.save(newTenant);
+    public Government saveGovernment(Government newGovernment) {
+        return governmentRepository.save(newGovernment);
     }
+
     @Override
-    public Tenant getOneTenantById(Integer userId) {
-        return tenantRepository.findById(userId).orElse(null);
-    }
-    @Override
-    public Tenant updateOneTenant(Integer userId, Tenant newTenant) {
-        Optional<Tenant> tenant = tenantRepository.findById(userId);
-        if(tenant.isPresent()) {
-            Tenant foundTenant = tenant.get();
-            foundTenant.setFirstName(newTenant.getFirstName());
-            foundTenant.setLastName(newTenant.getLastName());
-            foundTenant.setPassword(newTenant.getPassword());
-            foundTenant.setPhoneNo(newTenant.getPhoneNo());
-            foundTenant.setEmailAddress(newTenant.getEmailAddress());
-            foundTenant.setTck(newTenant.getTck());
-            foundTenant.setDepositPaymentStatus(newTenant.isDepositPaymentStatus());
-            return foundTenant;
+    public Government updateGovernment(Integer governmentId, Governemnt newGovernment) {
+        Optional<Government> government = governmentRepository.findById(governmentId);
+        if(government.isPresent()) {
+            Government foundGovernment = government.get();
+            foundGovernment.setFirstName(newGovernment.getFirstName());
+            foundGovernment.setLastName(newGovernment.getLastName());
+            foundGovernment.setPassword(newGovernment.getPassword());
+            foundGovernment.setPhoneNo(newGovernment.getPhoneNo());
+            foundGovernment.setEmailAddress(newGovernment.getEmailAddress());
+            foundGovernment.setTck(newGovernment.getTck());
+            return foundGovernment;
         }
         else {
-            throw new RuntimeException("Tenant not found with ID: " + userId);
+            throw new RuntimeException("Government not found with ID: " + governmentId);
         }
     }
     @Override
-    public void deleteById(Integer userId) {
+    public void deleteById(Integer governmentId) {
         try {
-            tenantRepository.deleteById(userId);
+            governmentRepository.deleteById(governmentId);
         } catch(EmptyResultDataAccessException e) {
-            System.out.println("Tenant "+ userId +" doesn't exist");
+            System.out.println("Government with ID: "+ governmentId +" doesn't exist");
         }
     }
+
+    @Override
+    public void assignExpert(House house, Integer agentId){
+
+        // Find the expert
+        Expert expert = expertRepository.findById(agentId)
+        .orElseThrow(() -> new RuntimeException("Expert not found with ID: " + agentId));
+
+        expert.setAssignedToAHouse(true);
+        house.getHouseProperties.setExpert(expert);
+
+        
+    }
+
+
+
     @Override
     public void payDeposit(Integer userId, Double amount) {
         Optional<Tenant> tenantOptional = tenantRepository.findById(userId);
@@ -62,6 +86,7 @@ public class GovernmentService implements GovernmentInterface {
             throw new RuntimeException("Tenant not found with ID: " + userId);
         }
     }
+
     @Override
     public List<RentRequest> getAllRentingRequestsForTenant(Integer tenantId) {
         return rentRequestRepository.findAllByTenantID(tenantId);

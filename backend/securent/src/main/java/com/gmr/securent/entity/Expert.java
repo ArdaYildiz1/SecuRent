@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
+@AllArgsConstructor 
 @Table(name = "expert")
 public class Expert {
     @Id
@@ -37,7 +37,7 @@ public class Expert {
     @Column(name = "assigned_to_a_house")
     private boolean assignedToAHouse;
 
-
+ 
 //    @Override
 //    public double determinePrice() {
 //        // TODO
