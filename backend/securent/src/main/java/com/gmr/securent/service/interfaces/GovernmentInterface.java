@@ -16,5 +16,5 @@ public interface GovernmentInterface {
     public String disputeResolution(House house);
     abstract double determinePrice (House house );
 
-    void confirmContract(RentalContract contract);
+    public void confirmContract(RentalContract contract);
 }
