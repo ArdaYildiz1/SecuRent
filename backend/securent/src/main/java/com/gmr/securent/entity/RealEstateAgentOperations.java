@@ -10,15 +10,15 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "rental_service")
-public class RentalService {
+@Table(name = "real_estate_agent_operations")
+public class RealEstateAgentOperations {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer serviceID;
 
     @Column(name = "service_type")
     @Enumerated(EnumType.STRING)
-    private ServiceType serviceType = ServiceType.RENTAL_SERVICE;
+    private ServiceType serviceType;
 
     @Column(name = "house_ID")
     private Integer houseID;
