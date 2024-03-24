@@ -51,24 +51,30 @@ public class TenantController {
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 
     }
-
-    @DeleteMapping("/{userId}")
-    public void deleteOneUser(@PathVariable Integer userId) {
-        tenantService.deleteById(userId);
+    @DeleteMapping("/{tenantId}")
+    public void deleteOneUser(@PathVariable Integer tenantId) {
+        tenantService.deleteById(tenantId);
     }
-
-    @PostMapping("/{tenantId}/send-renting-request")
-    public ResponseEntity<Void> sendRentingRequestToLandlord(@PathVariable Integer tenantId, @RequestBody RentRequest rentRequest) {
-        tenantService.sendRentingRequestToLandlord(tenantId, rentRequest.getLandlordID(), rentRequest.getHouseID(), rentRequest.getServiceType());
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
     @PostMapping("/{tenantId}/pay-deposit")
     public ResponseEntity<Void> payDeposit(@PathVariable Integer tenantId, @RequestParam Double amount) {
         tenantService.payDeposit(tenantId, amount);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
+    @GetMapping("/{tenantId}/renting-requests")
+    public ResponseEntity<List<RentRequest>> getAllRentingRequestsForTenant(@PathVariable Integer tenantId) {
+        List<RentRequest> rentingRequests = tenantService.getAllRentingRequestsForTenant(tenantId);
+        return new ResponseEntity<>(rentingRequests, HttpStatus.OK);
+    }
+    @PostMapping("/{tenantId}/send-renting-request")
+    public ResponseEntity<Void> sendRentingRequestToLandlord(@PathVariable Integer tenantId, @RequestBody RentRequest rentRequest) {
+        tenantService.sendRentingRequestToLandlord(tenantId, rentRequest.getLandlordID(), rentRequest.getHouseID());
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @DeleteMapping("/{tenantId}/cancel-renting-request/{rentRequestId}")
+    public ResponseEntity<Void> cancelRentingRequestToLandlord(@PathVariable Integer rentRequestId) {
+        tenantService.cancelRentingRequestToLandlord(rentRequestId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
     @ExceptionHandler(UserNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     private void handleUserNotFound() {}

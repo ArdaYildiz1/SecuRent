@@ -58,11 +58,10 @@ public class TenantService implements TenantInterface {
     public void deleteById(Integer userId) {
         try {
             tenantRepository.deleteById(userId);
-        } catch(EmptyResultDataAccessException e) { //user zaten yok, db'den empty result gelmiş
-            System.out.println("Tenant "+userId+" doesn't exist"); //istersek loglayabiliriz
+        } catch(EmptyResultDataAccessException e) {
+            System.out.println("Tenant "+ userId +" doesn't exist");
         }
     }
-
     @Override
     public void payDeposit(Integer userId, Double amount) {
         Optional<Tenant> tenantOptional = tenantRepository.findById(userId);
@@ -76,24 +75,31 @@ public class TenantService implements TenantInterface {
         }
     }
     @Override
-    public void sendRentingRequestToLandlord(Integer tenantId,
-                                             Integer landlordId,
-                                             Integer houseId,
-                                             ServiceType serviceType) {
+    public List<RentRequest> getAllRentingRequestsForTenant(Integer tenantId) {
+        return rentRequestRepository.findAllByTenantID(tenantId);
+    }
+    @Override
+    public void sendRentingRequestToLandlord(Integer tenantId, Integer landlordId, Integer houseId) {
         // Find the tenant
         Tenant tenant = tenantRepository
                 .findById(tenantId)
                 .orElseThrow(() -> new RuntimeException("Tenant not found with ID: " + tenantId));
 
+        // Send RENT_REQUEST
+        ServiceType rentServiceType = ServiceType.RENT_REQUEST;
+
         // Create a new RentRequest object
         RentRequest rentRequest = new RentRequest();
-        rentRequest.setServiceType(serviceType);
-        rentRequest.setHouseID(houseId);
+        rentRequest.setServiceType(rentServiceType);
         rentRequest.setTenantID(tenantId);
         rentRequest.setLandlordID(landlordId);
+        rentRequest.setHouseID(houseId);
 
         // Save the RentRequest object
         rentRequestRepository.save(rentRequest);
     }
-
+    @Override
+    public void cancelRentingRequestToLandlord(Integer rentRequestId) {
+        rentRequestRepository.deleteById(rentRequestId);
+    }
 }

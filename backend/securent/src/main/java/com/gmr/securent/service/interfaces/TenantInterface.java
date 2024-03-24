@@ -14,14 +14,10 @@ public interface TenantInterface {
     Tenant updateOneTenant(Integer userId, Tenant newTenant);
     void deleteById(Integer userId);
     void payDeposit(Integer userId, Double amount);
-    void sendRentingRequestToLandlord(Integer tenantId,
-                                      Integer landlordId,
-                                      Integer houseId,
-                                      ServiceType serviceType);
-//
-//    public void cancelRentingRequestToLandlord(RentRequest rentRequest);
-//
-//    public void requestRentalService() ;
+    List<RentRequest> getAllRentingRequestsForTenant(Integer tenantId);
+    void sendRentingRequestToLandlord(Integer tenantId, Integer landlordId, Integer houseId);
+    void cancelRentingRequestToLandlord(Integer serviceID);
+    void requestRentalService();
 //
 //    public void requestRentPriceToBeRecalculated();
 //
