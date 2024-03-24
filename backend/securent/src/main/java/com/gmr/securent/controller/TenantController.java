@@ -1,6 +1,10 @@
 package com.gmr.securent.controller;
 
+import com.gmr.securent.entity.RentRequest;
+import com.gmr.securent.entity.RealEstateAgentOperations;
 import com.gmr.securent.entity.Tenant;
+import com.gmr.securent.exceptions.UserNotFoundException;
+import com.gmr.securent.responses.TenantResponse;
 import com.gmr.securent.service.TenantService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,29 +23,25 @@ public class TenantController {
     }
 
     @GetMapping
-    public List<Tenant> getAllTenantInstances(){
-        return tenantService.getAllTenants();
+    public List<TenantResponse> getAllTenantEntities(){
+        return tenantService.getAllTenants().stream().map(u -> new TenantResponse(u)).toList();
     }
 
     @PostMapping
-    public Tenant createTenant(@RequestBody Tenant newTenant) {
-        return tenantService.saveOneTenant(newTenant);
-//        Tenant user = tenantService.saveOneTenant(newTenant);
-//        if(user != null) {
-//            return new ResponseEntity<>(HttpStatus.CREATED);
-//        }
-//        else {
-//            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
+    public ResponseEntity<Void> createNewTenant(@RequestBody Tenant newTenant) {
+        Tenant tenant = tenantService.saveOneTenant(newTenant);
+        if(tenant != null)
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @GetMapping("/{userId}")
-    public Tenant getOneTenant(@PathVariable Integer userId) {
-        Tenant tenant = tenantService.getOneTenantById(userId);
+    @GetMapping("/{tenantId}")
+    public TenantResponse getOneTenant(@PathVariable Integer tenantId) {
+        Tenant tenant = tenantService.getOneTenantById(tenantId);
         if(tenant == null) {
-            throw new NullPointerException("Tenant cannot be null");
+            throw new UserNotFoundException();
         }
-        return tenant;
+        return new TenantResponse(tenant);
     }
 
     @PutMapping("/{userId}")
@@ -52,9 +52,56 @@ public class TenantController {
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 
     }
-
-    @DeleteMapping("/{userId}")
-    public void deleteOneTenant(@PathVariable Integer userId) {
-        tenantService.deleteById(userId);
+    @DeleteMapping("/{tenantId}")
+    public void deleteOneUser(@PathVariable Integer tenantId) {
+        tenantService.deleteById(tenantId);
     }
+    @PostMapping("/{tenantId}/pay-deposit")
+    public ResponseEntity<Void> payDeposit(@PathVariable Integer tenantId, @RequestParam Double amount) {
+        tenantService.payDeposit(tenantId, amount);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @GetMapping("/{tenantId}/renting-requests")
+    public ResponseEntity<List<RentRequest>> getAllRentingRequestsForTenant(@PathVariable Integer tenantId) {
+        List<RentRequest> rentingRequests = tenantService.getAllRentingRequestsForTenant(tenantId);
+        return new ResponseEntity<>(rentingRequests, HttpStatus.OK);
+    }
+    @PostMapping("/{tenantId}/send-renting-request")
+    public ResponseEntity<Void> sendRentingRequestToLandlord(@PathVariable Integer tenantId, @RequestBody RentRequest rentRequest) {
+        tenantService.sendRentingRequestToLandlord(tenantId, rentRequest.getLandlordID(), rentRequest.getHouseID());
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @DeleteMapping("/{tenantId}/cancel-renting-request/{rentRequestId}")
+    public ResponseEntity<Void> cancelRentingRequestToLandlord(@PathVariable Integer rentRequestId) {
+        tenantService.cancelRentingRequestToLandlord(rentRequestId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @GetMapping("/{tenantId}/real-estate-agent-operations")
+    public ResponseEntity<List<RealEstateAgentOperations>> getAllRealEstateAgentOperationsForTenant(@PathVariable Integer tenantId) {
+        List<RealEstateAgentOperations> rentalServices = tenantService.getAllRealEstateAgentOperationsForTenant(tenantId);
+        return new ResponseEntity<>(rentalServices, HttpStatus.OK);
+    }
+    @PostMapping("/{tenantId}/send-real-estate-agent-operation-request")
+    public ResponseEntity<Void> sendRealEstateAgentOperationsRequest(@PathVariable Integer tenantId,
+                                                                     @RequestBody RealEstateAgentOperations rentalService) {
+        tenantService.sendRealEstateAgentOperationRequest(tenantId,
+                rentalService.getRealEstateAgentID(),
+                rentalService.getHouseID(),
+                rentalService.getServiceType());
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @DeleteMapping("/{tenantId}/cancel-real-estate-agent-operation-request/{serviceId}")
+    public ResponseEntity<Void> cancelRentalServiceRequest(@PathVariable Integer serviceId) {
+        tenantService.cancelRealEstateAgentOperationRequest(serviceId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @PostMapping("/{tenantId}/rate-real-estate-agent/{agentId}")
+    public ResponseEntity<Void> rateRealEstateAgent(@PathVariable Integer agentId,
+                                                    @RequestParam Double rating) {
+        tenantService.rateRealEstateAgent(agentId, rating);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @ExceptionHandler(UserNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    private void handleUserNotFound() {}
 }

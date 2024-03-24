@@ -10,15 +10,15 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "rent_request")
-public class RentRequest {
+@Table(name = "real_estate_agent_operations")
+public class RealEstateAgentOperations {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer serviceID;
 
     @Column(name = "service_type")
     @Enumerated(EnumType.STRING)
-    private ServiceType serviceType = ServiceType.RENT_REQUEST;
+    private ServiceType serviceType;
 
     @Column(name = "house_ID")
     private Integer houseID;
@@ -26,6 +26,6 @@ public class RentRequest {
     @Column(name = "tenant_ID")
     private Integer tenantID;
 
-    @Column(name = "landlord_ID")
-    private Integer landlordID;
+    @Column(name = "real_estate_agent_ID")
+    private Integer realEstateAgentID;
 }

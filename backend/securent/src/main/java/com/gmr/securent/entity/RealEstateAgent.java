@@ -39,8 +39,12 @@ public class RealEstateAgent {
 
     @Column(name = "area_of_operations")
     private String areaOfOperations;
+
     @Column(name = "rating")
     private Double rating;
+
+    @Column(name = "rating_count")
+    private int ratingCount = 0;
 
 //    @OneToMany(mappedBy = "realEstateAgent", cascade = CascadeType.ALL)
 //    private List<RentRequest> requests = new ArrayList<>();
