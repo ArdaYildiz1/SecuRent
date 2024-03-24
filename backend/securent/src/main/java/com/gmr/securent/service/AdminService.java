@@ -7,7 +7,6 @@ import org.springframework.dao.EmptyResultDataAccessException;
 
 import com.gmr.securent.entity.Admin;
 import com.gmr.securent.repository.AdminRepository;
-import com.gmr.securent.repository.TenantRepository;
 import com.gmr.securent.service.interfaces.AdminInterface;
 
 public class AdminService implements AdminInterface {
