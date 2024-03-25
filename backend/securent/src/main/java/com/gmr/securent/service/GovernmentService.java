@@ -1,8 +1,15 @@
-package com.gmr.securent.government;
+package com.gmr.securent.service;
 
 import com.gmr.securent.entity.House;
 import com.gmr.securent.repository.HouseRepository;
 import com.gmr.securent.repository.ExpertRepository;
+import com.gmr.securent.repository.RentalContractRepository;
+import com.gmr.securent.service.interfaces.GovernemntInterface;
+import com.gmr.securent.service.RentalContractService;
+
+
+
+
 import java.util.List;
 import java.util.Optional;
 
@@ -10,18 +17,22 @@ import java.util.Optional;
 public class GovernmentService implements GovernmentInterface {
 
     // Inject necessary dependencies
-    GovernmentRepository governmentRepository;
-    HouseRepository houseRepository;
-    ExpertRepository expertRepository;
+    private GovernmentRepository governmentRepository;
+    private HouseRepository houseRepository;
+    private ExpertRepository expertRepository;
+    private RentalContractRepository rentalContractRepository;
+
 
 
     public GovernmentService(GovernmentRepository governmentRepository,  
                             HouseRepository houseRepository, 
-                            ExpertRepository expertRepository) {
+                            ExpertRepository expertRepository,
+                            RentalContractRepository rentalContractRepository) {
 
         this.governmentRepository = governmentRepository;
         this.houseRepository = houseRepository;
         this.expertRepository = expertRepository;
+        this.rentalContractRepository = rentalContractRepository;
     }
 
     @Override
@@ -68,10 +79,44 @@ public class GovernmentService implements GovernmentInterface {
 
         expert.setAssignedToAHouse(true);
         house.getHouseProperties.setExpert(expert);
-
-        
     }
 
+    @Override
+    public void monitorContracts(){
+        // get all rental contracts
+        List<RentalContract> rentalContracts = rentalContractRepository.findAll();
+
+        for (RentalContract contract : rentalContracts) {
+            // Perform monitoring tasks here
+
+            // check whether the uploaded documents are valid or not
+            if (contract.getLandlordTCK() == null || contract.getLandlordTCK() <= 0) {
+                System.out.println("Warning: invalid landlord TCK detected in contract ID: " + contract.getContractID());
+            }
+            if (contract.getTenantTCK() == null || contract.getTenantTCK() <= 0) {
+                System.out.println("Warning: invalid tenant TCK detected in contract ID: " + contract.getContractID());
+            }
+            if (contract.getRentAmount() <= 0) {
+                System.out.println("Warning: invalid rent amount detected in contract ID: " + contract.getContractID());
+            }
+
+            LocalDate startDate = rentalContract.getStartDate();
+            LocalDate endDate = rentalContract.getEndDate();
+
+            if ( startDate == null || startDate.isAfter(LocalDate.now())) {
+                System.out.println("Warning: invalid start date detected in contract ID: " + contract.getContractID());
+            }
+            if ( endDate == null || endDate.isBefore(startDate) ) {
+                System.out.println("Warning: invalid end date  detected in contract ID: " + contract.getContractID());
+            }
+        }
+
+    }
+
+    @Override
+    public void manageDeposits(){
+
+    }
 
 
     @Override
