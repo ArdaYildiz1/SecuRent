@@ -118,6 +118,51 @@ public class GovernmentService implements GovernmentInterface {
 
     }
 
+    public void redistributeDeposits(){
+        List<RentalContract> allContracts = rentalContractRepository.findEndedContracts();
+        List<RentalContract> endedContracts = new ArrayList<RentalContract>();
+
+        // find ended contracts 
+
+        for (RentalContract contract : endedContracts) {
+            // Check if the house is damaged
+            boolean isDamaged = checkHouseDamage(contract.getHouse());
+
+            if (!isDamaged) {
+                // Redistribute the deposit to the tenant
+                double depositAmount = contract.getDepositAmount();
+                Integer tenantTCK = contract.getTenantTCK();
+
+                // Perform deposit redistribution logic here
+                // For example:
+                // tenantService.redistributeDeposit(tenantTCK, depositAmount);
+
+                // Update contract status or perform any necessary bookkeeping
+                contract.setStatus(ContractStatus.DEPOSIT_REDISTRIBUTED);
+                rentalContractRepository.save(contract);
+            }
+        }
+
+        for (RentalContract contract : endedContracts) {
+            // Check if the house is damaged
+            boolean isDamaged = checkHouseDamage(contract.getHouse());
+
+            if (!isDamaged) {
+                // Redistribute the deposit to the tenant
+                double depositAmount = contract.getDepositAmount();
+                Integer tenantTCK = contract.getTenantTCK();
+
+                // Perform deposit redistribution logic here
+                // For example:
+                // tenantService.redistributeDeposit(tenantTCK, depositAmount);
+
+                // Update contract status or perform any necessary bookkeeping
+                contract.setStatus(ContractStatus.DEPOSIT_REDISTRIBUTED);
+                rentalContractRepository.save(contract);
+            }
+        }
+    }
+
 
     @Override
     public void payDeposit(Integer userId, Double amount) {
