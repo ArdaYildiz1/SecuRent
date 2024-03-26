@@ -4,8 +4,6 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-import javax.swing.text.StyledEditorKit.ForegroundAction;
-
 import org.springframework.dao.EmptyResultDataAccessException;
 
 import com.gmr.securent.entity.House;
