@@ -4,22 +4,31 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+import javax.swing.text.StyledEditorKit.ForegroundAction;
+
 import org.springframework.dao.EmptyResultDataAccessException;
 
 import com.gmr.securent.entity.House;
+import com.gmr.securent.entity.HouseProperties;
 import com.gmr.securent.entity.Landlord;
 import com.gmr.securent.entity.RentRequest;
 import com.gmr.securent.entity.RentalAd;
+import com.gmr.securent.repository.HouseRepository;
 import com.gmr.securent.repository.LandlordRepository;
 import com.gmr.securent.repository.RentRequestRepository;
 import com.gmr.securent.service.interfaces.LandlordInterface;
 
 public class LandlordService implements LandlordInterface {
     LandlordRepository landlordRepository;
+    HouseRepository houseRepository;
     RentRequestRepository rentRequestRepository;
 
-    public LandlordService(LandlordRepository landlordRepository) {
+    public LandlordService(LandlordRepository landlordRepository,
+                           HouseRepository houseRepository,
+                           RentRequestRepository rentRequestRepository) {
         this.landlordRepository = landlordRepository;
+        this.houseRepository = houseRepository;
+        this.rentRequestRepository = rentRequestRepository;
     }
 
     @Override
@@ -66,26 +75,58 @@ public class LandlordService implements LandlordInterface {
 
     @Override
     public List<House> getAllHousesForLandlord(Integer userId) {
-        // TODO Auto-generated method stub
-        return null;
+        return houseRepository.findAllByLandlordID(userId);
     }
 
     @Override
-    public House saveOneHouseForLandlord(Integer userId, House newHouse) {
-        // TODO Auto-generated method stub
-        return null;
+    public House saveOneHouseForLandlord(Integer userId, HouseProperties newHouseProperties) {
+        // Find the landlord
+        Landlord landlord = landlordRepository
+                                .findById(userId)
+                                .orElseThrow(() -> new RuntimeException("Landlord not found with ID: " + userId));
+
+        // Create a new House object
+        House house = new House();
+        house.setLandlordID(userId);
+        house.setHouseProperties(newHouseProperties);
+
+        // Save the House object
+        return houseRepository.save(house);
     }
 
     @Override
-    public House updateOneHouseForLandlord(Integer userId, Integer houseId, House newHouse) {
-        // TODO Auto-generated method stub
-        return null;
+    public House updateOneHouseForLandlord(Integer userId, Integer houseId, HouseProperties newHouseProperties) {
+        Optional<House> house = houseRepository.findById(houseId);
+        if (house.isPresent()) {
+            House foundHouse = house.get();
+            if (foundHouse.getLandlordID() == userId) {
+                foundHouse.setHouseProperties(newHouseProperties);
+                return foundHouse;
+            }
+            else {
+                throw new RuntimeException("House with ID " + houseId + " doesn't belong to landlord with ID " + userId);
+            }
+        }
+        else {
+            throw new RuntimeException("House not found with ID: " + houseId);
+        }
     }
 
     @Override
     public void deleteOneHouseForLandlord(Integer userId, Integer houseId) {
-        // TODO Auto-generated method stub
-        
+        Optional<House> house = houseRepository.findById(houseId);
+        if (house.isPresent()) {
+            House foundHouse = house.get();
+            if (foundHouse.getLandlordID() == userId) {
+                houseRepository.deleteById(houseId);
+            }
+            else {
+                throw new RuntimeException("House with ID " + houseId + " doesn't belong to landlord with ID " + userId);
+            }
+        }
+        else {
+            throw new RuntimeException("House not found with ID: " + houseId);
+        }
     }
 
     @Override

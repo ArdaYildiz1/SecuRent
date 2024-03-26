@@ -15,6 +15,8 @@ public class House {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer houseId;
 
+    private Integer landlordID;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "house_properties_id")
     private HouseProperties houseProperties;
