@@ -19,10 +19,10 @@ public interface LandlordInterface {
     House updateOneHouseForLandlord(Integer userId, Integer houseId, House newHouse);
     void deleteOneHouseForLandlord(Integer userId, Integer houseId);
     List<RentalAd> getAllRentalAdsForLandlord(Integer userId);
-    RentalAd createRentalAd(Integer userId, Integer houseId, Double rentPrice);
+    RentalAd createOneRentalAd(Integer userId, Integer houseId, Double rentPrice);
     RentalAd updateOneRentalAd(Integer userId, Integer rentalAdId, RentalAd newRentalAd);
     void deleteOneRentalAd(Integer userId, Integer rentalAdId);
-    List<RentRequest> getAllRentRequestsForLandlord(Integer userId);
+    List<RentRequest> getAllRentingRequestsForLandlord(Integer userId);
     void confirmRentingRequest(Integer serviceId);
     void rejectRentingRequest(Integer serviceId);
     void uploadContract(Integer landlordTck, Integer tenantTck, Double rentAmount, LocalDate startDate, LocalDate endDate);
