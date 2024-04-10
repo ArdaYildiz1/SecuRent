@@ -3,11 +3,7 @@ package com.gmr.securent.entity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Data
@@ -46,12 +42,6 @@ public class RealEstateAgent {
     @Column(name = "rating_count")
     private int ratingCount = 0;
 
-//    @OneToMany(mappedBy = "realEstateAgent", cascade = CascadeType.ALL)
-//    private List<RentRequest> requests = new ArrayList<>();
-//    public boolean returnDepositToTenant(int houseId) {
-//        // TODO
-//        return true;
-//    }
 //
 //    public void assistRentalProcess(int serviceId) {
 //        // TODO
