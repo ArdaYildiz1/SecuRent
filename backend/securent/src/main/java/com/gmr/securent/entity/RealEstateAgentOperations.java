@@ -20,6 +20,9 @@ public class RealEstateAgentOperations {
     @Enumerated(EnumType.STRING)
     private ServiceType serviceType;
 
+    @Column(name = "service_accepted")
+    private boolean serviceAccepted;
+
     @Column(name = "house_ID")
     private Integer houseID;
 

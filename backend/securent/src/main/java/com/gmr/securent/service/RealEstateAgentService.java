@@ -68,4 +68,26 @@ public class RealEstateAgentService implements RealEstateAgentInterface {
     public List<RealEstateAgentOperations> getAllRentalServiceRequestsForRealEstateAgent(Integer realEstateAgentId) {
         return realEstateAgentOperationsRepository.findAllByRealEstateAgentID(realEstateAgentId);
     }
+    @Override
+    public void acceptRentalService(Integer rentalServiceID) {
+        RealEstateAgentOperations rentalService = realEstateAgentOperationsRepository.findById(rentalServiceID).
+                orElse(null);
+        if (rentalService != null) {
+            rentalService.setServiceAccepted(true);
+            realEstateAgentOperationsRepository.save(rentalService);
+        } else {
+            throw new RuntimeException("No pending rental service to accept.");
+        }
+    }
+    @Override
+    public void rejectRentalService(Integer rentalServiceID) {
+        RealEstateAgentOperations rentalService = realEstateAgentOperationsRepository.findById(rentalServiceID).
+                orElse(null);
+        if (rentalService != null) {
+            rentalService.setServiceAccepted(false);
+            realEstateAgentOperationsRepository.save(rentalService);
+        } else {
+            throw new RuntimeException("No pending rental service to accept.");
+        }
+    }
 }

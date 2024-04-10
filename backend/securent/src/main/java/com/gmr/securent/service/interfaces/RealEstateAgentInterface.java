@@ -13,4 +13,7 @@ public interface RealEstateAgentInterface {
     RealEstateAgent updateOneRealEstateAgent(Integer userId, RealEstateAgent newRealEstateAgent);
     void deleteById(Integer userId);
     List<RealEstateAgentOperations> getAllRentalServiceRequestsForRealEstateAgent(Integer realEstateAgentId);
+    void acceptRentalService(Integer rentalServiceID);
+    void rejectRentalService(Integer rentalServiceID);
+
 }

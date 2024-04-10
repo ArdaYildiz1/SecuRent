@@ -60,6 +60,14 @@ public class RealEstateAgentController {
         List<RealEstateAgentOperations> realEstateAgentOperations = realEstateAgentService.getAllRentalServiceRequestsForRealEstateAgent(realEstateAgentId);
         return new ResponseEntity<>(realEstateAgentOperations, HttpStatus.OK);
     }
+    @PutMapping("/{realEstateAgentId}/rental-service-requests/{rentalServiceId}/accept")
+    public void acceptRentalService(@PathVariable Integer realEstateAgentId, @PathVariable Integer rentalServiceId) {
+        realEstateAgentService.acceptRentalService(rentalServiceId);
+    }
+    @PutMapping("/{realEstateAgentId}/rental-service-requests/{rentalServiceId}/reject")
+    public void rejectRentalService(@PathVariable Integer realEstateAgentId, @PathVariable Integer rentalServiceId) {
+        realEstateAgentService.rejectRentalService(rentalServiceId);
+    }
     @ExceptionHandler(UserNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     private void handleUserNotFound() {}
