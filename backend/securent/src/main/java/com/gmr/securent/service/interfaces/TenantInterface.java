@@ -1,10 +1,13 @@
 package com.gmr.securent.service.interfaces;
 
+import com.gmr.securent.entity.House;
 import com.gmr.securent.entity.RentRequest;
 import com.gmr.securent.entity.RealEstateAgentOperations;
 import com.gmr.securent.entity.Tenant;
+import com.gmr.securent.entity.enums.Heating;
 import com.gmr.securent.entity.enums.ServiceType;
 
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -25,6 +28,22 @@ public interface TenantInterface {
                                              ServiceType serviceType);
     void cancelRealEstateAgentOperationRequest(Integer serviceID);
     void rateRealEstateAgent(Integer agentId, Double newRating);
+    List<House> getHouses(
+            String address,
+            LocalDate adDate,
+            double areaGross,
+            double areaNet,
+            double areaOpenSpace,
+            int numberOfRooms,
+            int buildingAge,
+            int flatNumber,
+            Heating heating,
+            int numberOfBathrooms,
+            boolean balconyIsPresent,
+            boolean furnitureIsPresent,
+            boolean insideASite,
+            String siteName,
+            double currentAmount);
 //    public void acceptExtension(boolean renewContract);
 //
 //    public void reportAd();

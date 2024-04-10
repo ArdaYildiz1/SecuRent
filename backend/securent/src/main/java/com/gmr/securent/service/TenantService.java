@@ -1,18 +1,24 @@
 package com.gmr.securent.service;
 
-import com.gmr.securent.entity.RealEstateAgent;
-import com.gmr.securent.entity.RentRequest;
-import com.gmr.securent.entity.RealEstateAgentOperations;
-import com.gmr.securent.entity.Tenant;
+import com.gmr.securent.entity.*;
+import com.gmr.securent.entity.enums.Heating;
 import com.gmr.securent.entity.enums.ServiceType;
 import com.gmr.securent.repository.RealEstateAgentRepository;
 import com.gmr.securent.repository.RentRequestRepository;
 import com.gmr.securent.repository.RealEstateAgentOperationsRepository;
 import com.gmr.securent.repository.TenantRepository;
 import com.gmr.securent.service.interfaces.TenantInterface;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,15 +30,18 @@ public class TenantService implements TenantInterface {
     RentRequestRepository rentRequestRepository;
     RealEstateAgentOperationsRepository realEstateAgentOperationsRepository;
     RealEstateAgentRepository realEstateAgentRepository;
+    EntityManager entityManager;
 
     public TenantService(TenantRepository tenantRepository,
                          RentRequestRepository rentRequestRepository,
                          RealEstateAgentOperationsRepository realEstateAgentOperationsRepository,
-                         RealEstateAgentRepository realEstateAgentRepository) {
+                         RealEstateAgentRepository realEstateAgentRepository,
+                         EntityManager entityManager) {
         this.tenantRepository = tenantRepository;
         this.rentRequestRepository = rentRequestRepository;
         this.realEstateAgentOperationsRepository = realEstateAgentOperationsRepository;
         this.realEstateAgentRepository = realEstateAgentRepository;
+        this.entityManager = entityManager;
     }
 
     @Override
@@ -149,5 +158,40 @@ public class TenantService implements TenantInterface {
 
         // Save the updated real estate agent
         realEstateAgentRepository.save(agent);
+    }
+    @Override
+    public List<House> getHouses(
+            String address,
+            LocalDate adDate,
+            double areaGross,
+            double areaNet,
+            double areaOpenSpace,
+            int numberOfRooms,
+            int buildingAge,
+            int flatNumber,
+            Heating heating,
+            int numberOfBathrooms,
+            boolean balconyIsPresent,
+            boolean furnitureIsPresent,
+            boolean insideASite,
+            String siteName,
+            double currentAmount) {
+
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<House> criteriaQuery = criteriaBuilder.createQuery(House.class);
+        Root<House> root = criteriaQuery.from(House.class);
+
+        List<Predicate> predicates = new ArrayList<>();
+        if (address != null) {
+            predicates.add(criteriaBuilder.equal(root.get("address"), address));
+        }
+        if (adDate != null) {
+            predicates.add(criteriaBuilder.equal(root.get("adDate"), adDate));
+        }
+        // Add more criteria for other properties
+
+        criteriaQuery.select(root).where(predicates.toArray(new Predicate[0]));
+
+        return entityManager.createQuery(criteriaQuery).getResultList();
     }
 }
