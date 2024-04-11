@@ -1,6 +1,7 @@
 package com.gmr.securent.service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,18 +15,22 @@ import com.gmr.securent.entity.RentalAd;
 import com.gmr.securent.repository.HouseRepository;
 import com.gmr.securent.repository.LandlordRepository;
 import com.gmr.securent.repository.RentRequestRepository;
+import com.gmr.securent.repository.RentalAdRepository;
 import com.gmr.securent.service.interfaces.LandlordInterface;
 
 public class LandlordService implements LandlordInterface {
     LandlordRepository landlordRepository;
     HouseRepository houseRepository;
+    RentalAdRepository rentalAdRepository;
     RentRequestRepository rentRequestRepository;
 
     public LandlordService(LandlordRepository landlordRepository,
                            HouseRepository houseRepository,
+                           RentalAdRepository rentalAdRepository,
                            RentRequestRepository rentRequestRepository) {
         this.landlordRepository = landlordRepository;
         this.houseRepository = houseRepository;
+        this.rentalAdRepository = rentalAdRepository;
         this.rentRequestRepository = rentRequestRepository;
     }
 
@@ -129,7 +134,14 @@ public class LandlordService implements LandlordInterface {
 
     @Override
     public List<RentalAd> getAllRentalAdsForLandlord(Integer userId) {
-        // TODO Auto-generated method stub
+        List<House> houses = getAllHousesForLandlord(userId);
+        List<RentalAd> rentalAds = new ArrayList<RentalAd>();
+        for (House house : houses) {
+            RentalAd rentalAd = rentalAdRepository.findByHouseID(house.getHouseId());
+            if (rentalAd != null) {
+                
+            }
+        }
         return null;
     }
 

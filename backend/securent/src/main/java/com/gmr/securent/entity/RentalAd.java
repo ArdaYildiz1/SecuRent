@@ -18,9 +18,8 @@ public class RentalAd {
     @Column(name = "rent_price")
     private double rentPrice;
 
-    @ManyToOne
-    @JoinColumn(name = "house_id")
-    private House houseInTheRentalAd;
+    @Column(name = "house_id")
+    private Integer houseID;
 
     @Column(name = "description")
     private String description;
