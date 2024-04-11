@@ -1,7 +1,6 @@
 package com.gmr.securent.responses;
 
 import com.gmr.securent.entity.RealEstateAgent;
-import com.gmr.securent.entity.Tenant;
 import lombok.Data;
 
 @Data
