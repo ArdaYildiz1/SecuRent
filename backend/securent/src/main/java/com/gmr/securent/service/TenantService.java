@@ -1,9 +1,6 @@
 package com.gmr.securent.service;
 
-import com.gmr.securent.entity.RealEstateAgent;
-import com.gmr.securent.entity.RealEstateAgentOperations;
-import com.gmr.securent.entity.RentRequest;
-import com.gmr.securent.entity.Tenant;
+import com.gmr.securent.entity.*;
 import com.gmr.securent.entity.enums.ServiceType;
 import com.gmr.securent.repository.RealEstateAgentOperationsRepository;
 import com.gmr.securent.repository.RealEstateAgentRepository;
@@ -152,5 +149,8 @@ public class TenantService implements TenantInterface {
 
         // Save the updated real estate agent
         realEstateAgentRepository.save(agent);
+    }
+    public List<House> searchHouseForTenant(String city, Integer numberOfRooms, Integer flatNumber) {
+        return houseService.filterHouses(city, numberOfRooms, flatNumber);
     }
 }

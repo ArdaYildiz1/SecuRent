@@ -27,6 +27,7 @@ public class House {
     private int numberOfRooms;
     private int buildingAge;
     private int flatNumber;
+    @Enumerated(EnumType.STRING)
     private Heating heating;
     private int numberOfBathrooms;
     private boolean balconyIsPresent;
