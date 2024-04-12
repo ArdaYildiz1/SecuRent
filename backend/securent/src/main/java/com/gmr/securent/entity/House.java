@@ -16,23 +16,59 @@ import java.time.LocalDate;
 public class House {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "house_id")
     private Integer houseId;
+
+    @Column(name = "landlord_id")
     private Integer landlordId;
+
+    @Column(name = "tenant_id")
     private Integer tenantId;
+
+    @Column(name = "address")
     private String address;
+
+    @Column(name = "ad_date")
     private LocalDate adDate;
+
+    @Column(name = "area_gross")
     private double areaGross;
+
+    @Column(name = "area_net")
     private double areaNet;
+
+    @Column(name = "area_open_space")
     private double areaOpenSpace;
+
+    @Column(name = "number_of_rooms")
     private int numberOfRooms;
+
+    @Column(name = "building_age")
     private int buildingAge;
+
+    @Column(name = "flat_number")
     private int flatNumber;
+
     @Enumerated(EnumType.STRING)
+    @Column(name = "heating")
     private Heating heating;
+
+    @Column(name = "number_of_bathrooms")
     private int numberOfBathrooms;
+
+    @Column(name = "balcony_is_present")
     private boolean balconyIsPresent;
+
+    @Column(name = "furniture_is_present")
     private boolean furnitureIsPresent;
+
+    @Column(name = "inside_a_site")
     private boolean insideASite;
+
+    @Column(name = "site_name")
     private String siteName;
+
+    @Column(name = "current_amount")
     private double currentAmount;
 }
+

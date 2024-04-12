@@ -104,13 +104,13 @@ public class TenantController {
         tenantService.rateRealEstateAgent(agentId, rating);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    @GetMapping("/houses")
-    public List<House> getHouses(
-            @RequestParam(required = false) String city,
-            @RequestParam(required = false) Integer numberOfRooms,
-            @RequestParam(required = false) Integer flatNumber) {
-        return tenantService.searchHouseForTenant(city, numberOfRooms, flatNumber);
-    }
+//    @GetMapping("/houses")
+//    public List<House> getHouses(
+//            @RequestParam(required = false) String city,
+//            @RequestParam(required = false) Integer numberOfRooms,
+//            @RequestParam(required = false) Integer flatNumber) {
+//        return tenantService.searchHouseForTenant(city, numberOfRooms, flatNumber);
+//    }
     @ExceptionHandler(UserNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     private void handleUserNotFound() {}

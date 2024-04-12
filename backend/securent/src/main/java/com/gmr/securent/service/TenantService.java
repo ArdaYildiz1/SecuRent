@@ -150,7 +150,10 @@ public class TenantService implements TenantInterface {
         // Save the updated real estate agent
         realEstateAgentRepository.save(agent);
     }
-    public List<House> searchHouseForTenant(String city, Integer numberOfRooms, Integer flatNumber) {
-        return houseService.filterHouses(city, numberOfRooms, flatNumber);
-    }
+
+    // TODO: Implement searchHouseForTenant
+    // Impelement filterHouses when implementing the House entity
+//    public List<House> searchHouseForTenant(String city, Integer numberOfRooms, Integer flatNumber) {
+//        return houseService.filterHouses(city, numberOfRooms, flatNumber);
+//    }
 }

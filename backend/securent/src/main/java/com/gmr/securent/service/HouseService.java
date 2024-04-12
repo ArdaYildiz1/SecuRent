@@ -31,15 +31,15 @@ public class HouseService implements HouseInterface {
     public List<House> getAllHouses() {
         return houseRepository.findAll();
     }
-    public List<House> filterHouses(String city, Integer numberOfRooms, Integer flatNumber) {
+    public List<House> filterHouses(String address, Integer numberOfRooms, Integer flatNumber) {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<House> criteriaQuery = criteriaBuilder.createQuery(House.class);
         Root<House> root = criteriaQuery.from(House.class);
 
         List<Predicate> predicates = new ArrayList<>();
 
-        if (city != null) {
-            predicates.add(criteriaBuilder.equal(root.get("city"), city));
+        if (address != null) {
+            predicates.add(criteriaBuilder.equal(root.get("address"), address));
         }
         if (numberOfRooms != null) {
             predicates.add(criteriaBuilder.equal(root.get("numberOfRooms"), numberOfRooms));
