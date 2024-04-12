@@ -1,6 +1,9 @@
 package com.gmr.securent.controller;
 
-import com.gmr.securent.entity.*;
+import com.gmr.securent.entity.House;
+import com.gmr.securent.entity.RealEstateAgentOperations;
+import com.gmr.securent.entity.RentRequest;
+import com.gmr.securent.entity.Tenant;
 import com.gmr.securent.entity.enums.Heating;
 import com.gmr.securent.exceptions.UserNotFoundException;
 import com.gmr.securent.responses.TenantResponse;
@@ -103,38 +106,10 @@ public class TenantController {
     }
 //    @GetMapping("/houses")
 //    public List<House> getHouses(
-//            @RequestParam(required = false) String address,
-//            @RequestParam(required = false) LocalDate adDate,
-//            @RequestParam(required = false) Double areaGross,
-//            @RequestParam(required = false) Double areaNet,
-//            @RequestParam(required = false) Double areaOpenSpace,
+//            @RequestParam(required = false) String city,
 //            @RequestParam(required = false) Integer numberOfRooms,
-//            @RequestParam(required = false) Integer buildingAge,
-//            @RequestParam(required = false) Integer flatNumber,
-//            @RequestParam(required = false) Heating heating,
-//            @RequestParam(required = false) Integer numberOfBathrooms,
-//            @RequestParam(required = false) Boolean balconyIsPresent,
-//            @RequestParam(required = false) Boolean furnitureIsPresent,
-//            @RequestParam(required = false) Boolean insideASite,
-//            @RequestParam(required = false) String siteName,
-//            @RequestParam(required = false) Double currentAmount) {
-//
-//        return tenantService.getHouses(
-//                address,
-//                adDate,
-//                areaGross,
-//                areaNet,
-//                areaOpenSpace,
-//                numberOfRooms,
-//                buildingAge,
-//                flatNumber,
-//                heating,
-//                numberOfBathrooms,
-//                balconyIsPresent,
-//                furnitureIsPresent,
-//                insideASite,
-//                siteName,
-//                currentAmount);
+//            @RequestParam(required = false) Integer flatNumber) {
+//        return tenantService.searchHouseForTenant(city, numberOfRooms, flatNumber);
 //    }
     @ExceptionHandler(UserNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)

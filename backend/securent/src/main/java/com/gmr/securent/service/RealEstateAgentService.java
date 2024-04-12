@@ -1,11 +1,8 @@
 package com.gmr.securent.service;
 
-import com.gmr.securent.entity.*;
 import com.gmr.securent.entity.RealEstateAgent;
-import com.gmr.securent.entity.enums.ServiceType;
+import com.gmr.securent.entity.RealEstateAgentOperations;
 import com.gmr.securent.repository.RealEstateAgentOperationsRepository;
-import com.gmr.securent.repository.RealEstateAgentRepository;
-import com.gmr.securent.repository.RentRequestRepository;
 import com.gmr.securent.repository.RealEstateAgentRepository;
 import com.gmr.securent.service.interfaces.RealEstateAgentInterface;
 import org.springframework.dao.EmptyResultDataAccessException;
