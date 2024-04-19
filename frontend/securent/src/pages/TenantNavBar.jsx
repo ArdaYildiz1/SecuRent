@@ -1,26 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios'; // Import axios
 
 function TenantNavBar() {
+    const [tenantId, setTenantId] = useState(1); // Use a static tenantId for testing
+    let navigate = useNavigate();
+
     function handleGoHome() {
         navigate("/home");
     }
     function handleRentedHome() {
-        navigate("/rentedHouse");
-    }
+            axios.get(`http://localhost:8080/tenants/${tenantId}/rented-house`)
+                .then(response => {
+                    // Handle the response data, e.g., redirect to a new page
+                    console.log(response.data);
+                })
+                .catch(error => {
+                    // Handle errors
+                    console.error('Error fetching rented house:', error);
+                });
+        }
     function handleGoProfile() {
         navigate("/tenantProfile");
     }
     function handleLogOut() {
         navigate("/");
     }
-
-    let navigate = useNavigate();
 
     return (
         <Navbar bg="light" expand="lg">

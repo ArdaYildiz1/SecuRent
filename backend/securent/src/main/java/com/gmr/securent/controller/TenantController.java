@@ -55,6 +55,15 @@ public class TenantController {
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 
     }
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/{tenantId}/rented-house")
+    public ResponseEntity<House> getRentedHouse(@PathVariable Integer tenantId) {
+        House rentedHouse = tenantService.getRentedHouse(tenantId);
+        if (rentedHouse != null) {
+            return ResponseEntity.ok(rentedHouse);
+        }
+        return ResponseEntity.notFound().build();
+    }
     @DeleteMapping("/{tenantId}")
     public void deleteOneUser(@PathVariable Integer tenantId) {
         tenantService.deleteById(tenantId);

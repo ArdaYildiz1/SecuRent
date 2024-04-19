@@ -2,10 +2,7 @@ package com.gmr.securent.service;
 
 import com.gmr.securent.entity.*;
 import com.gmr.securent.entity.enums.ServiceType;
-import com.gmr.securent.repository.RealEstateAgentOperationsRepository;
-import com.gmr.securent.repository.RealEstateAgentRepository;
-import com.gmr.securent.repository.RentRequestRepository;
-import com.gmr.securent.repository.TenantRepository;
+import com.gmr.securent.repository.*;
 import com.gmr.securent.service.interfaces.TenantInterface;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -22,22 +19,32 @@ public class TenantService implements TenantInterface {
     RealEstateAgentOperationsRepository realEstateAgentOperationsRepository;
     RealEstateAgentRepository realEstateAgentRepository;
     HouseService houseService;
+    HouseRepository houseRepository;
 
     public TenantService(TenantRepository tenantRepository,
                          RentRequestRepository rentRequestRepository,
                          RealEstateAgentOperationsRepository realEstateAgentOperationsRepository,
                          RealEstateAgentRepository realEstateAgentRepository,
-                         HouseService houseService) {
+                         HouseService houseService,
+                         HouseRepository houseRepository) {
         this.tenantRepository = tenantRepository;
         this.rentRequestRepository = rentRequestRepository;
         this.realEstateAgentOperationsRepository = realEstateAgentOperationsRepository;
         this.realEstateAgentRepository = realEstateAgentRepository;
         this.houseService = houseService;
+        this.houseRepository = houseRepository;
     }
 
     @Override
     public List<Tenant> getAllTenants() {
         return tenantRepository.findAll();
+    }
+    public House getRentedHouse(Integer tenantId) {
+        List<House> rentedHouses = houseRepository.findAllByTenantId(tenantId);
+        if (!rentedHouses.isEmpty()) {
+            return rentedHouses.get(0); // Return the first rented house
+        }
+        return null; // No rented house found for the tenant
     }
     @Override
     public Tenant saveOneTenant(Tenant newTenant) {
