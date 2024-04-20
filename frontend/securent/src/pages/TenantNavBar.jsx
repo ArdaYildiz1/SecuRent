@@ -24,8 +24,18 @@ function TenantNavBar() {
                     // Handle errors
                     console.error('Error fetching rented house:', error);
                 });
-        }
+        navigate("/rentedHouse");
+    }
     function handleGoProfile() {
+     axios.get(`http://localhost:8080/tenants/${tenantId}`)
+                        .then(response => {
+                            // Handle the response data, e.g., redirect to a new page
+                            console.log(response.data);
+                        })
+                        .catch(error => {
+                            // Handle errors
+                            console.error('Error fetching profile info:', error);
+                        });
         navigate("/tenantProfile");
     }
     function handleLogOut() {
