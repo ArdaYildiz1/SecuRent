@@ -9,9 +9,14 @@ import { useState } from 'react';
 import TenantNavBar from './TenantNavBar';
 import { useNavigate } from 'react-router-dom';
 
+import { useLocation } from 'react-router-dom';
 
 
 function RentedHouse() {
+    const location = useLocation();
+    console.log(location.state);
+
+    const responseData = location.state;
     const [show, setShow] = useState(false);
     const [explanation, setExplanation] = useState("");
 
