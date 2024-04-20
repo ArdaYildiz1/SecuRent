@@ -67,12 +67,13 @@ function TenantNavBar() {
       .then((response) => {
         // Handle the response data, e.g., redirect to a new page
         console.log(response.data);
+        navigate("/tenantProfile" , { state: { ...response.data } });
+
       })
       .catch((error) => {
         // Handle errors
         console.error("Error fetching profile info:", error);
       });
-    navigate("/tenantProfile");
   }
   function handleLogOut() {
     navigate("/");

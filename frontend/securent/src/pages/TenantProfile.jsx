@@ -6,9 +6,24 @@ import TopNavBar from './TopNavBar';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import TenantNavBar from './TenantNavBar';
+import { useLocation } from 'react-router-dom';
 
 
 function TenantProfile() {
+    const location = useLocation();
+    console.log(location.state);
+
+    const [entityId, setEntityId] = useState(location.state.entityId);
+    const [firstName, setFirstName] = useState(location.state.firstName);
+    const [lastName, setLastName] = useState(location.state.lastName);
+    const [password, setPassword] = useState(location.state.password);
+    const [emailAddress, setEmailAddress] = useState(location.state.emailAddress);
+    const [phoneNo, setPhoneNo] = useState(location.state.phoneNo);
+    const [tck, setTck] = useState(location.state.tck);
+    const [depositPaymentStatus, setDepositPaymentStatus] = useState(location.state.depositPaymentStatus);
+    const [depositAmount, setDepositAmount] = useState(location.state.depositAmount);
+    console.log(entityId);
+
     const [selectedFile, setSelectedFile] = useState(null);
     const fileInputRef = useRef(null);
 
@@ -55,35 +70,35 @@ function TenantProfile() {
                     <Form style={{ width: '70%', alignItems: 'center' }}>
                         <Form.Group controlId="formName">
                             <Form.Label>Name:</Form.Label>
-                            <FormControl type="text" value="Ali Eren" readOnly disabled />
+                            <FormControl type="text" value={firstName} readOnly disabled />
                         </Form.Group>
                         <br />
                         <Form.Group controlId="formSurname">
                             <Form.Label>Surname:</Form.Label>
-                            <FormControl type="text" value="Taş" readOnly disabled />
+                            <FormControl type="text" value={lastName} readOnly disabled />
                         </Form.Group>
                         <br />
 
                         <Form.Group controlId="formTCNumber">
                             <Form.Label>TC Number:</Form.Label>
-                            <FormControl type="text" value="123456789" readOnly disabled />
+                            <FormControl type="text" value={tck} readOnly disabled />
                         </Form.Group>
                         <br />
                         <Form.Group controlId="formPhoneNumber">
                             <Form.Label>Phone Number:</Form.Label>
-                            <FormControl type="text" value="+90123456789" readOnly disabled />
+                            <FormControl type="text" value={phoneNo} readOnly disabled />
                         </Form.Group>
                         <br />
 
                         <Form.Group controlId="formEmailAddress">
                             <Form.Label>E-mail Address:</Form.Label>
-                            <FormControl type="email" value="alitas@example.com" readOnly disabled />
+                            <FormControl type="email" value={emailAddress} readOnly disabled />
                         </Form.Group>
                         <br />
 
                         <Form.Group controlId="formPassword">
                             <Form.Label>Password:</Form.Label>
-                            <FormControl type="password" placeholder="**********" readOnly disabled />
+                            <FormControl type="password" placeholder={password}readOnly disabled />
                         </Form.Group>
                     </Form>
                 </Card>
