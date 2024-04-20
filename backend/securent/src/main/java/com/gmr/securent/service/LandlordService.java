@@ -10,12 +10,16 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import com.gmr.securent.entity.House;
 import com.gmr.securent.entity.HouseProperties;
 import com.gmr.securent.entity.Landlord;
+import com.gmr.securent.entity.RealEstateAgent;
 import com.gmr.securent.entity.RentRequest;
 import com.gmr.securent.entity.RentalAd;
+import com.gmr.securent.entity.RentalContract;
 import com.gmr.securent.repository.HouseRepository;
 import com.gmr.securent.repository.LandlordRepository;
+import com.gmr.securent.repository.RealEstateAgentRepository;
 import com.gmr.securent.repository.RentRequestRepository;
 import com.gmr.securent.repository.RentalAdRepository;
+import com.gmr.securent.repository.RentalContractRepository;
 import com.gmr.securent.service.interfaces.LandlordInterface;
 
 public class LandlordService implements LandlordInterface {
@@ -23,15 +27,21 @@ public class LandlordService implements LandlordInterface {
     HouseRepository houseRepository;
     RentalAdRepository rentalAdRepository;
     RentRequestRepository rentRequestRepository;
+    RentalContractRepository rentalContractRepository;
+    RealEstateAgentRepository realEstateAgentRepository;
 
     public LandlordService(LandlordRepository landlordRepository,
                            HouseRepository houseRepository,
                            RentalAdRepository rentalAdRepository,
-                           RentRequestRepository rentRequestRepository) {
+                           RentRequestRepository rentRequestRepository,
+                           RentalContractRepository rentalContractRepository,
+                           RealEstateAgentRepository realEstateAgentRepository) {
         this.landlordRepository = landlordRepository;
         this.houseRepository = houseRepository;
         this.rentalAdRepository = rentalAdRepository;
         this.rentRequestRepository = rentRequestRepository;
+        this.rentalContractRepository = rentalContractRepository;
+        this.realEstateAgentRepository = realEstateAgentRepository;
     }
 
     @Override
@@ -235,21 +245,68 @@ public class LandlordService implements LandlordInterface {
     }
 
     @Override
-    public void uploadContract(Integer landlordTck, Integer tenantTck, Double rentAmount, LocalDate startDate,
-            LocalDate endDate) {
-        // TODO Auto-generated method stub
-        
+    public RentalContract uploadContract(Integer userId, Integer landlordTck, Integer tenantTck, Double rentAmount, LocalDate startDate, LocalDate endDate) {
+        // Find the landlord
+        Landlord landlord = landlordRepository
+                                .findById(userId)
+                                .orElseThrow(() -> new RuntimeException("Landlord not found with ID: " + userId));
+
+        // Check if the landlord is the correct one for this rental contract upload
+        if (landlord.getTck() == landlordTck) {
+            // Create a new Rental Contract object
+            RentalContract rentalContract = new RentalContract();
+            rentalContract.setLandlordTCK(landlordTck);
+            rentalContract.setTenantTCK(tenantTck);
+            rentalContract.setRentAmount(rentAmount);
+            rentalContract.setStartDate(startDate);
+            rentalContract.setEndDate(endDate);
+            return rentalContractRepository.save(rentalContract);
+        }
+        else {
+            throw new RuntimeException("Landlord with ID " + userId + "is trying to upload a rental contract for someone else.");
+        }
     }
 
     @Override
-    public void acceptExtension(Integer contractId, Boolean renewContract) {
-        // TODO Auto-generated method stub
+    public void acceptExtension(Integer userId, Integer contractId, Boolean renewContract, Double newRentAmount) {
+        // Find the landlord
+        Landlord landlord = landlordRepository
+                                .findById(userId)
+                                .orElseThrow(() -> new RuntimeException("Landlord not found with ID: " + userId));
 
+        // Find the rental contract
+        RentalContract rentalContract = rentalContractRepository
+                                .findById(contractId)
+                                .orElseThrow(() -> new RuntimeException("Rental contract not found with ID: " + contractId));
+
+        // Check if the landlord is the correct one for this rental contract
+        if (landlord.getTck() == rentalContract.getLandlordTCK()) {
+            // Check if the contract will be renewed
+            if (renewContract) {
+                LocalDate newEndDate = rentalContract.getEndDate().plusYears(5);
+                rentalContract.setEndDate(newEndDate);
+                rentalContract.setRentAmount(newRentAmount);
+            }
+            else {
+                // Just added for testing purposes
+                System.out.println("Renewal of rental contract with ID " + contractId + " is rejected.");
+            }
+        }
+        else {
+            throw new RuntimeException("Rental contract with ID " + contractId + " doesn't belong to landlord with ID " + userId);
+        }
     }
 
     @Override
     public void rateRealEstateAgent(Integer agentId, Double point) {
-        // TODO Auto-generated method stub
-        
+        // Find the real estate agent
+        RealEstateAgent agent = realEstateAgentRepository.findById(agentId)
+                .orElseThrow(() -> new RuntimeException("Real Estate Agent not found with ID: " + agentId));
+
+        // Update the rating
+        agent.setRating(agent.getRatingCount() * agent.getRating() + point);
+
+        // Save the updated real estate agent
+        realEstateAgentRepository.save(agent);
     }
 }

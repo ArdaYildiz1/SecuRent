@@ -8,6 +8,7 @@ import com.gmr.securent.entity.HouseProperties;
 import com.gmr.securent.entity.Landlord;
 import com.gmr.securent.entity.RentRequest;
 import com.gmr.securent.entity.RentalAd;
+import com.gmr.securent.entity.RentalContract;
 
 public interface LandlordInterface {
     List<Landlord> getAllLandlords();
@@ -26,7 +27,7 @@ public interface LandlordInterface {
     List<RentRequest> getAllRentingRequestsForLandlord(Integer userId);
     void confirmRentingRequest(Integer serviceId);
     void rejectRentingRequest(Integer serviceId);
-    void uploadContract(Integer landlordTck, Integer tenantTck, Double rentAmount, LocalDate startDate, LocalDate endDate);
-    void acceptExtension(Integer contractId, Boolean renewContract);
+    RentalContract uploadContract(Integer userId, Integer landlordTck, Integer tenantTck, Double rentAmount, LocalDate startDate, LocalDate endDate);
+    void acceptExtension(Integer userId, Integer contractId, Boolean renewContract, Double newRentAmount);
     void rateRealEstateAgent(Integer agentId, Double point); // TODO: Check data type of points
 }
