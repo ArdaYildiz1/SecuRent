@@ -20,7 +20,7 @@ public interface LandlordInterface {
     House updateOneHouseForLandlord(Integer userId, Integer houseId, HouseProperties newHouseProperties);
     void deleteOneHouseForLandlord(Integer userId, Integer houseId);
     List<RentalAd> getAllRentalAdsForLandlord(Integer userId);
-    RentalAd createOneRentalAd(Integer userId, Integer houseId, Double rentPrice);
+    RentalAd createOneRentalAd(Integer userId, Integer houseId, Double rentPrice, String description);
     RentalAd updateOneRentalAd(Integer userId, Integer rentalAdId, RentalAd newRentalAd);
     void deleteOneRentalAd(Integer userId, Integer rentalAdId);
     List<RentRequest> getAllRentingRequestsForLandlord(Integer userId);

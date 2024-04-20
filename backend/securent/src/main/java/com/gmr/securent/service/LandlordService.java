@@ -139,28 +139,70 @@ public class LandlordService implements LandlordInterface {
         for (House house : houses) {
             RentalAd rentalAd = rentalAdRepository.findByHouseID(house.getHouseId());
             if (rentalAd != null) {
-                
+                rentalAds.add(rentalAd);
             }
         }
-        return null;
+        return rentalAds;
     }
 
     @Override
-    public RentalAd createOneRentalAd(Integer userId, Integer houseId, Double rentPrice) {
-        // TODO Auto-generated method stub
-        return null;
+    public RentalAd createOneRentalAd(Integer userId, Integer houseId, Double rentPrice, String description) {
+        // Find the landlord
+        Landlord landlord = landlordRepository
+                                .findById(userId)
+                                .orElseThrow(() -> new RuntimeException("Landlord not found with ID: " + userId));
+        
+        // Create a new RentalAd object
+        RentalAd rentalAd = new RentalAd();
+        rentalAd.setHouseID(houseId);
+        rentalAd.setRentPrice(rentPrice);
+        rentalAd.setDescription(description);
+
+        // Save the Rental Ad object
+        return rentalAdRepository.save(rentalAd);
     }
 
     @Override
     public RentalAd updateOneRentalAd(Integer userId, Integer rentalAdId, RentalAd newRentalAd) {
-        // TODO Auto-generated method stub
-        return null;
+        Optional<RentalAd> rentalAd = rentalAdRepository.findById(rentalAdId);
+        if (rentalAd.isPresent()) {
+            RentalAd foundRentalAd = rentalAd.get();
+            Integer houseId = foundRentalAd.getHouseID();
+            Optional<House> house = houseRepository.findById(houseId);
+            House foundHouse = house.get();
+            if (foundHouse.getLandlordID() == userId) {
+                foundRentalAd.setHouseID(newRentalAd.getHouseID());
+                foundRentalAd.setRentPrice(newRentalAd.getRentPrice());
+                foundRentalAd.setDescription(newRentalAd.getDescription());
+                return foundRentalAd;
+            }
+            else {
+                throw new RuntimeException("Rental ad with ID " + rentalAdId + " doesn't belong to landlord with ID " + userId);
+            }
+        }
+        else {
+            throw new RuntimeException("Rental ad not found with ID: " + rentalAdId);
+        }
     }
 
     @Override
     public void deleteOneRentalAd(Integer userId, Integer rentalAdId) {
-        // TODO Auto-generated method stub
-        
+        Optional<RentalAd> rentalAd = rentalAdRepository.findById(rentalAdId);
+        if (rentalAd.isPresent()) {
+            RentalAd foundRentalAd = rentalAd.get();
+            Integer houseId = foundRentalAd.getHouseID();
+            Optional<House> house = houseRepository.findById(houseId);
+            House foundHouse = house.get();
+            if (foundHouse.getLandlordID() == userId) {
+                rentalAdRepository.deleteById(rentalAdId);
+            }
+            else {
+                throw new RuntimeException("Rental ad with ID " + rentalAdId + " doesn't belong to landlord with ID " + userId);
+            }
+        }
+        else {
+            throw new RuntimeException("Rental ad not found with ID: " + rentalAdId);
+        }
     }
 
     @Override
@@ -170,14 +212,26 @@ public class LandlordService implements LandlordInterface {
 
     @Override
     public void confirmRentingRequest(Integer serviceId) {
-        // TODO Auto-generated method stub
-        
+        RentRequest rentRequest = rentRequestRepository.findById(serviceId).orElse(null);
+        if (rentRequest != null) {
+            rentRequest.setServiceAccepted(true);
+            rentRequestRepository.save(rentRequest);
+        }
+        else {
+            throw new RuntimeException("No renting requests pending to accept.");
+        }
     }
 
     @Override
     public void rejectRentingRequest(Integer serviceId) {
-        // TODO Auto-generated method stub
-        
+        RentRequest rentRequest = rentRequestRepository.findById(serviceId).orElse(null);
+        if (rentRequest != null) {
+            rentRequest.setServiceAccepted(false);
+            rentRequestRepository.save(rentRequest);
+        }
+        else {
+            throw new RuntimeException("No renting requests pending to accept.");
+        }
     }
 
     @Override
