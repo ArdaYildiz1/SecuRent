@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/real-estate-agents")
+@CrossOrigin(origins = "http://localhost:3000")
 public class RealEstateAgentController {
 
     private RealEstateAgentService realEstateAgentService;
