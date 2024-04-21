@@ -8,12 +8,12 @@ import java.util.Optional;
 import org.springframework.dao.EmptyResultDataAccessException;
 
 import com.gmr.securent.entity.House;
-import com.gmr.securent.entity.HouseProperties;
 import com.gmr.securent.entity.Landlord;
 import com.gmr.securent.entity.RealEstateAgent;
 import com.gmr.securent.entity.RentRequest;
 import com.gmr.securent.entity.RentalAd;
 import com.gmr.securent.entity.RentalContract;
+import com.gmr.securent.entity.enums.Heating;
 import com.gmr.securent.repository.HouseRepository;
 import com.gmr.securent.repository.LandlordRepository;
 import com.gmr.securent.repository.RealEstateAgentRepository;
@@ -92,7 +92,10 @@ public class LandlordService implements LandlordInterface {
     }
 
     @Override
-    public House saveOneHouseForLandlord(Integer userId, HouseProperties newHouseProperties) {
+    public House saveOneHouseForLandlord(Integer userId, String address, LocalDate adDate, Double areaGross, Double areaNet,
+                                            Double areaOpenSpace, Integer numberOfRooms, Integer buildingAge, Integer flatNumber,
+                                            Heating heating, Integer numberOfBathrooms, Boolean balconyIsPresent,
+                                            Boolean furnitureIsPresent, Boolean insideASite, String siteName, Double currentAmount) {
         // Find the landlord
         Landlord landlord = landlordRepository
                                 .findById(userId)
@@ -100,20 +103,48 @@ public class LandlordService implements LandlordInterface {
 
         // Create a new House object
         House house = new House();
-        house.setLandlordID(userId);
-        house.setHouseProperties(newHouseProperties);
+        house.setLandlordId(userId);
+        house.setAddress(address);
+        house.setAdDate(adDate);
+        house.setAreaGross(areaGross);
+        house.setAreaNet(areaNet);
+        house.setAreaOpenSpace(areaOpenSpace);
+        house.setNumberOfRooms(numberOfRooms);
+        house.setBuildingAge(buildingAge);
+        house.setFlatNumber(flatNumber);
+        house.setHeating(heating);
+        house.setNumberOfBathrooms(numberOfBathrooms);
+        house.setBalconyIsPresent(balconyIsPresent);
+        house.setFurnitureIsPresent(furnitureIsPresent);
+        house.setInsideASite(insideASite);
+        house.setSiteName(siteName);
+        house.setCurrentAmount(currentAmount);
 
         // Save the House object
         return houseRepository.save(house);
     }
 
     @Override
-    public House updateOneHouseForLandlord(Integer userId, Integer houseId, HouseProperties newHouseProperties) {
+    public House updateOneHouseForLandlord(Integer userId, Integer houseId, House newHouse) {
         Optional<House> house = houseRepository.findById(houseId);
         if (house.isPresent()) {
             House foundHouse = house.get();
-            if (foundHouse.getLandlordID() == userId) {
-                foundHouse.setHouseProperties(newHouseProperties);
+            if (foundHouse.getLandlordId() == userId) {
+                foundHouse.setAddress(newHouse.getAddress());
+                foundHouse.setAdDate(newHouse.getAdDate());
+                foundHouse.setAreaGross(newHouse.getAreaGross());
+                foundHouse.setAreaNet(newHouse.getAreaNet());
+                foundHouse.setAreaOpenSpace(newHouse.getAreaOpenSpace());
+                foundHouse.setNumberOfRooms(newHouse.getNumberOfRooms());
+                foundHouse.setBuildingAge(newHouse.getBuildingAge());
+                foundHouse.setFlatNumber(newHouse.getFlatNumber());
+                foundHouse.setHeating(newHouse.getHeating());
+                foundHouse.setNumberOfBathrooms(newHouse.getNumberOfBathrooms());
+                foundHouse.setBalconyIsPresent(newHouse.isBalconyIsPresent());
+                foundHouse.setFurnitureIsPresent(newHouse.isFurnitureIsPresent());
+                foundHouse.setInsideASite(newHouse.isInsideASite());
+                foundHouse.setSiteName(newHouse.getSiteName());
+                foundHouse.setCurrentAmount(newHouse.getCurrentAmount());
                 return foundHouse;
             }
             else {
@@ -130,7 +161,7 @@ public class LandlordService implements LandlordInterface {
         Optional<House> house = houseRepository.findById(houseId);
         if (house.isPresent()) {
             House foundHouse = house.get();
-            if (foundHouse.getLandlordID() == userId) {
+            if (foundHouse.getLandlordId() == userId) {
                 houseRepository.deleteById(houseId);
             }
             else {
@@ -180,7 +211,7 @@ public class LandlordService implements LandlordInterface {
             Integer houseId = foundRentalAd.getHouseID();
             Optional<House> house = houseRepository.findById(houseId);
             House foundHouse = house.get();
-            if (foundHouse.getLandlordID() == userId) {
+            if (foundHouse.getLandlordId() == userId) {
                 foundRentalAd.setHouseID(newRentalAd.getHouseID());
                 foundRentalAd.setRentPrice(newRentalAd.getRentPrice());
                 foundRentalAd.setDescription(newRentalAd.getDescription());
@@ -203,7 +234,7 @@ public class LandlordService implements LandlordInterface {
             Integer houseId = foundRentalAd.getHouseID();
             Optional<House> house = houseRepository.findById(houseId);
             House foundHouse = house.get();
-            if (foundHouse.getLandlordID() == userId) {
+            if (foundHouse.getLandlordId() == userId) {
                 rentalAdRepository.deleteById(rentalAdId);
             }
             else {

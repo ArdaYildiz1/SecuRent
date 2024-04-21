@@ -4,11 +4,11 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.gmr.securent.entity.House;
-import com.gmr.securent.entity.HouseProperties;
 import com.gmr.securent.entity.Landlord;
 import com.gmr.securent.entity.RentRequest;
 import com.gmr.securent.entity.RentalAd;
 import com.gmr.securent.entity.RentalContract;
+import com.gmr.securent.entity.enums.Heating;
 
 public interface LandlordInterface {
     List<Landlord> getAllLandlords();
@@ -17,8 +17,11 @@ public interface LandlordInterface {
     Landlord updateOneLandlord(Integer userId, Landlord newLandlord);
     void deleteById(Integer userId);
     List<House> getAllHousesForLandlord(Integer userId);
-    House saveOneHouseForLandlord(Integer userId, HouseProperties newHouseProperties);
-    House updateOneHouseForLandlord(Integer userId, Integer houseId, HouseProperties newHouseProperties);
+    House saveOneHouseForLandlord(Integer userId, String address, LocalDate adDate, Double areaGross, Double areaNet, 
+                                    Double areaOpenSpace, Integer numberOfRooms, Integer buildingAge, Integer flatNumber,
+                                    Heating heating, Integer numberOfBathrooms, Boolean balconyIsPresent, Boolean furnitureIsPresent,
+                                    Boolean insideASite, String siteName, Double currentAmount);
+    House updateOneHouseForLandlord(Integer userId, Integer houseId, House newHouse);
     void deleteOneHouseForLandlord(Integer userId, Integer houseId);
     List<RentalAd> getAllRentalAdsForLandlord(Integer userId);
     RentalAd createOneRentalAd(Integer userId, Integer houseId, Double rentPrice, String description);
@@ -29,5 +32,5 @@ public interface LandlordInterface {
     void rejectRentingRequest(Integer serviceId);
     RentalContract uploadContract(Integer userId, Integer landlordTck, Integer tenantTck, Double rentAmount, LocalDate startDate, LocalDate endDate);
     void acceptExtension(Integer userId, Integer contractId, Boolean renewContract, Double newRentAmount);
-    void rateRealEstateAgent(Integer agentId, Double point); // TODO: Check data type of points
+    void rateRealEstateAgent(Integer agentId, Double point);
 }
