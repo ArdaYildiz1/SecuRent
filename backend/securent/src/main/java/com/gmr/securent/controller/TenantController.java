@@ -1,8 +1,10 @@
 package com.gmr.securent.controller;
 
-import com.gmr.securent.entity.RentRequest;
+import com.gmr.securent.entity.House;
 import com.gmr.securent.entity.RealEstateAgentOperations;
+import com.gmr.securent.entity.RentRequest;
 import com.gmr.securent.entity.Tenant;
+import com.gmr.securent.entity.enums.Heating;
 import com.gmr.securent.exceptions.UserNotFoundException;
 import com.gmr.securent.responses.TenantResponse;
 import com.gmr.securent.service.TenantService;
@@ -10,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -101,6 +104,13 @@ public class TenantController {
         tenantService.rateRealEstateAgent(agentId, rating);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+//    @GetMapping("/houses")
+//    public List<House> getHouses(
+//            @RequestParam(required = false) String city,
+//            @RequestParam(required = false) Integer numberOfRooms,
+//            @RequestParam(required = false) Integer flatNumber) {
+//        return tenantService.searchHouseForTenant(city, numberOfRooms, flatNumber);
+//    }
     @ExceptionHandler(UserNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     private void handleUserNotFound() {}

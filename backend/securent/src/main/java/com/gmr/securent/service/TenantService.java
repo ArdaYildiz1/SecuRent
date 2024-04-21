@@ -1,13 +1,10 @@
 package com.gmr.securent.service;
 
-import com.gmr.securent.entity.RealEstateAgent;
-import com.gmr.securent.entity.RentRequest;
-import com.gmr.securent.entity.RealEstateAgentOperations;
-import com.gmr.securent.entity.Tenant;
+import com.gmr.securent.entity.*;
 import com.gmr.securent.entity.enums.ServiceType;
+import com.gmr.securent.repository.RealEstateAgentOperationsRepository;
 import com.gmr.securent.repository.RealEstateAgentRepository;
 import com.gmr.securent.repository.RentRequestRepository;
-import com.gmr.securent.repository.RealEstateAgentOperationsRepository;
 import com.gmr.securent.repository.TenantRepository;
 import com.gmr.securent.service.interfaces.TenantInterface;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -24,15 +21,18 @@ public class TenantService implements TenantInterface {
     RentRequestRepository rentRequestRepository;
     RealEstateAgentOperationsRepository realEstateAgentOperationsRepository;
     RealEstateAgentRepository realEstateAgentRepository;
+    HouseService houseService;
 
     public TenantService(TenantRepository tenantRepository,
                          RentRequestRepository rentRequestRepository,
                          RealEstateAgentOperationsRepository realEstateAgentOperationsRepository,
-                         RealEstateAgentRepository realEstateAgentRepository) {
+                         RealEstateAgentRepository realEstateAgentRepository,
+                         HouseService houseService) {
         this.tenantRepository = tenantRepository;
         this.rentRequestRepository = rentRequestRepository;
         this.realEstateAgentOperationsRepository = realEstateAgentOperationsRepository;
         this.realEstateAgentRepository = realEstateAgentRepository;
+        this.houseService = houseService;
     }
 
     @Override
@@ -150,4 +150,10 @@ public class TenantService implements TenantInterface {
         // Save the updated real estate agent
         realEstateAgentRepository.save(agent);
     }
+
+    // TODO: Implement searchHouseForTenant
+    // Impelement filterHouses when implementing the House entity
+//    public List<House> searchHouseForTenant(String city, Integer numberOfRooms, Integer flatNumber) {
+//        return houseService.filterHouses(city, numberOfRooms, flatNumber);
+//    }
 }
