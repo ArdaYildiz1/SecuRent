@@ -1,7 +1,7 @@
 package com.gmr.securent.controller;
 
-import com.gmr.securent.entity.Contract;
-import com.gmr.securent.repository.ContractRepository;
+import com.gmr.securent.entity.HousePhotos;
+import com.gmr.securent.repository.HousePhotosRepository;
 import com.gmr.securent.service.FileUploadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,26 +15,26 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 
 @RestController
-@RequestMapping("/contracts")
-public class ContractController {
+@RequestMapping("/house-photos")
+public class HousePhotosController {
     @Autowired
     private FileUploadService fileUploadService;
 
     @Autowired
-    private ContractRepository contractRepository;
+    private HousePhotosRepository housePhotosRepository;
 
     @PostMapping("/upload")
     public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file,
                                              @RequestParam("landlordId") Integer landlordId) {
         try {
             String filePath = fileUploadService.uploadFile(file);
-            Contract contract = new Contract();
-            contract.setLandlordID(landlordId); // Set landlordId
-            contract.setFilePath(filePath);
-            contractRepository.save(contract);
-            return ResponseEntity.ok("Contract file uploaded successfully");
+            HousePhotos housePhotos = new HousePhotos();
+            housePhotos.setLandlordID(landlordId); // Set landlordId
+            housePhotos.setFilePath(filePath);
+            housePhotosRepository.save(housePhotos);
+            return ResponseEntity.ok("Photo uploaded successfully");
         } catch (IOException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload contract file");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload photo");
         }
     }
 }
