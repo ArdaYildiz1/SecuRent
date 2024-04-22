@@ -68,7 +68,19 @@ public class House {
     @Column(name = "site_name")
     private String siteName;
 
-    @Column(name = "current_amount")
-    private double currentAmount;
+    @Column(name = "rent_price")
+    private double rentPrice;
+
+    @Column(name = "ad_title")
+    private String adTitle;
+
+    @Column(name = "landlord_name")
+    private String landlordName;
+
+    @Column(name = "landlord_phone_number")
+    private String landlordPhoneNumber;
+
+    @Column(name = "ad_details")
+    private String adDetails;
 }
 

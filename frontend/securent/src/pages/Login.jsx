@@ -13,6 +13,14 @@ export default function Login() {
         navigate("/home");
     }
 
+    function handleForgotPassword() {
+        navigate("/forgotPassword");
+    }
+    
+    function handlesignup() {
+        navigate("/signup");
+    }
+
     return (
         <div>
             <div class="container-fluid">
@@ -58,11 +66,11 @@ export default function Login() {
                                             Login
                                         </Button>
                                         <br/><br/>
-                                        <href  class="link-primary">Forgot Your
+                                        <href onClick={handleForgotPassword} class="link-primary">Forgot Your
                                             Password?
                                         </href>
                                         <br/>---<br/>
-                                        <href  class="link-secondary">Sign Up</href>
+                                        <href onClick={handlesignup} class="link-secondary">Sign Up</href>
                                         <br/><br/>
                                     </Form>
                                 </Card>

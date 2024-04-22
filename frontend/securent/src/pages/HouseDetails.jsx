@@ -3,14 +3,30 @@ import TopNavBar from './TopNavBar';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Carousel from 'react-bootstrap/Carousel';
+import Modal from 'react-bootstrap/Modal';
+import { useState } from 'react';
+import TenantNavBar from './TenantNavBar';
+import { useNavigate } from 'react-router-dom';
+
 
 
 export default function HouseDetails() {
+    const [show, setShow] = useState(false);
+    const [explanation, setExplanation] = useState("");
 
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    function handlePreview() {
+        navigate("/selectAgent");
+    }
+
+    let navigate = useNavigate();
 
     return (
         <>
-            <TopNavBar />
+            <TenantNavBar></TenantNavBar>
             <br />
             <div class="container-fluid">
                 <div class="row">
@@ -22,19 +38,38 @@ export default function HouseDetails() {
                             <br />
                             <Form>
                                 <Form.Group className="ms-5 me-5 mb-3" controlId="loginPassword">
-                                    <Card.Img
-                                        className="ps-3 pe-3"
-                                        style={{ borderRadius: '3rem', width: "900px", height: "100px" }}
-                                        variant="top"
-                                        src="https://placehold.co/900x100"
-                                    />
+                                    <div className='d-flex justify-content-center'>
+                                        <Carousel>
+                                            <Carousel.Item>
+                                                <img
+                                                    src="/h6.jpg"
+                                                    style={{ width: "auto", height: "40vh", display: "block", marginLeft: "auto", marginRight: "auto" }}
+                                                    alt="First slide"
+                                                />
+                                            </Carousel.Item>
+                                            <Carousel.Item>
+                                                <img
+                                                    src="/h6_1.jpg"
+                                                    style={{ width: "auto", height: "40vh", display: "block", marginLeft: "auto", marginRight: "auto" }}
+                                                    alt="Second slide"
+                                                />
+                                            </Carousel.Item>
+                                            <Carousel.Item>
+                                                <img
+                                                    src="/h6_2.jpg"
+                                                    style={{ width: "auto", height: "40vh", display: "block", marginLeft: "auto", marginRight: "auto" }}
+                                                    alt="Third slide"
+                                                />
+                                            </Carousel.Item>
+                                        </Carousel>
+                                    </div>
                                     <br />
 
                                     <br />
                                     <Form.Label>
                                         <strong>
                                             <h2>
-                                                Lorem ipsum dolor sit amet
+                                                ATATÜRK MAHALLESİNDE 3+1 MÜSTAKİL İSKANI HAZIR YAPI
                                             </h2>
                                         </strong>
                                     </Form.Label>
@@ -42,14 +77,42 @@ export default function HouseDetails() {
                                     <br />
                                     <Form.Label>
                                         <h4>
-                                            consectetur adipiscing elit
+                                            Ankara / Akyurt / Atatürk Mah.
                                         </h4>
                                     </Form.Label>
 
                                     <br />
                                     <Form.Label>
-                                        Ut enim ad minim veniam
+                                        22.000 TL
                                     </Form.Label>
+                                    <br />
+                                    <Button className="btn-teal" onClick={handleShow}>
+                                        Report Ad
+                                    </Button>
+
+                                    <Modal show={show} onHide={handleClose}>
+                                        <Modal.Header closeButton>
+                                            <Modal.Title>Report Ad</Modal.Title>
+                                        </Modal.Header>
+                                        <Modal.Body>
+                                            <Form.Label>Report your complaints about the ad</Form.Label>
+                                            <Form.Control
+                                                as="textarea"
+                                                rows={3}
+                                                value={explanation}
+                                                onChange={e => setExplanation(e.target.value)}
+                                                placeholder="Write your complaints here..."
+                                            />
+                                        </Modal.Body>
+                                        <Modal.Footer>
+                                            <Button className="btn-velvet" onClick={handleClose}>
+                                                Close
+                                            </Button>
+                                            <Button className="btn-teal" onClick={handleClose}>  {/* Handle report submission here */}
+                                                Submit Report
+                                            </Button>
+                                        </Modal.Footer>
+                                    </Modal>
                                 </Form.Group>
                             </Form>
                         </Card>
@@ -69,53 +132,106 @@ export default function HouseDetails() {
                                         <br />
                                         <Form.Group className="d-flex align-items-center">
                                             <h2>
-                                                Lorem ipsum dolor sit amet
+                                                Bedirhan Özenç
                                             </h2>
                                         </Form.Group>
 
                                         <Form.Group className="d-flex align-items-center">
                                             <Form.Label className="d-flex justify-content-center">
-                                                Duis aute irure dolor in reprehenderit in
+                                                Tel.: 0 (541) 504 30 08
                                             </Form.Label>
                                         </Form.Group>
-
-                                        <Form.Group className="d-flex align-items-center">
-                                            <Form.Label className="d-flex justify-content-center">
-                                                voluptate velit esse cillum dolore eu fugiat nulla pariatur
-                                            </Form.Label>
-                                        </Form.Group>
-
-                                        <Form.Group className="d-flex align-items-center">
-                                            <Form.Label className="d-flex justify-content-center">
-                                                Excepteur sint occaecat cupidatat non proident
-                                            </Form.Label>
-                                        </Form.Group>
-
-                                        <hr />
-
-                                        <Form.Group className="d-flex align-items-center">
-                                            <Form.Label className="d-flex justify-content-center">
-                                                sunt in culpa qui officia deserunt
-                                            </Form.Label>
-                                        </Form.Group>
-                                        <Form.Control style={{ width: '100px' }} type="number" min="1" max="5" />
-
-                                        <hr />
-
-                                        <div className='mb-2'>
-                                            Sed cras ornare arcu dui
-                                        </div>
-                                        <Form.Control placeholder='Et egestas quis ipsum suspendisse ultrices'
-                                            as="textarea" rows={3} />
-                                        <br /><br />
-                                        <div className="d-flex justify-content-end me-5">
-                                            <Button className="btn-teal">
-                                                Preview
-                                            </Button>
-                                        </div>
                                     </Form.Group>
                                 </Form>
                                 <br /><br />
+                            </div>
+                            <div className="row flex-container">
+                                <div className="col-md-6 flex-container">
+                                    <hr className='me-5' />
+                                    <p style={{ fontSize: 13 }}>
+                                        <br />
+                                        Address: Çınar Cd. 19-17, Atatürk, 06750 Akyurt/Ankara
+                                        <br />
+                                        Ad ID: 1121591458
+                                        <br />
+                                        Ad Date: 06 November 2023
+                                        <br />
+                                        m² (Gross): 372
+                                        <br />
+                                        m² (Net): 130
+                                        <br />
+                                        Open Area Space m²: Unspecified
+                                        <br />
+                                        Number of Rooms: 3+1
+                                        <br />
+                                        Building Age: 5-10 years
+                                        <br />
+                                        Flat Number (Door Number): 1
+                                        <br />
+                                        Heating: Kombi (Doğalgaz)
+                                        <br />
+                                        Number of Bathroomsı: 1
+                                        <br />
+                                        Have a Balcony (?): Yes
+                                        <br />
+                                        Have a Furniture (?): No
+                                        <br />
+                                        In a Site (?): No
+                                        <br />
+                                        Site Name: Unspecified
+                                        <br />
+                                        Rent Amount (TL): Unspecified
+                                        <br />
+                                    </p>
+                                </div>
+                                <div className="col-md-6 justify-content-center flex-container">
+                                    <p style={{ fontSize: 13, textAlign: 'center' }}>
+                                        <br />
+                                        <h3>
+                                            Ad Details:
+                                        </h3>
+                                        <br />
+                                        PRIME GROUP'TAN ATATÜRK MAHALLESİNDE MERKEZE YAKIN KONUMDA 3+1 MÜSTAKİL EV
+                                        <br />
+                                        EVİMİZ ISI YALITIMLI VE SIVA MEVCUTTUR
+                                        <br />
+                                        ÇATISI VE EV İÇİ YENİ YAPILMIŞTIR
+                                        <br />
+                                        372 M2 ARSA ÜZERİNE KURULU
+                                        <br />
+                                        MERKEZE YAKIN KONUMDA
+                                        <br />
+                                        3+1 120 M2 KULLANIM ALANINA SAHİP
+                                        <br />
+                                        10 M2 GENİŞ BALKONLU
+                                        <br />
+                                        ÇEŞİTLİ MEYVE AĞAÇLARI MEVCUT
+                                        <br />
+                                        KULLANIMA UYGUN TANDIR EVİ
+                                        <br />
+                                        KÖMÜRLÜK VE SIĞINAKLI
+                                        <br />
+                                        EGO VE OTOBÜS DURAĞINA YÜRÜME MESAFESİNDE
+                                        <br />
+                                        ORTA OKUL VE LİSE YAKINI
+                                        <br />
+                                        MÜSTAKİL EVİMİZİN İSKANI HAZIRDIR
+                                        <br />
+                                        DETAYLI BİLGİ İÇİN OFİSİMİZE BEKLERİZ
+                                    </p>
+                                </div>
+                                <div className="row">
+                                    <Form>
+                                        <Form.Group className="ms-5 me-5 mb-3" controlId="loginPassword">
+                                            <div className="d-flex justify-content-end me-5">
+                                                <Button className="btn-teal" onClick={handlePreview}>
+                                                    Preview
+                                                </Button>
+                                            </div>
+                                        </Form.Group>
+                                    </Form>
+                                    <br /><br />
+                                </div>
                             </div>
                         </Card>
 
