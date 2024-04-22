@@ -233,11 +233,16 @@ public class LandlordService implements LandlordInterface {
     }
 
     @Override
-    public void confirmRentingRequest(Integer serviceId) {
+    public void confirmRentingRequest(Integer userId, Integer serviceId) {
         RentRequest rentRequest = rentRequestRepository.findById(serviceId).orElse(null);
         if (rentRequest != null) {
-            rentRequest.setServiceAccepted(true);
-            rentRequestRepository.save(rentRequest);
+            if (userId != rentRequest.getLandlordID()) {
+                throw new RuntimeException("Renting request with ID " + serviceId + " doesn't belong to landlord with ID " + userId);
+            }
+            else {
+                rentRequest.setServiceAccepted(true);
+                rentRequestRepository.save(rentRequest);
+            }
         }
         else {
             throw new RuntimeException("No renting requests pending to accept.");
@@ -245,11 +250,16 @@ public class LandlordService implements LandlordInterface {
     }
 
     @Override
-    public void rejectRentingRequest(Integer serviceId) {
+    public void rejectRentingRequest(Integer userId, Integer serviceId) {
         RentRequest rentRequest = rentRequestRepository.findById(serviceId).orElse(null);
         if (rentRequest != null) {
-            rentRequest.setServiceAccepted(false);
-            rentRequestRepository.save(rentRequest);
+            if (userId != rentRequest.getLandlordID()) {
+                throw new RuntimeException("Renting request with ID " + serviceId + " doesn't belong to landlord with ID " + userId);
+            }
+            else {
+                rentRequest.setServiceAccepted(false);
+                rentRequestRepository.save(rentRequest);
+            }
         }
         else {
             throw new RuntimeException("No renting requests pending to accept.");
