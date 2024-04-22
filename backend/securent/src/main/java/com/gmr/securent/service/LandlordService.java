@@ -13,7 +13,6 @@ import com.gmr.securent.entity.RealEstateAgent;
 import com.gmr.securent.entity.RentRequest;
 import com.gmr.securent.entity.RentalAd;
 import com.gmr.securent.entity.RentalContract;
-import com.gmr.securent.entity.enums.Heating;
 import com.gmr.securent.repository.HouseRepository;
 import com.gmr.securent.repository.LandlordRepository;
 import com.gmr.securent.repository.RealEstateAgentRepository;
@@ -267,7 +266,8 @@ public class LandlordService implements LandlordInterface {
     }
 
     @Override
-    public RentalContract uploadContract(Integer userId, Integer landlordTck, Integer tenantTck, Double rentAmount, LocalDate startDate, LocalDate endDate) {
+    public RentalContract uploadContract(Integer userId, Integer landlordTck, Integer tenantTck,
+                                         Double rentAmount, LocalDate startDate, LocalDate endDate) {
         // Find the landlord
         Landlord landlord = landlordRepository
                                 .findById(userId)

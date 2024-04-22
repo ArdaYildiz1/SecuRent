@@ -3,7 +3,6 @@ package com.gmr.securent.controller;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,12 +11,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gmr.securent.entity.House;
 import com.gmr.securent.entity.Landlord;
 import com.gmr.securent.entity.RentRequest;
 import com.gmr.securent.entity.RentalAd;
+import com.gmr.securent.entity.RentalContract;
 import com.gmr.securent.exceptions.UserNotFoundException;
 import com.gmr.securent.responses.LandlordResponse;
 import com.gmr.securent.service.LandlordService;
@@ -84,7 +85,8 @@ public class LandlordController {
     }
 
     @PutMapping("/{landlordId}/houses/{houseId}")
-    public ResponseEntity<Void> updateOneHouseForLandlord(@PathVariable Integer landlordId, @PathVariable Integer houseId, @RequestBody House newHouse) {
+    public ResponseEntity<Void> updateOneHouseForLandlord(@PathVariable Integer landlordId, @PathVariable Integer houseId,
+                                                          @RequestBody House newHouse) {
         House house = landlordService.updateOneHouseForLandlord(landlordId, houseId, newHouse);
         if (house == null) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -115,7 +117,8 @@ public class LandlordController {
     }
 
     @PutMapping("/{landlordId}/rental-ads/{rentalAdId}")
-    public ResponseEntity<Void> updateOneHouseForLandlord(@PathVariable Integer landlordId, @PathVariable Integer rentalAdId, @RequestBody RentalAd newRentalAd) {
+    public ResponseEntity<Void> updateOneHouseForLandlord(@PathVariable Integer landlordId, @PathVariable Integer rentalAdId,
+                                                          @RequestBody RentalAd newRentalAd) {
         RentalAd rentalAd = landlordService.updateOneRentalAd(landlordId, rentalAdId, newRentalAd);
         if (rentalAd == null) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -142,5 +145,32 @@ public class LandlordController {
     @PutMapping("/{landlordId}/renting-requests/{serviceId}/reject")
     public void rejectRentalService(@PathVariable Integer landlordId, @PathVariable Integer serviceId) {
         landlordService.rejectRentingRequest(landlordId, serviceId);
+    }
+
+    @PostMapping("/{landlordId}/contracts")
+    public ResponseEntity<Void> createOneRentalAdForLandlord(@PathVariable Integer landlordId,
+                                                             @RequestBody RentalContract newRentalContract) {
+        RentalContract rentalContract = landlordService.uploadContract(landlordId,
+                                                                        newRentalContract.getLandlordTCK(),
+                                                                        newRentalContract.getTenantTCK(),
+                                                                        newRentalContract.getRentAmount(),
+                                                                        newRentalContract.getStartDate(),
+                                                                        newRentalContract.getEndDate());
+        if (rentalContract != null)
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @PutMapping("/{landlordId}/contracts/{contractId}")
+    public void acceptExtension(@PathVariable Integer landlordId, @PathVariable Integer contractId,
+                                @RequestParam Boolean renewContract, @RequestParam Double amount) {
+        landlordService.acceptExtension(landlordId, contractId, renewContract, amount);
+    }
+
+    @PostMapping("/{landlordId}/rate-real-estate-agent/{agentId}")
+    public ResponseEntity<Void> rateRealEstateAgent(@PathVariable Integer agentId,
+                                                    @RequestParam Double rating) {
+        landlordService.rateRealEstateAgent(agentId, rating);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
