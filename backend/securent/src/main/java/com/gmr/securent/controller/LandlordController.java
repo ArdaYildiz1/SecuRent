@@ -3,6 +3,7 @@ package com.gmr.securent.controller;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gmr.securent.entity.House;
 import com.gmr.securent.entity.Landlord;
 import com.gmr.securent.exceptions.UserNotFoundException;
 import com.gmr.securent.responses.LandlordResponse;
@@ -36,8 +38,9 @@ public class LandlordController {
     @PostMapping
     public ResponseEntity<Void> createNewLandlord(@RequestBody Landlord newLandlord) {
         Landlord landlord = landlordService.saveOneLandlord(newLandlord);
-        if (landlord != null)
+        if (landlord != null) {
             return new ResponseEntity<>(HttpStatus.CREATED);
+        }
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
@@ -62,5 +65,36 @@ public class LandlordController {
     @DeleteMapping("/{landlordId}")
     public void deleteOneLandlord(@PathVariable Integer landlordId) {
         landlordService.deleteById(landlordId);
+    }
+
+    @GetMapping("/{landlordId}/houses")
+    public ResponseEntity<List<House>> getAllHousesForLandlord(@PathVariable Integer landlordId) {
+        List<House> houses = landlordService.getAllHousesForLandlord(landlordId);
+        return new ResponseEntity<>(houses, HttpStatus.OK);
+    }
+
+    @PostMapping("/{landlordId}/houses")
+    public ResponseEntity<Void> saveOneHouseForLandlord(@PathVariable Integer landlordId, @RequestBody House newHouse) {
+        House house = landlordService.saveOneHouseForLandlord(landlordId, newHouse);
+        if (house != null)
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @PutMapping("/{landlordId}/houses/{houseId}")
+    public ResponseEntity<Void> updateOneHouseForLandlord(@PathVariable("landlordId") Integer landlordId,
+                                                            @PathVariable("houseId") Integer houseId,
+                                                            @RequestBody House newHouse) {
+        House house = landlordService.updateOneHouseForLandlord(landlordId, houseId, newHouse);
+        if (house == null) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{landlordId}/houses/{houseId}")
+    public void deleteOneHouseForLandlord(@PathVariable("landlordId") Integer landlordId,
+                                            @PathVariable("houseId") Integer houseId) {
+        landlordService.deleteOneHouseForLandlord(landlordId, houseId);
     }
 }

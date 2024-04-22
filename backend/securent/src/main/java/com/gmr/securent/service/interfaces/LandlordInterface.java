@@ -17,10 +17,7 @@ public interface LandlordInterface {
     Landlord updateOneLandlord(Integer userId, Landlord newLandlord);
     void deleteById(Integer userId);
     List<House> getAllHousesForLandlord(Integer userId);
-    House saveOneHouseForLandlord(Integer userId, String address, LocalDate adDate, Double areaGross, Double areaNet, 
-                                    Double areaOpenSpace, Integer numberOfRooms, Integer buildingAge, Integer flatNumber,
-                                    Heating heating, Integer numberOfBathrooms, Boolean balconyIsPresent, Boolean furnitureIsPresent,
-                                    Boolean insideASite, String siteName, Double currentAmount);
+    House saveOneHouseForLandlord(Integer userId, House newHouse);
     House updateOneHouseForLandlord(Integer userId, Integer houseId, House newHouse);
     void deleteOneHouseForLandlord(Integer userId, Integer houseId);
     List<RentalAd> getAllRentalAdsForLandlord(Integer userId);

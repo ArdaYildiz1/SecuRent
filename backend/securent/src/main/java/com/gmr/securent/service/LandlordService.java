@@ -92,36 +92,17 @@ public class LandlordService implements LandlordInterface {
     }
 
     @Override
-    public House saveOneHouseForLandlord(Integer userId, String address, LocalDate adDate, Double areaGross, Double areaNet,
-                                            Double areaOpenSpace, Integer numberOfRooms, Integer buildingAge, Integer flatNumber,
-                                            Heating heating, Integer numberOfBathrooms, Boolean balconyIsPresent,
-                                            Boolean furnitureIsPresent, Boolean insideASite, String siteName, Double currentAmount) {
+    public House saveOneHouseForLandlord(Integer userId, House newHouse) {
         // Find the landlord
         Landlord landlord = landlordRepository
                                 .findById(userId)
                                 .orElseThrow(() -> new RuntimeException("Landlord not found with ID: " + userId));
 
-        // Create a new House object
-        House house = new House();
-        house.setLandlordId(userId);
-        house.setAddress(address);
-        house.setAdDate(adDate);
-        house.setAreaGross(areaGross);
-        house.setAreaNet(areaNet);
-        house.setAreaOpenSpace(areaOpenSpace);
-        house.setNumberOfRooms(numberOfRooms);
-        house.setBuildingAge(buildingAge);
-        house.setFlatNumber(flatNumber);
-        house.setHeating(heating);
-        house.setNumberOfBathrooms(numberOfBathrooms);
-        house.setBalconyIsPresent(balconyIsPresent);
-        house.setFurnitureIsPresent(furnitureIsPresent);
-        house.setInsideASite(insideASite);
-        house.setSiteName(siteName);
-        house.setCurrentAmount(currentAmount);
+        // Set the landlord ID to the house
+        newHouse.setLandlordId(userId);
 
         // Save the House object
-        return houseRepository.save(house);
+        return houseRepository.save(newHouse);
     }
 
     @Override
