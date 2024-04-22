@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gmr.securent.entity.House;
 import com.gmr.securent.entity.Landlord;
+import com.gmr.securent.entity.RentalAd;
 import com.gmr.securent.exceptions.UserNotFoundException;
 import com.gmr.securent.responses.LandlordResponse;
 import com.gmr.securent.service.LandlordService;
@@ -96,5 +97,39 @@ public class LandlordController {
     public void deleteOneHouseForLandlord(@PathVariable("landlordId") Integer landlordId,
                                             @PathVariable("houseId") Integer houseId) {
         landlordService.deleteOneHouseForLandlord(landlordId, houseId);
+    }
+
+    @GetMapping("/{landlordId}/rental-ads")
+    public ResponseEntity<List<RentalAd>> getAllRentalAdsForLandlord(@PathVariable Integer landlordId) {
+        List<RentalAd> rentalAds = landlordService.getAllRentalAdsForLandlord(landlordId);
+        return new ResponseEntity<>(rentalAds, HttpStatus.OK);
+    }
+
+    @PostMapping("/{landlordId}/rental-ads")
+    public ResponseEntity<Void> createOneRentalAdForLandlord(@PathVariable Integer landlordId, @RequestBody RentalAd newRentalAd) {
+        RentalAd rentalAd = landlordService.createOneRentalAd(landlordId,
+                                                                newRentalAd.getHouseID(),
+                                                                newRentalAd.getRentPrice(),
+                                                                newRentalAd.getDescription());
+        if (rentalAd != null)
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @PutMapping("/{landlordId}/rental-ads/{rentalAdId}")
+    public ResponseEntity<Void> updateOneHouseForLandlord(@PathVariable("landlordId") Integer landlordId,
+                                                            @PathVariable("rentalAdId") Integer rentalAdId,
+                                                            @RequestBody RentalAd newRentalAd) {
+        RentalAd rentalAd = landlordService.updateOneRentalAd(landlordId, rentalAdId, newRentalAd);
+        if (rentalAd == null) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{landlordId}/rental-ads/{rentalAdId}")
+    public void deleteOneRentalAdForLandlord(@PathVariable("landlordId") Integer landlordId,
+                                            @PathVariable("rentalAdId") Integer rentalAdId) {
+        landlordService.deleteOneRentalAd(landlordId, rentalAdId);
     }
 }
