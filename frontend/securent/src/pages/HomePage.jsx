@@ -8,14 +8,27 @@ import TopNavBar from "./TopNavBar";
 import FilterComponent from "./FilterComponent";
 import TenantNavBar from "./TenantNavBar";
 import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function HomePage() {
   const location = useLocation();
 
-  const houses = Object.values(location.state);
-  console.log(houses);
+  let navigate = useNavigate();
 
-  console.log(houses[3].siteName);
+  const houses = Object.values(location.state);
+
+
+  function navigateHouse(idx) {
+    axios
+      .get(`http://localhost:8080/houses/${houses[idx].houseId}`)
+      .then((response) => {
+        navigate("/houseDetails", { state: { ...response.data } });
+      })
+      .catch((error) => {
+        console.error("Error fetching house details:", error);
+      });
+  }
 
   return (
     <>
@@ -31,7 +44,11 @@ export default function HomePage() {
             <>
               {Array.from({ length: houses.length }).map((_, idx) => (
                 <Col key={idx}>
-                  <Link to={`/houseDetails`} style={{ textDecoration: "none" }}>
+                  <Link
+                    to={`/houseDetails`}
+                    onClick={() => navigateHouse(idx)}
+                    style={{ textDecoration: "none" }}
+                  >
                     <Card
                       className="clickable-card"
                       style={{
