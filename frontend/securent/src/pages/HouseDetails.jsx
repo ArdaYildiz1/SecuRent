@@ -32,6 +32,11 @@ export default function HouseDetails() {
     insideASite,
     siteName,
     currentAmount,
+    adDetails,
+    adTitle,
+    landlordName,
+    landlordPhoneNumber,
+    rentPrice,
   } = location?.state || {};
 
   const [show, setShow] = useState(false);
@@ -109,7 +114,7 @@ export default function HouseDetails() {
                   <br />
                   <Form.Label>
                     <strong>
-                      <h2>House Title {/*TODO House Title key */}</h2>
+                      <h2>{adTitle}</h2>
                     </strong>
                   </Form.Label>
 
@@ -119,7 +124,7 @@ export default function HouseDetails() {
                   </Form.Label>
 
                   <br />
-                  <Form.Label>{currentAmount} TL</Form.Label>
+                  <Form.Label>{rentPrice} TL</Form.Label>
                   <br />
                   <Button className="btn-teal" onClick={handleShow}>
                     Report Ad
@@ -176,12 +181,12 @@ export default function HouseDetails() {
                   >
                     <br />
                     <Form.Group className="d-flex align-items-center">
-                      <h2>Bedirhan Özenç {/* TODO landlord name */}</h2>
+                      <h2>{landlordName}</h2>
                     </Form.Group>
 
                     <Form.Group className="d-flex align-items-center">
                       <Form.Label className="d-flex justify-content-center">
-                        Tel.: 0 (541) 504 30 08 {/* TODO house phone number */}
+                        {landlordPhoneNumber}
                       </Form.Label>
                     </Form.Group>
                   </Form.Group>
@@ -214,36 +219,25 @@ export default function HouseDetails() {
                     <br />
                     Number of Bathroomsı: {numberOfBathrooms}
                     <br />
-                    Have a Balcony (?): {balconyIsPresent}
+                    Have a Balcony (?):{" "}
+                    {balconyIsPresent ? "Yes" : "No"}
                     <br />
-                    Have a Furniture (?): {furnitureIsPresent}
+                    Have a Furniture (?):{" "}
+                    {furnitureIsPresent ? "Yes" : "No"}
                     <br />
-                    In a Site (?): {insideASite}
+                    In a Site (?): {insideASite ? "Yes" : "No"}
                     <br />
                     Site Name: {siteName}
                     <br />
-                    Rent Amount (TL): {currentAmount}
+                    Rent Amount (TL): {rentPrice}
                     <br />
                   </p>
                 </div>
                 <div className="col-md-6 justify-content-center flex-container">
                   <p style={{ fontSize: 13, textAlign: "center" }}>
                     <br />
-                    <strong>Ad Details: {/*TODO ad details */}</strong>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Tempora aut natus quis ducimus laboriosam, nobis iure
-                    necessitatibus. Assumenda error quae recusandae. Nihil
-                    cumque quae beatae suscipit in aspernatur eligendi et
-                    praesentium, ullam maiores commodi nesciunt quas? Molestiae
-                    nostrum praesentium aperiam excepturi similique incidunt
-                    corrupti nemo, possimus nulla maiores deserunt eaque
-                    aspernatur vitae. Doloremque nostrum facilis alias
-                    reprehenderit voluptatem eius. Dolore officiis explicabo hic
-                    aut voluptatem culpa ex quas dolores debitis nostrum ullam
-                    eos laboriosam natus minima corporis voluptas deleniti
-                    assumenda, unde dolor sapiente beatae rem facere pariatur?
-                    Architecto maxime reprehenderit, asperiores earum temporibus
-                    provident excepturi ratione, illum nihil hic ipsam.
+                    <strong>Ad Details: </strong>
+                    {adDetails}
                   </p>
                 </div>
                 <div className="row">

@@ -26,44 +26,17 @@ function TenantNavBar() {
   const [insideASite, setInsideASite] = useState(null);
   const [siteName, setSiteName] = useState(null);
   const [currentAmount, setCurrentAmount] = useState(null);
-  
+  const [adDetails, setAdDetails] = useState(null);
+  const [adTitle, setAdTitle] = useState(null);
+  const [landlordName, setLandlordName] = useState(null);
+  const [landlordPhoneNumber, setLandlordPhoneNumber] = useState(null);
+  const [rentPrice, setRentPrice] = useState(null);
+
   let navigate = useNavigate();
 
   function handleGoHome() {
-    
-      axios
-        .get(`http://localhost:8080/houses`)
-        .then((response) => {
-          setHouseId(response.data.houseId);
-          setLandlordId(response.data.landlordId);
-          setTenantId(response.data.tenantId);
-          setAddress(response.data.address);
-          setAdDate(response.data.adDate);
-          setAreaGross(response.data.areaGross);
-          setAreaNet(response.data.areaNet);
-          setAreaOpenSpace(response.data.areaOpenSpace);
-          setNumberOfRooms(response.data.numberOfRooms);
-          setBuildingAge(response.data.buildingAge);
-          setFlatNumber(response.data.flatNumber);
-          setHeating(response.data.heating);
-          setNumberOfBathrooms(response.data.numberOfBathrooms);
-          setBalconyIsPresent(response.data.balconyIsPresent);
-          setFurnitureIsPresent(response.data.furnitureIsPresent);
-          setInsideASite(response.data.insideASite);
-          setSiteName(response.data.siteName);
-          setCurrentAmount(response.data.currentAmount);
-  
-          navigate("/home", { state: { ...response.data } });
-          console.log(response.data);
-        })
-        .catch((error) => {
-          console.error("Error fetching houses:", error);
-        });
-  }
-
-  function handleRentedHome() {
     axios
-      .get(`http://localhost:8080/tenants/${tenantId}/rented-house`)
+      .get(`http://localhost:8080/houses`)
       .then((response) => {
         setHouseId(response.data.houseId);
         setLandlordId(response.data.landlordId);
@@ -83,22 +56,65 @@ function TenantNavBar() {
         setInsideASite(response.data.insideASite);
         setSiteName(response.data.siteName);
         setCurrentAmount(response.data.currentAmount);
+        setAdDetails(response.data.adDetails);
+        setAdTitle(response.data.adTitle);
+        setLandlordName(response.data.landlordName);
+        setLandlordPhoneNumber(response.data.landlordPhoneNumber);
+        setRentPrice(response.data.rentPrice);
 
-        navigate("/rentedHouse", { state: { ...response.data } });
+
+        navigate("/home", { state: { ...response.data } });
+        console.log(response.data);
       })
       .catch((error) => {
-        console.error("Error fetching rented house:", error);
+        console.error("Error fetching houses:", error);
       });
   }
-  
+
+  function handleRentedHome() {
+    axios
+      .get(`http://localhost:8080/houses`)
+      .then((response) => {
+        setHouseId(response.data.houseId);
+        setLandlordId(response.data.landlordId);
+        setTenantId(response.data.tenantId);
+        setAddress(response.data.address);
+        setAdDate(response.data.adDate);
+        setAreaGross(response.data.areaGross);
+        setAreaNet(response.data.areaNet);
+        setAreaOpenSpace(response.data.areaOpenSpace);
+        setNumberOfRooms(response.data.numberOfRooms);
+        setBuildingAge(response.data.buildingAge);
+        setFlatNumber(response.data.flatNumber);
+        setHeating(response.data.heating);
+        setNumberOfBathrooms(response.data.numberOfBathrooms);
+        setBalconyIsPresent(response.data.balconyIsPresent);
+        setFurnitureIsPresent(response.data.furnitureIsPresent);
+        setInsideASite(response.data.insideASite);
+        setSiteName(response.data.siteName);
+        setCurrentAmount(response.data.currentAmount);
+        setAdDetails(response.data.adDetails);
+        setAdTitle(response.data.adTitle);
+        setLandlordName(response.data.landlordName);
+        setLandlordPhoneNumber(response.data.landlordPhoneNumber);
+        setRentPrice(response.data.rentPrice);
+
+
+        navigate("/rentedHouse", { state: { ...response.data } });
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching houses:", error);
+      });
+  }
+
   function handleGoProfile() {
     axios
       .get(`http://localhost:8080/tenants/${tenantId}`)
       .then((response) => {
         // Handle the response data, e.g., redirect to a new page
         console.log(response.data);
-        navigate("/tenantProfile" , { state: { ...response.data } });
-
+        navigate("/tenantProfile", { state: { ...response.data } });
       })
       .catch((error) => {
         // Handle errors

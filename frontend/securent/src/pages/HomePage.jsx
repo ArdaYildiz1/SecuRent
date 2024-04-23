@@ -66,13 +66,13 @@ export default function HomePage() {
                             src="/h1.jpg"
                           />
                           <Card.Title style={{ color: "black" }}>
-                            <br /> {houses[idx].siteName}
+                            <br /> {houses[idx].adTitle}
                           </Card.Title>
                           <Card.Title style={{ color: "black" }}>
                             {houses[idx].address}
                           </Card.Title>
                           <Card.Text style={{ color: "black" }}>
-                            {houses[idx].currentAmount} TL
+                            {houses[idx].rentPrice} TL
                           </Card.Text>
                         </>
 
