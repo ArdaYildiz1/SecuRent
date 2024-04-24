@@ -25,11 +25,11 @@ public class HousePhotosController {
 
     @PostMapping("/upload")
     public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file,
-                                             @RequestParam("landlordId") Integer landlordId) {
+                                             @RequestParam("houseId") Integer houseId) {
         try {
             String filePath = fileUploadService.uploadFile(file);
             HousePhotos housePhotos = new HousePhotos();
-            housePhotos.setLandlordID(landlordId); // Set landlordId
+            housePhotos.setHouseID(houseId);
             housePhotos.setFilePath(filePath);
             housePhotosRepository.save(housePhotos);
             return ResponseEntity.ok("Photo uploaded successfully");
