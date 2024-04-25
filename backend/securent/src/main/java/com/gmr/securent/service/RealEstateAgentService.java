@@ -47,6 +47,7 @@ public class RealEstateAgentService implements RealEstateAgentInterface {
             foundRealEstateAgent.setPhoneNo(newRealEstateAgent.getPhoneNo());
             foundRealEstateAgent.setEmailAddress(newRealEstateAgent.getEmailAddress());
             foundRealEstateAgent.setTck(newRealEstateAgent.getTck());
+            realEstateAgentRepository.save(foundRealEstateAgent);
             return foundRealEstateAgent;
         }
         else {
