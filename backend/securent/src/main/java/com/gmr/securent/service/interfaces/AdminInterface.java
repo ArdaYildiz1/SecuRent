@@ -1,8 +1,8 @@
 package com.gmr.securent.service.interfaces;
 
-import java.util.List;
-
 import com.gmr.securent.entity.Admin;
+
+import java.util.List;
 
 public interface AdminInterface {
     List<Admin> getAllAdmins();

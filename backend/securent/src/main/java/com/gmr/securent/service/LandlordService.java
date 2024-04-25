@@ -1,45 +1,31 @@
 package com.gmr.securent.service;
 
+import com.gmr.securent.entity.*;
+import com.gmr.securent.repository.*;
+import com.gmr.securent.service.interfaces.LandlordInterface;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.stereotype.Service;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.dao.EmptyResultDataAccessException;
-
-import com.gmr.securent.entity.House;
-import com.gmr.securent.entity.Landlord;
-import com.gmr.securent.entity.RealEstateAgent;
-import com.gmr.securent.entity.RentRequest;
-import com.gmr.securent.entity.RentalAd;
-import com.gmr.securent.entity.RentalContract;
-import com.gmr.securent.repository.HouseRepository;
-import com.gmr.securent.repository.LandlordRepository;
-import com.gmr.securent.repository.RealEstateAgentRepository;
-import com.gmr.securent.repository.RentRequestRepository;
-import com.gmr.securent.repository.RentalAdRepository;
-import com.gmr.securent.repository.RentalContractRepository;
-import com.gmr.securent.service.interfaces.LandlordInterface;
-import org.springframework.stereotype.Service;
-
 @Service
 public class LandlordService implements LandlordInterface {
     LandlordRepository landlordRepository;
     HouseRepository houseRepository;
-    RentalAdRepository rentalAdRepository;
     RentRequestRepository rentRequestRepository;
     RentalContractRepository rentalContractRepository;
     RealEstateAgentRepository realEstateAgentRepository;
 
     public LandlordService(LandlordRepository landlordRepository,
                            HouseRepository houseRepository,
-                           RentalAdRepository rentalAdRepository,
                            RentRequestRepository rentRequestRepository,
                            RentalContractRepository rentalContractRepository,
                            RealEstateAgentRepository realEstateAgentRepository) {
         this.landlordRepository = landlordRepository;
         this.houseRepository = houseRepository;
-        this.rentalAdRepository = rentalAdRepository;
         this.rentRequestRepository = rentRequestRepository;
         this.rentalContractRepository = rentalContractRepository;
         this.realEstateAgentRepository = realEstateAgentRepository;
@@ -129,7 +115,11 @@ public class LandlordService implements LandlordInterface {
                 foundHouse.setFurnitureIsPresent(newHouse.isFurnitureIsPresent());
                 foundHouse.setInsideASite(newHouse.isInsideASite());
                 foundHouse.setSiteName(newHouse.getSiteName());
-                foundHouse.setCurrentAmount(newHouse.getCurrentAmount());
+                foundHouse.setRentPrice(newHouse.getRentPrice());
+                foundHouse.setAdTitle(newHouse.getAdTitle());
+                foundHouse.setLandlordName(newHouse.getLandlordName());
+                foundHouse.setLandlordPhoneNumber(newHouse.getLandlordPhoneNumber());
+                foundHouse.setAdDetails(newHouse.getAdDetails());
                 houseRepository.save(foundHouse);
                 return foundHouse;
             }
@@ -156,80 +146,6 @@ public class LandlordService implements LandlordInterface {
         }
         else {
             throw new RuntimeException("House not found with ID: " + houseId);
-        }
-    }
-
-    @Override
-    public List<RentalAd> getAllRentalAdsForLandlord(Integer userId) {
-        List<House> houses = getAllHousesForLandlord(userId);
-        List<RentalAd> rentalAds = new ArrayList<RentalAd>();
-        for (House house : houses) {
-            RentalAd rentalAd = rentalAdRepository.findByHouseID(house.getHouseId());
-            if (rentalAd != null) {
-                rentalAds.add(rentalAd);
-            }
-        }
-        return rentalAds;
-    }
-
-    @Override
-    public RentalAd createOneRentalAd(Integer userId, Integer houseId, Double rentPrice, String description) {
-        // Find the landlord
-        Landlord landlord = landlordRepository
-                                .findById(userId)
-                                .orElseThrow(() -> new RuntimeException("Landlord not found with ID: " + userId));
-        
-        // Create a new RentalAd object
-        RentalAd rentalAd = new RentalAd();
-        rentalAd.setHouseID(houseId);
-        rentalAd.setRentPrice(rentPrice);
-        rentalAd.setDescription(description);
-
-        // Save the Rental Ad object
-        return rentalAdRepository.save(rentalAd);
-    }
-
-    @Override
-    public RentalAd updateOneRentalAd(Integer userId, Integer rentalAdId, RentalAd newRentalAd) {
-        Optional<RentalAd> rentalAd = rentalAdRepository.findById(rentalAdId);
-        if (rentalAd.isPresent()) {
-            RentalAd foundRentalAd = rentalAd.get();
-            Integer houseId = foundRentalAd.getHouseID();
-            Optional<House> house = houseRepository.findById(houseId);
-            House foundHouse = house.get();
-            if (foundHouse.getLandlordID() == userId) {
-                foundRentalAd.setHouseID(newRentalAd.getHouseID());
-                foundRentalAd.setRentPrice(newRentalAd.getRentPrice());
-                foundRentalAd.setDescription(newRentalAd.getDescription());
-                rentalAdRepository.save(foundRentalAd);
-                return foundRentalAd;
-            }
-            else {
-                throw new RuntimeException("Rental ad with ID " + rentalAdId + " doesn't belong to landlord with ID " + userId);
-            }
-        }
-        else {
-            throw new RuntimeException("Rental ad not found with ID: " + rentalAdId);
-        }
-    }
-
-    @Override
-    public void deleteOneRentalAd(Integer userId, Integer rentalAdId) {
-        Optional<RentalAd> rentalAd = rentalAdRepository.findById(rentalAdId);
-        if (rentalAd.isPresent()) {
-            RentalAd foundRentalAd = rentalAd.get();
-            Integer houseId = foundRentalAd.getHouseID();
-            Optional<House> house = houseRepository.findById(houseId);
-            House foundHouse = house.get();
-            if (foundHouse.getLandlordID() == userId) {
-                rentalAdRepository.deleteById(rentalAdId);
-            }
-            else {
-                throw new RuntimeException("Rental ad with ID " + rentalAdId + " doesn't belong to landlord with ID " + userId);
-            }
-        }
-        else {
-            throw new RuntimeException("Rental ad not found with ID: " + rentalAdId);
         }
     }
 

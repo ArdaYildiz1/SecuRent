@@ -1,14 +1,9 @@
 package com.gmr.securent.service.interfaces;
 
+import com.gmr.securent.entity.*;
+
 import java.time.LocalDate;
 import java.util.List;
-
-import com.gmr.securent.entity.House;
-import com.gmr.securent.entity.Landlord;
-import com.gmr.securent.entity.RentRequest;
-import com.gmr.securent.entity.RentalAd;
-import com.gmr.securent.entity.RentalContract;
-import com.gmr.securent.entity.enums.Heating;
 
 public interface LandlordInterface {
     List<Landlord> getAllLandlords();
@@ -20,10 +15,6 @@ public interface LandlordInterface {
     House saveOneHouseForLandlord(Integer userId, House newHouse);
     House updateOneHouseForLandlord(Integer userId, Integer houseId, House newHouse);
     void deleteOneHouseForLandlord(Integer userId, Integer houseId);
-    List<RentalAd> getAllRentalAdsForLandlord(Integer userId);
-    RentalAd createOneRentalAd(Integer userId, Integer houseId, Double rentPrice, String description);
-    RentalAd updateOneRentalAd(Integer userId, Integer rentalAdId, RentalAd newRentalAd);
-    void deleteOneRentalAd(Integer userId, Integer rentalAdId);
     List<RentRequest> getAllRentingRequestsForLandlord(Integer userId);
     void confirmRentingRequest(Integer userId, Integer serviceId);
     void rejectRentingRequest(Integer userId, Integer serviceId);

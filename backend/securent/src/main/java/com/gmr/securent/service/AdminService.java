@@ -1,13 +1,12 @@
 package com.gmr.securent.service;
 
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.dao.EmptyResultDataAccessException;
-
 import com.gmr.securent.entity.Admin;
 import com.gmr.securent.repository.AdminRepository;
 import com.gmr.securent.service.interfaces.AdminInterface;
+import org.springframework.dao.EmptyResultDataAccessException;
+
+import java.util.List;
+import java.util.Optional;
 
 public class AdminService implements AdminInterface {
     AdminRepository adminRepository;
