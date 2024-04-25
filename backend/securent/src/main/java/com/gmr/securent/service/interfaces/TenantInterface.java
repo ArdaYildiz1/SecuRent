@@ -1,13 +1,10 @@
 package com.gmr.securent.service.interfaces;
 
-import com.gmr.securent.entity.House;
 import com.gmr.securent.entity.RealEstateAgentOperations;
 import com.gmr.securent.entity.RentRequest;
 import com.gmr.securent.entity.Tenant;
-import com.gmr.securent.entity.enums.Heating;
 import com.gmr.securent.entity.enums.ServiceType;
 
-import java.time.LocalDate;
 import java.util.List;
 
 

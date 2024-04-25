@@ -2,11 +2,17 @@ import Button from 'react-bootstrap/esm/Button';
 import React from 'react';
 import pp from './defaultPP.jpg';
 import TopNavBar from './TopNavBar';
+import TenantNavBar from './TenantNavBar';
+import { useNavigate } from 'react-router-dom';
 
 function SelectAgent() {
     const dynamicData = ['Ahmet Kalem', 'Fatih Kor', 'Ali Tarık', 'Ahmet Kalem', 'Fatih Kor', 'Ali Tarık', 'Ahmet Kalem', 'Fatih Kor', 'Ali Tarık', 'Mehmet Ersoy', 'Fatih Kor', 'Ali Tarık', 'Mehmet Ersoy', 'Fatih Kor', 'Ali Tarık', 'Mehmet Ersoy'];
     const numbersArray = [4.2, 2.2, 3, 4, 5, 5, 4, 3, 4, 3, 2, 3, 4, 4, 3, 5];
+    function handleSeeProfile() {
+        navigate("/seeRealEstateAgentProfile");
+    }
 
+    let navigate = useNavigate();
     const DynamicList = ({ data, numbers }) => {
         return (
             <>
@@ -24,7 +30,10 @@ function SelectAgent() {
                                     <span> {item}</span>
                                 </div>
 
-                                <Button style={{ backgroundColor: '#2D9596', borderColor: '#2D9596' }}>Select Agent</Button>
+                                <div>
+                                    <Button style={{ backgroundColor: '#2D9596', borderColor: '#2D9596' }} onClick={handleSeeProfile}>See Profile</Button>
+                                    <Button style={{ backgroundColor: '#2D9596', borderColor: '#2D9596',marginLeft:10 }}>Select Agent</Button>
+                                </div>
 
                             </div>
                         ))}
@@ -36,7 +45,7 @@ function SelectAgent() {
 
     return (
         <>
-            <TopNavBar />
+            <TenantNavBar />
 
             <div style={{ width: '100%', height: '100vh', backgroundColor: '#9AD0C2', overflowY: 'auto' }}>
 

@@ -1,8 +1,11 @@
 import Button from 'react-bootstrap/esm/Button';
 import React, { useRef, useState } from 'react';
 import pp from './defaultPP.jpg';
-import { Form, FormControl } from 'react-bootstrap';
+import {  FormControl } from 'react-bootstrap';
 import TopNavBar from './TopNavBar';
+import Card from 'react-bootstrap/Card';
+import Form from 'react-bootstrap/Form';
+import TenantNavBar from './TenantNavBar';
 
 
 function TenantProfile() {
@@ -21,10 +24,10 @@ function TenantProfile() {
 
     return (
         <>
-            <TopNavBar />
-
+            <TenantNavBar />
+            
             <div style={{ width: '100%', height: '100vh', overflowY: 'auto', flexDirection: 'row', display: 'flex' }}>
-                <div style={{ width: '20%', backgroundColor: '#ECF4D6', height: '80vh', margin: '40px', alignItems: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                <Card style={{ width: '20%',  backgroundColor: '#f1f2ed', borderRadius: "1rem", height: '80vh', margin: '40px', alignItems: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                     <p style={{ fontSize: 24 }}>Ali Eren Taş</p>
                     <img src={selectedFile ? URL.createObjectURL(selectedFile) : pp} style={{ width: '100px', height: '100px', borderRadius: '50%' }} />
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -46,8 +49,9 @@ function TenantProfile() {
                         </p>
                     </div>
 
-                </div>
-                <div style={{ width: '70%', backgroundColor: '#ECF4D6', height: '80vh', margin: '40px', alignItems: 'center', display: 'flex', justifyContent: 'center' }}>
+                </Card>
+
+                <Card style={{ width: '70%', backgroundColor: '#f1f2ed', borderRadius: "1rem", height: '80vh', margin: '40px', alignItems: 'center', display: 'flex', justifyContent: 'center' }}>
                     <Form style={{ width: '70%', alignItems: 'center' }}>
                         <Form.Group controlId="formName">
                             <Form.Label>Name:</Form.Label>
@@ -65,6 +69,11 @@ function TenantProfile() {
                             <FormControl type="text" value="123456789" readOnly disabled />
                         </Form.Group>
                         <br />
+                        <Form.Group controlId="formPhoneNumber">
+                            <Form.Label>Phone Number:</Form.Label>
+                            <FormControl type="text" value="+90123456789" readOnly disabled />
+                        </Form.Group>
+                        <br />
 
                         <Form.Group controlId="formEmailAddress">
                             <Form.Label>E-mail Address:</Form.Label>
@@ -77,7 +86,7 @@ function TenantProfile() {
                             <FormControl type="password" placeholder="**********" readOnly disabled />
                         </Form.Group>
                     </Form>
-                </div>
+                </Card>
             </div>
         </>
 

@@ -79,7 +79,11 @@ public class HouseService implements HouseInterface {
             foundHouse.setFurnitureIsPresent(newHouse.isFurnitureIsPresent());
             foundHouse.setInsideASite(newHouse.isInsideASite());
             foundHouse.setSiteName(newHouse.getSiteName());
-            foundHouse.setCurrentAmount(newHouse.getCurrentAmount());
+            foundHouse.setRentPrice(newHouse.getRentPrice());
+            foundHouse.setAdTitle(newHouse.getAdTitle());
+            foundHouse.setLandlordName(newHouse.getLandlordName());
+            foundHouse.setLandlordPhoneNumber(newHouse.getLandlordPhoneNumber());
+            foundHouse.setAdDetails(newHouse.getAdDetails());
             houseRepository.save(foundHouse);
             return foundHouse;
         }

@@ -4,7 +4,6 @@ import com.gmr.securent.entity.House;
 import com.gmr.securent.entity.RealEstateAgentOperations;
 import com.gmr.securent.entity.RentRequest;
 import com.gmr.securent.entity.Tenant;
-import com.gmr.securent.entity.enums.Heating;
 import com.gmr.securent.exceptions.UserNotFoundException;
 import com.gmr.securent.responses.TenantResponse;
 import com.gmr.securent.service.TenantService;
@@ -12,11 +11,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @RestController
 @RequestMapping("/tenants")
+@CrossOrigin(origins = "http://localhost:3000")
 public class TenantController {
 
     private TenantService tenantService;
@@ -39,12 +38,12 @@ public class TenantController {
     }
 
     @GetMapping("/{tenantId}")
-    public TenantResponse getOneTenant(@PathVariable Integer tenantId) {
+    public Tenant getOneTenant(@PathVariable Integer tenantId) {
         Tenant tenant = tenantService.getOneTenantById(tenantId);
         if(tenant == null) {
             throw new UserNotFoundException();
         }
-        return new TenantResponse(tenant);
+        return tenant;
     }
 
     @PutMapping("/{userId}")
@@ -54,6 +53,14 @@ public class TenantController {
             return new ResponseEntity<>(HttpStatus.OK);
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 
+    }
+    @GetMapping("/{tenantId}/rented-house")
+    public ResponseEntity<House> getRentedHouse(@PathVariable Integer tenantId) {
+        House rentedHouse = tenantService.getRentedHouse(tenantId);
+        if (rentedHouse != null) {
+            return ResponseEntity.ok(rentedHouse);
+        }
+        return ResponseEntity.notFound().build();
     }
     @DeleteMapping("/{tenantId}")
     public void deleteOneUser(@PathVariable Integer tenantId) {
