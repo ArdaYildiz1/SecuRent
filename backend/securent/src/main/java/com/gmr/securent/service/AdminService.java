@@ -42,6 +42,7 @@ public class AdminService implements AdminInterface {
             foundAdmin.setEmailAddress(newAdmin.getEmailAddress());
             foundAdmin.setPhoneNo(newAdmin.getPhoneNo());
             foundAdmin.setTck(newAdmin.getTck());
+            adminRepository.save(foundAdmin);
             return foundAdmin;
         }
         else {

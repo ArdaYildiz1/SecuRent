@@ -34,8 +34,8 @@ public class LandlordController {
     }
     
     @GetMapping
-    public List<LandlordResponse> getAllLandlordEntities() {
-        return landlordService.getAllLandlords().stream().map(u -> new LandlordResponse(u)).toList();
+    public List<Landlord> getAllLandlordEntities() {
+        return landlordService.getAllLandlords();
     }
 
     @PostMapping
@@ -47,110 +47,111 @@ public class LandlordController {
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @GetMapping("/{landlordId}")
-    public LandlordResponse getOneLandlord(@PathVariable Integer landlordId) {
-        Landlord landlord = landlordService.getOneLandlordById(landlordId);
+    @GetMapping("/{landlordID}")
+    public Landlord getOneLandlord(@PathVariable Integer landlordID) {
+        Landlord landlord = landlordService.getOneLandlordById(landlordID);
         if (landlord == null) {
             throw new UserNotFoundException();
         }
-        return new LandlordResponse(landlord);
+        return landlord;
     }
 
-    @PutMapping("/{landlordId}")
-    public ResponseEntity<Void> updateOneLandlord(@PathVariable Integer landlordId, @RequestBody Landlord newLandlord) {
-        Landlord landlord = landlordService.updateOneLandlord(landlordId, newLandlord);
+    @PutMapping("/{landlordID}")
+    public ResponseEntity<Void> updateOneLandlord(@PathVariable Integer landlordID, @RequestBody Landlord newLandlord) {
+        Landlord landlord = landlordService.updateOneLandlord(landlordID, newLandlord);
         if (landlord != null) {
+            System.out.println("LANDLORD TEST:" + landlord.toString());
             return new ResponseEntity<>(HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @DeleteMapping("/{landlordId}")
-    public void deleteOneLandlord(@PathVariable Integer landlordId) {
-        landlordService.deleteById(landlordId);
+    @DeleteMapping("/{landlordID}")
+    public void deleteOneLandlord(@PathVariable Integer landlordID) {
+        landlordService.deleteById(landlordID);
     }
 
-    @GetMapping("/{landlordId}/houses")
-    public ResponseEntity<List<House>> getAllHousesForLandlord(@PathVariable Integer landlordId) {
-        List<House> houses = landlordService.getAllHousesForLandlord(landlordId);
+    @GetMapping("/{landlordID}/houses")
+    public ResponseEntity<List<House>> getAllHousesForLandlord(@PathVariable Integer landlordID) {
+        List<House> houses = landlordService.getAllHousesForLandlord(landlordID);
         return new ResponseEntity<>(houses, HttpStatus.OK);
     }
 
-    @PostMapping("/{landlordId}/houses")
-    public ResponseEntity<Void> saveOneHouseForLandlord(@PathVariable Integer landlordId, @RequestBody House newHouse) {
-        House house = landlordService.saveOneHouseForLandlord(landlordId, newHouse);
+    @PostMapping("/{landlordID}/houses")
+    public ResponseEntity<Void> saveOneHouseForLandlord(@PathVariable Integer landlordID, @RequestBody House newHouse) {
+        House house = landlordService.saveOneHouseForLandlord(landlordID, newHouse);
         if (house != null)
             return new ResponseEntity<>(HttpStatus.CREATED);
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @PutMapping("/{landlordId}/houses/{houseId}")
-    public ResponseEntity<Void> updateOneHouseForLandlord(@PathVariable Integer landlordId, @PathVariable Integer houseId,
+    @PutMapping("/{landlordID}/houses/{houseId}")
+    public ResponseEntity<Void> updateOneHouseForLandlord(@PathVariable Integer landlordID, @PathVariable Integer houseId,
                                                           @RequestBody House newHouse) {
-        House house = landlordService.updateOneHouseForLandlord(landlordId, houseId, newHouse);
+        House house = landlordService.updateOneHouseForLandlord(landlordID, houseId, newHouse);
         if (house == null) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @DeleteMapping("/{landlordId}/houses/{houseId}")
-    public void deleteOneHouseForLandlord(@PathVariable Integer landlordId, @PathVariable Integer houseId) {
-        landlordService.deleteOneHouseForLandlord(landlordId, houseId);
+    @DeleteMapping("/{landlordID}/houses/{houseId}")
+    public void deleteOneHouseForLandlord(@PathVariable Integer landlordID, @PathVariable Integer houseId) {
+        landlordService.deleteOneHouseForLandlord(landlordID, houseId);
     }
 
-    @GetMapping("/{landlordId}/rental-ads")
-    public ResponseEntity<List<RentalAd>> getAllRentalAdsForLandlord(@PathVariable Integer landlordId) {
-        List<RentalAd> rentalAds = landlordService.getAllRentalAdsForLandlord(landlordId);
-        return new ResponseEntity<>(rentalAds, HttpStatus.OK);
-    }
+//    @GetMapping("/{landlordID}/rental-ads")
+//    public ResponseEntity<List<RentalAd>> getAllRentalAdsForLandlord(@PathVariable Integer landlordID) {
+//        List<RentalAd> rentalAds = landlordService.getAllRentalAdsForLandlord(landlordID);
+//        return new ResponseEntity<>(rentalAds, HttpStatus.OK);
+//    }
+//
+//    @PostMapping("/{landlordID}/rental-ads")
+//    public ResponseEntity<Void> createOneRentalAdForLandlord(@PathVariable Integer landlordID, @RequestBody RentalAd newRentalAd) {
+//        RentalAd rentalAd = landlordService.createOneRentalAd(landlordID,
+//                                                                newRentalAd.getHouseID(),
+//                                                                newRentalAd.getRentPrice(),
+//                                                                newRentalAd.getDescription());
+//        if (rentalAd != null)
+//            return new ResponseEntity<>(HttpStatus.CREATED);
+//        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+//    }
+//
+//    @PutMapping("/{landlordID}/rental-ads/{rentalAdId}")
+//    public ResponseEntity<Void> updateOneHouseForLandlord(@PathVariable Integer landlordID, @PathVariable Integer rentalAdId,
+//                                                          @RequestBody RentalAd newRentalAd) {
+//        RentalAd rentalAd = landlordService.updateOneRentalAd(landlordID, rentalAdId, newRentalAd);
+//        if (rentalAd == null) {
+//            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//        return new ResponseEntity<>(HttpStatus.OK);
+//    }
+//
+//    @DeleteMapping("/{landlordID}/rental-ads/{rentalAdId}")
+//    public void deleteOneRentalAdForLandlord(@PathVariable Integer landlordID, @PathVariable Integer rentalAdId) {
+//        landlordService.deleteOneRentalAd(landlordID, rentalAdId);
+//    }
 
-    @PostMapping("/{landlordId}/rental-ads")
-    public ResponseEntity<Void> createOneRentalAdForLandlord(@PathVariable Integer landlordId, @RequestBody RentalAd newRentalAd) {
-        RentalAd rentalAd = landlordService.createOneRentalAd(landlordId,
-                                                                newRentalAd.getHouseID(),
-                                                                newRentalAd.getRentPrice(),
-                                                                newRentalAd.getDescription());
-        if (rentalAd != null)
-            return new ResponseEntity<>(HttpStatus.CREATED);
-        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-
-    @PutMapping("/{landlordId}/rental-ads/{rentalAdId}")
-    public ResponseEntity<Void> updateOneHouseForLandlord(@PathVariable Integer landlordId, @PathVariable Integer rentalAdId,
-                                                          @RequestBody RentalAd newRentalAd) {
-        RentalAd rentalAd = landlordService.updateOneRentalAd(landlordId, rentalAdId, newRentalAd);
-        if (rentalAd == null) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    @DeleteMapping("/{landlordId}/rental-ads/{rentalAdId}")
-    public void deleteOneRentalAdForLandlord(@PathVariable Integer landlordId, @PathVariable Integer rentalAdId) {
-        landlordService.deleteOneRentalAd(landlordId, rentalAdId);
-    }
-
-    @GetMapping("/{landlordId}/renting-requests")
-    public ResponseEntity<List<RentRequest>> getAllRentingRequestsForLandlord(@PathVariable Integer landlordId) {
-        List<RentRequest> rentingRequests = landlordService.getAllRentingRequestsForLandlord(landlordId);
+    @GetMapping("/{landlordID}/renting-requests")
+    public ResponseEntity<List<RentRequest>> getAllRentingRequestsForLandlord(@PathVariable Integer landlordID) {
+        List<RentRequest> rentingRequests = landlordService.getAllRentingRequestsForLandlord(landlordID);
         return new ResponseEntity<>(rentingRequests, HttpStatus.OK);
     }
 
-    @PutMapping("/{landlordId}/renting-requests/{serviceId}/confirm")
-    public void confirmRentingRequest(@PathVariable Integer landlordId, @PathVariable Integer serviceId) {
-        landlordService.confirmRentingRequest(landlordId, serviceId);
+    @PutMapping("/{landlordID}/renting-requests/{serviceId}/confirm")
+    public void confirmRentingRequest(@PathVariable Integer landlordID, @PathVariable Integer serviceId) {
+        landlordService.confirmRentingRequest(landlordID, serviceId);
     }
 
-    @PutMapping("/{landlordId}/renting-requests/{serviceId}/reject")
-    public void rejectRentalService(@PathVariable Integer landlordId, @PathVariable Integer serviceId) {
-        landlordService.rejectRentingRequest(landlordId, serviceId);
+    @PutMapping("/{landlordID}/renting-requests/{serviceId}/reject")
+    public void rejectRentalService(@PathVariable Integer landlordID, @PathVariable Integer serviceId) {
+        landlordService.rejectRentingRequest(landlordID, serviceId);
     }
 
-    @PostMapping("/{landlordId}/contracts")
-    public ResponseEntity<Void> createOneRentalAdForLandlord(@PathVariable Integer landlordId,
+    @PostMapping("/{landlordID}/contracts")
+    public ResponseEntity<Void> createOneContractForLandlord(@PathVariable Integer landlordID,
                                                              @RequestBody RentalContract newRentalContract) {
-        RentalContract rentalContract = landlordService.uploadContract(landlordId,
+        RentalContract rentalContract = landlordService.uploadContract(landlordID,
                                                                         newRentalContract.getLandlordTCK(),
                                                                         newRentalContract.getTenantTCK(),
                                                                         newRentalContract.getRentAmount(),
@@ -161,13 +162,13 @@ public class LandlordController {
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @PutMapping("/{landlordId}/contracts/{contractId}")
-    public void acceptExtension(@PathVariable Integer landlordId, @PathVariable Integer contractId,
+    @PutMapping("/{landlordID}/contracts/{contractId}")
+    public void acceptExtension(@PathVariable Integer landlordID, @PathVariable Integer contractId,
                                 @RequestParam Boolean renewContract, @RequestParam Double amount) {
-        landlordService.acceptExtension(landlordId, contractId, renewContract, amount);
+        landlordService.acceptExtension(landlordID, contractId, renewContract, amount);
     }
 
-    @PostMapping("/{landlordId}/rate-real-estate-agent/{agentId}")
+    @PostMapping("/{landlordID}/rate-real-estate-agent/{agentId}")
     public ResponseEntity<Void> rateRealEstateAgent(@PathVariable Integer agentId,
                                                     @RequestParam Double rating) {
         landlordService.rateRealEstateAgent(agentId, rating);

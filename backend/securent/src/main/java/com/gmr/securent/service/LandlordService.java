@@ -20,7 +20,9 @@ import com.gmr.securent.repository.RentRequestRepository;
 import com.gmr.securent.repository.RentalAdRepository;
 import com.gmr.securent.repository.RentalContractRepository;
 import com.gmr.securent.service.interfaces.LandlordInterface;
+import org.springframework.stereotype.Service;
 
+@Service
 public class LandlordService implements LandlordInterface {
     LandlordRepository landlordRepository;
     HouseRepository houseRepository;
@@ -60,6 +62,7 @@ public class LandlordService implements LandlordInterface {
 
     @Override
     public Landlord updateOneLandlord(Integer userId, Landlord newLandlord) {
+        System.out.println("LANDLORD INSIDE SERVICE TEST:" + newLandlord.toString());
         Optional<Landlord> landlord = landlordRepository.findById(userId);
         if (landlord.isPresent()) {
             Landlord foundLandlord  = landlord.get();
@@ -69,10 +72,11 @@ public class LandlordService implements LandlordInterface {
             foundLandlord.setEmailAddress(newLandlord.getEmailAddress());
             foundLandlord.setPhoneNo(newLandlord.getPhoneNo());
             foundLandlord.setTck(newLandlord.getTck());
+            landlordRepository.save(foundLandlord);
             return foundLandlord;
         }
         else {
-            throw new RuntimeException("Tenant not found with ID: " + userId);
+            throw new RuntimeException("Landlord not found with ID: " + userId);
         }
     }
 
@@ -87,7 +91,7 @@ public class LandlordService implements LandlordInterface {
 
     @Override
     public List<House> getAllHousesForLandlord(Integer userId) {
-        return houseRepository.findAllByLandlordID(userId);
+        return houseRepository.findAllBylandlordID(userId);
     }
 
     @Override
@@ -98,7 +102,7 @@ public class LandlordService implements LandlordInterface {
                                 .orElseThrow(() -> new RuntimeException("Landlord not found with ID: " + userId));
 
         // Set the landlord ID to the house
-        newHouse.setLandlordId(userId);
+        newHouse.setLandlordID(userId);
 
         // Save the House object
         return houseRepository.save(newHouse);
@@ -109,7 +113,8 @@ public class LandlordService implements LandlordInterface {
         Optional<House> house = houseRepository.findById(houseId);
         if (house.isPresent()) {
             House foundHouse = house.get();
-            if (foundHouse.getLandlordId() == userId) {
+            if (foundHouse.getLandlordID() == userId) {
+                foundHouse.setTenantId(newHouse.getTenantId());
                 foundHouse.setAddress(newHouse.getAddress());
                 foundHouse.setAdDate(newHouse.getAdDate());
                 foundHouse.setAreaGross(newHouse.getAreaGross());
@@ -125,6 +130,7 @@ public class LandlordService implements LandlordInterface {
                 foundHouse.setInsideASite(newHouse.isInsideASite());
                 foundHouse.setSiteName(newHouse.getSiteName());
                 foundHouse.setCurrentAmount(newHouse.getCurrentAmount());
+                houseRepository.save(foundHouse);
                 return foundHouse;
             }
             else {
@@ -141,7 +147,7 @@ public class LandlordService implements LandlordInterface {
         Optional<House> house = houseRepository.findById(houseId);
         if (house.isPresent()) {
             House foundHouse = house.get();
-            if (foundHouse.getLandlordId() == userId) {
+            if (foundHouse.getLandlordID() == userId) {
                 houseRepository.deleteById(houseId);
             }
             else {
@@ -191,10 +197,11 @@ public class LandlordService implements LandlordInterface {
             Integer houseId = foundRentalAd.getHouseID();
             Optional<House> house = houseRepository.findById(houseId);
             House foundHouse = house.get();
-            if (foundHouse.getLandlordId() == userId) {
+            if (foundHouse.getLandlordID() == userId) {
                 foundRentalAd.setHouseID(newRentalAd.getHouseID());
                 foundRentalAd.setRentPrice(newRentalAd.getRentPrice());
                 foundRentalAd.setDescription(newRentalAd.getDescription());
+                rentalAdRepository.save(foundRentalAd);
                 return foundRentalAd;
             }
             else {
@@ -214,7 +221,7 @@ public class LandlordService implements LandlordInterface {
             Integer houseId = foundRentalAd.getHouseID();
             Optional<House> house = houseRepository.findById(houseId);
             House foundHouse = house.get();
-            if (foundHouse.getLandlordId() == userId) {
+            if (foundHouse.getLandlordID() == userId) {
                 rentalAdRepository.deleteById(rentalAdId);
             }
             else {
@@ -228,7 +235,7 @@ public class LandlordService implements LandlordInterface {
 
     @Override
     public List<RentRequest> getAllRentingRequestsForLandlord(Integer userId) {
-        return rentRequestRepository.findAllByLandlordID(userId);
+        return rentRequestRepository.findAllBylandlordID(userId);
     }
 
     @Override
@@ -308,6 +315,7 @@ public class LandlordService implements LandlordInterface {
                 LocalDate newEndDate = rentalContract.getEndDate().plusYears(5);
                 rentalContract.setEndDate(newEndDate);
                 rentalContract.setRentAmount(newRentAmount);
+                rentalContractRepository.save(rentalContract);
             }
             else {
                 // Just added for testing purposes
@@ -326,8 +334,8 @@ public class LandlordService implements LandlordInterface {
                 .orElseThrow(() -> new RuntimeException("Real Estate Agent not found with ID: " + agentId));
 
         // Update the rating
-        agent.setRating(agent.getRatingCount() * agent.getRating() + point);
-
+        agent.setRating((agent.getRatingCount() * agent.getRating() + point) / (agent.getRatingCount() + 1));
+        agent.setRatingCount(agent.getRatingCount() + 1);
         // Save the updated real estate agent
         realEstateAgentRepository.save(agent);
     }

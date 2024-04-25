@@ -20,7 +20,7 @@ public class House {
     private Integer houseId;
 
     @Column(name = "landlord_id")
-    private Integer landlordId;
+    private Integer landlordID;
 
     @Column(name = "tenant_id")
     private Integer tenantId;

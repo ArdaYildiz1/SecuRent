@@ -80,6 +80,7 @@ public class HouseService implements HouseInterface {
             foundHouse.setInsideASite(newHouse.isInsideASite());
             foundHouse.setSiteName(newHouse.getSiteName());
             foundHouse.setCurrentAmount(newHouse.getCurrentAmount());
+            houseRepository.save(foundHouse);
             return foundHouse;
         }
         else {
