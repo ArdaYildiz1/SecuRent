@@ -37,7 +37,7 @@ public class RealEstateAgent {
     private String areaOfOperations;
 
     @Column(name = "rating")
-    private Double rating;
+    private Double rating = 0.0;
 
     @Column(name = "rating_count")
     private int ratingCount = 0;

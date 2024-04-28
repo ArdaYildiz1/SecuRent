@@ -20,6 +20,9 @@ public class RentRequest {
     @Enumerated(EnumType.STRING)
     private ServiceType serviceType = ServiceType.RENT_REQUEST;
 
+    @Column(name = "service_accepted")
+    private boolean serviceAccepted;
+
     @Column(name = "house_ID")
     private Integer houseID;
 
