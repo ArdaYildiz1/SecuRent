@@ -1,5 +1,6 @@
 package com.gmr.securent.entity;
 
+import com.gmr.securent.entity.enums.Role;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -25,6 +26,10 @@ public class User {
 
     @Column(name = "phone_no")
     private String phoneNo;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role")
+    private Role role;
 
     @Column(name = "tck")
     private long tck;

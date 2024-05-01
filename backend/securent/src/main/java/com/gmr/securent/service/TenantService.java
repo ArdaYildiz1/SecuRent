@@ -55,6 +55,10 @@ public class TenantService implements TenantInterface {
         return tenantRepository.findById(userId).orElse(null);
     }
     @Override
+    public Tenant getOneTenantByEmailAndPassword(String email, String password) {
+        return tenantRepository.findByEmailAddressAndPassword(email, password);
+    }
+    @Override
     public Tenant updateOneTenant(Integer userId, Tenant newTenant) {
         Optional<Tenant> tenant = tenantRepository.findById(userId);
         if(tenant.isPresent()) {
