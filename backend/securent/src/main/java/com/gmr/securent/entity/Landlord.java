@@ -7,29 +7,6 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "landlord")
-public class Landlord {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer entityID;
-
-    @Column(name = "first_name")
-    private String firstName;
-
-    @Column(name = "last_name")
-    private String lastName;
-
-    @Column(name = "password")
-    private String password;
-
-    @Column(name = "email_address")
-    private String emailAddress;
-
-    @Column(name = "phone_no")
-    private String phoneNo;
-
-    @Column(name = "tck")
-    private int tck;
+public class Landlord extends User {
 }

@@ -14,6 +14,6 @@ public class HousePhotos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Integer landlordID;
+    private Integer houseID;
     private String filePath;
 }

@@ -5,7 +5,6 @@ import com.gmr.securent.entity.RealEstateAgentOperations;
 import com.gmr.securent.entity.RentRequest;
 import com.gmr.securent.entity.Tenant;
 import com.gmr.securent.exceptions.UserNotFoundException;
-import com.gmr.securent.responses.TenantResponse;
 import com.gmr.securent.service.TenantService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,8 +24,8 @@ public class TenantController {
     }
 
     @GetMapping
-    public List<TenantResponse> getAllTenantEntities(){
-        return tenantService.getAllTenants().stream().map(u -> new TenantResponse(u)).toList();
+    public List<Tenant> getAllTenantEntities(){
+        return tenantService.getAllTenants();
     }
 
     @PostMapping

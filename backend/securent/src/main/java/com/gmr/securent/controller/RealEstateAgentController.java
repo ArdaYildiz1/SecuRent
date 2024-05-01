@@ -3,7 +3,6 @@ package com.gmr.securent.controller;
 import com.gmr.securent.entity.RealEstateAgent;
 import com.gmr.securent.entity.RealEstateAgentOperations;
 import com.gmr.securent.exceptions.UserNotFoundException;
-import com.gmr.securent.responses.RealEstateAgentResponse;
 import com.gmr.securent.service.RealEstateAgentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,8 +22,8 @@ public class RealEstateAgentController {
     }
 
     @GetMapping
-    public List<RealEstateAgentResponse> getAllRealEstateAgentEntities(){
-        return realEstateAgentService.getAllRealEstateAgents().stream().map(u -> new RealEstateAgentResponse(u)).toList();
+    public List<RealEstateAgent> getAllRealEstateAgentEntities(){
+        return realEstateAgentService.getAllRealEstateAgents();
     }
 
     @PostMapping
@@ -36,12 +35,12 @@ public class RealEstateAgentController {
     }
 
     @GetMapping("/{realEstateAgentId}")
-    public RealEstateAgentResponse getOneRealEstateAgent(@PathVariable Integer realEstateAgentId) {
+    public RealEstateAgent getOneRealEstateAgent(@PathVariable Integer realEstateAgentId) {
         RealEstateAgent realEstateAgent = realEstateAgentService.getOneRealEstateAgentById(realEstateAgentId);
         if(realEstateAgent == null) {
             throw new UserNotFoundException();
         }
-        return new RealEstateAgentResponse(realEstateAgent);
+        return realEstateAgent;
     }
 
     @PutMapping("/{userId}")

@@ -10,7 +10,7 @@ export default function Login() {
     let navigate = useNavigate();
 
     function handleClickLogin() {
-        navigate("/home");
+        navigate("/rentedHouse");
     }
 
     function handleForgotPassword() {
