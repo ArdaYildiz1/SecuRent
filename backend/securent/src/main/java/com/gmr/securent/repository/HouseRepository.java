@@ -8,4 +8,5 @@ import java.util.List;
 public interface HouseRepository extends JpaRepository<House, Integer> {
     List<House> findAllByTenantId(Integer tenantId);
 
+    List<House> findAllBylandlordID(Integer landlordID);
 }

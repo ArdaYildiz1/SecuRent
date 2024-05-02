@@ -12,11 +12,12 @@ public interface TenantInterface {
     List<Tenant> getAllTenants();
     Tenant saveOneTenant(Tenant newTenant);
     Tenant getOneTenantById(Integer userId);
+    Tenant getOneTenantByEmailAndPassword(String emailAddress, String password);
     Tenant updateOneTenant(Integer userId, Tenant newTenant);
     void deleteById(Integer userId);
     void payDeposit(Integer userId, Double amount);
     List<RentRequest> getAllRentingRequestsForTenant(Integer tenantId);
-    void sendRentingRequestToLandlord(Integer tenantId, Integer landlordId, Integer houseId);
+    void sendRentingRequestToLandlord(Integer tenantId, Integer landlordID, Integer houseId);
     void cancelRentingRequestToLandlord(Integer serviceID);
     List<RealEstateAgentOperations> getAllRealEstateAgentOperationsForTenant(Integer tenantId);
     void sendRealEstateAgentOperationRequest(Integer tenantId,

@@ -65,6 +65,7 @@ public class HouseService implements HouseInterface {
         Optional<House> house = houseRepository.findById(houseId);
         if (house.isPresent()) {
             House foundHouse = house.get();
+            foundHouse.setTenantId(newHouse.getTenantId());
             foundHouse.setAddress(newHouse.getAddress());
             foundHouse.setAdDate(newHouse.getAdDate());
             foundHouse.setAreaGross(newHouse.getAreaGross());
@@ -84,6 +85,7 @@ public class HouseService implements HouseInterface {
             foundHouse.setLandlordName(newHouse.getLandlordName());
             foundHouse.setLandlordPhoneNumber(newHouse.getLandlordPhoneNumber());
             foundHouse.setAdDetails(newHouse.getAdDetails());
+            houseRepository.save(foundHouse);
             return foundHouse;
         }
         else {

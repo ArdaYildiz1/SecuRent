@@ -55,6 +55,10 @@ public class TenantService implements TenantInterface {
         return tenantRepository.findById(userId).orElse(null);
     }
     @Override
+    public Tenant getOneTenantByEmailAndPassword(String email, String password) {
+        return tenantRepository.findByEmailAddressAndPassword(email, password);
+    }
+    @Override
     public Tenant updateOneTenant(Integer userId, Tenant newTenant) {
         Optional<Tenant> tenant = tenantRepository.findById(userId);
         if(tenant.isPresent()) {
@@ -66,6 +70,7 @@ public class TenantService implements TenantInterface {
             foundTenant.setEmailAddress(newTenant.getEmailAddress());
             foundTenant.setTck(newTenant.getTck());
             foundTenant.setDepositPaymentStatus(newTenant.isDepositPaymentStatus());
+            tenantRepository.save(foundTenant);
             return foundTenant;
         }
         else {
@@ -97,7 +102,7 @@ public class TenantService implements TenantInterface {
         return rentRequestRepository.findAllByTenantID(tenantId);
     }
     @Override
-    public void sendRentingRequestToLandlord(Integer tenantId, Integer landlordId, Integer houseId) {
+    public void sendRentingRequestToLandlord(Integer tenantId, Integer landlordID, Integer houseId) {
         // Find the tenant
         Tenant tenant = tenantRepository
                 .findById(tenantId)
@@ -106,7 +111,7 @@ public class TenantService implements TenantInterface {
         // Create a new RentRequest object
         RentRequest rentRequest = new RentRequest();
         rentRequest.setTenantID(tenantId);
-        rentRequest.setLandlordID(landlordId);
+        rentRequest.setLandlordID(landlordID);
         rentRequest.setHouseID(houseId);
 
         // Save the RentRequest object
@@ -152,15 +157,10 @@ public class TenantService implements TenantInterface {
                 .orElseThrow(() -> new RuntimeException("Real Estate Agent not found with ID: " + agentId));
 
         // Update the rating
-        agent.setRating(agent.getRatingCount() * agent.getRating() + newRating);
+        agent.setRating((agent.getRatingCount() * agent.getRating() + newRating) / (agent.getRatingCount() + 1));
+        agent.setRatingCount(agent.getRatingCount() + 1);
 
         // Save the updated real estate agent
         realEstateAgentRepository.save(agent);
     }
-
-    // TODO: Implement searchHouseForTenant
-    // Impelement filterHouses when implementing the House entity
-//    public List<House> searchHouseForTenant(String city, Integer numberOfRooms, Integer flatNumber) {
-//        return houseService.filterHouses(city, numberOfRooms, flatNumber);
-//    }
 }
