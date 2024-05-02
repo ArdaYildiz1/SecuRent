@@ -53,6 +53,7 @@ public class TenantController {
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 
     }
+
     @GetMapping("/{tenantId}/rented-house")
     public ResponseEntity<House> getRentedHouse(@PathVariable Integer tenantId) {
         House rentedHouse = tenantService.getRentedHouse(tenantId);
@@ -61,35 +62,45 @@ public class TenantController {
         }
         return ResponseEntity.notFound().build();
     }
+
     @DeleteMapping("/{tenantId}")
     public void deleteOneUser(@PathVariable Integer tenantId) {
         tenantService.deleteById(tenantId);
     }
     @PostMapping("/{tenantId}/pay-deposit")
-    public ResponseEntity<Void> payDeposit(@PathVariable Integer tenantId, @RequestParam Double amount) {
-        tenantService.payDeposit(tenantId, amount);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<?> payDeposit(@PathVariable Integer tenantId, @RequestBody Double request) {
+        try {
+            tenantService.payDeposit(tenantId, request);
+            return ResponseEntity.ok("Deposit payment successful");
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tenant not found with ID: " + tenantId);
+        }
     }
+
     @GetMapping("/{tenantId}/renting-requests")
     public ResponseEntity<List<RentRequest>> getAllRentingRequestsForTenant(@PathVariable Integer tenantId) {
         List<RentRequest> rentingRequests = tenantService.getAllRentingRequestsForTenant(tenantId);
         return new ResponseEntity<>(rentingRequests, HttpStatus.OK);
     }
+
     @PostMapping("/{tenantId}/send-renting-request")
     public ResponseEntity<Void> sendRentingRequestToLandlord(@PathVariable Integer tenantId, @RequestBody RentRequest rentRequest) {
         tenantService.sendRentingRequestToLandlord(tenantId, rentRequest.getLandlordID(), rentRequest.getHouseID());
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
     @DeleteMapping("/{tenantId}/cancel-renting-request/{rentRequestId}")
     public ResponseEntity<Void> cancelRentingRequestToLandlord(@PathVariable Integer rentRequestId) {
         tenantService.cancelRentingRequestToLandlord(rentRequestId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
     @GetMapping("/{tenantId}/real-estate-agent-operations")
     public ResponseEntity<List<RealEstateAgentOperations>> getAllRealEstateAgentOperationsForTenant(@PathVariable Integer tenantId) {
         List<RealEstateAgentOperations> rentalServices = tenantService.getAllRealEstateAgentOperationsForTenant(tenantId);
         return new ResponseEntity<>(rentalServices, HttpStatus.OK);
     }
+
     @PostMapping("/{tenantId}/send-real-estate-agent-operation-request")
     public ResponseEntity<Void> sendRealEstateAgentOperationsRequest(@PathVariable Integer tenantId,
                                                                      @RequestBody RealEstateAgentOperations rentalService) {
@@ -99,24 +110,19 @@ public class TenantController {
                 rentalService.getServiceType());
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
     @DeleteMapping("/{tenantId}/cancel-real-estate-agent-operation-request/{serviceId}")
     public ResponseEntity<Void> cancelRentalServiceRequest(@PathVariable Integer serviceId) {
         tenantService.cancelRealEstateAgentOperationRequest(serviceId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
     @PostMapping("/{tenantId}/rate-real-estate-agent/{agentId}")
     public ResponseEntity<Void> rateRealEstateAgent(@PathVariable Integer agentId,
                                                     @RequestParam Double rating) {
         tenantService.rateRealEstateAgent(agentId, rating);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-//    @GetMapping("/houses")
-//    public List<House> getHouses(
-//            @RequestParam(required = false) String city,
-//            @RequestParam(required = false) Integer numberOfRooms,
-//            @RequestParam(required = false) Integer flatNumber) {
-//        return tenantService.searchHouseForTenant(city, numberOfRooms, flatNumber);
-//    }
     @ExceptionHandler(UserNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     private void handleUserNotFound() {}

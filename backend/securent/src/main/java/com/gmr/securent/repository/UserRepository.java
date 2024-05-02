@@ -1,4 +1,4 @@
-package com.gmr.securent.repository.security;
+package com.gmr.securent.repository;
 
 import com.gmr.securent.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
