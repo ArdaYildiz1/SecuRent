@@ -46,10 +46,12 @@ public class TenantService implements TenantInterface {
         }
         return null; // No rented house found for the tenant
     }
+
     @Override
     public Tenant saveOneTenant(Tenant newTenant) {
         return tenantRepository.save(newTenant);
     }
+
     @Override
     public Tenant getOneTenantById(Integer userId) {
         return tenantRepository.findById(userId).orElse(null);
@@ -58,6 +60,7 @@ public class TenantService implements TenantInterface {
     public Tenant getOneTenantByEmailAndPassword(String email, String password) {
         return tenantRepository.findByEmailAddressAndPassword(email, password);
     }
+
     @Override
     public Tenant updateOneTenant(Integer userId, Tenant newTenant) {
         Optional<Tenant> tenant = tenantRepository.findById(userId);
@@ -77,6 +80,7 @@ public class TenantService implements TenantInterface {
             throw new RuntimeException("Tenant not found with ID: " + userId);
         }
     }
+
     @Override
     public void deleteById(Integer userId) {
         try {
@@ -85,6 +89,7 @@ public class TenantService implements TenantInterface {
             System.out.println("Tenant "+ userId +" doesn't exist");
         }
     }
+
     @Override
     public void payDeposit(Integer userId, Double amount) {
         Optional<Tenant> tenantOptional = tenantRepository.findById(userId);
@@ -97,10 +102,12 @@ public class TenantService implements TenantInterface {
             throw new RuntimeException("Tenant not found with ID: " + userId);
         }
     }
+
     @Override
     public List<RentRequest> getAllRentingRequestsForTenant(Integer tenantId) {
         return rentRequestRepository.findAllByTenantID(tenantId);
     }
+
     @Override
     public void sendRentingRequestToLandlord(Integer tenantId, Integer landlordID, Integer houseId) {
         // Find the tenant
@@ -117,14 +124,17 @@ public class TenantService implements TenantInterface {
         // Save the RentRequest object
         rentRequestRepository.save(rentRequest);
     }
+
     @Override
     public void cancelRentingRequestToLandlord(Integer rentRequestId) {
         rentRequestRepository.deleteById(rentRequestId);
     }
+
     @Override
     public List<RealEstateAgentOperations> getAllRealEstateAgentOperationsForTenant(Integer tenantId) {
         return realEstateAgentOperationsRepository.findAllByTenantID(tenantId);
     }
+
     @Override
     public void sendRealEstateAgentOperationRequest(Integer tenantId,
                                                           Integer realEstateAgentId,
@@ -145,10 +155,12 @@ public class TenantService implements TenantInterface {
         // Save the RealEstateAgentOperations object
         realEstateAgentOperationsRepository.save(realEstateAgentOperations);
     }
+
     @Override
     public void cancelRealEstateAgentOperationRequest(Integer serviceId) {
         realEstateAgentOperationsRepository.deleteById(serviceId);
     }
+
     @Override
     public void rateRealEstateAgent(Integer agentId, Double newRating) {
 
