@@ -15,24 +15,11 @@ export default function Signup() {
         password: '',
         emailAddress: '',
         phoneNo: 1,
-        role: '', // Change this to the desired role
-        tck: 1 // Change this to the desired TCK value
+        role: '', 
+        tck: 1 
     });
 
-    // Make a POST request to the "/signup" endpoint
-
-
-
-
-    // const [formData, setFormData] = useState({
-    //     first_name: '',
-    //     last_name: '',
-    //     password: '',
-    //     email_address: '',
-    //     phone_no: '',
-    //     userType: '',
-    //     tck: ''
-    // });
+    
 
     function handleChange(event) {
         const { name, value } = event.target;
