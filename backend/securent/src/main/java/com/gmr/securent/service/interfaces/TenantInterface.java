@@ -21,6 +21,7 @@ public interface TenantInterface {
     void cancelRentingRequestToLandlord(Integer serviceID);
     List<RealEstateAgentOperations> getAllRealEstateAgentOperationsForTenant(Integer tenantId);
     void sendRealEstateAgentOperationRequest(Integer tenantId,
+                                             Integer landlordId,
                                              Integer realEstateAgentId,
                                              Integer houseId,
                                              ServiceType serviceType);

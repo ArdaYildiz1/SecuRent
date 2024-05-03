@@ -105,6 +105,7 @@ public class TenantController {
     public ResponseEntity<Void> sendRealEstateAgentOperationsRequest(@PathVariable Integer tenantId,
                                                                      @RequestBody RealEstateAgentOperations rentalService) {
         tenantService.sendRealEstateAgentOperationRequest(tenantId,
+                rentalService.getLandlordID(),
                 rentalService.getRealEstateAgentID(),
                 rentalService.getHouseID(),
                 rentalService.getServiceType());

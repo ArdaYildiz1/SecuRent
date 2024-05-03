@@ -138,6 +138,7 @@ public class TenantService implements TenantInterface {
 
     @Override
     public void sendRealEstateAgentOperationRequest(Integer tenantId,
+                                                          Integer landlordId,
                                                           Integer realEstateAgentId,
                                                           Integer houseId,
                                                           ServiceType serviceType) {
@@ -150,6 +151,7 @@ public class TenantService implements TenantInterface {
         RealEstateAgentOperations realEstateAgentOperations = new RealEstateAgentOperations();
         realEstateAgentOperations.setServiceType(serviceType);
         realEstateAgentOperations.setTenantID(tenantId);
+        realEstateAgentOperations.setLandlordID(landlordId);
         realEstateAgentOperations.setRealEstateAgentID(realEstateAgentId);
         realEstateAgentOperations.setHouseID(houseId);
 
