@@ -1,14 +1,20 @@
 package com.gmr.securent.controller;
 
-import com.gmr.securent.entity.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.gmr.securent.entity.RegisteredUser;
+import com.gmr.securent.entity.Tenant;
 import com.gmr.securent.entity.enums.Role;
 import com.gmr.securent.payload.request.LoginRequest;
 import com.gmr.securent.payload.request.SignUpRequest;
 import com.gmr.securent.repository.RegisteredUserRepository;
 import com.gmr.securent.service.TenantService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
@@ -58,14 +64,18 @@ public class AuthController {
             if (existingUser != null) {
                 return ResponseEntity.badRequest().body("Email address is already registered");
             }
+            System.out.println("before create");
+
             // Create a new RegisteredUser object
-            RegisteredUser user = new RegisteredUser();
-            user.setEmailAddress(request.getEmailAddress());
-            user.setPassword(request.getPassword());
-            user.setRole(request.getRole());
-            registeredUserRepository.save(user);
+            // RegisteredUser user = new RegisteredUser();
+            // user.setEmailAddress(request.getEmailAddress());
+            // user.setPassword(request.getPassword());
+            // user.setRole(request.getRole());
+            // registeredUserRepository.save(user);
 
             // Decide the role of the new registered user
+            System.out.println("before switch");
+
             switch (request.getRole()) {
                 case TENANT:
                     Tenant tenant = new Tenant();

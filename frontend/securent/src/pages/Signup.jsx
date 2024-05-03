@@ -1,74 +1,133 @@
+import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
+import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
-
 export default function Signup() {
-    let navigate = useNavigate();
+    const navigate = useNavigate();
+
+    // Define the data to send in the request body
+    const [formData, setFormData] = useState({
+        firstName: '',
+        lastName: '',
+        password: '',
+        emailAddress: '',
+        phoneNo: 1,
+        role: '', // Change this to the desired role
+        tck: 1 // Change this to the desired TCK value
+    });
+
+    // Make a POST request to the "/signup" endpoint
+
+
+
+
+    // const [formData, setFormData] = useState({
+    //     first_name: '',
+    //     last_name: '',
+    //     password: '',
+    //     email_address: '',
+    //     phone_no: '',
+    //     userType: '',
+    //     tck: ''
+    // });
+
+    function handleChange(event) {
+        const { name, value } = event.target;
+        setFormData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    }
+
+    function handleSubmit(event) {
+        event.preventDefault();
+        // console.log(formData);
+        axios.post('http://localhost:8080/auth/signup', {
+            firstName: formData.first_name,
+            lastName: formData.last_name,
+            password: formData.password,
+            emailAddress: formData.email_address,
+            phoneNo: formData.phone_no,
+            role: formData.userType,
+            tck: formData.tck,
+        })
+            .then(response => {
+                // Handle the response
+                console.log('Response:', response.data);
+            })
+            .catch(error => {
+                // Handle errors
+                console.error('Error:', error.response.data);
+            });
+
+
+    }
+
+
 
     function handleClickBack() {
         navigate("/");
     }
 
-    function handleClickSignup() {
-        navigate("/");
-    }
-
     return (
         <div>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-2">
+            <div className="container-fluid">
+                <div className="row">
+                    <div className="col-md-2">
                         <img
-                            class="mt-4 ms-3"
+                            className="mt-4 ms-3"
                             src="/sr_logo.png"
                             width="70rem"
                             height="70rem"
                             alt="app logo"
                         />
                     </div>
-                    <div class="col-md-8 text-center">
+                    <div className="col-md-8 text-center">
                         <br />
                         <br /><br />
                         <h2 style={{ color: "#FEF2F4" }}>Sign Up</h2>
-                        <div class="row">
-                            <div class="col-md-2">
+                        <div className="row">
+                            <div className="col-md-2">
                             </div>
-                            <div class="col-md-8">
+                            <div className="col-md-8">
                                 <Card style={{ backgroundColor: "#f1f2ed", borderRadius: "1rem", }}>
-                                    <Form className='text-center'>
+                                    <Form className='text-center' onSubmit={handleSubmit}>
                                         <br /><br />
                                         {['radio'].map((type) => (
                                             <div key={`inline-${type}`} className="mb-3">
                                                 <Form.Check
                                                     inline
                                                     label="Tenant"
-                                                    name="group1"
+                                                    name="userType"
                                                     type={type}
                                                     id={`inline-${type}-1`}
-                                                    value="Tenant"
+                                                    value="TENANT"
+                                                    onChange={handleChange}
 
                                                 />
                                                 <Form.Check
                                                     inline
                                                     label="Landlord"
-                                                    name="group1"
+                                                    name="userType"
                                                     type={type}
                                                     id={`inline-${type}-2`}
-                                                    value="Landlord"
+                                                    value="LANDLORD"
+                                                    onChange={handleChange}
 
                                                 />
                                                 <Form.Check
                                                     inline
                                                     label="Real Estate"
-                                                    name="group1"
+                                                    name="userType"
                                                     type={type}
                                                     id={`inline-${type}-3`}
-                                                    value="Real Estate"
+                                                    value="REAL_ESTATE_AGENT"
+                                                    onChange={handleChange}
 
                                                 />
-                                                
                                             </div>
                                         ))}
                                         <Form.Group className="ms-5 me-5 mb-3" controlId="loginEmail">
@@ -78,33 +137,27 @@ export default function Signup() {
                                                     Account Information
                                                 </strong>
                                             </Form.Label>
-                                            <Form.Control type="text" placeholder="Name" />
-                                            <Form.Control className='mt-3' type="text" placeholder="Surname" />
-                                            <Form.Control className='mt-3' type="text" placeholder="Phone Number" />
-                                            <Form.Control className='mt-3' type="text"
-                                                placeholder="TCK No." />
+                                            <Form.Control type="text" placeholder="Name" name="first_name" onChange={handleChange} />
+                                            <Form.Control className='mt-3' type="text" placeholder="last_name" name="last_name" onChange={handleChange} />
+                                            <Form.Control className='mt-3' type="text" placeholder="Phone Number" name="phone_no" onChange={handleChange} />
+                                            <Form.Control className='mt-3' type="text" placeholder="TCK No." name="tck" onChange={handleChange} />
                                         </Form.Group>
                                         <br />
-                                        <Form.Group className="ms-5 me-5 mb-3" controlId="loginPassword">
+                                        <Form.Group className="ms-5 me-5 mb-3" controlId="loginEmail">
                                             <Form.Label>E-mail</Form.Label>
-                                            <Form.Control type="email"
-                                                placeholder="Enter email" />
+                                            <Form.Control type="email" placeholder="Enter email" name="email_address" onChange={handleChange} />
                                         </Form.Group>
-
                                         <br />
                                         <Form.Group className="ms-5 me-5 mb-3" controlId="loginPassword">
                                             <Form.Label>Password</Form.Label>
-                                            <Form.Control type="password"
-                                                placeholder="Enter Password" />
-                                            <Form.Control className='mt-3' type="text" placeholder="Confirm Password" />
+                                            <Form.Control type="password" placeholder="Enter Password" name="password" onChange={handleChange} />
                                         </Form.Group>
-
                                         <br /><br />
-                                        <Button className="btn-teal" onClick={handleClickSignup} type="submit">
+                                        <Button className="btn-teal" onClick={handleSubmit} type="submit">
                                             Sign Up
                                         </Button>
                                         <br />---<br />
-                                        <Button className="btn-velvet" onClick={handleClickBack} type="submit">
+                                        <Button className="btn-velvet" onClick={handleClickBack} type="button">
                                             Back
                                         </Button>
                                         <br /><br /><br />
