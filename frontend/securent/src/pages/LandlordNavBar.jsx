@@ -19,40 +19,18 @@ function LandlordNavBar() {
   }
 
   function handleCurrentRequests() {
-    // axios
-    //   .get(`http://localhost:8080/houses`)
-    //   .then((response) => {
-    //     setHouseId(response.data.houseId);
-    //     setLandlordId(response.data.landlordId);
-    //     setTenantId(response.data.tenantId);
-    //     setAddress(response.data.address);
-    //     setAdDate(response.data.adDate);
-    //     setAreaGross(response.data.areaGross);
-    //     setAreaNet(response.data.areaNet);
-    //     setAreaOpenSpace(response.data.areaOpenSpace);
-    //     setNumberOfRooms(response.data.numberOfRooms);
-    //     setBuildingAge(response.data.buildingAge);
-    //     setFlatNumber(response.data.flatNumber);
-    //     setHeating(response.data.heating);
-    //     setNumberOfBathrooms(response.data.numberOfBathrooms);
-    //     setBalconyIsPresent(response.data.balconyIsPresent);
-    //     setFurnitureIsPresent(response.data.furnitureIsPresent);
-    //     setInsideASite(response.data.insideASite);
-    //     setSiteName(response.data.siteName);
-    //     setCurrentAmount(response.data.currentAmount);
-    //     setAdDetails(response.data.adDetails);
-    //     setAdTitle(response.data.adTitle);
-    //     setLandlordName(response.data.landlordName);
-    //     setLandlordPhoneNumber(response.data.landlordPhoneNumber);
-    //     setRentPrice(response.data.rentPrice);
+    axios
+      .get(`http://localhost:8080/houses`)
+      .then((response) => {
+       
 
 
-    //     navigate("/landlordCurrentRequest", { state: { ...response.data } });
-    //     console.log(response.data);
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error fetching houses:", error);
-    //   });
+        navigate("/landlordCurrentRequest", { state: { ...response.data } });
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching houses:", error);
+      });
   }
 
   function handlePastRequests() {
