@@ -85,7 +85,7 @@ public class TenantController {
 
     @PostMapping("/{tenantId}/send-renting-request")
     public ResponseEntity<Void> sendRentingRequestToLandlord(@PathVariable Integer tenantId, @RequestBody RentRequest rentRequest) {
-        tenantService.sendRentingRequestToLandlord(tenantId, rentRequest.getLandlordID(), rentRequest.getHouseID());
+        tenantService.sendRentingRequestToLandlord(tenantId, rentRequest.getLandlordID(), rentRequest.getRealEstateAgentID(), rentRequest.getHouseID());
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
