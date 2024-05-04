@@ -12,12 +12,7 @@ import axios from "axios";
 function LandlordNotification() {
   const location = useLocation();
   const notifications = Object.values(location.state || {});
-  localStorage.clear();
-  const [tenants, setTenants] = useState(() => {
-    // Retrieve tenants from local storage or initialize to an empty array
-    const savedTenants = localStorage.getItem("tenants");
-    return savedTenants ? JSON.parse(savedTenants) : [];
-  });
+  const [tenants, setTenants] = useState([]);
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -37,7 +32,6 @@ function LandlordNotification() {
         // Update tenants state and save to local storage
         setTenants((prevTenants) => {
           const updatedTenants = [...prevTenants, newTenant];
-          localStorage.setItem("tenants", JSON.stringify(updatedTenants));
           return updatedTenants;
         });
       })
