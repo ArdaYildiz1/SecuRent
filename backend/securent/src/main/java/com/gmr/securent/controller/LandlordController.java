@@ -96,6 +96,24 @@ public class LandlordController {
         return new ResponseEntity<>(rentingRequests, HttpStatus.OK);
     }
 
+    @GetMapping("/{landlordID}/renting-requests/new")
+    public ResponseEntity<List<RentRequest>> getNewRentingRequestsForLandlord(@PathVariable Integer landlordID) {
+        List<RentRequest> rentingRequests = landlordService.getNewRentingRequestsForLandlord(landlordID);
+        return new ResponseEntity<>(rentingRequests, HttpStatus.OK);
+    }
+
+    @GetMapping("/{landlordID}/renting-requests/current")
+    public ResponseEntity<List<RentRequest>> getCurrentRentingRequestsForLandlord(@PathVariable Integer landlordID) {
+        List<RentRequest> rentingRequests = landlordService.getCurrentRentingRequestsForLandlord(landlordID);
+        return new ResponseEntity<>(rentingRequests, HttpStatus.OK);
+    }
+
+    @GetMapping("/{landlordID}/renting-requests/past")
+    public ResponseEntity<List<RentRequest>> getPastRentingRequestsForLandlord(@PathVariable Integer landlordID) {
+        List<RentRequest> rentingRequests = landlordService.getPastRentingRequestsForLandlord(landlordID);
+        return new ResponseEntity<>(rentingRequests, HttpStatus.OK);
+    }
+
     @PutMapping("/{landlordID}/renting-requests/{serviceId}/confirm")
     public void confirmRentingRequest(@PathVariable Integer landlordID, @PathVariable Integer serviceId) {
         landlordService.confirmRentingRequest(landlordID, serviceId);
