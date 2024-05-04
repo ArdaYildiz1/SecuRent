@@ -88,4 +88,8 @@ public class RealEstateAgentService implements RealEstateAgentInterface {
             throw new RuntimeException("No pending rental service to accept.");
         }
     }
+
+    public List<RealEstateAgent> getRealEstateAgentForSpecificArea(String area) {
+        return realEstateAgentRepository.findByAreaOfOperations(area);
+    }
 }
