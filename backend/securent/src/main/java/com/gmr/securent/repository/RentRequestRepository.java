@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface RentRequestRepository extends JpaRepository<RentRequest, Integer> {
     List<RentRequest> findAllByTenantID(Integer tenantId);
-    List<RentRequest> findAllBylandlordID(Integer landlordID);
+    List<RentRequest> findAllByLandlordID(Integer landlordId);
+    List<RentRequest> findAllByRealEstateAgentID(Integer realEstateAgentId);
 }
