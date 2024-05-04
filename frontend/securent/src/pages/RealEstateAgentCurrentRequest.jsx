@@ -5,8 +5,12 @@ import TopNavBar from './TopNavBar';
 import { Card, Col, Form, Row } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import RealEstateAgentNavBar from './RealEstateAgentNavBar';
+import { useLocation } from 'react-router-dom';
 
 function RealEstateAgentCurrentRequest() {
+    const location = useLocation();
+    // const requests = Object.values(location.state);
+    console.log(location.state);
 
 
     const dynamicData = ['Ahmet Kalem', 'Fatih Kor', 'Ali Tarık', 'Kasım Kale', 'Fatih Kor', 'Ali Tarık', 'Ahmet Kalem', 'Fatih Kor', 'Ali Tarık', 'Mehmet Ersoy', 'Fatih Kor', 'Ali Tarık', 'Mehmet Ersoy', 'Fatih Kor', 'Ali Tarık', 'Mehmet Ersoy'];

@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
@@ -6,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios"; // Import axios
 
 function LandlordNavBar() {
-  
+  const [landlordID, setLandlordID] = useState(1); // Use a static landlordID for testing
 
   let navigate = useNavigate();
 
@@ -19,18 +20,18 @@ function LandlordNavBar() {
   }
 
   function handleCurrentRequests() {
-    axios
-      .get(`http://localhost:8080/houses`)
-      .then((response) => {
+    // axios
+    //   .get(`http://localhost:8080/landlords/${landlordID}/renting-requests`)
+    //   .then((response) => {
        
 
 
-        navigate("/landlordCurrentRequest", { state: { ...response.data } });
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching houses:", error);
-      });
+    //     navigate("/landlordCurrentRequest", { state: { ...response.data } });
+    //     console.log(response.data);
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error fetching houses:", error);
+    //   });
   }
 
   function handlePastRequests() {
@@ -38,7 +39,17 @@ function LandlordNavBar() {
   }
 
   function handleNotifications() {
-    navigate("/landlordNotification");
+
+
+    axios
+      .get(`http://localhost:8080/landlords/${landlordID}/renting-requests`)
+      .then((response) => {
+
+        navigate("/landlordNotification", { state: { ...response.data } });
+      })
+      .catch((error) => {
+        console.error("Error fetching houses:", error);
+      });
   }
 
   return (
