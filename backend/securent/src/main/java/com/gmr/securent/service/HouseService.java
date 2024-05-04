@@ -31,27 +31,6 @@ public class HouseService implements HouseInterface {
     public List<House> getAllHouses() {
         return houseRepository.findAll();
     }
-    public List<House> filterHouses(String address, Integer numberOfRooms, Integer flatNumber) {
-        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<House> criteriaQuery = criteriaBuilder.createQuery(House.class);
-        Root<House> root = criteriaQuery.from(House.class);
-
-        List<Predicate> predicates = new ArrayList<>();
-
-        if (address != null) {
-            predicates.add(criteriaBuilder.equal(root.get("address"), address));
-        }
-        if (numberOfRooms != null) {
-            predicates.add(criteriaBuilder.equal(root.get("numberOfRooms"), numberOfRooms));
-        }
-        if (flatNumber != null) {
-            predicates.add(criteriaBuilder.equal(root.get("flatNumber"), flatNumber));
-        }
-
-        criteriaQuery.where(predicates.toArray(new Predicate[0]));
-
-        return entityManager.createQuery(criteriaQuery).getResultList();
-    }
     @Override
     public House saveOneHouse(House newHouse) {
         return houseRepository.save(newHouse);

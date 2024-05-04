@@ -1,8 +1,11 @@
 package com.gmr.securent.service;
 
 import com.gmr.securent.entity.*;
+import com.gmr.securent.entity.enums.Heating;
+import com.gmr.securent.entity.enums.HouseType;
 import com.gmr.securent.repository.*;
 import com.gmr.securent.service.interfaces.LandlordInterface;
+import org.springframework.cglib.core.Local;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
@@ -18,17 +21,20 @@ public class LandlordService implements LandlordInterface {
     RentRequestRepository rentRequestRepository;
     RentalContractRepository rentalContractRepository;
     RealEstateAgentRepository realEstateAgentRepository;
+    RentalAdRepository rentalAdRepository;
 
     public LandlordService(LandlordRepository landlordRepository,
                            HouseRepository houseRepository,
                            RentRequestRepository rentRequestRepository,
                            RentalContractRepository rentalContractRepository,
-                           RealEstateAgentRepository realEstateAgentRepository) {
+                           RealEstateAgentRepository realEstateAgentRepository,
+                           RentalAdRepository rentalAdRepository) {
         this.landlordRepository = landlordRepository;
         this.houseRepository = houseRepository;
         this.rentRequestRepository = rentRequestRepository;
         this.rentalContractRepository = rentalContractRepository;
         this.realEstateAgentRepository = realEstateAgentRepository;
+        this.rentalAdRepository = rentalAdRepository;
     }
 
     @Override
@@ -292,5 +298,9 @@ public class LandlordService implements LandlordInterface {
         agent.setRatingCount(agent.getRatingCount() + 1);
         // Save the updated real estate agent
         realEstateAgentRepository.save(agent);
+    }
+
+    public RentalAd publishAd(RentalAd rentalAd) {
+        return rentalAdRepository.save(rentalAd);
     }
 }

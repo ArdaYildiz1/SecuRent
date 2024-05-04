@@ -43,6 +43,11 @@ public class RealEstateAgentController {
         return realEstateAgent;
     }
 
+    @GetMapping("/areaOfOperations")
+    public List<RealEstateAgent> getRealEstateAgentsByAreaOfOperations(@RequestBody String areaOfOperations) {
+        return realEstateAgentService.getRealEstateAgentForSpecificArea(areaOfOperations);
+    }
+
     @PutMapping("/{userId}")
     public ResponseEntity<Void> updateOneRealEstateAgent(@PathVariable Integer userId, @RequestBody RealEstateAgent newRealEstateAgent) {
         RealEstateAgent realEstateAgent = realEstateAgentService.updateOneRealEstateAgent(userId, newRealEstateAgent);
