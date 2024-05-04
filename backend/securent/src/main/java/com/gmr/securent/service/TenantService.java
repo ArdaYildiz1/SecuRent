@@ -109,7 +109,7 @@ public class TenantService implements TenantInterface {
     }
 
     @Override
-    public void sendRentingRequestToLandlord(Integer tenantId, Integer landlordID, Integer houseId) {
+    public void sendRentingRequestToLandlord(Integer tenantId, Integer landlordID, Integer realEstateAgentID, Integer houseId) {
         // Find the tenant
         Tenant tenant = tenantRepository
                 .findById(tenantId)
@@ -119,6 +119,7 @@ public class TenantService implements TenantInterface {
         RentRequest rentRequest = new RentRequest();
         rentRequest.setTenantID(tenantId);
         rentRequest.setLandlordID(landlordID);
+        rentRequest.setRealEstateAgentID(realEstateAgentID);
         rentRequest.setHouseID(houseId);
 
         // Save the RentRequest object
@@ -137,6 +138,7 @@ public class TenantService implements TenantInterface {
 
     @Override
     public void sendRealEstateAgentOperationRequest(Integer tenantId,
+                                                          Integer landlordId,
                                                           Integer realEstateAgentId,
                                                           Integer houseId,
                                                           ServiceType serviceType) {
@@ -149,6 +151,7 @@ public class TenantService implements TenantInterface {
         RealEstateAgentOperations realEstateAgentOperations = new RealEstateAgentOperations();
         realEstateAgentOperations.setServiceType(serviceType);
         realEstateAgentOperations.setTenantID(tenantId);
+        realEstateAgentOperations.setLandlordID(landlordId);
         realEstateAgentOperations.setRealEstateAgentID(realEstateAgentId);
         realEstateAgentOperations.setHouseID(houseId);
 

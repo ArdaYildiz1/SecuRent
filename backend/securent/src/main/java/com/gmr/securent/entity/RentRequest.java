@@ -31,4 +31,7 @@ public class RentRequest {
 
     @Column(name = "landlord_ID")
     private Integer landlordID;
+
+    @Column(name = "real_estate_agent_ID")
+    private Integer realEstateAgentID;
 }
