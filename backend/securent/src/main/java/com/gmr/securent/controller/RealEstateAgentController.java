@@ -60,6 +60,36 @@ public class RealEstateAgentController {
         List<RealEstateAgentOperations> realEstateAgentOperations = realEstateAgentService.getAllRentalServiceRequestsForRealEstateAgent(realEstateAgentId);
         return new ResponseEntity<>(realEstateAgentOperations, HttpStatus.OK);
     }
+    @GetMapping("/{realEstateAgentId}/rental-service-requests/rental-service/new")
+    public ResponseEntity<List<RealEstateAgentOperations>> getNewRentalServiceRequestsForRealEstateAgent(@PathVariable Integer realEstateAgentId) {
+        List<RealEstateAgentOperations> realEstateAgentOperations = realEstateAgentService.getNewRentalServiceRequestsForRealEstateAgent(realEstateAgentId);
+        return new ResponseEntity<>(realEstateAgentOperations, HttpStatus.OK);
+    }
+    @GetMapping("/{realEstateAgentId}/rental-service-requests/rental-service/current")
+    public ResponseEntity<List<RealEstateAgentOperations>> getCurrentRentalServiceRequestsForRealEstateAgent(@PathVariable Integer realEstateAgentId) {
+        List<RealEstateAgentOperations> realEstateAgentOperations = realEstateAgentService.getCurrentRentalServiceRequestsForRealEstateAgent(realEstateAgentId);
+        return new ResponseEntity<>(realEstateAgentOperations, HttpStatus.OK);
+    }
+    @GetMapping("/{realEstateAgentId}/rental-service-requests/rental-service/old")
+    public ResponseEntity<List<RealEstateAgentOperations>> getOldRentalServiceRequestsForRealEstateAgent(@PathVariable Integer realEstateAgentId) {
+        List<RealEstateAgentOperations> realEstateAgentOperations = realEstateAgentService.getOldRentalServiceRequestsForRealEstateAgent(realEstateAgentId);
+        return new ResponseEntity<>(realEstateAgentOperations, HttpStatus.OK);
+    }
+    @GetMapping("/{realEstateAgentId}/rental-service-requests/evaluation/new")
+    public ResponseEntity<List<RealEstateAgentOperations>> getNewEvaluationRequestsForRealEstateAgent(@PathVariable Integer realEstateAgentId) {
+        List<RealEstateAgentOperations> realEstateAgentOperations = realEstateAgentService.getNewEvaluationRequestsForRealEstateAgent(realEstateAgentId);
+        return new ResponseEntity<>(realEstateAgentOperations, HttpStatus.OK);
+    }
+    @GetMapping("/{realEstateAgentId}/rental-service-requests/evaluation/current")
+    public ResponseEntity<List<RealEstateAgentOperations>> getCurrentEvaluationRequestsForRealEstateAgent(@PathVariable Integer realEstateAgentId) {
+        List<RealEstateAgentOperations> realEstateAgentOperations = realEstateAgentService.getCurrentEvaluationRequestsForRealEstateAgent(realEstateAgentId);
+        return new ResponseEntity<>(realEstateAgentOperations, HttpStatus.OK);
+    }
+    @GetMapping("/{realEstateAgentId}/rental-service-requests/evaluation/old")
+    public ResponseEntity<List<RealEstateAgentOperations>> getOldEvaluationRequestsForRealEstateAgent(@PathVariable Integer realEstateAgentId) {
+        List<RealEstateAgentOperations> realEstateAgentOperations = realEstateAgentService.getOldEvaluationRequestsForRealEstateAgent(realEstateAgentId);
+        return new ResponseEntity<>(realEstateAgentOperations, HttpStatus.OK);
+    }
     @PutMapping("/{realEstateAgentId}/rental-service-requests/{rentalServiceId}/accept")
     public void acceptRentalService(@PathVariable Integer realEstateAgentId, @PathVariable Integer rentalServiceId) {
         realEstateAgentService.acceptRentalService(rentalServiceId);
