@@ -151,7 +151,43 @@ public class LandlordService implements LandlordInterface {
 
     @Override
     public List<RentRequest> getAllRentingRequestsForLandlord(Integer userId) {
-        return rentRequestRepository.findAllBylandlordID(userId);
+        return rentRequestRepository.findAllByLandlordID(userId);
+    }
+
+    @Override
+    public List<RentRequest> getNewRentingRequestsForLandlord(Integer userId) {
+        List<RentRequest> rentRequests = getAllRentingRequestsForLandlord(userId);
+        List<RentRequest> newRequests = new ArrayList<RentRequest>();
+        for (RentRequest rentRequest: rentRequests) {
+            if (rentRequest.getServiceAccepted() == null) {
+                newRequests.add(rentRequest);
+            }
+        }
+        return newRequests;
+    }
+
+    @Override
+    public List<RentRequest> getCurrentRentingRequestsForLandlord(Integer userId) {
+        List<RentRequest> rentRequests = getAllRentingRequestsForLandlord(userId);
+        List<RentRequest> currentRequests = new ArrayList<RentRequest>();
+        for (RentRequest rentRequest: rentRequests) {
+            if (rentRequest.getServiceAccepted() == true) {
+                currentRequests.add(rentRequest);
+            }
+        }
+        return currentRequests;
+    }
+
+    @Override
+    public List<RentRequest> getPastRentingRequestsForLandlord(Integer userId) {
+        List<RentRequest> rentRequests = getAllRentingRequestsForLandlord(userId);
+        List<RentRequest> oldRequests = new ArrayList<RentRequest>();
+        for (RentRequest rentRequest: rentRequests) {
+            if (rentRequest.getServiceAccepted() == false) {
+                oldRequests.add(rentRequest);
+            }
+        }
+        return oldRequests;
     }
 
     @Override
