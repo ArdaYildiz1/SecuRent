@@ -1,9 +1,6 @@
 package com.gmr.securent.controller;
 
-import com.gmr.securent.entity.House;
-import com.gmr.securent.entity.Landlord;
-import com.gmr.securent.entity.RentRequest;
-import com.gmr.securent.entity.RentalContract;
+import com.gmr.securent.entity.*;
 import com.gmr.securent.exceptions.UserNotFoundException;
 import com.gmr.securent.service.LandlordService;
 import org.springframework.http.HttpStatus;
@@ -130,5 +127,16 @@ public class LandlordController {
                                                     @RequestParam Double rating) {
         landlordService.rateRealEstateAgent(agentId, rating);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping ("/{landlordID}/publish-rental-ad")
+    public ResponseEntity<Void> publishRentalAd(@PathVariable Integer landlordID, @RequestBody RentalAd rentalAd) {
+        try {
+            landlordService.publishAd(rentalAd);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
