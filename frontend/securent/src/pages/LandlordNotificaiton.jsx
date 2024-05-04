@@ -1,6 +1,6 @@
 import Button from "react-bootstrap/esm/Button";
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import pp from "./defaultPP.jpg";
 import TopNavBar from "./TopNavBar";
 import { Card, Col, Form, Row } from "react-bootstrap";
@@ -11,22 +11,38 @@ import axios from "axios";
 
 function LandlordNotification() {
   const location = useLocation();
-  const notifications = Object.values(location.state);
-  const [tenantName, setTenantName] = useState("");
-  const [tenants, setTenants] = useState([]); // State to hold list of tenant objects
+  const notifications = Object.values(location.state || {});
+  localStorage.clear();
+  const [tenants, setTenants] = useState(() => {
+    // Retrieve tenants from local storage or initialize to an empty array
+    const savedTenants = localStorage.getItem("tenants");
+    return savedTenants ? JSON.parse(savedTenants) : [];
+  });
   let navigate = useNavigate();
 
-  console.log(notifications);
+  useEffect(() => {
+    // Only fetch if tenants array is empty to avoid unnecessary requests
+    if (tenants.length === 0) {
+      notifications.forEach((notification, idx) => {
+        getTenantNameById(idx);
+      });
+    }
+  }, [notifications]); // Dependency array to avoid infinite loop
 
   function getTenantNameById(idx) {
     axios
       .get(`http://localhost:8080/tenants/${notifications[idx].tenantID}`)
       .then((response) => {
-        console.log(response.data.firstName);
-        tenants.push(response.data.firstName);
+        const newTenant = response.data.firstName;
+        // Update tenants state and save to local storage
+        setTenants((prevTenants) => {
+          const updatedTenants = [...prevTenants, newTenant];
+          localStorage.setItem("tenants", JSON.stringify(updatedTenants));
+          return updatedTenants;
+        });
       })
       .catch((error) => {
-        console.error("Error fetching houses:", error);
+        console.error("Error fetching tenant:", error);
       });
   }
 
@@ -60,7 +76,6 @@ function LandlordNotification() {
                         />
                         <Card.Body>
                           <Card.Title style={{ color: "black" }}>
-                            {getTenantNameById(idx)}
                             {tenants[idx]}
                           </Card.Title>
                           <Card.Text style={{ color: "black" }}>

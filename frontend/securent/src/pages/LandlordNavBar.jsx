@@ -35,7 +35,16 @@ function LandlordNavBar() {
   }
 
   function handlePastRequests() {
-    navigate("/landlordPastRequest");
+    axios
+      .get(`http://localhost:8080/landlords/${landlordID}/renting-requests`)
+      .then((response) => {
+
+        navigate("/landlordPastRequest", { state: { ...response.data } });
+      })
+      .catch((error) => {
+        console.error("Error fetching houses:", error);
+      });
+    
   }
 
   function handleNotifications() {
