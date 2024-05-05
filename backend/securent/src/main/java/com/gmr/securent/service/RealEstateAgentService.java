@@ -75,7 +75,7 @@ public class RealEstateAgentService implements RealEstateAgentInterface {
         List<RealEstateAgentOperations> serviceRequests = getAllRentalServiceRequestsForRealEstateAgent(realEstateAgentId);
         List<RealEstateAgentOperations> newRequests = new ArrayList<RealEstateAgentOperations>();
         for (RealEstateAgentOperations serviceRequest: serviceRequests) {
-            if (serviceRequest.getServiceAccepted() == null && serviceRequest.getServiceType() == ServiceType.RENTAL_SERVICE) {
+            if (serviceRequest.isNewlyCreated() == true && serviceRequest.getServiceType() == ServiceType.RENTAL_SERVICE) {
                 newRequests.add(serviceRequest);
             }
         }
@@ -87,7 +87,7 @@ public class RealEstateAgentService implements RealEstateAgentInterface {
         List<RealEstateAgentOperations> serviceRequests = getAllRentalServiceRequestsForRealEstateAgent(realEstateAgentId);
         List<RealEstateAgentOperations> currentRequests = new ArrayList<RealEstateAgentOperations>();
         for (RealEstateAgentOperations serviceRequest: serviceRequests) {
-            if (serviceRequest.getServiceAccepted() == true && serviceRequest.getServiceType() == ServiceType.RENTAL_SERVICE) {
+            if (serviceRequest.isServiceAccepted() == true && serviceRequest.getServiceType() == ServiceType.RENTAL_SERVICE) {
                 currentRequests.add(serviceRequest);
             }
         }
@@ -99,7 +99,7 @@ public class RealEstateAgentService implements RealEstateAgentInterface {
         List<RealEstateAgentOperations> serviceRequests = getAllRentalServiceRequestsForRealEstateAgent(realEstateAgentId);
         List<RealEstateAgentOperations> oldRequests = new ArrayList<RealEstateAgentOperations>();
         for (RealEstateAgentOperations serviceRequest: serviceRequests) {
-            if (serviceRequest.getServiceAccepted() == false && serviceRequest.getServiceType() == ServiceType.RENTAL_SERVICE) {
+            if (serviceRequest.isNewlyCreated() == false && serviceRequest.getServiceType() == ServiceType.RENTAL_SERVICE) {
                 oldRequests.add(serviceRequest);
             }
         }
@@ -111,7 +111,7 @@ public class RealEstateAgentService implements RealEstateAgentInterface {
         List<RealEstateAgentOperations> serviceRequests = getAllRentalServiceRequestsForRealEstateAgent(realEstateAgentId);
         List<RealEstateAgentOperations> newRequests = new ArrayList<RealEstateAgentOperations>();
         for (RealEstateAgentOperations serviceRequest: serviceRequests) {
-            if (serviceRequest.getServiceAccepted() == null && serviceRequest.getServiceType() == ServiceType.EVALUATION_REQUEST) {
+            if (serviceRequest.isNewlyCreated() == true && serviceRequest.getServiceType() == ServiceType.EVALUATION_REQUEST) {
                 newRequests.add(serviceRequest);
             }
         }
@@ -123,7 +123,7 @@ public class RealEstateAgentService implements RealEstateAgentInterface {
         List<RealEstateAgentOperations> serviceRequests = getAllRentalServiceRequestsForRealEstateAgent(realEstateAgentId);
         List<RealEstateAgentOperations> currentRequests = new ArrayList<RealEstateAgentOperations>();
         for (RealEstateAgentOperations serviceRequest: serviceRequests) {
-            if (serviceRequest.getServiceAccepted() == true && serviceRequest.getServiceType() == ServiceType.EVALUATION_REQUEST) {
+            if (serviceRequest.isServiceAccepted() == true && serviceRequest.getServiceType() == ServiceType.EVALUATION_REQUEST) {
                 currentRequests.add(serviceRequest);
             }
         }
@@ -135,7 +135,7 @@ public class RealEstateAgentService implements RealEstateAgentInterface {
         List<RealEstateAgentOperations> serviceRequests = getAllRentalServiceRequestsForRealEstateAgent(realEstateAgentId);
         List<RealEstateAgentOperations> oldRequests = new ArrayList<RealEstateAgentOperations>();
         for (RealEstateAgentOperations serviceRequest: serviceRequests) {
-            if (serviceRequest.getServiceAccepted() == false && serviceRequest.getServiceType() == ServiceType.EVALUATION_REQUEST) {
+            if (serviceRequest.isNewlyCreated() == false && serviceRequest.getServiceType() == ServiceType.EVALUATION_REQUEST) {
                 oldRequests.add(serviceRequest);
             }
         }
@@ -148,6 +148,7 @@ public class RealEstateAgentService implements RealEstateAgentInterface {
                 orElse(null);
         if (rentalService != null) {
             rentalService.setServiceAccepted(true);
+            rentalService.setNewlyCreated(false);
             realEstateAgentOperationsRepository.save(rentalService);
         } else {
             throw new RuntimeException("No pending rental service to accept.");
@@ -159,6 +160,7 @@ public class RealEstateAgentService implements RealEstateAgentInterface {
                 orElse(null);
         if (rentalService != null) {
             rentalService.setServiceAccepted(false);
+            rentalService.setNewlyCreated(false);
             realEstateAgentOperationsRepository.save(rentalService);
         } else {
             throw new RuntimeException("No pending rental service to accept.");

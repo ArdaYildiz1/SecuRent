@@ -21,7 +21,10 @@ public class RealEstateAgentOperations {
     private ServiceType serviceType;
 
     @Column(name = "service_accepted")
-    private Boolean serviceAccepted;
+    private boolean serviceAccepted;
+
+    @Column(name = "newly_created")
+    private boolean newlyCreated;
 
     @Column(name = "house_ID")
     private Integer houseID;

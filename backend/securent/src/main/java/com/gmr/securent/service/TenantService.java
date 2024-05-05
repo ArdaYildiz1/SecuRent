@@ -121,6 +121,8 @@ public class TenantService implements TenantInterface {
         rentRequest.setLandlordID(landlordID);
         rentRequest.setRealEstateAgentID(realEstateAgentID);
         rentRequest.setHouseID(houseId);
+        rentRequest.setNewlyCreated(true);
+        rentRequest.setServiceAccepted(false);
 
         // Save the RentRequest object
         rentRequestRepository.save(rentRequest);
@@ -154,6 +156,8 @@ public class TenantService implements TenantInterface {
         realEstateAgentOperations.setLandlordID(landlordId);
         realEstateAgentOperations.setRealEstateAgentID(realEstateAgentId);
         realEstateAgentOperations.setHouseID(houseId);
+        realEstateAgentOperations.setNewlyCreated(true);
+        realEstateAgentOperations.setServiceAccepted(false);
 
         // Save the RealEstateAgentOperations object
         realEstateAgentOperationsRepository.save(realEstateAgentOperations);
