@@ -22,14 +22,14 @@ public class RealEstateAgentController {
     }
 
     @GetMapping
-    public List<RealEstateAgent> getAllRealEstateAgentEntities(){
+    public List<RealEstateAgent> getAllRealEstateAgentEntities() {
         return realEstateAgentService.getAllRealEstateAgents();
     }
 
     @PostMapping
     public ResponseEntity<Void> createNewRealEstateAgent(@RequestBody RealEstateAgent newRealEstateAgent) {
         RealEstateAgent realEstateAgent = realEstateAgentService.saveOneRealEstateAgent(newRealEstateAgent);
-        if(realEstateAgent != null)
+        if (realEstateAgent != null)
             return new ResponseEntity<>(HttpStatus.CREATED);
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
@@ -37,7 +37,7 @@ public class RealEstateAgentController {
     @GetMapping("/{realEstateAgentId}")
     public RealEstateAgent getOneRealEstateAgent(@PathVariable Integer realEstateAgentId) {
         RealEstateAgent realEstateAgent = realEstateAgentService.getOneRealEstateAgentById(realEstateAgentId);
-        if(realEstateAgent == null) {
+        if (realEstateAgent == null) {
             throw new UserNotFoundException();
         }
         return realEstateAgent;
@@ -49,31 +49,40 @@ public class RealEstateAgentController {
     }
 
     @PutMapping("/{userId}")
-    public ResponseEntity<Void> updateOneRealEstateAgent(@PathVariable Integer userId, @RequestBody RealEstateAgent newRealEstateAgent) {
+    public ResponseEntity<Void> updateOneRealEstateAgent(@PathVariable Integer userId,
+            @RequestBody RealEstateAgent newRealEstateAgent) {
         RealEstateAgent realEstateAgent = realEstateAgentService.updateOneRealEstateAgent(userId, newRealEstateAgent);
-        if(realEstateAgent != null)
+        if (realEstateAgent != null)
             return new ResponseEntity<>(HttpStatus.OK);
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 
     }
+
     @DeleteMapping("/{realEstateAgentId}")
     public void deleteOneUser(@PathVariable Integer realEstateAgentId) {
         realEstateAgentService.deleteById(realEstateAgentId);
     }
+
     @GetMapping("/{realEstateAgentId}/rental-service-requests")
-    public ResponseEntity<List<RealEstateAgentOperations>> getAllRentalServiceRequestsForRealEstateAgent(@PathVariable Integer realEstateAgentId) {
-        List<RealEstateAgentOperations> realEstateAgentOperations = realEstateAgentService.getAllRentalServiceRequestsForRealEstateAgent(realEstateAgentId);
+    public ResponseEntity<List<RealEstateAgentOperations>> getAllRentalServiceRequestsForRealEstateAgent(
+            @PathVariable Integer realEstateAgentId) {
+        List<RealEstateAgentOperations> realEstateAgentOperations = realEstateAgentService
+                .getAllRentalServiceRequestsForRealEstateAgent(realEstateAgentId);
         return new ResponseEntity<>(realEstateAgentOperations, HttpStatus.OK);
     }
+
     @PutMapping("/{realEstateAgentId}/rental-service-requests/{rentalServiceId}/accept")
     public void acceptRentalService(@PathVariable Integer realEstateAgentId, @PathVariable Integer rentalServiceId) {
         realEstateAgentService.acceptRentalService(rentalServiceId);
     }
+
     @PutMapping("/{realEstateAgentId}/rental-service-requests/{rentalServiceId}/reject")
     public void rejectRentalService(@PathVariable Integer realEstateAgentId, @PathVariable Integer rentalServiceId) {
         realEstateAgentService.rejectRentalService(rentalServiceId);
     }
+
     @ExceptionHandler(UserNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    private void handleUserNotFound() {}
+    private void handleUserNotFound() {
+    }
 }

@@ -36,51 +36,10 @@ public class Government {
     @Column(name = "tck")
     private int tck;
 
-//    @OneToMany(mappedBy = "government")
-//    private List<Expert> assignedExperts = new ArrayList<>();
-
     @ElementCollection
     @CollectionTable(name = "deposits_collected", joinColumns = @JoinColumn(name = "government_id"))
     @MapKeyColumn(name = "deposit_key")
     @Column(name = "deposit_value")
     private Map<String, Double> depositsCollected = new HashMap<>();
 
-//    public void assignExpert() {
-//        // TODO
-//        // params not added to avoid error
-//    }
-//
-//    @Override
-//    public void assignExpert(House house) {
-//
-//    }
-//
-//    public void monitorContracts() {
-//        // TODO
-//        // params not added to avoid error
-//    }
-//
-//    public void manageDeposits(){
-//
-//    }
-//
-//    public void redistributeDeposits(){
-//        // TODO
-//        // params not added to avoid error
-//    }
-//
-//    @Override
-//    public String disputeResolution(House house) {
-//        return null;
-//    }
-//
-//    @Override
-//    public double determinePrice(House house) {
-//        return 0;
-//    }
-//
-//    @Override
-//    public void confirmContract(RentalContract contract) {
-//
-//    }
 }

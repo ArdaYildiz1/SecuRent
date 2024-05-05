@@ -6,5 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TenantRepository extends JpaRepository<Tenant, Integer> {
     Tenant findByEmailAddressAndPassword(String emailAddress, String password);
+
     Tenant findByEmailAddress(String email);
 }

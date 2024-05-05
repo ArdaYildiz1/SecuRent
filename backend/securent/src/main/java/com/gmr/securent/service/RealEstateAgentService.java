@@ -19,7 +19,7 @@ public class RealEstateAgentService implements RealEstateAgentInterface {
     RealEstateAgentOperationsRepository realEstateAgentOperationsRepository;
 
     public RealEstateAgentService(RealEstateAgentRepository realEstateAgentRepository,
-                                  RealEstateAgentOperationsRepository realEstateAgentOperationsRepository) {
+            RealEstateAgentOperationsRepository realEstateAgentOperationsRepository) {
         this.realEstateAgentRepository = realEstateAgentRepository;
         this.realEstateAgentOperationsRepository = realEstateAgentOperationsRepository;
     }
@@ -28,18 +28,21 @@ public class RealEstateAgentService implements RealEstateAgentInterface {
     public List<RealEstateAgent> getAllRealEstateAgents() {
         return realEstateAgentRepository.findAll();
     }
+
     @Override
     public RealEstateAgent saveOneRealEstateAgent(RealEstateAgent newRealEstateAgent) {
         return realEstateAgentRepository.save(newRealEstateAgent);
     }
+
     @Override
     public RealEstateAgent getOneRealEstateAgentById(Integer userId) {
         return realEstateAgentRepository.findById(userId).orElse(null);
     }
+
     @Override
     public RealEstateAgent updateOneRealEstateAgent(Integer userId, RealEstateAgent newRealEstateAgent) {
         Optional<RealEstateAgent> realEstateAgent = realEstateAgentRepository.findById(userId);
-        if(realEstateAgent.isPresent()) {
+        if (realEstateAgent.isPresent()) {
             RealEstateAgent foundRealEstateAgent = realEstateAgent.get();
             foundRealEstateAgent.setFirstName(newRealEstateAgent.getFirstName());
             foundRealEstateAgent.setLastName(newRealEstateAgent.getLastName());
@@ -49,27 +52,29 @@ public class RealEstateAgentService implements RealEstateAgentInterface {
             foundRealEstateAgent.setTck(newRealEstateAgent.getTck());
             realEstateAgentRepository.save(foundRealEstateAgent);
             return foundRealEstateAgent;
-        }
-        else {
+        } else {
             throw new RuntimeException("RealEstateAgent not found with ID: " + userId);
         }
     }
+
     @Override
     public void deleteById(Integer userId) {
         try {
             realEstateAgentRepository.deleteById(userId);
-        } catch(EmptyResultDataAccessException e) {
-            System.out.println("RealEstateAgent "+ userId +" doesn't exist");
+        } catch (EmptyResultDataAccessException e) {
+            System.out.println("RealEstateAgent " + userId + " doesn't exist");
         }
     }
+
     @Override
     public List<RealEstateAgentOperations> getAllRentalServiceRequestsForRealEstateAgent(Integer realEstateAgentId) {
         return realEstateAgentOperationsRepository.findAllByRealEstateAgentID(realEstateAgentId);
     }
+
     @Override
     public void acceptRentalService(Integer rentalServiceID) {
-        RealEstateAgentOperations rentalService = realEstateAgentOperationsRepository.findById(rentalServiceID).
-                orElse(null);
+        RealEstateAgentOperations rentalService = realEstateAgentOperationsRepository.findById(rentalServiceID)
+                .orElse(null);
         if (rentalService != null) {
             rentalService.setServiceAccepted(true);
             realEstateAgentOperationsRepository.save(rentalService);
@@ -77,10 +82,11 @@ public class RealEstateAgentService implements RealEstateAgentInterface {
             throw new RuntimeException("No pending rental service to accept.");
         }
     }
+
     @Override
     public void rejectRentalService(Integer rentalServiceID) {
-        RealEstateAgentOperations rentalService = realEstateAgentOperationsRepository.findById(rentalServiceID).
-                orElse(null);
+        RealEstateAgentOperations rentalService = realEstateAgentOperationsRepository.findById(rentalServiceID)
+                .orElse(null);
         if (rentalService != null) {
             rentalService.setServiceAccepted(false);
             realEstateAgentOperationsRepository.save(rentalService);

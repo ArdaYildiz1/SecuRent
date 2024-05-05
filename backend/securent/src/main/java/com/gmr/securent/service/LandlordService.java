@@ -24,11 +24,11 @@ public class LandlordService implements LandlordInterface {
     RentalAdRepository rentalAdRepository;
 
     public LandlordService(LandlordRepository landlordRepository,
-                           HouseRepository houseRepository,
-                           RentRequestRepository rentRequestRepository,
-                           RentalContractRepository rentalContractRepository,
-                           RealEstateAgentRepository realEstateAgentRepository,
-                           RentalAdRepository rentalAdRepository) {
+            HouseRepository houseRepository,
+            RentRequestRepository rentRequestRepository,
+            RentalContractRepository rentalContractRepository,
+            RealEstateAgentRepository realEstateAgentRepository,
+            RentalAdRepository rentalAdRepository) {
         this.landlordRepository = landlordRepository;
         this.houseRepository = houseRepository;
         this.rentRequestRepository = rentRequestRepository;
@@ -57,7 +57,7 @@ public class LandlordService implements LandlordInterface {
         System.out.println("LANDLORD INSIDE SERVICE TEST:" + newLandlord.toString());
         Optional<Landlord> landlord = landlordRepository.findById(userId);
         if (landlord.isPresent()) {
-            Landlord foundLandlord  = landlord.get();
+            Landlord foundLandlord = landlord.get();
             foundLandlord.setFirstName(newLandlord.getFirstName());
             foundLandlord.setLastName(newLandlord.getLastName());
             foundLandlord.setPassword(newLandlord.getPassword());
@@ -66,8 +66,7 @@ public class LandlordService implements LandlordInterface {
             foundLandlord.setTck(newLandlord.getTck());
             landlordRepository.save(foundLandlord);
             return foundLandlord;
-        }
-        else {
+        } else {
             throw new RuntimeException("Landlord not found with ID: " + userId);
         }
     }
@@ -90,8 +89,8 @@ public class LandlordService implements LandlordInterface {
     public House saveOneHouseForLandlord(Integer userId, House newHouse) {
         // Find the landlord
         Landlord landlord = landlordRepository
-                                .findById(userId)
-                                .orElseThrow(() -> new RuntimeException("Landlord not found with ID: " + userId));
+                .findById(userId)
+                .orElseThrow(() -> new RuntimeException("Landlord not found with ID: " + userId));
 
         // Set the landlord ID to the house
         newHouse.setLandlordID(userId);
@@ -128,12 +127,11 @@ public class LandlordService implements LandlordInterface {
                 foundHouse.setAdDetails(newHouse.getAdDetails());
                 houseRepository.save(foundHouse);
                 return foundHouse;
+            } else {
+                throw new RuntimeException(
+                        "House with ID " + houseId + " doesn't belong to landlord with ID " + userId);
             }
-            else {
-                throw new RuntimeException("House with ID " + houseId + " doesn't belong to landlord with ID " + userId);
-            }
-        }
-        else {
+        } else {
             throw new RuntimeException("House not found with ID: " + houseId);
         }
     }
@@ -145,12 +143,11 @@ public class LandlordService implements LandlordInterface {
             House foundHouse = house.get();
             if (foundHouse.getLandlordID() == userId) {
                 houseRepository.deleteById(houseId);
+            } else {
+                throw new RuntimeException(
+                        "House with ID " + houseId + " doesn't belong to landlord with ID " + userId);
             }
-            else {
-                throw new RuntimeException("House with ID " + houseId + " doesn't belong to landlord with ID " + userId);
-            }
-        }
-        else {
+        } else {
             throw new RuntimeException("House not found with ID: " + houseId);
         }
     }
@@ -165,14 +162,13 @@ public class LandlordService implements LandlordInterface {
         RentRequest rentRequest = rentRequestRepository.findById(serviceId).orElse(null);
         if (rentRequest != null) {
             if (userId != rentRequest.getLandlordID()) {
-                throw new RuntimeException("Renting request with ID " + serviceId + " doesn't belong to landlord with ID " + userId);
-            }
-            else {
+                throw new RuntimeException(
+                        "Renting request with ID " + serviceId + " doesn't belong to landlord with ID " + userId);
+            } else {
                 rentRequest.setServiceAccepted(true);
                 rentRequestRepository.save(rentRequest);
             }
-        }
-        else {
+        } else {
             throw new RuntimeException("No renting requests pending to accept.");
         }
     }
@@ -182,25 +178,24 @@ public class LandlordService implements LandlordInterface {
         RentRequest rentRequest = rentRequestRepository.findById(serviceId).orElse(null);
         if (rentRequest != null) {
             if (userId != rentRequest.getLandlordID()) {
-                throw new RuntimeException("Renting request with ID " + serviceId + " doesn't belong to landlord with ID " + userId);
-            }
-            else {
+                throw new RuntimeException(
+                        "Renting request with ID " + serviceId + " doesn't belong to landlord with ID " + userId);
+            } else {
                 rentRequest.setServiceAccepted(false);
                 rentRequestRepository.save(rentRequest);
             }
-        }
-        else {
+        } else {
             throw new RuntimeException("No renting requests pending to accept.");
         }
     }
 
     @Override
     public RentalContract uploadContract(Integer userId, Integer landlordTck, Integer tenantTck,
-                                         Double rentAmount, LocalDate startDate, LocalDate endDate) {
+            Double rentAmount, LocalDate startDate, LocalDate endDate) {
         // Find the landlord
         Landlord landlord = landlordRepository
-                                .findById(userId)
-                                .orElseThrow(() -> new RuntimeException("Landlord not found with ID: " + userId));
+                .findById(userId)
+                .orElseThrow(() -> new RuntimeException("Landlord not found with ID: " + userId));
 
         // Check if the landlord is the correct one for this rental contract upload
         if (landlord.getTck() == landlordTck) {
@@ -212,9 +207,9 @@ public class LandlordService implements LandlordInterface {
             rentalContract.setStartDate(startDate);
             rentalContract.setEndDate(endDate);
             return rentalContractRepository.save(rentalContract);
-        }
-        else {
-            throw new RuntimeException("Landlord with ID " + userId + "is trying to upload a rental contract for someone else.");
+        } else {
+            throw new RuntimeException(
+                    "Landlord with ID " + userId + "is trying to upload a rental contract for someone else.");
         }
     }
 
@@ -222,13 +217,13 @@ public class LandlordService implements LandlordInterface {
     public void acceptExtension(Integer userId, Integer contractId, Boolean renewContract, Double newRentAmount) {
         // Find the landlord
         Landlord landlord = landlordRepository
-                                .findById(userId)
-                                .orElseThrow(() -> new RuntimeException("Landlord not found with ID: " + userId));
+                .findById(userId)
+                .orElseThrow(() -> new RuntimeException("Landlord not found with ID: " + userId));
 
         // Find the rental contract
         RentalContract rentalContract = rentalContractRepository
-                                .findById(contractId)
-                                .orElseThrow(() -> new RuntimeException("Rental contract not found with ID: " + contractId));
+                .findById(contractId)
+                .orElseThrow(() -> new RuntimeException("Rental contract not found with ID: " + contractId));
 
         // Check if the landlord is the correct one for this rental contract
         if (landlord.getTck() == rentalContract.getLandlordTCK()) {
@@ -238,14 +233,13 @@ public class LandlordService implements LandlordInterface {
                 rentalContract.setEndDate(newEndDate);
                 rentalContract.setRentAmount(newRentAmount);
                 rentalContractRepository.save(rentalContract);
-            }
-            else {
+            } else {
                 // Just added for testing purposes
                 System.out.println("Renewal of rental contract with ID " + contractId + " is rejected.");
             }
-        }
-        else {
-            throw new RuntimeException("Rental contract with ID " + contractId + " doesn't belong to landlord with ID " + userId);
+        } else {
+            throw new RuntimeException(
+                    "Rental contract with ID " + contractId + " doesn't belong to landlord with ID " + userId);
         }
     }
 

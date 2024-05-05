@@ -1,20 +1,36 @@
 package com.gmr.securent.service.interfaces;
 
+import java.util.List;
+
+import com.gmr.securent.entity.Government;
 import com.gmr.securent.entity.House;
+import com.gmr.securent.entity.RentRequest;
 import com.gmr.securent.entity.RentalContract;
 
 // house and RentalContract should be imported
 public interface GovernmentInterface {
-    
-    public void assignExpert(House house);
+    Government getGovernment(Integer userId);
 
-    public void monitorContracts();
+    void deleteById(Integer governmentId);
 
-    public void manageDeposits();
-    public void redistributeDeposits(); // params not added
+    Government saveGovernment(Government newGovernment);
 
-    public String disputeResolution(House house);
-    abstract double determinePrice (House house );
+    Government updateGovernment(Integer governmentId, Government newGovernment);
+
+    void assignExpert(House house, Integer agentId);
+
+    void monitorContracts();
+
+    void manageDeposits();
+
+    void redistributeDeposits(); // params not added
+
+    String disputeResolution(House house);
+
+    abstract double determinePrice(House house);
 
     void confirmContract(RentalContract contract);
+
+    public void payDeposit(Integer userId, Double amount);
+
 }

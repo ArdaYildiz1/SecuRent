@@ -22,11 +22,11 @@ public class TenantService implements TenantInterface {
     HouseRepository houseRepository;
 
     public TenantService(TenantRepository tenantRepository,
-                         RentRequestRepository rentRequestRepository,
-                         RealEstateAgentOperationsRepository realEstateAgentOperationsRepository,
-                         RealEstateAgentRepository realEstateAgentRepository,
-                         HouseService houseService,
-                         HouseRepository houseRepository) {
+            RentRequestRepository rentRequestRepository,
+            RealEstateAgentOperationsRepository realEstateAgentOperationsRepository,
+            RealEstateAgentRepository realEstateAgentRepository,
+            HouseService houseService,
+            HouseRepository houseRepository) {
         this.tenantRepository = tenantRepository;
         this.rentRequestRepository = rentRequestRepository;
         this.realEstateAgentOperationsRepository = realEstateAgentOperationsRepository;
@@ -39,6 +39,7 @@ public class TenantService implements TenantInterface {
     public List<Tenant> getAllTenants() {
         return tenantRepository.findAll();
     }
+
     public House getRentedHouse(Integer tenantId) {
         List<House> rentedHouses = houseRepository.findAllByTenantId(tenantId);
         if (!rentedHouses.isEmpty()) {
@@ -56,6 +57,7 @@ public class TenantService implements TenantInterface {
     public Tenant getOneTenantById(Integer userId) {
         return tenantRepository.findById(userId).orElse(null);
     }
+
     @Override
     public Tenant getOneTenantByEmailAndPassword(String email, String password) {
         return tenantRepository.findByEmailAddressAndPassword(email, password);
@@ -64,7 +66,7 @@ public class TenantService implements TenantInterface {
     @Override
     public Tenant updateOneTenant(Integer userId, Tenant newTenant) {
         Optional<Tenant> tenant = tenantRepository.findById(userId);
-        if(tenant.isPresent()) {
+        if (tenant.isPresent()) {
             Tenant foundTenant = tenant.get();
             foundTenant.setFirstName(newTenant.getFirstName());
             foundTenant.setLastName(newTenant.getLastName());
@@ -75,8 +77,7 @@ public class TenantService implements TenantInterface {
             foundTenant.setDepositPaymentStatus(newTenant.isDepositPaymentStatus());
             tenantRepository.save(foundTenant);
             return foundTenant;
-        }
-        else {
+        } else {
             throw new RuntimeException("Tenant not found with ID: " + userId);
         }
     }
@@ -85,8 +86,8 @@ public class TenantService implements TenantInterface {
     public void deleteById(Integer userId) {
         try {
             tenantRepository.deleteById(userId);
-        } catch(EmptyResultDataAccessException e) {
-            System.out.println("Tenant "+ userId +" doesn't exist");
+        } catch (EmptyResultDataAccessException e) {
+            System.out.println("Tenant " + userId + " doesn't exist");
         }
     }
 
@@ -109,7 +110,8 @@ public class TenantService implements TenantInterface {
     }
 
     @Override
-    public void sendRentingRequestToLandlord(Integer tenantId, Integer landlordID, Integer realEstateAgentID, Integer houseId) {
+    public void sendRentingRequestToLandlord(Integer tenantId, Integer landlordID, Integer realEstateAgentID,
+            Integer houseId) {
         // Find the tenant
         Tenant tenant = tenantRepository
                 .findById(tenantId)
@@ -138,10 +140,10 @@ public class TenantService implements TenantInterface {
 
     @Override
     public void sendRealEstateAgentOperationRequest(Integer tenantId,
-                                                          Integer landlordId,
-                                                          Integer realEstateAgentId,
-                                                          Integer houseId,
-                                                          ServiceType serviceType) {
+            Integer landlordId,
+            Integer realEstateAgentId,
+            Integer houseId,
+            ServiceType serviceType) {
         // Find the tenant
         Tenant tenant = tenantRepository
                 .findById(tenantId)
