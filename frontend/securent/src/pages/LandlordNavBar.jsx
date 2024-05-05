@@ -20,23 +20,21 @@ function LandlordNavBar() {
   }
 
   function handleCurrentRequests() {
-    // axios
-    //   .get(`http://localhost:8080/landlords/${landlordID}/renting-requests`)
-    //   .then((response) => {
-       
+    axios
+      .get(`http://localhost:8080/landlords/${landlordID}/renting-requests/current`)
+      .then((response) => {
 
+        navigate("/landlordCurrentRequest", { state: { ...response.data } });
+      })
+      .catch((error) => {
+        console.error("Error fetching houses:", error);
+      });
 
-    //     navigate("/landlordCurrentRequest", { state: { ...response.data } });
-    //     console.log(response.data);
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error fetching houses:", error);
-    //   });
   }
 
   function handlePastRequests() {
     axios
-      .get(`http://localhost:8080/landlords/${landlordID}/renting-requests`)
+      .get(`http://localhost:8080/landlords/${landlordID}/renting-requests/past`)
       .then((response) => {
 
         navigate("/landlordPastRequest", { state: { ...response.data } });
@@ -44,7 +42,7 @@ function LandlordNavBar() {
       .catch((error) => {
         console.error("Error fetching houses:", error);
       });
-    
+
   }
 
   function handleNotifications() {
