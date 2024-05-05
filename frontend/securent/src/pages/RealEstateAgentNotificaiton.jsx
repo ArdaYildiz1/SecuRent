@@ -2,12 +2,44 @@ import Button from 'react-bootstrap/esm/Button';
 import React from 'react';
 import pp from './defaultPP.jpg';
 import TopNavBar from './TopNavBar';
+import { useState, useEffect } from "react";
 import { Card, Col, Form, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import RealEstateAgentNavBar from './RealEstateAgentNavBar';
+import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function RealEstateAgentNotification() {
 
+ const location = useLocation();
+  const notifications = Object.values(location.state || {});
+  const [tenants, setTenants] = useState([]);
+  let navigate = useNavigate();
+
+  useEffect(() => {
+      // Only fetch if tenants array is empty to avoid unnecessary requests
+      if (tenants.length === 0) {
+        notifications.forEach((notification, idx) => {
+          getTenantNameById(idx);
+        });
+      }
+    }, [notifications]);
+
+     function getTenantNameById(idx) {
+        axios
+          .get(`http://localhost:8080/tenants/${notifications[idx].tenantID}`)
+          .then((response) => {
+            const newTenant = response.data.firstName;
+            // Update tenants state and save to local storage
+            setTenants((prevTenants) => {
+              const updatedTenants = [...prevTenants, newTenant];
+              return updatedTenants;
+            });
+          })
+          .catch((error) => {
+            console.error("Error fetching tenant:", error);
+          });
+      }
 
     const dynamicData = ['Ahmet Kalem', 'Fatih Kor', 'Ali Tarık', 'Kasım Kale', 'Fatih Kor', 'Ali Tarık', 'Ahmet Kalem', 'Fatih Kor', 'Ali Tarık', 'Mehmet Ersoy', 'Fatih Kor', 'Ali Tarık', 'Mehmet Ersoy', 'Fatih Kor', 'Ali Tarık', 'Mehmet Ersoy'];
 
@@ -20,7 +52,7 @@ function RealEstateAgentNotification() {
                     <div className="col-md-8">
                         <Row xs={1} md={3} className="g-4">
                             <>
-                                {Array.from({ length: 4 }).map((_, idx) => (
+                                {Array.from({ length: notifications.length }).map((_, idx) => (
                                     <Col key={idx}>
                                         <Link to={`/realEstateAgentHouseDetails`} style={{ textDecoration: 'none' }}>
                                             <Card
@@ -36,9 +68,8 @@ function RealEstateAgentNotification() {
                                                     src={pp}
                                                 />
                                                 <Card.Body>
-                                                    <Card.Title style={{ color: "black" }}>{dynamicData[idx]}</Card.Title>
-                                                    <Card.Text style={{ color: "black" }}>
-                                                        {dynamicData[idx]} wants to see the house. Click to see the house to be escorted.
+                                                    <Card.Title style={{ color: "black" }}> {tenants[idx]}</Card.Title>
+                                                    <Card.Text style={{ color: "black" }}> {tenants[idx]} wants to see the house. Click to see the house to be escorted.
 
                                                     </Card.Text>
 
