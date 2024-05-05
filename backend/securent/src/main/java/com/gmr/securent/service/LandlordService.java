@@ -159,7 +159,7 @@ public class LandlordService implements LandlordInterface {
         List<RentRequest> rentRequests = getAllRentingRequestsForLandlord(userId);
         List<RentRequest> newRequests = new ArrayList<RentRequest>();
         for (RentRequest rentRequest: rentRequests) {
-            if (rentRequest.getServiceAccepted() == null) {
+            if (rentRequest.isNewlyCreated() == true) {
                 newRequests.add(rentRequest);
             }
         }
@@ -171,7 +171,7 @@ public class LandlordService implements LandlordInterface {
         List<RentRequest> rentRequests = getAllRentingRequestsForLandlord(userId);
         List<RentRequest> currentRequests = new ArrayList<RentRequest>();
         for (RentRequest rentRequest: rentRequests) {
-            if (rentRequest.getServiceAccepted() == true) {
+            if (rentRequest.isServiceAccepted() == true) {
                 currentRequests.add(rentRequest);
             }
         }
@@ -183,7 +183,7 @@ public class LandlordService implements LandlordInterface {
         List<RentRequest> rentRequests = getAllRentingRequestsForLandlord(userId);
         List<RentRequest> oldRequests = new ArrayList<RentRequest>();
         for (RentRequest rentRequest: rentRequests) {
-            if (rentRequest.getServiceAccepted() == false) {
+            if (rentRequest.isNewlyCreated() == false) {
                 oldRequests.add(rentRequest);
             }
         }
@@ -199,6 +199,7 @@ public class LandlordService implements LandlordInterface {
             }
             else {
                 rentRequest.setServiceAccepted(true);
+                rentRequest.setNewlyCreated(false);
                 rentRequestRepository.save(rentRequest);
             }
         }
@@ -216,6 +217,7 @@ public class LandlordService implements LandlordInterface {
             }
             else {
                 rentRequest.setServiceAccepted(false);
+                rentRequest.setNewlyCreated(false);
                 rentRequestRepository.save(rentRequest);
             }
         }
