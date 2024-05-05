@@ -128,6 +128,17 @@ function LandlordCurrentRequest() {
       .catch((error) => {
         console.error("Error fetching real estate agent:", error);
       });
+      //TODO bu promise yapısını kullanıcaz
+      // Promise.all([
+      //   axios.get(`http://localhost:8080/real-estate-agents/${currentRequests[idx].realEstateAgentID}`),
+      //   axios.get(`http://localhost:8080/tenants/${currentRequests[idx].tenantID}`)
+      // ]).then(([realEstateAgentResponse, tenantResponse]) => {
+      //   const newRealEstateAgent = realEstateAgentResponse.data;
+      //   const newTenant = tenantResponse.data;
+      //   navigate("/seeTenantAndRealEstateAgent", { state: { realEstateAgent: newRealEstateAgent, tenant: newTenant } });
+      // }).catch((error) => {
+      //   console.error("Error fetching data:", error);
+      // });
   }
 
   const DynamicList = ({ data, realEstateAgent }) => {
