@@ -12,6 +12,7 @@ import axios from "axios";
 function LandlordNotification() {
   const location = useLocation();
   const notifications = Object.values(location.state || {});
+  console.log(notifications);
   const [tenants, setTenants] = useState([]);
   let navigate = useNavigate();
 
@@ -28,7 +29,9 @@ function LandlordNotification() {
     axios
       .get(`http://localhost:8080/tenants/${notifications[idx].tenantID}`)
       .then((response) => {
+        console.log(response.data);
         const newTenant = response.data.firstName;
+
         // Update tenants state and save to local storage
         setTenants((prevTenants) => {
           const updatedTenants = [...prevTenants, newTenant];
@@ -37,6 +40,40 @@ function LandlordNotification() {
       })
       .catch((error) => {
         console.error("Error fetching tenant:", error);
+      });
+  }
+
+  function acceptRentalRequest(idx) {
+    axios
+      .put(
+        `http://localhost:8080/landlords/${notifications[idx].landlordID}/renting-requests/${notifications[idx].serviceID}/confirm`,
+        { serviceAccepted: true,
+          newlyCreated: false
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+        navigate("/landlordNotification");
+      })
+      .catch((error) => {
+        console.error("Error accepting rental request:", error);
+      });
+  }
+
+  function declineRentalRequest(idx) {
+    axios
+      .put(
+        `http://localhost:8080/landlords/${notifications[idx].landlordID}/renting-requests/${notifications[idx].serviceID}/reject`,
+        { serviceAccepted: false,
+          newlyCreated: false
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+        navigate("/landlordPastRequest");
+      })
+      .catch((error) => {
+        console.error("Error accepting rental request:", error);
       });
   }
 
@@ -82,6 +119,9 @@ function LandlordNotification() {
                             <Button
                               style={{ width: "150px", height: "50px" }}
                               className="btn-decline"
+                              onClick={() => {
+                                declineRentalRequest(idx);
+                              }}
                               type="submit"
                             >
                               Decline
@@ -89,6 +129,9 @@ function LandlordNotification() {
                             <Button
                               style={{ width: "150px", height: "50px" }}
                               className="btn-fav"
+                              onClick={() => {
+                                acceptRentalRequest(idx);
+                              }}
                               type="submit"
                             >
                               Accept
