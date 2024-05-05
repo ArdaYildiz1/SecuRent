@@ -7,9 +7,15 @@ import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import SeeLandlordProfile from './SeeLandlordProfile';
 import LandlordNavBar from './LandlordNavBar';
+import { useLocation } from 'react-router-dom';
+import axios from 'axios';
 
 function SeeTenantAndRealEstateAgent() {
+    const location = useLocation();
+    const currentRequests = Object.values(location.state || {});
+    console.log(currentRequests);
 
+    
     return (
         <>
             <LandlordNavBar />
@@ -110,7 +116,7 @@ function SeeTenantAndRealEstateAgent() {
                     </Card>
                 </div>
             </div>
-
+            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
         </>
 
     );
