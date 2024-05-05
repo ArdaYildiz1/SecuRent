@@ -23,6 +23,9 @@ public class AssignedJobs {
     @Column(name = "service_accepted")
     private boolean serviceAccepted;
 
+    @Column(name = "newly_created")
+    private boolean newlyCreated;
+
     @Column(name = "house_ID")
     private Integer houseID;
 
@@ -31,4 +34,7 @@ public class AssignedJobs {
 
     @Column(name = "landlord_ID")
     private Integer landlordID;
+
+    @Column(name = "government_ID")
+    private Integer governmentID;
 }

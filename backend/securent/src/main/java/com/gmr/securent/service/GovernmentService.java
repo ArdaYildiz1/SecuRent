@@ -1,5 +1,6 @@
 package com.gmr.securent.service;
 
+import com.gmr.securent.entity.AssignedJobs;
 import com.gmr.securent.entity.Expert;
 import com.gmr.securent.entity.Government;
 import com.gmr.securent.entity.House;
@@ -7,8 +8,10 @@ import com.gmr.securent.entity.RealEstateAgentOperations;
 import com.gmr.securent.entity.RentRequest;
 import com.gmr.securent.entity.RentalContract;
 import com.gmr.securent.entity.Tenant;
+import com.gmr.securent.entity.enums.GovernmentServiceType;
 import com.gmr.securent.entity.enums.ServiceType;
 import com.gmr.securent.repository.ExpertRepository;
+import com.gmr.securent.repository.GovernmentOperationsRepository;
 import com.gmr.securent.repository.GovernmentRepository;
 import com.gmr.securent.repository.HouseRepository;
 import com.gmr.securent.repository.RentalContractRepository;
@@ -32,17 +35,21 @@ public class GovernmentService implements GovernmentInterface {
     private HouseRepository houseRepository;
     private ExpertRepository expertRepository;
     private RentalContractRepository rentalContractRepository;
+    private GovernmentOperationsRepository governmentOperationsRepository;
 
     public GovernmentService(TenantRepository tenantRepository,
             GovernmentRepository governmentRepository,
             HouseRepository houseRepository,
             ExpertRepository expertRepository,
-            RentalContractRepository rentalContractRepository) {
+            RentalContractRepository rentalContractRepository,
+            GovernmentOperationsRepository governmentOperationsRepository) {
 
         this.governmentRepository = governmentRepository;
         this.houseRepository = houseRepository;
         this.expertRepository = expertRepository;
         this.rentalContractRepository = rentalContractRepository;
+        this.governmentOperationsRepository = governmentOperationsRepository;
+        this.tenantRepository = tenantRepository;
     }
 
     @Override
@@ -174,6 +181,154 @@ public class GovernmentService implements GovernmentInterface {
             tenantRepository.save(tenant);
         } else {
             throw new RuntimeException("Tenant not found with ID: " + userId);
+        }
+    }
+
+    @Override
+    public List<AssignedJobs> getAllAssignedJobsRequestsForGovernment(Integer governmentID) {
+        return governmentOperationsRepository.findAllByGovernmentID(governmentID);
+    }
+
+    @Override
+    public List<AssignedJobs> getNewApproveContractRequestsForGovernment(Integer governmentID) {
+        List<AssignedJobs> assignedJobs = getAllAssignedJobsRequestsForGovernment(governmentID);
+        List<AssignedJobs> newJobs = new ArrayList<AssignedJobs>();
+        for (AssignedJobs assignedJob : assignedJobs) {
+            if (assignedJob.isNewlyCreated() == true
+                    && assignedJob.getServiceType() == GovernmentServiceType.APPROVE_CONTRACT) {
+                newJobs.add(assignedJob);
+            }
+        }
+        return newJobs;
+    }
+
+    @Override
+    public List<AssignedJobs> getCurrentApproveContractRequestsForGovernment(Integer governmentID) {
+        List<AssignedJobs> assignedJobs = getAllAssignedJobsRequestsForGovernment(governmentID);
+        List<AssignedJobs> currentJobs = new ArrayList<AssignedJobs>();
+        for (AssignedJobs assignedJob : assignedJobs) {
+            if (assignedJob.isServiceAccepted() == true
+                    && assignedJob.getServiceType() == GovernmentServiceType.APPROVE_CONTRACT) {
+                currentJobs.add(assignedJob);
+            }
+        }
+        return currentJobs;
+    }
+
+    @Override
+    public List<AssignedJobs> getOldApproveContractRequestsForGovernment(Integer governmentID) {
+        List<AssignedJobs> assignedJobs = getAllAssignedJobsRequestsForGovernment(governmentID);
+        List<AssignedJobs> oldJobs = new ArrayList<AssignedJobs>();
+        for (AssignedJobs assignedJob : assignedJobs) {
+            if (assignedJob.isNewlyCreated() == false
+                    && assignedJob.getServiceType() == GovernmentServiceType.APPROVE_CONTRACT) {
+                oldJobs.add(assignedJob);
+            }
+        }
+        return oldJobs;
+    }
+
+    @Override
+    public List<AssignedJobs> getNewHandleComplaintRequestsForGovernment(Integer governmentID) {
+        List<AssignedJobs> assignedJobs = getAllAssignedJobsRequestsForGovernment(governmentID);
+        List<AssignedJobs> newJobs = new ArrayList<AssignedJobs>();
+        for (AssignedJobs assignedJob : assignedJobs) {
+            if (assignedJob.isNewlyCreated() == true
+                    && assignedJob.getServiceType() == GovernmentServiceType.HANDLE_COMPLAINT) {
+                newJobs.add(assignedJob);
+            }
+        }
+        return newJobs;
+    }
+
+    @Override
+    public List<AssignedJobs> getCurrentHandleComplaintRequestsForGovernment(Integer governmentID) {
+        List<AssignedJobs> assignedJobs = getAllAssignedJobsRequestsForGovernment(governmentID);
+        List<AssignedJobs> currentJobs = new ArrayList<AssignedJobs>();
+        for (AssignedJobs assignedJob : assignedJobs) {
+            if (assignedJob.isServiceAccepted() == true
+                    && assignedJob.getServiceType() == GovernmentServiceType.HANDLE_COMPLAINT) {
+                currentJobs.add(assignedJob);
+            }
+        }
+        return currentJobs;
+    }
+
+    @Override
+    public List<AssignedJobs> getOldHandleComplaintRequestsForGovernment(Integer governmentID) {
+        List<AssignedJobs> assignedJobs = getAllAssignedJobsRequestsForGovernment(governmentID);
+        List<AssignedJobs> oldJobs = new ArrayList<AssignedJobs>();
+        for (AssignedJobs assignedJob : assignedJobs) {
+            if (assignedJob.isNewlyCreated() == false
+                    && assignedJob.getServiceType() == GovernmentServiceType.HANDLE_COMPLAINT) {
+                oldJobs.add(assignedJob);
+            }
+        }
+        return oldJobs;
+    }
+
+    @Override
+    public List<AssignedJobs> getNewChooseDepositSideRequestsForGovernment(Integer governmentID) {
+        List<AssignedJobs> assignedJobs = getAllAssignedJobsRequestsForGovernment(governmentID);
+        List<AssignedJobs> newJobs = new ArrayList<AssignedJobs>();
+        for (AssignedJobs assignedJob : assignedJobs) {
+            if (assignedJob.isNewlyCreated() == true
+                    && assignedJob.getServiceType() == GovernmentServiceType.CHOOSE_DEPOSIT_SIDE) {
+                newJobs.add(assignedJob);
+            }
+        }
+        return newJobs;
+    }
+
+    @Override
+    public List<AssignedJobs> getCurrentChooseDepositSideRequestsForGovernment(Integer governmentID) {
+        List<AssignedJobs> assignedJobs = getAllAssignedJobsRequestsForGovernment(governmentID);
+        List<AssignedJobs> currentJobs = new ArrayList<AssignedJobs>();
+        for (AssignedJobs assignedJob : assignedJobs) {
+            if (assignedJob.isServiceAccepted() == true
+                    && assignedJob.getServiceType() == GovernmentServiceType.CHOOSE_DEPOSIT_SIDE) {
+                currentJobs.add(assignedJob);
+            }
+        }
+        return currentJobs;
+    }
+
+    @Override
+    public List<AssignedJobs> getOldChooseDepositSideRequestsForGovernment(Integer governmentID) {
+        List<AssignedJobs> assignedJobs = getAllAssignedJobsRequestsForGovernment(governmentID);
+        List<AssignedJobs> oldJobs = new ArrayList<AssignedJobs>();
+        for (AssignedJobs assignedJob : assignedJobs) {
+            if (assignedJob.isNewlyCreated() == false
+                    && assignedJob.getServiceType() == GovernmentServiceType.CHOOSE_DEPOSIT_SIDE) {
+                oldJobs.add(assignedJob);
+            }
+        }
+        return oldJobs;
+    }
+
+    @Override
+    public void acceptAssignedJobs(Integer assignedJobID) {
+        AssignedJobs assignedJobs = governmentOperationsRepository.findById(assignedJobID)
+                .orElse(null);
+        if (assignedJobs != null) {
+            assignedJobs.setServiceAccepted(true);
+            assignedJobs.setNewlyCreated(false);
+            governmentOperationsRepository.save(assignedJobs);
+        } else {
+            throw new RuntimeException("No pending assigned jobs to accept.");
+        }
+    }
+
+    @Override
+    public void rejectAssignedJobs(Integer assignedJobID) {
+        AssignedJobs assignedJobs = governmentOperationsRepository.findById(assignedJobID)
+                .orElse(null);
+        if (assignedJobs != null) {
+            assignedJobs.setServiceAccepted(false);
+            assignedJobs.setNewlyCreated(false);
+            governmentOperationsRepository.save(assignedJobs);
+        } else {
+            throw new RuntimeException("No pending assigned jobs to accept.");
         }
     }
 
