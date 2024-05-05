@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
@@ -9,6 +10,7 @@ function LandlordNavBar() {
   
 
   let navigate = useNavigate();
+  const [landlordID, setLandlordID] = useState(1); // Use a static tenantId for testing
 
   function handleProfile() {
     navigate("/landlordProfile");
@@ -20,18 +22,18 @@ function LandlordNavBar() {
 
   function handleCurrentRequests() {
     axios
-      .get(`http://localhost:8080/houses`)
+      .get(`http://localhost:8080/landlords/${landlordID}`)
       .then((response) => {
-       
-
-
-        navigate("/landlordCurrentRequest", { state: { ...response.data } });
+        // Assuming response.data is an array of renting requests
         console.log(response.data);
+        navigate("/landlordCurrentRequest", { state: { ...response.data } });
       })
       .catch((error) => {
-        console.error("Error fetching houses:", error);
+        console.error("Error fetching renting requests:", error);
+        // You can also display a user-friendly error message here
       });
   }
+  
 
   function handlePastRequests() {
     navigate("/landlordPastRequest");
