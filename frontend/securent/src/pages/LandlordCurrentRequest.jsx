@@ -11,6 +11,7 @@ function LandlordCurrentRequest() {
 
     const location = useLocation();
     const currentRequests = Object.values(location.state || {});
+    console.log(currentRequests);
     const [tenants, setTenants] = useState([]);
     const [realEstateAgents, setRealEstateAgents] = useState([]);
     let navigate = useNavigate();
@@ -54,6 +55,7 @@ function LandlordCurrentRequest() {
           .get(`http://localhost:8080/real-estate-agents/${currentRequests[idx].realEstateAgentId}`)
           .then((response) => {
             const newRealEstateAgent = response.data.firstName;
+            console.log(newRealEstateAgent);
             // Update real estate agent state and save to local storage
             setRealEstateAgents((prevRealEstateAgents) => {
               const updatedRealEstateAgents = [...prevRealEstateAgents, newRealEstateAgent];

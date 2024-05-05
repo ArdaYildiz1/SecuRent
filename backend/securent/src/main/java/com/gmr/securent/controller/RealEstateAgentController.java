@@ -35,7 +35,7 @@ public class RealEstateAgentController {
     }
 
     @GetMapping("/{realEstateAgentId}")
-    public RealEstateAgent getOneRealEstateAgent(@PathVariable Integer realEstateAgentId) {
+    public RealEstateAgent getOneRealEstateAgent(@RequestBody Integer realEstateAgentId) {
         RealEstateAgent realEstateAgent = realEstateAgentService.getOneRealEstateAgentById(realEstateAgentId);
         if(realEstateAgent == null) {
             throw new UserNotFoundException();
