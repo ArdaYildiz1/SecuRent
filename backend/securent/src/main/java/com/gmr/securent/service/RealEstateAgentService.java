@@ -99,7 +99,7 @@ public class RealEstateAgentService implements RealEstateAgentInterface {
         List<RealEstateAgentOperations> serviceRequests = getAllRentalServiceRequestsForRealEstateAgent(realEstateAgentId);
         List<RealEstateAgentOperations> oldRequests = new ArrayList<RealEstateAgentOperations>();
         for (RealEstateAgentOperations serviceRequest: serviceRequests) {
-            if (serviceRequest.isNewlyCreated() == false && serviceRequest.getServiceType() == ServiceType.RENTAL_SERVICE) {
+            if (serviceRequest.isNewlyCreated() == false && serviceRequest.isServiceAccepted() == false && serviceRequest.getServiceType() == ServiceType.RENTAL_SERVICE) {
                 oldRequests.add(serviceRequest);
             }
         }
@@ -135,7 +135,7 @@ public class RealEstateAgentService implements RealEstateAgentInterface {
         List<RealEstateAgentOperations> serviceRequests = getAllRentalServiceRequestsForRealEstateAgent(realEstateAgentId);
         List<RealEstateAgentOperations> oldRequests = new ArrayList<RealEstateAgentOperations>();
         for (RealEstateAgentOperations serviceRequest: serviceRequests) {
-            if (serviceRequest.isNewlyCreated() == false && serviceRequest.getServiceType() == ServiceType.EVALUATION_REQUEST) {
+            if (serviceRequest.isNewlyCreated() == false && serviceRequest.isServiceAccepted() == false && serviceRequest.getServiceType() == ServiceType.EVALUATION_REQUEST) {
                 oldRequests.add(serviceRequest);
             }
         }

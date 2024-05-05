@@ -183,7 +183,7 @@ public class LandlordService implements LandlordInterface {
         List<RentRequest> rentRequests = getAllRentingRequestsForLandlord(userId);
         List<RentRequest> oldRequests = new ArrayList<RentRequest>();
         for (RentRequest rentRequest: rentRequests) {
-            if (rentRequest.isNewlyCreated() == false) {
+            if (rentRequest.isNewlyCreated() == false && rentRequest.isServiceAccepted() == false) {
                 oldRequests.add(rentRequest);
             }
         }

@@ -10,6 +10,7 @@ import axios from "axios";
 function LandlordPastRequest() {
     const location = useLocation();
     const pastRequests = Object.values(location.state || {});
+    console.log(pastRequests);
     const [tenants, setTenants] = useState([]);
     const [realEstateAgents, setRealEstateAgents] = useState([]);
     let navigate = useNavigate();
@@ -51,7 +52,7 @@ function LandlordPastRequest() {
 
       function getRealEstateAgentNameById(idx) {
         axios
-          .get(`http://localhost:8080/real-estate-agents/${pastRequests[idx].realEstateAgentId}`)
+          .get(`http://localhost:8080/real-estate-agents/${pastRequests[idx].realEstateAgentID}`)
           .then((response) => {
             const newRealEstateAgent = response.data.firstName;
             // Update real estate agent state and save to local storage

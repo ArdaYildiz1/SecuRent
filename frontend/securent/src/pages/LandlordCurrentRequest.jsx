@@ -52,10 +52,9 @@ function LandlordCurrentRequest() {
 
       function getRealEstateAgentNameById(idx) {
         axios
-          .get(`http://localhost:8080/real-estate-agents/${currentRequests[idx].realEstateAgentId}`)
+          .get(`http://localhost:8080/real-estate-agents/${currentRequests[idx].realEstateAgentID}`)
           .then((response) => {
             const newRealEstateAgent = response.data.firstName;
-            console.log(newRealEstateAgent);
             // Update real estate agent state and save to local storage
             setRealEstateAgents((prevRealEstateAgents) => {
               const updatedRealEstateAgents = [...prevRealEstateAgents, newRealEstateAgent];

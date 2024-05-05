@@ -49,7 +49,7 @@ function LandlordNavBar() {
 
 
     axios
-      .get(`http://localhost:8080/landlords/${landlordID}/renting-requests`)
+      .get(`http://localhost:8080/landlords/${landlordID}/renting-requests/new`)
       .then((response) => {
 
         navigate("/landlordNotification", { state: { ...response.data } });
