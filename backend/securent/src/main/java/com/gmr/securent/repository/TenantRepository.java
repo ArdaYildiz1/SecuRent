@@ -1,6 +1,5 @@
 package com.gmr.securent.repository;
 
-import com.gmr.securent.entity.RegisteredUser;
 import com.gmr.securent.entity.Tenant;
 import org.springframework.data.jpa.repository.JpaRepository;
 

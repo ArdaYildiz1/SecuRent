@@ -6,7 +6,6 @@ import com.gmr.securent.entity.enums.ServiceType;
 import com.gmr.securent.repository.RealEstateAgentOperationsRepository;
 import com.gmr.securent.repository.RealEstateAgentRepository;
 import com.gmr.securent.service.interfaces.RealEstateAgentInterface;
-
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 

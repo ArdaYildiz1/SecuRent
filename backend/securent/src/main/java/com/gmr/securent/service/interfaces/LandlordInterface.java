@@ -1,6 +1,9 @@
 package com.gmr.securent.service.interfaces;
 
-import com.gmr.securent.entity.*;
+import com.gmr.securent.entity.House;
+import com.gmr.securent.entity.Landlord;
+import com.gmr.securent.entity.RentRequest;
+import com.gmr.securent.entity.RentalContract;
 
 import java.time.LocalDate;
 import java.util.List;

@@ -16,7 +16,7 @@ export default function Login() {
     function handleForgotPassword() {
         navigate("/forgotPassword");
     }
-    
+
     function handlesignup() {
         navigate("/signup");
     }
@@ -58,7 +58,7 @@ export default function Login() {
 
                                         <Form.Group className="ms-5 me-5 mb-3" controlId="loginPassword">
                                             <Form.Label>Password</Form.Label>
-                                            <Form.Control type="password" 
+                                            <Form.Control type="password"
                                                           placeholder="Password"/>
                                         </Form.Group>
                                         <br/>
