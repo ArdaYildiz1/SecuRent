@@ -58,4 +58,6 @@ public interface GovernmentInterface {
 
     void rejectAssignedJobs(Integer assignedJobID);
 
+    List<Government> getAllGovernments();
+
 }

@@ -4,6 +4,7 @@ import com.gmr.securent.entity.AssignedJobs;
 import com.gmr.securent.entity.Expert;
 import com.gmr.securent.entity.Government;
 import com.gmr.securent.entity.House;
+import com.gmr.securent.entity.Landlord;
 import com.gmr.securent.entity.RealEstateAgentOperations;
 import com.gmr.securent.entity.RentRequest;
 import com.gmr.securent.entity.RentalContract;
@@ -55,6 +56,11 @@ public class GovernmentService implements GovernmentInterface {
     @Override
     public Government getGovernment(Integer userId) {
         return governmentRepository.findById(userId).orElse(null);
+    }
+
+    @Override
+    public List<Government> getAllGovernments() {
+        return governmentRepository.findAll();
     }
 
     @Override
