@@ -49,10 +49,6 @@ import StateOfficialHouseDetails from "./pages/StateOfficialHouseDetails";
 
 const AppRoutes = [
     {
-        path: '/',
-        element: <Login/>
-    },
-    {
         path: '/login',
         element: <Login/>
     },

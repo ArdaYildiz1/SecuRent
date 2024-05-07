@@ -32,7 +32,7 @@ public class AuthController {
         this.tenantService = tenantService;
     }
 
-    @PostMapping("/login")
+    @GetMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest request) {
         Tenant existingTenant = tenantRepository.findByEmailAddress(request.getEmail());
         Landlord existingLandlord = landlordRepository.findByEmailAddress(request.getEmail());
