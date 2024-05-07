@@ -55,6 +55,4 @@ public class RentalAd {
     boolean inASite;
     @Column(name = "site_name")
     String siteName;
-    @Column(name = "rent_amount")
-    double rentAmount;
 }
