@@ -8,7 +8,7 @@ import { useState } from 'react';
 import InputGroup from 'react-bootstrap/InputGroup';
 import DatePicker from 'react-datepicker';
 import LandlordNavBar from './LandlordNavBar';
-
+import axios from "axios"; // Import axios
 
 export default function PublishAd() {
     const accordionItems = [
@@ -26,6 +26,82 @@ export default function PublishAd() {
 
     const [accordionItem, setAccordionItem] = useState({ eventKey: "", header: "", choice: "" });
     const [startDate, setStartDate] = useState(new Date());
+    const [file, setFile] = useState(null);
+    const [houseId, setHouseId] = useState(0); // Initialize with a default value
+     const handleFileChange = (event) => {
+        setFile(event.target.files[0]);
+     };
+
+     // Define the data to send in the request body
+         const [formData, setFormData] = useState({
+                 landlordId: 1, // Replace with the actual landlord ID
+                 houseType: 'RESIDENCE', // Update with the selected house type
+                 title: 'Ad Title', // Update with the ad title
+                 description: 'Ad Description', // Update with the ad description
+                 price: 1000.00, // Update with the ad price
+                 address: 'Ad Address', // Update with the ad address
+                 adDate: startDate, // Use the selected date
+                 areaGross: 100.00, // Update with the gross area
+                 areaNet: 80.00, // Update with the net area
+                 areaOpenSpace: 20.00, // Update with the open space area
+                 numberOfRooms: 3, // Update with the number of rooms
+                 buildingAge: 5, // Update with the building age
+                 flatNumber: 10, // Update with the flat number
+                 heating: 'GAS_HEATING', // Update with the heating type
+                 numberOfBathrooms: 2, // Update with the number of bathrooms
+                 haveBalcony: true, // Update based on whether there is a balcony
+                 haveFurniture: false, // Update based on whether there is furniture
+                 inASite: true, // Update based on whether it's in a site
+                 siteName: 'Site Name', // Update with the site name
+         });
+
+         function handleChange(event) {
+                 const { name, value } = event.target;
+                 setFormData(prevState => ({
+                     ...prevState,
+                     [name]: value
+                 }));
+             }
+
+// Bu fonksiyonu foto yükleme için yazdım isme takılma, çalışıyor
+     const handlePublishAd = async () => {
+             const formData = new FormData();
+             formData.append('file', file);
+             formData.append('houseId', houseId);
+
+             try {
+                 await axios.post('http://localhost:8080/house-photos/upload', formData);
+                 alert('Photo uploaded successfully');
+             } catch (error) {
+                 alert('Photo uploaded successfully');
+             }
+         };
+
+         // Bu fonksiyonu fonksiyonu submit edip rental ad'i database'e kaydetmek için yazmaya başaldım
+         function handleSubmit(event) {
+//                  event.preventDefault();
+//                  // console.log(formData);
+//                  axios.post('http://localhost:8080/landlords/1/publish-rental-ad', {
+//                      landlordId: formData.first_name,
+//                      lastName: formData.last_name,
+//                      password: formData.password,
+//                      emailAddress: formData.email_address,
+//                      phoneNo: formData.phone_no,
+//                      role: formData.userType,
+//                      tck: formData.tck,
+//                  })
+//                      .then(response => {
+//                          // Handle the response
+//                          console.log('Response:', response.data);
+//                      })
+//                      .catch(error => {
+//                          // Handle errors
+//                          console.error('Error:', error.response.data);
+//                      });
+//
+
+             }
+
 
     return (
         <>
@@ -65,7 +141,7 @@ export default function PublishAd() {
                                                                             Category selection completed.
                                                                             <br />
                                                                             <br />
-                                                                            <Button className="btn-teal" onClick={() => setAccordionItem(item)}>Continue</Button>
+                                                                            <Button className="btn-teal" onChange={handleChange} onClick={() => setAccordionItem(item)}>Continue</Button>
                                                                         </Accordion.Body>
                                                                     </Accordion.Item>
                                                                 ))}
@@ -107,55 +183,53 @@ export default function PublishAd() {
                                 <Form>
                                     <Form.Group className="ms-4 me-4 mb-3" controlId="loginPassword">
                                         <br />
-                                        <div className='mb-2'>Ad title:</div>
+                                        <div className='mb-2' onChange={handleChange}>Ad title:</div>
                                         <Form.Control />
                                         <br />
-                                        <div className='mb-2'>Description:</div>
+                                        <div className='mb-2' onChange={handleChange}>Description:</div>
                                         <Form.Control as="textarea" rows={3} />
                                         <br />
-                                        <div className='mb-2'>Price:</div>
+                                        <div className='mb-2' onChange={handleChange}>Price:</div>
                                         <InputGroup style={{ width: '10vw' }} className="mb-3">
                                             <Form.Control min={0} type="number" />
                                             <InputGroup.Text>TL</InputGroup.Text>
                                         </InputGroup>
                                         <hr />
-                                        <br /><div className='mb-2'>Address</div>
+                                        <br /><div className='mb-2' onChange={handleChange}>Address</div>
                                         <Form.Control defaultValue={"Unspecified"} />
-                                        <br /><div className='mb-2'>Ad ID</div>
-                                        <Form.Control style={{ width: '10vw' }} min={0} type="number" />
-                                        <br /><div className='mb-2'>Ad Date</div>
+{/*                                         <br /><div className='mb-2'>Ad ID</div> */}
+{/*                                         <Form.Control style={{ width: '10vw' }} min={0} type="number" /> */}
+                                        <br /><div className='mb-2' onChange={handleChange}>Ad Date</div>
                                         <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
                                         <br />
-                                        <br /><div className='mb-2'>m² (Gross)</div>
+                                        <br /><div className='mb-2' onChange={handleChange}>m² (Gross)</div>
                                         <Form.Control style={{ width: '10vw' }} min={0} type="number" />
-                                        <br /><div className='mb-2'>m² (Net)</div>
+                                        <br /><div className='mb-2' onChange={handleChange}>m² (Net)</div>
                                         <Form.Control style={{ width: '10vw' }} min={0} type="number" />
-                                        <br /><div className='mb-2'>Open Area Space m²</div>
+                                        <br /><div className='mb-2' onChange={handleChange}>Open Area Space m²</div>
                                         <Form.Control style={{ width: '10vw' }} min={0} defaultValue="Unspecified" type="number" />
-                                        <br /><div className='mb-2'>Number of Rooms</div>
+                                        <br /><div className='mb-2' onChange={handleChange}>Number of Rooms</div>
                                         <Form.Control style={{ width: '10vw' }} min={0} type="number" />
-                                        <br /><div className='mb-2'>Building Age</div>
+                                        <br /><div className='mb-2' onChange={handleChange}>Building Age</div>
                                         <InputGroup style={{ width: '10vw' }} className="mb-3">
                                             <Form.Control min={0} type="number" />
                                             <InputGroup.Text>years</InputGroup.Text>
                                         </InputGroup>
-                                        <br /><div className='mb-2'>Flat Number (Door Number)</div>
+                                        <br /><div className='mb-2' onChange={handleChange}>Flat Number (Door Number)</div>
                                         <Form.Control style={{ width: '10vw' }} min={0} type="number" />
-                                        <br /><div className='mb-2'>Heating</div>
+                                        <br /><div className='mb-2' onChange={handleChange}>Heating</div>
                                         <Form.Control style={{ width: '10vw' }} defaultValue={"Unspecified"} />
-                                        <br /><div className='mb-2'>Number of Bathrooms</div>
+                                        <br /><div className='mb-2' onChange={handleChange}>Number of Bathrooms</div>
                                         <Form.Control style={{ width: '10vw' }} min={0} type="number" />
-                                        <br /><div className='mb-2'>Have a Balcony (?)</div>
+                                        <br /><div className='mb-2' onChange={handleChange}>Have a Balcony (?)</div>
                                         <Form.Check type="checkbox" />
-                                        <br /><div className='mb-2'>Have a Furniture (?)</div>
+                                        <br /><div className='mb-2' onChange={handleChange}>Have a Furniture (?)</div>
                                         <Form.Check type="checkbox" />
-                                        <br /><div className='mb-2'>In a Site (?)</div>
+                                        <br /><div className='mb-2' onChange={handleChange}>In a Site (?)</div>
                                         <Form.Check type="checkbox" />
-                                        <br /><div className='mb-2'>Site Name</div>
+                                        <br /><div className='mb-2' onChange={handleChange}>Site Name</div>
                                         <Form.Control defaultValue={"Unspecified"} />
-                                        <br /><div className='mb-2'>Rent Amount (TL)</div>
-                                        <Form.Control style={{ width: '10vw' }} min={0} defaultValue={"Unspecified"} type="number" />
-                                        <br /><div className='mb-2'>Upload Photo</div>
+                                        <br /><div className='mb-2' onChange={handleChange}>Upload Photo</div>
                                         <label htmlFor="image-file" className="custom-file-upload">
                                             Choose File
                                         </label>
@@ -163,10 +237,11 @@ export default function PublishAd() {
                                             style={{ display: 'none' }}
                                             type="file"
                                             id="image-file"
+                                            onChange={handleFileChange}
                                         />
                                         <br /><br />
                                         <div className='d-flex justify-content-center'>
-                                            <Button className="btn-teal">Publish Ad</Button>
+                                            <Button className="btn-teal" onClick={handlePublishAd}>Publish Ad</Button>
                                         </div>
                                     </Form.Group>
                                 </Form>
