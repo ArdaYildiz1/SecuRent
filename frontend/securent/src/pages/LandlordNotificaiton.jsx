@@ -70,7 +70,7 @@ function LandlordNotification() {
       )
       .then((response) => {
         console.log(response.data);
-        navigate("/landlordPastRequest");
+        navigate("/landlordNotification");
       })
       .catch((error) => {
         console.error("Error accepting rental request:", error);

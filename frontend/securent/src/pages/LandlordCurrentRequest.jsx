@@ -72,6 +72,21 @@ function LandlordCurrentRequest() {
       });
   }
 
+  function declineRentalRequest(idx) {
+    axios
+      .put(
+        `http://localhost:8080/landlords/${currentRequests[idx].landlordID}/renting-requests/${currentRequests[idx].serviceID}/reject`,
+        { serviceAccepted: false, newlyCreated: false }
+      )
+      .then((response) => {
+        console.log(response.data);
+        navigate("/landlordCurrentRequest");
+      })
+      .catch((error) => {
+        console.error("Error accepting rental request:", error);
+      });
+  }
+
   const dynamicData = [
     "Ahmet Kalem",
     "Fatih Kor",
@@ -98,47 +113,24 @@ function LandlordCurrentRequest() {
   };
 
   function handleSeeProfiles(idx) {
-    
-    axios
-      .get(
+    Promise.all([
+      axios.get(
         `http://localhost:8080/real-estate-agents/${currentRequests[idx].realEstateAgentID}`
-      )
-      .then((response) => {
-        console.log(response.data);
-        const newRealEstateAgent = response.data;
-        // Update real estate agent state and save to local storage
-        console.log(newRealEstateAgent);
-        navigate("/seeTenantAndRealEstateAgent", { state: { ...newRealEstateAgent } });
-      })
-      .catch((error) => {
-        console.error("Error fetching real estate agent:", error);
-      });
-
-      axios
-      .get(
+      ),
+      axios.get(
         `http://localhost:8080/tenants/${currentRequests[idx].tenantID}`
-      )
-      .then((response) => {
-        console.log(response.data);
-        const newTenant = response.data;
-        // Update real estate agent state and save to local storage
-        console.log(newTenant);
-        navigate("/seeTenantAndRealEstateAgent", { state: { ...newTenant } });
+      ),
+    ])
+      .then(([realEstateAgentResponse, tenantResponse]) => {
+        const newRealEstateAgent = realEstateAgentResponse.data;
+        const newTenant = tenantResponse.data;
+        navigate("/seeTenantAndRealEstateAgent", {
+          state: { realEstateAgent: newRealEstateAgent, tenant: newTenant },
+        });
       })
       .catch((error) => {
-        console.error("Error fetching real estate agent:", error);
+        console.error("Error fetching data:", error);
       });
-      //TODO bu promise yapısını kullanıcaz
-      // Promise.all([
-      //   axios.get(`http://localhost:8080/real-estate-agents/${currentRequests[idx].realEstateAgentID}`),
-      //   axios.get(`http://localhost:8080/tenants/${currentRequests[idx].tenantID}`)
-      // ]).then(([realEstateAgentResponse, tenantResponse]) => {
-      //   const newRealEstateAgent = realEstateAgentResponse.data;
-      //   const newTenant = tenantResponse.data;
-      //   navigate("/seeTenantAndRealEstateAgent", { state: { realEstateAgent: newRealEstateAgent, tenant: newTenant } });
-      // }).catch((error) => {
-      //   console.error("Error fetching data:", error);
-      // });
   }
 
   const DynamicList = ({ data, realEstateAgent }) => {
@@ -239,6 +231,9 @@ function LandlordCurrentRequest() {
                               <Button
                                 style={{ width: "150px", height: "60px" }}
                                 className="btn-teal"
+                                onClick={() => {
+                                  declineRentalRequest(idx);
+                                }}
                                 type="submit"
                               >
                                 End Operation
