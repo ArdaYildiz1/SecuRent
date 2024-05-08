@@ -13,7 +13,6 @@ import axios from "axios"; // Import axios
 
 export default function PublishAd() {
   const location = useLocation();
-  console.log(location.state);
 
   const accordionItems = [
     { eventKey: "0", header: "FLAT", choice: "House > Rent >" },
@@ -39,16 +38,17 @@ export default function PublishAd() {
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
   };
-
+  //TODO filterlar hopepageden çıkacak
+  //TODO rental ad ve house arasındaki fark tam olarak ne 
   // Define the data to send in the request body
   const [ad, setAd] = useState({
     landlordId: location.state.entityId, // Replace with the actual landlord ID
-    houseType: "RESIDENCE", // Update with the selected house type
+    houseType: "", // Update with the selected house type
     title: "Ad Title", // Update with the ad title
     description: "Ad Description", // Update with the ad description
-    price: 1000.0, // Update with the ad price
+    price: 1000, // Update with the ad price
     address: "Ad Address", // Update with the ad address
-    adDate: startDate, // Use the selected date
+    adDate: startDate,
     areaGross: 100.0, // Update with the gross area
     areaNet: 80.0, // Update with the net area
     areaOpenSpace: 20.0, // Update with the open space area
@@ -57,7 +57,7 @@ export default function PublishAd() {
     flatNumber: 10, // Update with the flat number
     heating: "GAS_HEATING", // Update with the heating type
     numberOfBathrooms: 2, // Update with the number of bathrooms
-    haveBalcony: true, // Update based on whether there is a balcony
+    haveBalcony: false, // Update based on whether there is a balcony
     haveFurniture: false, // Update based on whether there is furniture
     inASite: true, // Update based on whether it's in a site
     siteName: "Site Name", // Update with the site name
@@ -69,42 +69,55 @@ export default function PublishAd() {
       ...prevState,
       [name]: value,
     }));
-    console.log(ad);
   }
 
   let headerSetter = (item) => {
     ad.houseType = item.header;
-    console.log(ad.houseType);
   };
 
   // Bu fonksiyonu foto yükleme için yazdım isme takılma, çalışıyor
-  const handlePublishAd = async () => {
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("houseId", houseId);
+  //   const handlePublishAd = async () => {
+  //     const formData = new FormData();
+  //     formData.append('file', file);
+  //     formData.append('houseId', houseId);
 
-    try {
-      await axios.post("http://localhost:8080/house-photos/upload", formData);
-      alert("Photo uploaded successfully");
-    } catch (error) {
-      alert("Photo uploaded successfully");
-    }
-  };
+  //     try {
+  //         await axios.post('http://localhost:8080/house-photos/upload', formData);
+  //         alert('Photo uploaded successfully');
+  //     } catch (error) {
+  //         alert('Photo uploaded successfully');
+  //     }
+  // };
 
   // Bu fonksiyonu fonksiyonu submit edip rental ad'i database'e kaydetmek için yazmaya başaldım
   function handleSubmit(event) {
     event.preventDefault();
-    // console.log(formData);
+    console.log(ad);
     axios
-      .post(`http://localhost:8080/landlords/${ad.landlordId}/publish-rental-ad"`, {
-        landlordId: formData.first_name,
-        lastName: formData.last_name,
-        password: formData.password,
-        emailAddress: formData.email_address,
-        phoneNo: formData.phone_no,
-        role: formData.userType,
-        tck: formData.tck,
-      })
+      .post(
+        `http://localhost:8080/landlords/${ad.landlordId}/publish-rental-ad`,
+        {
+          landlordId: location.state.entityId,
+          houseType: ad.houseType,
+          title: ad.title,
+          description: ad.description,
+          price: ad.price,
+          adDate: startDate,
+          address: ad.address,
+          areaGross: ad.areaGross,
+          areaNet: ad.areaNet,
+          areaOpenSpace: ad.areaOpenSpace,
+          numberOfRooms: ad.numberOfRooms,
+          buildingAge: ad.buildingAge,
+          flatNumber: ad.flatNumber,
+          heating: ad.heating,
+          numberOfBathrooms: ad.numberOfBathrooms,
+          haveBalcony: false,
+          haveFurniture: false,
+          inASite: true,
+          siteName: ad.siteName,
+        }
+      )
       .then((response) => {
         // Handle the response
         console.log("Response:", response.data);
@@ -113,6 +126,41 @@ export default function PublishAd() {
         // Handle errors
         console.error("Error:", error.response.data);
       });
+
+    // Promise.all([
+    //   post(
+    //     `http://localhost:8080/landlords/${ad.landlordId}/publish-rental-ad`,
+    //     {
+    //       landlordId: location.state.entityId,
+    //       houseType: ad.houseType,
+    //       title: ad.title,
+    //       description: ad.description,
+    //       price: ad.price,
+    //       adDate: startDate,
+    //       address: ad.address,
+    //       areaGross: ad.areaGross,
+    //       areaNet: ad.areaNet,
+    //       areaOpenSpace: ad.areaOpenSpace,
+    //       numberOfRooms: ad.numberOfRooms,
+    //       buildingAge: ad.buildingAge,
+    //       flatNumber: ad.flatNumber,
+    //       heating: ad.heating,
+    //       numberOfBathrooms: ad.numberOfBathrooms,
+    //       haveBalcony: false,
+    //       haveFurniture: false,
+    //       inASite: true,
+    //       siteName: ad.siteName,
+    //     }
+    //   ),
+    //   axios.post(`http://localhost:8080/houses`, {}),
+    // ])
+    //   .then(([realEstateAgentResponse, tenantResponse]) => {
+    //     const newRealEstateAgent = realEstateAgentResponse.data;
+    //     const newTenant = tenantResponse.data;
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error fetching data:", error);
+    //   });
   }
 
   return (
@@ -265,6 +313,15 @@ export default function PublishAd() {
                     />
                     <br /> */}
                     <br />
+                    <div className="mb-2" onChange={handleChange}>
+                      Ad Date
+                    </div>
+                    <DatePicker
+                      selected={startDate}
+                      onChange={(date) => setStartDate(date)}
+                    />
+                    <br />
+                    <br />
                     <div className="mb-2">m² (Gross)</div>
                     <Form.Control
                       style={{ width: "10vw" }}
@@ -365,13 +422,13 @@ export default function PublishAd() {
                     <br />
                     <div className="mb-2">Site Name</div>
                     <Form.Control
-                      name="inASite"
+                      name="siteName"
                       onChange={handleChange}
                       type="text"
                       defaultValue={"Unspecified"}
                     />
                     <br />
-                    <div className="mb-2">Upload Photo</div>
+                    {/* <div className="mb-2">Upload Photo</div>
                     <label htmlFor="image-file" className="custom-file-upload">
                       Choose File
                     </label>
@@ -380,11 +437,11 @@ export default function PublishAd() {
                       type="file"
                       id="image-file"
                       onChange={handleFileChange}
-                    />
+                    /> */}
                     <br />
                     <br />
                     <div className="d-flex justify-content-center">
-                      <Button className="btn-teal" onClick={handlePublishAd}>
+                      <Button className="btn-teal" onClick={handleSubmit}>
                         Publish Ad
                       </Button>
                     </div>
