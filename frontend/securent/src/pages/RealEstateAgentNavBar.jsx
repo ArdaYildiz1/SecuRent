@@ -12,56 +12,94 @@ function RealEstateAgentNavBar() {
   const [realEstateAgentId, setRealEstateAgentId] = useState(1); // Use a static landlordID for testing
   let navigate = useNavigate();
 
-
   function handleLogOut() {
     navigate("/");
   }
   function handleGoHome() {
-//     axios
-//       .get(`http://localhost:8080/houses`)
-//       .then((response) => {
-//
-//
-//         navigate("/realestateagenthome", { state: { ...response.data } });
-//         console.log(response.data);
-//       })
-//       .catch((error) => {
-//         console.error("Error fetching houses:", error);
-//       });
+    axios
+      .get(`http://localhost:8080/houses`)
+      .then((response) => {
+        navigate("/realestateagenthome", { state: { ...response.data } });
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching houses:", error);
+      });
   }
   function handleCurrentRequests() {
-    navigate("/realEstateAgentCurrentRequest");
+    axios
+      .get(
+        `http://localhost:8080/real-estate-agents/${realEstateAgentId}/rental-service-requests/rental-service/current`
+      )
+      .then((response) => {
+        console.log(response.data);
+        navigate("/realEstateAgentCurrentRequest", {
+          state: { ...response.data },
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching handle current requests :", error);
+      });
   }
   function handlePastRequests() {
-    navigate("/realEstateAgentPastRequest");
+    axios
+      .get(
+        `http://localhost:8080/real-estate-agents/${realEstateAgentId}/rental-service-requests/rental-service/old`
+      )
+      .then((response) => {
+        console.log(response.data);
+        navigate("/realEstateAgentPastRequest", {
+          state: { ...response.data },
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching handle current requests :", error);
+      });
   }
   function handleHouseConditionList() {
-    navigate("/realEstateAgentHouseConditionList");
+    axios
+      .get(
+        `http://localhost:8080/real-estate-agents/${realEstateAgentId}/rental-service-requests/evaluation/current`
+      )
+      .then((response) => {
+        console.log(response.data);
+        navigate("/realEstateAgentHouseConditionList", {
+          state: { ...response.data },
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching handleHouseConditionList :", error);
+      });
   }
   function handleHouseConditionNotifications() {
-        axios
-         .get(`http://localhost:8080/real-estate-agents/${realEstateAgentId}/rental-service-requests/evaluation/new`)
-         .then((response) => {
-          console.log(response.data);
-           navigate("/realEstateAgentHouseCondition", { state: { ...response.data } });
-         })
-         .catch((error) => {
-           console.error("Error fetching houses:", error);
-         });
-
-
+    axios
+      .get(
+        `http://localhost:8080/real-estate-agents/${realEstateAgentId}/rental-service-requests/evaluation/new`
+      )
+      .then((response) => {
+        console.log(response.data);
+        navigate("/realEstateAgentHouseCondition", {
+          state: { ...response.data },
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching houses:", error);
+      });
   }
   function handleNotifications() {
-
- axios
-       .get(`http://localhost:8080/real-estate-agents/${realEstateAgentId}/rental-service-requests/rental-service/new`)
-       .then((response) => {
+    axios
+      .get(
+        `http://localhost:8080/real-estate-agents/${realEstateAgentId}/rental-service-requests/rental-service/new`
+      )
+      .then((response) => {
         console.log(response.data);
-         navigate("/realEstateAgentNotification", { state: { ...response.data } });
-       })
-       .catch((error) => {
-         console.error("Error fetching houses:", error);
-       });
+        navigate("/realEstateAgentNotification", {
+          state: { ...response.data },
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching houses:", error);
+      });
   }
   function handleProfile() {
     navigate("/realEstateAgentProfile");

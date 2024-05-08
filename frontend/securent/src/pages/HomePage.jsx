@@ -37,7 +37,7 @@ export default function HomePage() {
       <div className="row">
         <div className="col-md-2"></div>
         <div className="col-md-8">
-          <FilterComponent />
+          {/* <FilterComponent /> */}
           <br />
           <br />
           <Row xs={1} md={3} className="g-4">

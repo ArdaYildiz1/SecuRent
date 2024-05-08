@@ -227,7 +227,7 @@ export default function HouseDetails() {
                     <br />
                     In a Site (?): {insideASite ? "Yes" : "No"}
                     <br />
-                    Site Name: {siteName}
+                    House Type: {siteName}
                     <br />
                     Rent Amount (TL): {rentPrice}
                     <br />

@@ -21,38 +21,46 @@ function LandlordNavBar() {
 
   function handleCurrentRequests() {
     axios
-      .get(`http://localhost:8080/landlords/${landlordID}/renting-requests/current`)
+      .get(
+        `http://localhost:8080/landlords/${landlordID}/renting-requests/current`
+      )
       .then((response) => {
-
         navigate("/landlordCurrentRequest", { state: { ...response.data } });
       })
       .catch((error) => {
         console.error("Error fetching houses:", error);
       });
-
   }
 
   function handlePastRequests() {
     axios
-      .get(`http://localhost:8080/landlords/${landlordID}/renting-requests/past`)
+      .get(
+        `http://localhost:8080/landlords/${landlordID}/renting-requests/past`
+      )
       .then((response) => {
-
         navigate("/landlordPastRequest", { state: { ...response.data } });
       })
       .catch((error) => {
         console.error("Error fetching houses:", error);
       });
-
   }
 
   function handleNotifications() {
-
-
     axios
       .get(`http://localhost:8080/landlords/${landlordID}/renting-requests/new`)
       .then((response) => {
-
         navigate("/landlordNotification", { state: { ...response.data } });
+      })
+      .catch((error) => {
+        console.error("Error fetching houses:", error);
+      });
+  }
+
+  function handlePublishAd() {
+    axios
+      .get(`http://localhost:8080/landlords/${landlordID}`)
+      .then((response) => {
+        navigate("/publishad", { state: { ...response.data } });
       })
       .catch((error) => {
         console.error("Error fetching houses:", error);
@@ -77,6 +85,10 @@ function LandlordNavBar() {
 
             <Nav.Link onClick={handleNotifications} className="btn-navbar">
               Notifications
+            </Nav.Link>
+
+            <Nav.Link onClick={handlePublishAd} className="btn-navbar">
+              Publish Ad
             </Nav.Link>
           </>
         </Nav>
