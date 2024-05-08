@@ -13,6 +13,7 @@ import axios from "axios"; // Import axios
 
 export default function PublishAd() {
   const location = useLocation();
+  console.log(location.state)
 
   const accordionItems = [
     { eventKey: "0", header: "FLAT", choice: "House > Rent >" },
@@ -42,11 +43,13 @@ export default function PublishAd() {
   //TODO rental ad ve house arasındaki fark tam olarak ne 
   // Define the data to send in the request body
   const [ad, setAd] = useState({
-    landlordId: location.state.entityId, // Replace with the actual landlord ID
+    landlordId: 1, // Replace with the actual landlord ID
+    landlordName: "", // Update with the landlord name
+    landlordPhoneNumber: "", // Update with the landlord phone number
     houseType: "", // Update with the selected house type
-    title: "Ad Title", // Update with the ad title
-    description: "Ad Description", // Update with the ad description
-    price: 1000, // Update with the ad price
+    adTitle: "Ad Title", // Update with the ad title
+    adDetails: "Ad Description", // Update with the ad description
+    rentPrice: 1000, // Update with the ad price
     address: "Ad Address", // Update with the ad address
     adDate: startDate,
     areaGross: 100.0, // Update with the gross area
@@ -57,9 +60,9 @@ export default function PublishAd() {
     flatNumber: 10, // Update with the flat number
     heating: "GAS_HEATING", // Update with the heating type
     numberOfBathrooms: 2, // Update with the number of bathrooms
-    haveBalcony: false, // Update based on whether there is a balcony
-    haveFurniture: false, // Update based on whether there is furniture
-    inASite: true, // Update based on whether it's in a site
+    haveBalcony: true, // Update based on whether there is a balcony
+    haveFurniture: true, // Update based on whether there is furniture
+    inASite: false, // Update based on whether it's in a site
     siteName: "Site Name", // Update with the site name
   });
 
@@ -95,13 +98,15 @@ export default function PublishAd() {
     console.log(ad);
     axios
       .post(
-        `http://localhost:8080/landlords/${ad.landlordId}/publish-rental-ad`,
+        `http://localhost:8080/houses`,
         {
           landlordId: location.state.entityId,
-          houseType: ad.houseType,
-          title: ad.title,
-          description: ad.description,
-          price: ad.price,
+          landlordName: location.state.firstName,
+          landlordPhoneNumber: location.state.phoneNo,
+          siteName: ad.houseType,
+          adTitle: ad.title,
+          adDetails: ad.description,
+          rentPrice: ad.price,
           adDate: startDate,
           address: ad.address,
           areaGross: ad.areaGross,
@@ -112,10 +117,9 @@ export default function PublishAd() {
           flatNumber: ad.flatNumber,
           heating: ad.heating,
           numberOfBathrooms: ad.numberOfBathrooms,
-          haveBalcony: false,
-          haveFurniture: false,
-          inASite: true,
-          siteName: ad.siteName,
+          haveBalcony: true,
+          haveFurniture: true,
+          inASite: false,
         }
       )
       .then((response) => {
