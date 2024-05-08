@@ -205,7 +205,7 @@ function RealEstateAgentPastRequest() {
                             </Card.Title>
                             <Card.Text style={{ color: "black" }}>
                               {tenants[idx]} requested to see house owned by{" "}
-                              {landlord[idx]} .
+                              {landlords[idx]} .
                             </Card.Text>
 
                             <div
