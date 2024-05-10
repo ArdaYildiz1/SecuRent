@@ -5,13 +5,22 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import {useNavigate} from "react-router-dom";
+import axios from 'axios';
 
 function StateOfficialNavBar() {
 
     let navigate = useNavigate();
 
     function handleStateOfficialHome() {
-        navigate("/stateofficialhome");
+        axios
+      .get(`http://localhost:8080/houses`)
+      .then((response) => {
+        navigate("/stateofficialhome", { state: { ...response.data } });
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching houses:", error);
+      });
     }
     
     function handleHandledComplaints() {

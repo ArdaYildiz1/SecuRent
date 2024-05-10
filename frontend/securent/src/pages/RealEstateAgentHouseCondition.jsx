@@ -117,7 +117,7 @@ function RealEstateAgentHouseCondition() {
                   <Col key={idx}>
                     <Link style={{ textDecoration: "none" }}>
                       <Card
-                        className="clickable-card"
+                        onClick={() => navigateHouse(houseCondition[idx].houseID)}
                         style={{
                           backgroundColor: "#f1f2ed",
                           borderRadius: "2rem",

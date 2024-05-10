@@ -29,12 +29,10 @@ function LandlordProfile() {
             <div style={{ width: '100%', height: '100vh', overflowY: 'auto', flexDirection: 'row', display: 'flex' }}>
                 <Card style={{ width: '20%',  backgroundColor: '#f1f2ed', borderRadius: "1rem", height: '80vh', margin: '40px', alignItems: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
 
-                    <p style={{ fontSize: 24 }}>Hikmet Kara</p>
+                    <p style={{ fontSize: 24 }}>John Doe</p>
                     <img src={selectedFile ? URL.createObjectURL(selectedFile) : pp} style={{ width: '100px', height: '100px', borderRadius: '50%' }} />
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                        <Button style={{ backgroundColor: '#2D9596', borderColor: '#2D9596', marginTop: 20 }} onClick={handleButtonClick}>
-                            Upload Photo
-                        </Button>
+                       
                         <Form.Group controlId="formFile" style={{ display: 'none' }}>
                             <Form.Control
                                 type="file"
@@ -44,11 +42,7 @@ function LandlordProfile() {
                             />
                         </Form.Group>
                     </div>
-                    <div style={{ width: '80%', alignItems: 'center', display: 'flex', justifyContent: 'center', backgroundColor: '#ECEAEA', marginTop: 20, paddingTop: 20, borderRadius: '5%' }}>
-                        <p style={{ alignItems: 'center', display: 'flex', textAlign: 'center' }}>
-                            Upload your photo to ensure a better communication
-                        </p>
-                    </div>
+                   
 
                 </Card>
 
@@ -56,29 +50,29 @@ function LandlordProfile() {
                     <Form style={{ width: '70%', alignItems: 'center' }}>
                         <Form.Group controlId="formName">
                             <Form.Label>Name:</Form.Label>
-                            <FormControl type="text" value="Hikmet" readOnly disabled />
+                            <FormControl type="text" value="John" readOnly disabled />
                         </Form.Group>
                         <br />
                         <Form.Group controlId="formSurname">
                             <Form.Label>Surname:</Form.Label>
-                            <FormControl type="text" value="Kara" readOnly disabled />
+                            <FormControl type="text" value="Doe" readOnly disabled />
                         </Form.Group>
                         <br />
 
                         <Form.Group controlId="formTCNumber">
                             <Form.Label>TC Number:</Form.Label>
-                            <FormControl type="text" value="987654321" readOnly disabled />
+                            <FormControl type="text" value="12345678901" readOnly disabled />
                         </Form.Group>
                         <br />
 
                         <Form.Group controlId="formEmailAddress">
                             <Form.Label>E-mail Address:</Form.Label>
-                            <FormControl type="email" value="hikmetkara@example.com" readOnly disabled />
+                            <FormControl type="email" value="john.doe@example.com" readOnly disabled />
                         </Form.Group>
                         <br />
                         <Form.Group controlId="formEmailAddress">
                             <Form.Label>Phone Number:</Form.Label>
-                            <FormControl type="text" value="05333333333" readOnly disabled />
+                            <FormControl type="text" value="123-456-7890" readOnly disabled />
                         </Form.Group>
                         <br />
                         <Form.Group controlId="formPassword">

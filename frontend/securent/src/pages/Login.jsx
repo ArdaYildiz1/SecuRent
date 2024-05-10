@@ -22,16 +22,7 @@ export default function Login() {
   let navigate = useNavigate();
 
   function handleClickLogin() {
-    axios
-      .get("http://localhost:8080/auth/login")
-      .then((response) => {
-        // Handle the response
-        console.log("Response:", response.data);
-      })
-      .catch((error) => {
-        // Handle errors
-        console.error("Error:", error.response.data);
-      });
+    navigate("/realEstateAgentCurrentRequest");
   }
 
   function handleForgotPassword() {
@@ -95,10 +86,6 @@ export default function Login() {
                       Login
                     </Button>
                     <br />
-                    <br />
-                    <href onClick={handleForgotPassword} className="link-primary">
-                      Forgot Your Password?
-                    </href>
                     <br />
                     ---
                     <br />
