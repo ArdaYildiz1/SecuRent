@@ -61,9 +61,7 @@ function RealEstateAgentNotification() {
     axios
       .put(
         `http://localhost:8080/real-estate-agents/${notifications[idx].realEstateAgentID}/rental-service-requests/${notifications[idx].serviceID}/reject`,
-        { serviceAccepted: false,
-          newlyCreated: false
-        }
+        { serviceAccepted: false, newlyCreated: false }
       )
       .then((response) => {
         console.log(response.data);
@@ -71,6 +69,19 @@ function RealEstateAgentNotification() {
       })
       .catch((error) => {
         console.error("Error accepting rental request:", error);
+      });
+  }
+
+  function navigateHouse(idx) {
+    axios
+      .get(`http://localhost:8080/houses/${idx}`)
+      .then((response) => {
+        navigate("/realEstateAgentHouseDetails", {
+          state: { ...response.data },
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching house details:", error);
       });
   }
 
@@ -105,7 +116,7 @@ function RealEstateAgentNotification() {
                   <Col key={idx}>
                     <Link style={{ textDecoration: "none" }}>
                       <Card
-                        className="clickable-card"
+                        onClick={() => navigateHouse(notifications[idx].houseID)}
                         style={{
                           backgroundColor: "#f1f2ed",
                           borderRadius: "2rem",
@@ -136,7 +147,9 @@ function RealEstateAgentNotification() {
                             <Button
                               style={{ width: "150px", height: "50px" }}
                               className="btn-decline"
-                              onClick={() => {declineRentalRequest(idx)}}
+                              onClick={() => {
+                                declineRentalRequest(idx);
+                              }}
                               type="submit"
                             >
                               Decline
@@ -144,7 +157,9 @@ function RealEstateAgentNotification() {
                             <Button
                               style={{ width: "150px", height: "50px" }}
                               className="btn-fav"
-                              onClick={() => {acceptRentalRequest(idx)}}
+                              onClick={() => {
+                                acceptRentalRequest(idx);
+                              }}
                               type="submit"
                             >
                               Accept

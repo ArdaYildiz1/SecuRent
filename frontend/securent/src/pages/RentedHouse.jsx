@@ -123,58 +123,14 @@ function RentedHouse() {
                     <h5>Inside A Site: Yes</h5>
                     <p style={{ marginLeft: 10 }}></p>
                   </div>
-
                   <div style={{ display: "flex", flexdirection: "column" }}>
-                    <h5>Site Name: Maple Meadows</h5>
+                    <h5>House Type: Maple Meadows</h5>
                     <p style={{ marginLeft: 10 }}></p>
                   </div>
                   <div style={{ display: "flex", flexdirection: "column" }}>
                     <h5>Rent Amount: 2000</h5>
                     <p style={{ marginLeft: 10 }}></p>
                   </div>
-                </div>
-                <hr />
-
-                <div className="row">
-                  <Form>
-                    <Form.Group
-                      className="ms-5 me-5 mb-3"
-                      controlId="loginPassword"
-                    >
-                      <h5>
-                        You can send request for house condition check if
-                        reamining contract time is less than 7 days!
-                      </h5>
-                      <br></br>
-                      <div style={{ display: "flex", flexdirection: "column" }}>
-                        <h5>Remaining Time For Contract End: </h5>
-                        <p style={{ marginLeft: 10 }}>
-                          06 days, 20 hours, 20 minutes
-                        </p>
-                      </div>
-                      <br />
-                      <div
-                        className=""
-                        style={{
-                          display: "flex",
-                          flexdirection: "column",
-                          alignItems: "center",
-                        }}
-                      >
-                        <h5 style={{ marginRight: 10 }}>
-                          Select agent to request house condition check:
-                        </h5>
-                        <Button
-                          className="btn-teal"
-                          onClick={handleSelectAgent}
-                        >
-                          Select Agent
-                        </Button>
-                      </div>
-                    </Form.Group>
-                  </Form>
-                  <br />
-                  <br />
                 </div>
               </div>
             </Card>
