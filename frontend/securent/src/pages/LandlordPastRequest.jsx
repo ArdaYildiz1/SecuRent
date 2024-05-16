@@ -36,7 +36,7 @@ function LandlordPastRequest() {
     
       function getTenantNameById(idx) {
         axios
-          .get(`http://localhost:8080/tenants/${pastRequests[idx].tenantID}`)
+          .get(`http://52.59.214.208:8080/tenants/${pastRequests[idx].tenantID}`)
           .then((response) => {
             const newTenant = response.data.firstName;
             // Update tenants state and save to local storage
@@ -52,7 +52,7 @@ function LandlordPastRequest() {
 
       function getRealEstateAgentNameById(idx) {
         axios
-          .get(`http://localhost:8080/real-estate-agents/${pastRequests[idx].realEstateAgentID}`)
+          .get(`http://52.59.214.208:8080/real-estate-agents/${pastRequests[idx].realEstateAgentID}`)
           .then((response) => {
             const newRealEstateAgent = response.data.firstName;
             // Update real estate agent state and save to local storage

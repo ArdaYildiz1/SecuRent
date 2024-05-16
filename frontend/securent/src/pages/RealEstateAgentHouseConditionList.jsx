@@ -18,7 +18,7 @@ function RealEstateAgentHouseConditionList() {
 
     function navigateHouse(idx) {
         axios
-          .get(`http://localhost:8080/houses/${idx}`)
+          .get(`http://52.59.214.208:8080/houses/${idx}`)
           .then((response) => {
   
             navigate("/realEstateAgentHouseDetails", { state: { ...response.data } });
@@ -38,7 +38,7 @@ function RealEstateAgentHouseConditionList() {
   
        function getTenantNameById(idx) {
           axios
-            .get(`http://localhost:8080/tenants/${houseCondition[idx].tenantID}`)
+            .get(`http://52.59.214.208:8080/tenants/${houseCondition[idx].tenantID}`)
             .then((response) => {
               const newTenant = response.data.firstName;
               // Update tenants state and save to local storage

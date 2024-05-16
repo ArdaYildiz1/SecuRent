@@ -36,7 +36,7 @@ function TenantNavBar() {
 
   function handleGoHome() {
     axios
-      .get(`http://localhost:8080/houses`)
+      .get(`http://52.59.214.208:8080/houses`)
       .then((response) => {
         setHouseId(response.data.houseId);
         setLandlordId(response.data.landlordId);
@@ -73,7 +73,7 @@ function TenantNavBar() {
 
   function handleRentedHome() {
     axios
-      .get(`http://localhost:8080/houses`)
+      .get(`http://52.59.214.208:8080/houses`)
       .then((response) => {
         setHouseId(response.data.houseId);
         setLandlordId(response.data.landlordId);
@@ -110,7 +110,7 @@ function TenantNavBar() {
 
   function handleGoProfile() {
     axios
-      .get(`http://localhost:8080/tenants/${tenantId}`)
+      .get(`http://52.59.214.208:8080/tenants/${tenantId}`)
       .then((response) => {
         // Handle the response data, e.g., redirect to a new page
         console.log(response.data);

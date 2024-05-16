@@ -13,7 +13,7 @@ function StateOfficialNavBar() {
 
     function handleStateOfficialHome() {
         axios
-      .get(`http://localhost:8080/houses`)
+      .get(`http://52.59.214.208:8080/houses`)
       .then((response) => {
         navigate("/stateofficialhome", { state: { ...response.data } });
         console.log(response.data);

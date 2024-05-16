@@ -17,7 +17,7 @@ function RealEstateAgentCurrentRequest() {
 
   function navigateHouse(idx) {
     axios
-      .get(`http://localhost:8080/houses/${idx}`)
+      .get(`http://52.59.214.208:8080/houses/${idx}`)
       .then((response) => {
         navigate("/realEstateAgentHouseDetails", {
           state: { ...response.data },
@@ -47,7 +47,7 @@ function RealEstateAgentCurrentRequest() {
 
   function getTenantNameById(idx) {
     axios
-      .get(`http://localhost:8080/tenants/${currentRequests[idx].tenantID}`)
+      .get(`http://52.59.214.208:8080/tenants/${currentRequests[idx].tenantID}`)
       .then((response) => {
         const newTenant = response.data.firstName;
         // Update tenants state and save to local storage
@@ -63,7 +63,7 @@ function RealEstateAgentCurrentRequest() {
 
   function getLandlordNameById(idx) {
     axios
-      .get(`http://localhost:8080/landlords/${currentRequests[idx].landlordID}`)
+      .get(`http://52.59.214.208:8080/landlords/${currentRequests[idx].landlordID}`)
       .then((response) => {
         console.log(response.data);
         const newRealEstateAgent = response.data.firstName;
@@ -84,10 +84,10 @@ function RealEstateAgentCurrentRequest() {
   function handleSeeProfiles(idx) {
     Promise.all([
       axios.get(
-        `http://localhost:8080/landlords/${currentRequests[idx].landlordID}`
+        `http://52.59.214.208:8080/landlords/${currentRequests[idx].landlordID}`
       ),
       axios.get(
-        `http://localhost:8080/tenants/${currentRequests[idx].tenantID}`
+        `http://52.59.214.208:8080/tenants/${currentRequests[idx].tenantID}`
       ),
     ])
       .then(([landlordResponse, tenantResponse]) => {

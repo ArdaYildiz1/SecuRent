@@ -22,7 +22,7 @@ function LandlordNavBar() {
   function handleCurrentRequests() {
     axios
       .get(
-        `http://localhost:8080/landlords/${landlordID}/renting-requests/current`
+        `http://52.59.214.208:8080/landlords/${landlordID}/renting-requests/current`
       )
       .then((response) => {
         navigate("/landlordCurrentRequest", { state: { ...response.data } });
@@ -35,7 +35,7 @@ function LandlordNavBar() {
   function handlePastRequests() {
     axios
       .get(
-        `http://localhost:8080/landlords/${landlordID}/renting-requests/past`
+        `http://52.59.214.208:8080/landlords/${landlordID}/renting-requests/past`
       )
       .then((response) => {
         navigate("/landlordPastRequest", { state: { ...response.data } });
@@ -47,7 +47,7 @@ function LandlordNavBar() {
 
   function handleNotifications() {
     axios
-      .get(`http://localhost:8080/landlords/${landlordID}/renting-requests/new`)
+      .get(`http://52.59.214.208:8080/landlords/${landlordID}/renting-requests/new`)
       .then((response) => {
         navigate("/landlordNotification", { state: { ...response.data } });
       })
@@ -58,7 +58,7 @@ function LandlordNavBar() {
 
   function handlePublishAd() {
     axios
-      .get(`http://localhost:8080/landlords/${landlordID}`)
+      .get(`http://52.59.214.208:8080/landlords/${landlordID}`)
       .then((response) => {
         navigate("/publishad", { state: { ...response.data } });
       })

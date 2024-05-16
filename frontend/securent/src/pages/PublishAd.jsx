@@ -85,7 +85,7 @@ export default function PublishAd() {
   //     formData.append('houseId', houseId);
 
   //     try {
-  //         await axios.post('http://localhost:8080/house-photos/upload', formData);
+  //         await axios.post('http://52.59.214.208:8080/house-photos/upload', formData);
   //         alert('Photo uploaded successfully');
   //     } catch (error) {
   //         alert('Photo uploaded successfully');
@@ -98,7 +98,7 @@ export default function PublishAd() {
     console.log(ad);
     axios
       .post(
-        `http://localhost:8080/houses`,
+        `http://52.59.214.208:8080/houses`,
         {
           landlordId: location.state.entityId,
           landlordName: location.state.firstName,
@@ -133,7 +133,7 @@ export default function PublishAd() {
 
     // Promise.all([
     //   post(
-    //     `http://localhost:8080/landlords/${ad.landlordId}/publish-rental-ad`,
+    //     `http://52.59.214.208:8080/landlords/${ad.landlordId}/publish-rental-ad`,
     //     {
     //       landlordId: location.state.entityId,
     //       houseType: ad.houseType,
@@ -156,7 +156,7 @@ export default function PublishAd() {
     //       siteName: ad.siteName,
     //     }
     //   ),
-    //   axios.post(`http://localhost:8080/houses`, {}),
+    //   axios.post(`http://52.59.214.208:8080/houses`, {}),
     // ])
     //   .then(([realEstateAgentResponse, tenantResponse]) => {
     //     const newRealEstateAgent = realEstateAgentResponse.data;

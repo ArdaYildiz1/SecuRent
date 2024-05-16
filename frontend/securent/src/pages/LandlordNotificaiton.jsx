@@ -27,7 +27,7 @@ function LandlordNotification() {
 
   function getTenantNameById(idx) {
     axios
-      .get(`http://localhost:8080/tenants/${notifications[idx].tenantID}`)
+      .get(`http://52.59.214.208:8080/tenants/${notifications[idx].tenantID}`)
       .then((response) => {
         console.log(response.data);
         const newTenant = response.data.firstName;
@@ -46,7 +46,7 @@ function LandlordNotification() {
   function acceptRentalRequest(idx) {
     axios
       .put(
-        `http://localhost:8080/landlords/${notifications[idx].landlordID}/renting-requests/${notifications[idx].serviceID}/confirm`,
+        `http://52.59.214.208:8080/landlords/${notifications[idx].landlordID}/renting-requests/${notifications[idx].serviceID}/confirm`,
         { serviceAccepted: true,
           newlyCreated: false
         }
@@ -63,7 +63,7 @@ function LandlordNotification() {
   function declineRentalRequest(idx) {
     axios
       .put(
-        `http://localhost:8080/landlords/${notifications[idx].landlordID}/renting-requests/${notifications[idx].serviceID}/reject`,
+        `http://52.59.214.208:8080/landlords/${notifications[idx].landlordID}/renting-requests/${notifications[idx].serviceID}/reject`,
         { serviceAccepted: false,
           newlyCreated: false
         }

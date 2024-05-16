@@ -17,7 +17,7 @@ function RealEstateAgentNavBar() {
   }
   function handleGoHome() {
     axios
-      .get(`http://localhost:8080/houses`)
+      .get(`http://52.59.214.208:8080/houses`)
       .then((response) => {
         navigate("/realestateagenthome", { state: { ...response.data } });
         console.log(response.data);
@@ -29,7 +29,7 @@ function RealEstateAgentNavBar() {
   function handleCurrentRequests() {
     axios
       .get(
-        `http://localhost:8080/real-estate-agents/${realEstateAgentId}/rental-service-requests/rental-service/current`
+        `http://52.59.214.208:8080/real-estate-agents/${realEstateAgentId}/rental-service-requests/rental-service/current`
       )
       .then((response) => {
         console.log(response.data);
@@ -44,7 +44,7 @@ function RealEstateAgentNavBar() {
   function handlePastRequests() {
     axios
       .get(
-        `http://localhost:8080/real-estate-agents/${realEstateAgentId}/rental-service-requests/rental-service/old`
+        `http://52.59.214.208:8080/real-estate-agents/${realEstateAgentId}/rental-service-requests/rental-service/old`
       )
       .then((response) => {
         console.log(response.data);
@@ -59,7 +59,7 @@ function RealEstateAgentNavBar() {
   function handleHouseConditionList() {
     axios
       .get(
-        `http://localhost:8080/real-estate-agents/${realEstateAgentId}/rental-service-requests/evaluation/current`
+        `http://52.59.214.208:8080/real-estate-agents/${realEstateAgentId}/rental-service-requests/evaluation/current`
       )
       .then((response) => {
         console.log(response.data);
@@ -74,7 +74,7 @@ function RealEstateAgentNavBar() {
   function handleHouseConditionNotifications() {
     axios
       .get(
-        `http://localhost:8080/real-estate-agents/${realEstateAgentId}/rental-service-requests/evaluation/new`
+        `http://52.59.214.208:8080/real-estate-agents/${realEstateAgentId}/rental-service-requests/evaluation/new`
       )
       .then((response) => {
         console.log(response.data);
@@ -89,7 +89,7 @@ function RealEstateAgentNavBar() {
   function handleNotifications() {
     axios
       .get(
-        `http://localhost:8080/real-estate-agents/${realEstateAgentId}/rental-service-requests/rental-service/new`
+        `http://52.59.214.208:8080/real-estate-agents/${realEstateAgentId}/rental-service-requests/rental-service/new`
       )
       .then((response) => {
         console.log(response.data);

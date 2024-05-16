@@ -17,7 +17,7 @@ import java.io.IOException;
 
 @RestController
 @RequestMapping("/house-photos")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://securentsys.s3-website.eu-central-1.amazonaws.com")
 public class HousePhotosController {
     @Autowired
     private FileUploadService fileUploadService;

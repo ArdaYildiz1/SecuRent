@@ -32,7 +32,7 @@ export default function Signup() {
     function handleSubmit(event) {
         event.preventDefault();
         // console.log(formData);
-        axios.post('http://localhost:8080/auth/signup', {
+        axios.post('http://52.59.214.208:8080/auth/signup', {
             firstName: formData.first_name,
             lastName: formData.last_name,
             password: formData.password,

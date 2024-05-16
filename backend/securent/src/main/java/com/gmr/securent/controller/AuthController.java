@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://securentsys.s3-website.eu-central-1.amazonaws.com")
 public class AuthController {
     private TenantRepository tenantRepository;
     private LandlordRepository landlordRepository;

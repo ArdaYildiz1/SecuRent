@@ -35,7 +35,7 @@ function LandlordCurrentRequest() {
 
   function getTenantNameById(idx) {
     axios
-      .get(`http://localhost:8080/tenants/${currentRequests[idx].tenantID}`)
+      .get(`http://52.59.214.208:8080/tenants/${currentRequests[idx].tenantID}`)
       .then((response) => {
         console.log(response.data);
         const newTenant = response.data.firstName;
@@ -53,7 +53,7 @@ function LandlordCurrentRequest() {
   function getRealEstateAgentNameById(idx) {
     axios
       .get(
-        `http://localhost:8080/real-estate-agents/${currentRequests[idx].realEstateAgentID}`
+        `http://52.59.214.208:8080/real-estate-agents/${currentRequests[idx].realEstateAgentID}`
       )
       .then((response) => {
         console.log(response.data);
@@ -75,7 +75,7 @@ function LandlordCurrentRequest() {
   function declineRentalRequest(idx) {
     axios
       .put(
-        `http://localhost:8080/landlords/${currentRequests[idx].landlordID}/renting-requests/${currentRequests[idx].serviceID}/reject`,
+        `http://52.59.214.208:8080/landlords/${currentRequests[idx].landlordID}/renting-requests/${currentRequests[idx].serviceID}/reject`,
         { serviceAccepted: false, newlyCreated: false }
       )
       .then((response) => {
@@ -115,10 +115,10 @@ function LandlordCurrentRequest() {
   function handleSeeProfiles(idx) {
     Promise.all([
       axios.get(
-        `http://localhost:8080/real-estate-agents/${currentRequests[idx].realEstateAgentID}`
+        `http://52.59.214.208:8080/real-estate-agents/${currentRequests[idx].realEstateAgentID}`
       ),
       axios.get(
-        `http://localhost:8080/tenants/${currentRequests[idx].tenantID}`
+        `http://52.59.214.208:8080/tenants/${currentRequests[idx].tenantID}`
       ),
     ])
       .then(([realEstateAgentResponse, tenantResponse]) => {

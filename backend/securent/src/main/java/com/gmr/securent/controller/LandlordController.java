@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://securentsys.s3-website.eu-central-1.amazonaws.com")
 @RestController
 @RequestMapping("/landlords")
 public class LandlordController {

@@ -19,7 +19,7 @@ function RealEstateAgentHouseCondition() {
 
   function navigateHouse(idx) {
     axios
-      .get(`http://localhost:8080/houses/${idx}`)
+      .get(`http://52.59.214.208:8080/houses/${idx}`)
       .then((response) => {
         navigate("/realEstateAgentHouseDetails", {
           state: { ...response.data },
@@ -34,7 +34,7 @@ function RealEstateAgentHouseCondition() {
     //{realEstateAgentId}/rental-service-requests/{rentalServiceId}/accept
     axios
       .put(
-        `http://localhost:8080/real-estate-agents/${houseCondition[idx].realEstateAgentID}/rental-service-requests/${houseCondition[idx].serviceID}/accept`,
+        `http://52.59.214.208:8080/real-estate-agents/${houseCondition[idx].realEstateAgentID}/rental-service-requests/${houseCondition[idx].serviceID}/accept`,
         { serviceAccepted: true, newlyCreated: false }
       )
       .then((response) => {
@@ -49,7 +49,7 @@ function RealEstateAgentHouseCondition() {
   function declineRentalRequest(idx) {
     axios
       .put(
-        `http://localhost:8080/real-estate-agents/${houseCondition[idx].realEstateAgentID}/rental-service-requests/${houseCondition[idx].serviceID}/reject`,
+        `http://52.59.214.208:8080/real-estate-agents/${houseCondition[idx].realEstateAgentID}/rental-service-requests/${houseCondition[idx].serviceID}/reject`,
         { serviceAccepted: false, newlyCreated: false }
       )
       .then((response) => {
@@ -72,7 +72,7 @@ function RealEstateAgentHouseCondition() {
 
   function getTenantNameById(idx) {
     axios
-      .get(`http://localhost:8080/tenants/${houseCondition[idx].tenantID}`)
+      .get(`http://52.59.214.208:8080/tenants/${houseCondition[idx].tenantID}`)
       .then((response) => {
         const newTenant = response.data.firstName;
         // Update tenants state and save to local storage
