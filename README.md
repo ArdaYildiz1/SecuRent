@@ -35,8 +35,6 @@ Please follow the steps below to setup the project and have a running applicatio
 
 # User Manual
 
-The SecuRent is an application which enhances the house rental process as well as addressing the issues that are related with the house rental process. SecuRent application emerges as a pioneering solution designed to transform the dynamics between tenants and landlords. With SecuRent, tenants can request officials (who are assigned by the government) to determine the rental price of a house if they are not in favor of the price set by the landlord. Thus, ballooned prices set by the landlords can be regulated by the officials to prevent tenants paying more than what is worth for a particular house. Furthermore, if a house is rented, the status of the house will be updated in the application and a contract uploaded by the landlord will enable the government to monitor the contract. If a landlord wants to increase the rent price before the contract expiration date, the government will be notified with a request. Hence, the rent prices will not be increased without the government's consent, ultimately preventing unwanted skyrocketing prices that cause hardships for tenants. Moreover, with SecuRent, the deposit money for houses will be collected at the government treasury. The implication of this use case is that the deposit money will be given to either the tenant or the landlord depending on the condition of the house after the contract expires. Thus, conflicts between tenants and landlords caused by deciding who will keep the deposit money will be solved, as the government will act as the mediator in this process.
-
 ## Tenant
 
 ### Step-by-Step Guide
