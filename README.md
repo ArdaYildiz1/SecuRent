@@ -32,7 +32,10 @@ Please follow the steps below to setup the project and have a running applicatio
 * Navigate to the backend directory: cd backend
 * Install dependencies: mvn install
 * Run the Spring Boot application: mvn spring-boot:run
-
+# User Manual
+There are 4 different stakeholders in the system. Each has different use cases and user manuals.
+* Tenant: User logs in to the system via entering his/her credentials in the login page. The tenant can
+  **dasd  
 # Contributers
 * Arda YILDIZ
 * Mustafa Kaan KOÇ
@@ -49,5 +52,5 @@ Please follow the steps below to setup the project and have a running applicatio
 
 # Contact
 Please reach out to Arda YILDIZ for questions and business inquiries.
-* E-Mail: ardayildiz1074@gmail.com
+* E-Mail: yarda@ug.bilkent.edu.tr
 
