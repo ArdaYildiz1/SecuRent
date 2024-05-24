@@ -32,10 +32,139 @@ Please follow the steps below to setup the project and have a running applicatio
 * Navigate to the backend directory: cd backend
 * Install dependencies: mvn install
 * Run the Spring Boot application: mvn spring-boot:run
+```md
 # User Manual
+
 There are 4 different stakeholders in the system. Each has different use cases and user manuals.
-* Tenant: User logs in to the system via entering his/her credentials in the login page. The tenant can
-  ** dasd  
+
+## Tenant
+
+### Step-by-Step Guide
+
+1. **Log In:**
+    - Open the login page.
+    - Enter your credentials (username and password).
+    - Click the "Log In" button.
+
+2. **View Rented House Information:**
+    - After logging in, navigate to the "Rented House" tab.
+    - Click on the "Rented House" tab to view information about the house you have rented.
+
+3. **Choose a House for Rent:**
+    - Navigate to the "House" tab from the navigation bar at the top of the page.
+    - Browse through the list of available houses for rent.
+
+4. **Send Rental Request:**
+    - Select a house from the listed houses.
+    - Click on the "Send Request" button to send a rental request for the chosen house.
+
+5. **Report Mismatching Information:**
+    - If you notice any mismatching information in the rental ad (e.g., number of rooms, heating type, etc.), you can report it.
+    - Click on the "Report Ad" button associated with the house to report the issue. This report will be monitored by the government account.
+
+6. **View Profile:**
+    - Navigate to the "Profile" tab.
+    - Click on the "Profile" tab to view your personal profile information.
+```
+
+## Landlord
+
+### Step-by-Step Guide
+
+1. **Log In:**
+    - Open the login page.
+    - Enter your credentials (username and password).
+    - Click the "Log In" button.
+
+2. **List a House for Rent:**
+    - Navigate to the "List House" tab.
+    - Fill in the details of the house (e.g., number of rooms, heating type, rental price, etc.).
+    - Click on the "Submit" button to list the house for rent.
+
+3. **Upload Rental Contract:**
+    - Once a house is rented, navigate to the "Contracts" tab.
+    - Select the rented house and upload the rental contract.
+    - This contract will enable the government to monitor the agreement.
+
+4. **Request Rent Increase:**
+    - If you wish to increase the rent price before the contract expiration date, navigate to the "Rent Increase Request" tab.
+    - Fill in the necessary details and submit the request.
+    - The government will be notified and must consent to the increase.
+
+5. **View Rental Requests:**
+    - Navigate to the "Rental Requests" tab.
+    - Review the rental requests sent by tenants.
+    - Approve or reject the requests accordingly.
+
+6. **View Profile:**
+    - Navigate to the "Profile" tab.
+    - Click on the "Profile" tab to view your personal profile information.
+
+## Real Estate Agent
+
+### Step-by-Step Guide
+
+1. **Log In:**
+    - Open the login page.
+    - Enter your credentials (username and password).
+    - Click the "Log In" button.
+
+2. **Manage House Listings:**
+    - Navigate to the "Manage Listings" tab.
+    - View and manage all house listings assigned to you.
+    - Update details, add new houses, or remove existing listings as needed.
+
+3. **Facilitate Rental Agreements:**
+    - Navigate to the "Agreements" tab.
+    - Assist in the facilitation of rental agreements between tenants and landlords.
+    - Ensure all necessary documentation is uploaded and properly filled out.
+
+4. **Assist with Rent Increase Requests:**
+    - Navigate to the "Rent Increase Requests" tab.
+    - Assist landlords in filling out and submitting rent increase requests.
+    - Ensure all details are accurate and the process is followed correctly.
+
+5. **View Profile:**
+    - Navigate to the "Profile" tab.
+    - Click on the "Profile" tab to view your personal profile information.
+
+## Government Official
+
+### Step-by-Step Guide
+
+1. **Log In:**
+    - Open the login page.
+    - Enter your credentials (username and password).
+    - Click the "Log In" button.
+
+2. **Monitor Rental Ads:**
+    - Navigate to the "Monitor Ads" tab.
+    - Review rental ads and check for any reported mismatching information.
+    - Take appropriate actions to address any discrepancies.
+
+3. **Approve Rental Prices:**
+    - Navigate to the "Rental Price Requests" tab.
+    - Review requests from tenants for official rental price determinations.
+    - Approve or adjust the rental prices accordingly.
+
+4. **Monitor Contracts:**
+    - Navigate to the "Contracts" tab.
+    - Review and monitor uploaded rental contracts from landlords.
+    - Ensure compliance with regulations and address any issues.
+
+5. **Approve Rent Increase Requests:**
+    - Navigate to the "Rent Increase Requests" tab.
+    - Review and approve or reject requests for rent increases from landlords.
+    - Ensure that any approved increases are fair and justified.
+
+6. **Manage Deposit Refunds:**
+    - Navigate to the "Deposit Refunds" tab.
+    - Review the condition of houses after the contract expires and decide on the refund of deposit money.
+    - Ensure fair resolution of disputes between tenants and landlords regarding the deposit.
+
+7. **View Profile:**
+    - Navigate to the "Profile" tab.
+    - Click on the "Profile" tab to view your personal profile information.
 # Contributers
 * Arda YILDIZ
 * Mustafa Kaan KOÇ
