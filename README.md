@@ -35,7 +35,7 @@ Please follow the steps below to setup the project and have a running applicatio
 # User Manual
 There are 4 different stakeholders in the system. Each has different use cases and user manuals.
 * Tenant: User logs in to the system via entering his/her credentials in the login page. The tenant can
-  **dasd  
+  ** dasd  
 # Contributers
 * Arda YILDIZ
 * Mustafa Kaan KOÇ
